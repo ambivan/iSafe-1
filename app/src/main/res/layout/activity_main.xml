@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="#fff"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -46,6 +48,8 @@
 
 
     <LinearLayout
+        android:id="@+id/linlay2"
+        android:visibility="gone"
         android:layout_marginTop="70dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -53,20 +57,20 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_gravity="left"
             android:id="@+id/signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textAllCaps="false"
-            android:textSize="20dp"
-            android:textColor="#fff"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button_first_bg"
+            android:fontFamily="@font/actor"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
-            android:fontFamily="sans-serif"
+            android:text="Sign Up"
+            android:textAllCaps="false"
 
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/button_first_bg"/>
+            android:textColor="#fff"
+            android:textSize="25sp" />
 
         <Space
             android:layout_width="0dp"
@@ -74,23 +78,25 @@
             android:layout_weight="1"/>
 
         <Button
-            android:text="Log In"
-            android:textAllCaps="false"
-            android:textSize="20dp"
-            android:textColor="#fff"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:fontFamily="sans-serif"
-            android:layout_gravity="right"
             android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
             android:background="@drawable/button_first_bg"
-            android:layout_marginRight="10dp"/>
+
+            android:fontFamily="@font/actor"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="Log In"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="25sp" />
 
 
 
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
