@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context=".Signup2">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+
+        android:layout_marginTop="60dp"
+        android:id="@+id/loginLogo"
+        />
+
+        <EditText
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:hint="Enter Email - ID"
+            android:id="@+id/emailid"
+            />
+
+        <EditText
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:hint="New Password"
+            android:id="@+id/newpassword"
+            />
+
+        <EditText
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:hint="Confirm New Password"
+            android:id="@+id/confirm"
+            />
+
+
+        <EditText
+            android:padding="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:hint="College UID**"
+            android:id="@+id/collegeuid"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textColor="#000"
+            android:text="**optional, if you have college id then enter"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_first_bg"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:text="Sign Up"
+            android:id="@+id/proceed"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/actor"
+            />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
