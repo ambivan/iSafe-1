@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">iSafe</string>
+    
+    <string-array name="options1">
+        <item>Volunteer</item>
+        <item>Team Lead</item>
+        <item>Team Member</item>
+    </string-array>
+
 </resources>
