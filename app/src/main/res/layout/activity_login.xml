@@ -25,6 +25,7 @@
             />
 
         <EditText
+            android:id="@+id/email"
             android:layout_gravity="center"
             android:padding="15dp"
             android:layout_marginLeft="30dp"
@@ -44,6 +45,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:hint="Password"
+            android:id="@+id/password"
             />
 
 
@@ -59,6 +61,7 @@
             android:paddingLeft="100dp"
             android:paddingRight="100dp"
             android:text="Login"
+            android:id="@+id/loginbutton"
             android:textAllCaps="false"
 
             android:textColor="#fff"
