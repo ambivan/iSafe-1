@@ -2,6 +2,7 @@ package com.example.isafe;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static com.example.isafe.Profile.desig;
+import static com.example.isafe.Signup2.teamlead;
+import static com.example.isafe.Signup2.teammember;
+import static com.example.isafe.Signup2.volunteer;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;
@@ -26,7 +32,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
+    static int i;
+
     FirebaseAuth.AuthStateListener authStateListener;
+
+    String userid;
 
 
 
@@ -51,7 +61,30 @@ public class LoginActivity extends AppCompatActivity {
 
                 FirebaseUser user = auth.getCurrentUser();
 
+
+
                 if (user != null){
+
+
+                    userid = user.getUid();
+                    if (volunteer.contains(userid)){
+
+                        desig.setText("Volunteer");
+
+
+                    }else if (teamlead.contains(userid)){
+
+                        teamlead.add(userid);
+                        desig.setText("Team Leader");
+
+
+                    }else if (teammember.contains(userid)){
+
+                        teammember.add(userid);
+                        desig.setText("Team Member");
+
+                    }
+
                     Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
@@ -68,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
 //
                 pro.setTitle("Logging in");
                 pro.setMessage("Please wait..");
@@ -76,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 loginuser();
+
 
 
             }
@@ -102,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                                 pro.dismiss();
 
 
+
                                 Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
                                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(home);
@@ -116,9 +150,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     });
 
-            Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
-            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(home);
+
 
 
         }else{

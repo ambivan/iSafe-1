@@ -19,13 +19,15 @@ public class NewsFeed extends Fragment {
         //Change R.layout.tab1 in you classes
         vieww =  inflater.inflate(R.layout.tab1, container, false);
 
+
+
         MyListData[] myListData = new MyListData[] {
 
-                new MyListData(R.drawable.profile, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.newsfeed, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.call, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.camera, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.car, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
 
         };
 

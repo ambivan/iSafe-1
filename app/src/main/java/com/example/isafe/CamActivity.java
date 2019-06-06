@@ -44,6 +44,8 @@ public class CamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam);
 
+        HomePageActivity.frag = 3;
+
         upload = (TextView) findViewById(R.id.upload);
 
         cam = (Button) findViewById(R.id.clickpic);
@@ -66,7 +68,6 @@ public class CamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                HomePageActivity.frag = 3;
 
                 camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -88,7 +89,7 @@ public class CamActivity extends AppCompatActivity {
                 image2.setBackgroundResource(R.drawable.transbg);
                 image2Int = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictake(image2Int);
-                count++;
+                count ++;
             }
         });
 
@@ -109,13 +110,15 @@ public class CamActivity extends AppCompatActivity {
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count <3){
+                if (count < 3){
+
                     Toast.makeText(CamActivity.this, "Please take 3 photos!", Toast.LENGTH_SHORT).show();
+
                 }else{
 
                     i=1;
-
                     startActivity(new Intent(CamActivity.this, HomePageActivity.class));
+
                 }
             }
         });

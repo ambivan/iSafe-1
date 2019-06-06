@@ -16,6 +16,12 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
+import static com.example.isafe.Profile.desig;
 
 public class Signup2 extends AppCompatActivity {
 
@@ -27,6 +33,13 @@ public class Signup2 extends AppCompatActivity {
 
     EditText emailid, npassword, confirm, uid;
 
+    String userid ;
+
+    DatabaseReference reference;
+
+    static ArrayList<String> volunteer = new ArrayList<String>();
+    static ArrayList<String> teamlead = new ArrayList<String>();
+    static ArrayList<String> teammember = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,29 @@ public class Signup2 extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                userid = user.getUid();
+
+                if (SignupActivity.i == 1){
+
+                    volunteer.add(userid);
+                    desig.setText("Volunteer");
+
+
+                }else if (SignupActivity.i == 2){
+
+                    teamlead.add(userid);
+                    desig.setText("Volunteer");
+
+
+                }else if (SignupActivity.i == 3){
+
+                    teammember.add(userid);
+                    desig.setText("Volunteer");
+
+                }
+
+
 
             }
         };

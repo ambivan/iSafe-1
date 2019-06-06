@@ -11,7 +11,7 @@ public class Profile extends Fragment {
 
     View v1;
 
-    TextView desig;
+    static TextView desig;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -22,11 +22,11 @@ public class Profile extends Fragment {
 
         desig = (TextView) v1.findViewById(R.id.designation);
 
-        if (SignupActivity.i == 1){
+        if (SignupActivity.i == 1 || LoginActivity.i == 1){
             desig.setText("Volunteer");
-        }else if (SignupActivity.i ==2){
+        }else if (SignupActivity.i ==2 || LoginActivity.i == 2){
             desig.setText("Team Lead");
-        }else if (SignupActivity.i == 3){
+        }else if (SignupActivity.i == 3 || LoginActivity.i == 3){
             desig.setText("Team Member");
         }
 

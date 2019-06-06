@@ -39,7 +39,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
     TabLayout.Tab t;
 
-    static int frag;
+    static int frag = 0;
 
     private TabLayout tabLayout;
 
@@ -61,7 +61,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        frag = 0;
 
         TabLayout.Tab[] tabs = new TabLayout.Tab[5];
 
@@ -79,6 +78,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         Pager viewPagerAdapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(viewPagerAdapter);
+
         tabLayout.setupWithViewPager(viewPager);
 
         for (int i = 0; i<5; i++){
@@ -115,6 +115,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         viewPager.setCurrentItem(tab.getPosition());
 
+        frag = tab.getPosition();
+
     }
 
     @Override
@@ -126,6 +128,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
+
 
 
 

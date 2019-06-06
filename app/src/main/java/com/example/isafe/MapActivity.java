@@ -65,7 +65,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     String addr = "";
 
 
-    static int i=0;
+    static int m =0;
 
 
     private FusedLocationProviderClient client;
@@ -184,7 +184,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
             public void onClick(View v) {
                 if (etLocation != null){
                     startActivity(new Intent(MapActivity.this, HomePageActivity.class));
-                    i = 1;
+                    m = 1;
                 }
             }
         });
