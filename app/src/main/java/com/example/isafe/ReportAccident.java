@@ -53,6 +53,7 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 Intent finalact = new Intent(getActivity(), CamActivity.class);
+                finalact.putExtra("frag", 3);
                 finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(finalact);
             }
@@ -63,6 +64,8 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
             public void onClick(View v) {
 
                 Intent finalact = new Intent(getActivity(), MapActivity.class);
+                finalact.putExtra("frag", "3");
+
                 finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(finalact);
             }
@@ -72,8 +75,17 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View v) {
                 Intent finalact = new Intent(getActivity(), ContactActivity.class);
+                finalact.putExtra("frag", "3");
+
                 finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(finalact);
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), FinalActivity.class));
             }
         });
 

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,6 +51,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 FirebaseUser user = auth.getCurrentUser();
 
+                if (user != null){
+                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+
 
             }
 
@@ -63,12 +70,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 startActivity(new Intent(LoginActivity.this, HomePageActivity.class));
 //
-//                pro.setTitle("Logging in");
-//                pro.setMessage("Please wait..");
-//                pro.show();
-//
-//
-//                loginuser();
+                pro.setTitle("Logging in");
+                pro.setMessage("Please wait..");
+                pro.show();
+
+
+                loginuser();
 
 
             }
@@ -100,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(home);
 
                             } else {
+                                pro.dismiss();
+                                Toast.makeText(LoginActivity.this, "WRONG EMAIL OR PASSWORD!!", Toast.LENGTH_SHORT).show();
                                 Log.i("info", "unsuccessful");
                             }
 
@@ -107,7 +116,18 @@ public class LoginActivity extends AppCompatActivity {
 
                     });
 
+            Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
+            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(home);
+
+
+        }else{
+            pro.dismiss();
+
+            Toast.makeText(LoginActivity.this, "Please enter email and password ", Toast.LENGTH_SHORT).show();
         }
+
+
 
     }
 }

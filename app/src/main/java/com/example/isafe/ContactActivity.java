@@ -30,6 +30,9 @@ public class ContactActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
+        HomePageActivity.frag = 3;
+
+
 
         name = (EditText) findViewById(R.id.name);
         phone = (EditText) findViewById(R.id.contactno);

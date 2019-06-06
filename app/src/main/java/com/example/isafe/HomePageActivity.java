@@ -39,19 +39,21 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
     TabLayout.Tab t;
 
+    static int frag;
+
     private TabLayout tabLayout;
 
     private int[] imageResId = {
 
-            R.drawable.newsfeed,
-
-            R.drawable.attendance,
-
-            R.drawable.accident,
+            R.drawable.profile,
 
             R.drawable.chat,
 
-            R.drawable.profile};
+            R.drawable.accident,
+
+            R.drawable.attendance,
+
+            R.drawable.newsfeed};
 
 
     @Override
@@ -59,13 +61,18 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        frag = 0;
+
+        TabLayout.Tab[] tabs = new TabLayout.Tab[5];
+
         FirebaseApp.initializeApp(this);
         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         for (int i = 0; i<5; i++){
-            tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[i]));
+            tabLayout.addTab(tabLayout.newTab());
+             tabs[i] = tabLayout.getTabAt(i);
         }
 
 
@@ -74,34 +81,30 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
+        for (int i = 0; i<5; i++){
+            tabs[i].setIcon(imageResId[i]);
+
+        }
+
+        setFragment();
 
 
+    }
 
+    private void setFragment() {
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+        if (frag == 0 || frag == 1){
+            viewPager.setCurrentItem(0);
 
-                t = tab;
-
-                viewPager.setCurrentItem(tab.getPosition());
-                tab.setIcon(imageResId[tab.getPosition()]);
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                t = tab;
-                tab.setIcon(imageResId[tab.getPosition()]);
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
+        }else if (frag == 2){
+            viewPager.setCurrentItem(1);
+        }else if (frag == 3){
+            viewPager.setCurrentItem(2);
+        }else if (frag == 4){
+            viewPager.setCurrentItem(3);
+        }else if (frag == 5){
+            viewPager.setCurrentItem(4);
+        }
 
 
     }
@@ -110,13 +113,12 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
 
-
+        viewPager.setCurrentItem(tab.getPosition());
 
     }
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-        tab.setIcon(imageResId[tab.getPosition()]);
 
     }
 

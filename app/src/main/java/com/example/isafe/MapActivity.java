@@ -77,6 +77,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
         checkLocationPermission();
 
+        HomePageActivity.frag = 3;
+
+
         etLocation = (EditText) findViewById(R.id.et_location);
         btn_find = (Button) findViewById(R.id.btn_find);
 

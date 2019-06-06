@@ -66,6 +66,8 @@ public class CamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                HomePageActivity.frag = 3;
+
                 camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
                 pictake(camIntent);
