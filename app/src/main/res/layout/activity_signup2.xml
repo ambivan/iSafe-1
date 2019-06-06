@@ -39,6 +39,7 @@
         <EditText
             android:layout_gravity="center"
             android:padding="15dp"
+            android:inputType="textPassword"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_width="match_parent"
@@ -49,6 +50,7 @@
             />
 
         <EditText
+            android:inputType="textPassword"
             android:layout_gravity="center"
             android:padding="15dp"
             android:layout_marginLeft="30dp"
@@ -78,7 +80,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:textColor="#000"
-            android:text="**optional, if you have college id then enter"/>
+            android:text="**Optional; if you have college id then enter"/>
 
         <Button
             android:layout_width="match_parent"
@@ -87,13 +89,14 @@
             android:layout_marginLeft="80dp"
             android:layout_marginRight="80dp"
             android:text="Sign Up"
-            android:id="@+id/proceed"
+            android:id="@+id/signup2"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="20sp"
             android:layout_marginTop="100dp"
             android:fontFamily="@font/actor"
             />
+
 
 
     </LinearLayout>

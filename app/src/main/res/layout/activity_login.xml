@@ -37,6 +37,7 @@
             />
 
         <EditText
+            android:inputType="textPassword"
             android:layout_gravity="center"
             android:padding="15dp"
             android:layout_marginLeft="30dp"

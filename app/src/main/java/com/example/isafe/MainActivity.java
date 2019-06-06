@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         linlay2 = (LinearLayout) findViewById(R.id.linlay2);
 
-        handler.postDelayed(runnable, 3000);
+        handler.postDelayed(runnable, 1000);
 
         login = (Button) findViewById(R.id.login);
         signup = (Button) findViewById(R.id.signup);

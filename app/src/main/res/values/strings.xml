@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">iSafe</string>
 
+    <string name="assist">"India's First Integrated 24*7\nhelpline to trigger\nEmergency Care and Road Side\nAssistance"</string>
+
+    <string name="morestars">"You need 100 more stars\nto get certified"</string>
+
     <string-array name="options1">
         <item>Volunteer</item>
         <item>Team Lead</item>

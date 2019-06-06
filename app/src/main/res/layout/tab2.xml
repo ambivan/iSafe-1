@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/mark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mark your Attendance for the Event"
+        android:fontFamily="@font/actor"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/mark"
+        android:layout_marginTop="15dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView2"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+</RelativeLayout>
