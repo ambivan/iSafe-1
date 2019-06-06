@@ -51,10 +51,11 @@ public class CamActivity extends AppCompatActivity {
         image2 = (ImageView) findViewById(R.id.image2);
         image3 = (ImageView) findViewById(R.id.image3);
 
+        attach = (Button) findViewById(R.id.attach);
+
         image2.setVisibility(View.INVISIBLE);
         image3.setVisibility(View.INVISIBLE);
 
-        attach = (Button) findViewById(R.id.attach);
 
         if (Build.VERSION.SDK_INT >= 23){
             requestPermissions(new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
@@ -75,7 +76,6 @@ public class CamActivity extends AppCompatActivity {
                 cam.setVisibility(View.INVISIBLE);
                 attach.setVisibility(View.VISIBLE);
 
-
             }
         });
 
@@ -83,7 +83,6 @@ public class CamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                attach.setVisibility(View.VISIBLE);
                 image2.setBackgroundResource(R.drawable.transbg);
                 image2Int = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictake(image2Int);
@@ -128,7 +127,7 @@ public class CamActivity extends AppCompatActivity {
 
             if (photofile != null){
                 path = photofile.getAbsolutePath();
-                Uri photoURI = FileProvider.getUriForFile(CamActivity.this, "com.example.task.fileprovider", photofile);
+                Uri photoURI = FileProvider.getUriForFile(CamActivity.this, "com.example.isafe.fileprovider", photofile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(intent, CAMERA_REQUEST);
 

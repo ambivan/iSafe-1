@@ -97,20 +97,18 @@
 
     <Button
         android:visibility="gone"
-        android:text="ATTACH"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/buttonbg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/linlay"
         android:layout_marginTop="25dp"
         android:id="@+id/attach"
+        android:text="ATTACH"
+        android:textColor="#fff"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/buttonbg"
+
         />
-
-
-
-
 
 
 

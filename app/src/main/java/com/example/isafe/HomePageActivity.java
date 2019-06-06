@@ -65,7 +65,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         for (int i = 0; i<5; i++){
-            tabLayout.addTab(tabLayout.newTab());
+            tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[i]));
         }
 
 

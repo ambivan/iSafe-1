@@ -21,6 +21,8 @@ public class SignupActivity extends AppCompatActivity {
 
     Button proceed;
 
+    static int i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,14 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                if (position == 0){
+                    i=1;
+                }else if (position == 1){
+                    i=2;
+                }else if (position == 2){
+                    i=3;
+                }
 
 
             }
