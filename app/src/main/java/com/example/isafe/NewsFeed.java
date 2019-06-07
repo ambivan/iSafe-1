@@ -44,9 +44,6 @@ public class NewsFeed extends Fragment {
         //Change R.layout.tab1 in you classes
         vieww =  inflater.inflate(R.layout.tab1, container, false);
 
-
-
-
         city = (EditText) vieww.findViewById(R.id.city);
 
         city.setText("Delhi");
