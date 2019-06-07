@@ -35,6 +35,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.example.isafe.Profile.desig;
+
 public class HomePageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, NavigationView.OnNavigationItemSelectedListener{
 
 
@@ -69,6 +71,22 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        desig = (TextView) findViewById(R.id.designation);
+
+//        if (SignupActivity.i == 1 || LoginActivity.i == 1) {
+//
+//            desig.setText("Volunteer");
+//
+//        } else if (SignupActivity.i == 2 || LoginActivity.i == 2) {
+//
+//            desig.setText("Team Lead");
+//
+//        } else if (SignupActivity.i == 3 || LoginActivity.i == 3) {
+//
+//            desig.setText("Team Member");
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -173,7 +191,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.Signout) {
             return true;
         }
 
@@ -186,20 +204,17 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.competitions) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.opportunities) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.RSA) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.goodSamaritan) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.signout) {
 
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

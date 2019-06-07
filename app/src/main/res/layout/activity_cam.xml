@@ -91,7 +91,7 @@
         android:textColor="#fff"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:background="@drawable/buttonbg"
+        android:background="@drawable/reportbuttonbg"
 
         />
 
@@ -106,9 +106,10 @@
         android:textColor="#fff"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:background="@drawable/buttonbg"
+        android:background="@drawable/reportbuttonbg"
 
         />
+
 
 
 

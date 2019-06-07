@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,6 +47,8 @@ public class Signup2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
 
+        desig = (TextView) findViewById(R.id.designation);
+
         FirebaseApp.initializeApp(Signup2.this);
 
         mProgress = new ProgressDialog(Signup2.this);
@@ -65,24 +68,6 @@ public class Signup2 extends AppCompatActivity {
 
                 userid = user.getUid();
 
-                if (SignupActivity.i == 1){
-
-                    volunteer.add(userid);
-                    desig.setText("Volunteer");
-
-
-                }else if (SignupActivity.i == 2){
-
-                    teamlead.add(userid);
-                    desig.setText("Volunteer");
-
-
-                }else if (SignupActivity.i == 3){
-
-                    teammember.add(userid);
-                    desig.setText("Volunteer");
-
-                }
 
 
 
