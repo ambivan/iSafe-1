@@ -1,14 +1,39 @@
 package com.example.isafe;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import static com.example.isafe.MapActivity.MY_PERMISSIONS_REQUEST_LOCATION;
+
 public class Attendance extends Fragment {
+
+
+    private FusedLocationProviderClient client;
 
     View vv;
 
@@ -19,13 +44,13 @@ public class Attendance extends Fragment {
         //Change R.layout.tab1 in you classes
         vv = inflater.inflate(R.layout.tab2, container, false);
 
-        MyListData[] myListData = new MyListData[] {
+        MyListData[] myListData = new MyListData[]{
 
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
 
         };
 
@@ -38,4 +63,10 @@ public class Attendance extends Fragment {
 
         return vv;
     }
+
+
 }
+
+
+
+

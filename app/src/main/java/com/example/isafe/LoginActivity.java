@@ -32,11 +32,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
-    static int i;
 
     FirebaseAuth.AuthStateListener authStateListener;
 
     String userid;
+    static int i;
+
 
 
 

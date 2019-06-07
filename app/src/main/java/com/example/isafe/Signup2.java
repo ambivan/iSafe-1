@@ -125,9 +125,17 @@ public class Signup2 extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
+
                             Log.i("Success", "Signup completed");
-                            startActivity(new Intent(Signup2.this, HomePageActivity.class));
+
+                            Intent in = new Intent(Signup2.this, HomePageActivity.class);
+
+                            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                            startActivity(in);
+
                             mProgress.dismiss();
+
                         }else {
                             Log.i("Fail", "Signup not completed");
                         }
