@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@android:id/icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="42.5dp"
+        android:layout_height="42.5dp"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

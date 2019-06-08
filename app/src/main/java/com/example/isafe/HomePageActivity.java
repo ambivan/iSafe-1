@@ -141,6 +141,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         for (int i = 0; i<5; i++){
             tabs[i].setIcon(imageResId[i]);
+            tabs[i].setCustomView(R.layout.tabl);
 
         }
 
