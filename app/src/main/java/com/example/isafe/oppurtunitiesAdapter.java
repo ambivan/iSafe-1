@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
-public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
+public class oppurtunitiesAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
@@ -20,7 +20,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     TextView listTitleTextView;
 
-    public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
+    public oppurtunitiesAdapter(Context context, List<String> expandableListTitle,
                                        HashMap<String, List<String>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
@@ -48,7 +48,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.childtext, null);
+            convertView = layoutInflater.inflate(R.layout.opp_child, null);
         }
 
         TextView expandedListTextView = (TextView) convertView.findViewById(R.id.expandedListItem);
@@ -86,7 +86,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.listheading, null);
+            convertView = layoutInflater.inflate(R.layout.opp_headings, null);
         }
         TextView listTitleTextView = (TextView) convertView
                 .findViewById(R.id.listTitle);

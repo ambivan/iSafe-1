@@ -30,7 +30,7 @@ public class SignupActivity extends AppCompatActivity {
 
         proceed = (Button) findViewById(R.id.proceed);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.options1));
@@ -42,6 +42,8 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                parent.getChildAt(position).setBackgroundColor(getResources().getColor(R.color.spinner));
 
                 if (position == 0){
                     i=1;

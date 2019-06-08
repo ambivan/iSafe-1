@@ -218,7 +218,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.opportunities) {
 
-//            frag = new opp();
+            frag = new opp();
 
         } else if (id == R.id.RSA) {
 

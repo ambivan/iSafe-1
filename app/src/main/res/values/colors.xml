@@ -6,5 +6,8 @@
     <color name="bgBottomNavigation">#fe485a</color>
     <color name="listheading">#ff4057</color>
     <color name="correct">#10DD18</color>
+    <color name="colorGreen500">#8BC34A</color>
+    <color name="colorRed400">#ef5350</color>
+    <color name="spinner">#FFE607</color>
 
 </resources>

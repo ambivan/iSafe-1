@@ -39,14 +39,19 @@
                     android:layout_weight="1"
                     />
 
-            <ImageView
-
-                android:layout_gravity="end|center_vertical"
-                android:src="@drawable/notif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-            </LinearLayout>
+                <ru.nikartm.support.ImageBadgeView
+                    android:id="@+id/ibv_icon1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ibv_badgeValue="1"
+                    app:ibv_badgePadding="5dp"
+                    app:ibv_badgeTextSize="12sp"
+                    app:ibv_badgeTextColor="#ffffff"
+                    app:ibv_badgeColor="#E40B0B"
+                    app:ibv_visibleBadge="true"
+                    app:ibv_badgeLimitValue="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/notif" />            </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
 

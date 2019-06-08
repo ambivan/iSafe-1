@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">iSafe</string>
+    <string name="app_name">iSAFE</string>
 
     <string name="assist">"India's First Integrated 24*7\nhelpline to trigger\nEmergency Care and Road Side\nAssistance"</string>
 
     <string name="morestars">"You need 100 more stars\nto get certified"</string>
+
 
     <string-array name="options1">
         <item>Volunteer</item>
@@ -11,6 +12,7 @@
         <item>Team Member</item>
     </string-array>
 
+    <string name="opp_info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ante arcu, luctus nec turpis dignissim, finibus dapibus velit. Vivamus nec nulla maximus, molestie mauris ac, porta velit. Nulla vel nibh sed nulla pretium sollicitudin sit amet non dolor. Suspendisse potenti. Nulla dignissim dui ac leo commodo, tempor consequat risus commodo.</string>
     <string name="comp_info">For every plan to be successful, every aspect of the\nplan must be executed exceptionally. This\nnecessitates the importance of segregation. That is\nwhy isafe has come up iwth idea of domains.\nDomains ensure that every aspect concerned with\nroad safety has been covered and every person\nwho wants to help towards the cause irrespective of\ntheir field of work can work with the Indian Road\nSafety Campaign.</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
