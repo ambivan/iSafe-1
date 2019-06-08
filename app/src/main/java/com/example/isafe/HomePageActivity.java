@@ -4,26 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ImageSpan;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,8 +36,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
     private ViewPager viewPager;
 
+     FirebaseAuth auth;
 
-    TabLayout.Tab t;
+     FirebaseAuth.AuthStateListener authStateListener;
 
     static int frag = 0;
 
@@ -56,7 +50,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
             R.drawable.chat,
 
-            R.drawable.accident,
+            R.drawable.acc,
 
             R.drawable.attendance,
 
@@ -75,6 +69,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        FirebaseApp.initializeApp(this);
+
+
         desig = (TextView) findViewById(R.id.designation);
 
 //        if (SignupActivity.i == 1 || LoginActivity.i == 1) {
@@ -91,6 +88,29 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 //
 //        }
 
+        auth = FirebaseAuth.getInstance();
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                if (user != null){
+
+                }else {
+                    finish();
+                    startActivity(new Intent(HomePageActivity.this, MainActivity.class));
+                }
+
+
+
+            }
+        };
+
+
+        auth.addAuthStateListener(authStateListener);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -103,7 +123,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         TabLayout.Tab[] tabs = new TabLayout.Tab[5];
 
-        FirebaseApp.initializeApp(this);
         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         viewPager = (ViewPager) findViewById(R.id.viewPager);
@@ -177,7 +196,10 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         } else {
             super.onBackPressed();
         }
+
+        moveTaskToBack(true);
     }
+
 
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -203,6 +225,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.signout) {
 
+            auth.signOut();
+
         }
 
         if (frag != null) {
@@ -213,6 +237,20 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        auth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        auth.removeAuthStateListener(authStateListener);
     }
 
 

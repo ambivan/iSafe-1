@@ -8,7 +8,9 @@ import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,7 +46,7 @@ public class Signup2 extends AppCompatActivity {
 
     static String userid;
 
-    String em, pa, con;
+    String em, pa, con = null;
 
     static String post = "";
 
@@ -90,15 +92,6 @@ public class Signup2 extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                userid = user.getUid();
-
-
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .push()
-                        .setValue(new Message(post, userid));
-
 
             }
         };
@@ -168,19 +161,43 @@ public class Signup2 extends AppCompatActivity {
             }
         });
 
-        if (pa != null && con != null) {
-
-            if (pa.equals(con)) {
-
-                npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
-                confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
+        confirm.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-        }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                con = confirm.getText().toString();
+                pa = npassword.getText().toString();
+
+                if (con.equals(pa)){
+                    npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
+                    confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
+
+
+                }else {
+                    npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+                    confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 
 
 
