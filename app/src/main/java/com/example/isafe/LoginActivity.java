@@ -22,9 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.isafe.Profile.desig;
 import static com.example.isafe.Signup2.post;
-import static com.example.isafe.Signup2.teamlead;
-import static com.example.isafe.Signup2.teammember;
-import static com.example.isafe.Signup2.volunteer;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,11 +37,6 @@ public class LoginActivity extends AppCompatActivity {
 
     String userid;
     static int i;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +77,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//
+                pro.setCanceledOnTouchOutside(false);
+                pro.setCancelable(false);
+
                 pro.setTitle("Logging in");
                 pro.setMessage("Please wait..");
                 pro.show();
@@ -134,15 +129,6 @@ public class LoginActivity extends AppCompatActivity {
                                         .push()
                                         .setValue(new Message(post, userid));
 
-
-
-
-
-
-                                Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
-                                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(home);
-
                             } }
                             else {
                                 pro.dismiss();
@@ -165,5 +151,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

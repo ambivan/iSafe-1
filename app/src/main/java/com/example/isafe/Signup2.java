@@ -50,11 +50,11 @@ public class Signup2 extends AppCompatActivity {
 
     static String post = "";
 
-    DatabaseReference reference;
+    Button signup;
 
-    static ArrayList<String> volunteer = new ArrayList<String>();
-    static ArrayList<String> teamlead = new ArrayList<String>();
-    static ArrayList<String> teammember = new ArrayList<String>();
+    DatabaseReference reference;
+    int count = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,22 +99,24 @@ public class Signup2 extends AppCompatActivity {
 
         auth.addAuthStateListener(authStateListener);
 
-        em = emailid.getText().toString().trim();
-        pa = npassword.getText().toString().trim();
-        con = confirm.getText().toString().trim();
 
 
-        Button signup = (Button) findViewById(R.id.signup2);
+
+        signup = (Button) findViewById(R.id.signup2);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                mProgress.setCancelable(false);
+                mProgress.setCanceledOnTouchOutside(false);
                 mProgress.setTitle("Creating Account");
                 mProgress.setMessage("Please wait while account is being created...");
                 mProgress.show();
 
                 createUser();
+
+                count++;
 
             }
         });
@@ -196,12 +198,19 @@ public class Signup2 extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+
+        if (count >0){
+            moveTaskToBack(true);
+        }
     }
 
 
 
     private void createUser() {
+
+        em = emailid.getText().toString().trim();
+        pa = npassword.getText().toString().trim();
+        con = confirm.getText().toString().trim();
 
 
 
