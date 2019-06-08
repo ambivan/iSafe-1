@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 pro.setCanceledOnTouchOutside(false);
                 pro.setCancelable(false);
-
                 pro.setTitle("Logging in");
                 pro.setMessage("Please wait..");
                 pro.show();

@@ -1,9 +1,7 @@
 package com.example.isafe;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,9 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 
 import static com.example.isafe.Profile.desig;
 
@@ -52,8 +49,9 @@ public class Signup2 extends AppCompatActivity {
 
     Button signup;
 
-    DatabaseReference reference;
-    int count = 0;
+    int same;
+
+    int count;
 
 
     @Override
@@ -61,9 +59,11 @@ public class Signup2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
 
-        desig = (TextView) findViewById(R.id.designation);
-
         FirebaseApp.initializeApp(Signup2.this);
+
+        count = 0;
+
+        desig = (TextView) findViewById(R.id.designation);
 
         pass1 = (ImageView) findViewById(R.id.pass1);
         pass2 = (ImageView) findViewById(R.id.pass2);
@@ -99,8 +99,33 @@ public class Signup2 extends AppCompatActivity {
 
         auth.addAuthStateListener(authStateListener);
 
+        emailid.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                emailid.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
 
 
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                em = emailid.getText().toString();
+
+                if (isEmailValid(em))
+                    emailid.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
+
+
+            }
+
+
+        });
 
         signup = (Button) findViewById(R.id.signup2);
 
@@ -108,15 +133,33 @@ public class Signup2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mProgress.setCancelable(false);
-                mProgress.setCanceledOnTouchOutside(false);
-                mProgress.setTitle("Creating Account");
-                mProgress.setMessage("Please wait while account is being created...");
-                mProgress.show();
+                em = emailid.getText().toString();
 
-                createUser();
+                if (!isEmailValid(em)){
 
-                count++;
+                    Toast.makeText(Signup2.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+
+
+                    if (same == 1) {
+
+
+
+                        mProgress.setCancelable(false);
+                        mProgress.setCanceledOnTouchOutside(false);
+                        mProgress.setTitle("Creating Account");
+                        mProgress.setMessage("Please wait while account is being created...");
+                        mProgress.show();
+
+                        createUser();
+
+                        count++;
+                    }else if (same == 0){
+                        Toast.makeText(Signup2.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
             }
         });
@@ -163,6 +206,7 @@ public class Signup2 extends AppCompatActivity {
             }
         });
 
+
         confirm.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -179,11 +223,13 @@ public class Signup2 extends AppCompatActivity {
                     npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
                     confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
 
+                    same = 1;
 
                 }else {
                     npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
                     confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
 
+                    same = 0;
                 }
             }
 
@@ -206,12 +252,14 @@ public class Signup2 extends AppCompatActivity {
 
 
 
+
+
+
     private void createUser() {
 
         em = emailid.getText().toString().trim();
         pa = npassword.getText().toString().trim();
         con = confirm.getText().toString().trim();
-
 
 
         auth.createUserWithEmailAndPassword(em,pa)
@@ -238,4 +286,12 @@ public class Signup2 extends AppCompatActivity {
                     }
                 });
             }
-        }
+
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+
+
+}
