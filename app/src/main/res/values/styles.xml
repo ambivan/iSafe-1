@@ -31,12 +31,11 @@
         <item name="windowNoTitle">true</item>
 
     </style>
-    
+
     <style name="NavigationDrawer">
         <item name="android:textSize">15sp</item>
         <item name="android:fontFamily">@font/actor</item>
     </style>
-
 
 
 </resources>

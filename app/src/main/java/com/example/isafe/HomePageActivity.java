@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -60,6 +61,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             R.drawable.attendance,
 
             R.drawable.newsfeed};
+
+
 
 
     @Override
@@ -176,27 +179,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.Signout) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -204,9 +186,16 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        Fragment frag = null;
+
         if (id == R.id.competitions) {
-            // Handle the camera action
+
+            frag = new comp();
+
+
         } else if (id == R.id.opportunities) {
+
+//            frag = new opp();
 
         } else if (id == R.id.RSA) {
 
@@ -215,10 +204,19 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         } else if (id == R.id.signout) {
 
         }
+
+        if (frag != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, frag);
+            ft.commit();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 
 
 }

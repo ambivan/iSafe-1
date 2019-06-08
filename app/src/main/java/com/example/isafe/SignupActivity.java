@@ -65,7 +65,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(SignupActivity.this, Signup2.class));
+                Intent new1 = new Intent(SignupActivity.this, Signup2.class);
+                new1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                startActivity(new1);
 
             }
         });

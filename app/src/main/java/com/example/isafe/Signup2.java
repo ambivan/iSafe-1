@@ -1,14 +1,20 @@
 package com.example.isafe;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,7 +40,13 @@ public class Signup2 extends AppCompatActivity {
 
     EditText emailid, npassword, confirm, uid;
 
-    String userid ;
+    ImageView pass1, pass2;
+
+    static String userid;
+
+    String em, pa, con;
+
+    static String post = "";
 
     DatabaseReference reference;
 
@@ -51,12 +63,25 @@ public class Signup2 extends AppCompatActivity {
 
         FirebaseApp.initializeApp(Signup2.this);
 
+        pass1 = (ImageView) findViewById(R.id.pass1);
+        pass2 = (ImageView) findViewById(R.id.pass2);
+
         mProgress = new ProgressDialog(Signup2.this);
 
-        emailid = (EditText)findViewById(R.id.emailid);
+        emailid = (EditText) findViewById(R.id.emailid);
         npassword = (EditText) findViewById(R.id.newpassword);
         confirm = (EditText) findViewById(R.id.confirm);
         uid = (EditText) findViewById(R.id.collegeuid);
+
+        if (SignupActivity.i == 1) {
+            post = "Volunteer";
+        }
+        if (SignupActivity.i == 2) {
+            post = "Team Leader";
+        }
+        if (SignupActivity.i == 3) {
+            post = "Team Member";
+        }
 
         auth = FirebaseAuth.getInstance();
 
@@ -69,6 +94,10 @@ public class Signup2 extends AppCompatActivity {
                 userid = user.getUid();
 
 
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .push()
+                        .setValue(new Message(post, userid));
 
 
             }
@@ -77,6 +106,9 @@ public class Signup2 extends AppCompatActivity {
 
         auth.addAuthStateListener(authStateListener);
 
+        em = emailid.getText().toString().trim();
+        pa = npassword.getText().toString().trim();
+        con = confirm.getText().toString().trim();
 
 
         Button signup = (Button) findViewById(R.id.signup2);
@@ -94,15 +126,67 @@ public class Signup2 extends AppCompatActivity {
             }
         });
 
+        pass1.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch ( event.getAction() ) {
+
+                    case MotionEvent.ACTION_UP:
+                        npassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+
+                    case MotionEvent.ACTION_DOWN:
+                        npassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+
+                }
+
+                return true;
+            }
+        });
+
+        pass2.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch ( event.getAction() ) {
+
+                    case MotionEvent.ACTION_UP:
+                        confirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+
+                    case MotionEvent.ACTION_DOWN:
+                        confirm.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+
+                }
+
+                return true;
+            }
+        });
+
+        if (pa != null && con != null) {
+
+            if (pa.equals(con)) {
+
+                npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
+                confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorPrimaryDark), PorterDuff.Mode.SRC_ATOP);
+
+            }
+        }
 
 
     }
 
+
+
+
     private void createUser() {
 
-        String em, pa;
-        em = emailid.getText().toString().trim();
-        pa = npassword.getText().toString().trim();
+
 
         auth.createUserWithEmailAndPassword(em,pa)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

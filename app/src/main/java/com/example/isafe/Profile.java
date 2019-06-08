@@ -3,6 +3,7 @@ package com.example.isafe;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,18 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static com.example.isafe.Signup2.post;
 
 public class Profile extends Fragment {
+
+    private String loggedInUserName = "";
+
 
     View v1;
 
@@ -21,7 +32,10 @@ public class Profile extends Fragment {
     private FirebaseAuth auth;
 
 
-    FirebaseAuth.AuthStateListener authStateListener;
+//    FirebaseAuth.AuthStateListener authStateListener;
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference();
 
     Button signout;
 
@@ -35,16 +49,47 @@ public class Profile extends Fragment {
 
         auth = FirebaseAuth.getInstance();
 
+        Log.i("bleh", post);
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = auth.getCurrentUser();
 
-            }
-        };
+//        authStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = auth.getCurrentUser();
+//
+//                String userid = user.getUid();
+//
+//                FirebaseDatabase.getInstance()
+//                        .getReference()
+//                        .push()
+//                        .setValue(new Message(post, FirebaseAuth.getInstance().getCurrentUser().getUid()));
+//
+//            }
+//        };
+//
+//        auth.addAuthStateListener(authStateListener);
 
-        auth.addAuthStateListener(authStateListener);
+        
+
+
+        // Attach a listener to read the data at our posts reference
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Message post = dataSnapshot.getValue(Message.class);
+//                System.out.println(post);
+//
+//                Log.i("Bleh", "yayay" + post);
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
+
+
 
 
 //        signout = (Button) v1.findViewById(R.id.signout);
@@ -79,18 +124,32 @@ public class Profile extends Fragment {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//        auth.addAuthStateListener(authStateListener);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//
+//        auth.removeAuthStateListener(authStateListener);
+//    }
 
-        auth.addAuthStateListener(authStateListener);
+
+    private void showAllOldMessages() {
+        loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Log.d("Main", "user id: " + loggedInUserName);
+
+
+
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        auth.removeAuthStateListener(authStateListener);
+    public String getLoggedInUserName() {
+        return loggedInUserName;
     }
+
 
 }

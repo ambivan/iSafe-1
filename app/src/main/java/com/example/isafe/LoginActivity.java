@@ -18,8 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static com.example.isafe.Profile.desig;
+import static com.example.isafe.Signup2.post;
 import static com.example.isafe.Signup2.teamlead;
 import static com.example.isafe.Signup2.teammember;
 import static com.example.isafe.Signup2.volunteer;
@@ -37,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
     String userid;
     static int i;
+
+
 
 
 
@@ -62,34 +66,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 FirebaseUser user = auth.getCurrentUser();
 
-
-
-                if (user != null){
-
-
-                    userid = user.getUid();
-                    if (volunteer.contains(userid)){
-
-                        desig.setText("Volunteer");
-
-
-                    }else if (teamlead.contains(userid)){
-
-                        teamlead.add(userid);
-                        desig.setText("Team Leader");
-
-
-                    }else if (teammember.contains(userid)){
-
-                        teammember.add(userid);
-                        desig.setText("Team Member");
-
-                    }
-
-                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
+                if ((user != null)){
+                    Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(home);
                 }
+
 
 
             }
@@ -133,7 +115,27 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (task.isSuccessful()) {
+
+                                FirebaseUser user = auth.getCurrentUser();
                                 pro.dismiss();
+
+                                if (user != null){
+
+
+                                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+
+
+                                userid = user.getUid();
+
+                                FirebaseDatabase.getInstance()
+                                        .getReference()
+                                        .push()
+                                        .setValue(new Message(post, userid));
+
+
+
 
 
 
@@ -141,7 +143,8 @@ public class LoginActivity extends AppCompatActivity {
                                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(home);
 
-                            } else {
+                            } }
+                            else {
                                 pro.dismiss();
                                 Toast.makeText(LoginActivity.this, "WRONG EMAIL OR PASSWORD!!", Toast.LENGTH_SHORT).show();
                                 Log.i("info", "unsuccessful");

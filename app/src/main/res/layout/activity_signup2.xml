@@ -36,31 +36,67 @@
             android:id="@+id/emailid"
             />
 
+
+       <RelativeLayout
+
+           android:layout_width="match_parent"
+           android:layout_marginLeft="30dp"
+           android:layout_marginRight="30dp"
+           android:layout_height="wrap_content">
+
         <EditText
             android:layout_gravity="center"
-            android:padding="15dp"
             android:inputType="textPassword"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="New Password"
             android:id="@+id/newpassword"
             />
 
-        <EditText
-            android:inputType="textPassword"
-            android:layout_gravity="center"
-            android:padding="15dp"
+           <ImageView
+               android:id="@+id/pass1"
+               android:src="@drawable/viewpass"
+
+               android:padding="10dp"
+               android:layout_width="wrap_content"
+               android:layout_alignParentRight="true"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+               />
+
+       </RelativeLayout>
+
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="Confirm New Password"
-            android:id="@+id/confirm"
-            />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_gravity="center"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Confirm Password"
+                android:id="@+id/confirm"
+                />
+
+            <ImageView
+                android:id="@+id/pass2"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:src="@drawable/viewpass"
+                android:padding="10dp"
+
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
 
 
         <EditText
