@@ -31,47 +31,47 @@ import java.util.Locale;
 
 public class NewsFeed extends Fragment {
 
-    private FusedLocationProviderClient client;
+  private FusedLocationProviderClient client;
 
-    EditText city;
-
-
-    View vieww;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-        vieww =  inflater.inflate(R.layout.tab1, container, false);
-
-        city = (EditText) vieww.findViewById(R.id.city);
-
-        city.setText("Delhi");
-
-        MyListData[] myListData = new MyListData[] {
-
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-
-        };
+  EditText city;
 
 
-        RecyclerView recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
-        MyListAdapter adapter = new MyListAdapter(myListData);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
+  View vieww;
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        checkLocationPermission();
+    //Returning the layout file after inflating
+    //Change R.layout.tab1 in you classes
+    vieww =  inflater.inflate(R.layout.tab1, container, false);
 
-        client = LocationServices.getFusedLocationProviderClient(getActivity());
+    city = (EditText) vieww.findViewById(R.id.city);
+
+    city.setText("Delhi");
+
+    MyListData[] myListData = new MyListData[] {
+
+            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+
+            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+
+            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+
+            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+
+            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+
+    };
+
+
+    RecyclerView recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
+    MyListAdapter adapter = new MyListAdapter(myListData);
+    recyclerView.setHasFixedSize(true);
+    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    recyclerView.setAdapter(adapter);
+
+    checkLocationPermission();
+
+    client = LocationServices.getFusedLocationProviderClient(getActivity());
 
 //        client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
 //            @Override
@@ -110,43 +110,43 @@ public class NewsFeed extends Fragment {
 //        });
 
 
-        return vieww;
+    return vieww;
+  }
+  public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
+
+
+  private void checkLocationPermission() {
+    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+
+      // Should we show an explanation?
+      if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+              android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+        // Show an explanation to the user *asynchronously* -- don't block
+        // this thread waiting for the user's response! After the user
+        // sees the explanation, try again to request the permission.
+        new AlertDialog.Builder(getContext())
+                .setTitle("Location Permission Needed")
+                .setMessage("This app needs the Location permission, please accept to use location functionality")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialogInterface, int i) {
+                    //Prompt the user once explanation has been shown
+                    ActivityCompat.requestPermissions(getActivity(),
+                            new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                            MY_PERMISSIONS_REQUEST_LOCATION );
+                  }
+                })
+                .create()
+                .show();
+      } else {
+        // No explanation needed, we can request the permission.
+        ActivityCompat.requestPermissions(getActivity(),
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                MY_PERMISSIONS_REQUEST_LOCATION );
+      }
     }
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
-
-
-    private void checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(getContext())
-                        .setTitle("Location Permission Needed")
-                        .setMessage("This app needs the Location permission, please accept to use location functionality")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(getActivity(),
-                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION );
-                            }
-                        })
-                        .create()
-                        .show();
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(getActivity(),
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION );
-            }
-        }
-    }
+  }
 }

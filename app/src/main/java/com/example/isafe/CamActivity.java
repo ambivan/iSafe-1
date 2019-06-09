@@ -99,10 +99,11 @@ public class CamActivity extends AppCompatActivity {
                 attach.setVisibility(View.VISIBLE);
                 image3.setBackgroundResource(R.drawable.transbg);
                 image2.setBackgroundResource(R.drawable.transbg);
-
                 image3Int = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictake(image3Int);
                 count ++;
+
+
             }
         });
 

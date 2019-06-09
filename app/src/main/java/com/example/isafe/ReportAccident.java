@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -24,7 +25,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ReportAccident extends Fragment implements View.OnClickListener{
+public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedListener {
 
 
     LinearLayout click, loc, contact;
@@ -54,10 +55,7 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
         loc = (LinearLayout) v.findViewById(R.id.loclin);
         contact = (LinearLayout) v.findViewById(R.id.contactlin);
 
-
-
         location = (EditText) v.findViewById(R.id.loctag);
-
 
         lin1 = (LinearLayout) v.findViewById(R.id.lin1);
         lin2 = (LinearLayout) v.findViewById(R.id.lin2);
@@ -98,22 +96,17 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
 
         if (CamActivity.i==1){
 
-
-
-
             click.setVisibility(View.INVISIBLE);
 
             what = (ImageView) v.findViewById(R.id.what);
             second = (ImageView) v.findViewById(R.id.second);
             third = (ImageView) v.findViewById(R.id.third);
 
-
-           lin1.setVisibility(View.VISIBLE);
+            lin1.setVisibility(View.VISIBLE);
 
             what.setImageBitmap(CamActivity.photo);
             second.setImageBitmap(CamActivity.photo2);
             third.setImageBitmap(CamActivity.photo3);
-
 
             CamActivity.i = 2;
 
@@ -143,17 +136,22 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
                     if (CamActivity.i == 2) {
                         Intent finalact = new Intent(getActivity(), FinalActivity.class);
                         finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        CamActivity.i = 0;
+                        MapActivity.m = 0;
+
                         startActivity(finalact);
                     }else {
                         Toast.makeText(getActivity(), "Please Upload Photos.", Toast.LENGTH_SHORT).show();
+
+                        CamActivity.i = 0;
+                        MapActivity.m = 0;
                     }
 
-                    CamActivity.i = 0;
-                    MapActivity.m = 0;
+
 
                 }
             });
-
 
 
         }
@@ -173,8 +171,6 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
             contactname.setText(ContactActivity.contactName);
             phonenumber.setText(ContactActivity.number);
 
-
-
             report.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -184,6 +180,9 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
                     Intent finalact = new Intent(getActivity(), FinalActivity.class);
                     finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(finalact);
+
+                    CamActivity.i = 0;
+                    MapActivity.m = 0;
 
                     ContactActivity.c = 0;
 
@@ -208,9 +207,40 @@ public class ReportAccident extends Fragment implements View.OnClickListener{
         return v;
     }
 
-
     @Override
-    public void onClick(View v) {
+    public void onTabSelected(TabLayout.Tab tab) {
 
     }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+        ContactActivity.c = 0;
+        MapActivity.m = 0;
+        CamActivity.i = 0;
+
+        lin2.setVisibility(View.INVISIBLE);
+
+
+        click.setVisibility(View.VISIBLE);
+        loc.setVisibility(View.VISIBLE);
+        contact.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+        lin2.setVisibility(View.INVISIBLE);
+
+
+        click.setVisibility(View.VISIBLE);
+        loc.setVisibility(View.VISIBLE);
+        contact.setVisibility(View.VISIBLE);
+
+
+    }
+
+
+
 }

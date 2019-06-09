@@ -186,6 +186,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+
     }
 
 
@@ -195,10 +196,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);
         }
 
-        moveTaskToBack(true);
     }
 
 

@@ -43,10 +43,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-
-
-
-
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     MarkerOptions markerOptions;

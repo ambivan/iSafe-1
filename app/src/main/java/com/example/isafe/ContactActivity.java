@@ -17,7 +17,7 @@ public class ContactActivity extends AppCompatActivity {
 
     Button save;
 
-    static String contactName="", number = "";
+    static String contactName, number;
 
     static DatabaseReference rootRef, dataRef;
 

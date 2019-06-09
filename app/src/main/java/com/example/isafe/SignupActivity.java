@@ -43,8 +43,6 @@ public class SignupActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
 
-                parent.getChildAt(position).setBackgroundColor(getResources().getColor(R.color.spinner));
-
                 if (position == 0){
                     i=1;
                 }else if (position == 1){

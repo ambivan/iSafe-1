@@ -41,6 +41,7 @@
 
                 <ru.nikartm.support.ImageBadgeView
                     android:id="@+id/ibv_icon1"
+                    android:layout_marginRight="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:ibv_badgeValue="1"
@@ -51,7 +52,8 @@
                     app:ibv_visibleBadge="true"
                     app:ibv_badgeLimitValue="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/notif" />            </LinearLayout>
+                    android:src="@drawable/notif" />
+            </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
 

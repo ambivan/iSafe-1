@@ -69,8 +69,6 @@ public class Profile extends Fragment {
 //
 //        auth.addAuthStateListener(authStateListener);
 
-        
-
 
         // Attach a listener to read the data at our posts reference
 //        ref.addValueEventListener(new ValueEventListener() {
@@ -88,8 +86,6 @@ public class Profile extends Fragment {
 //                System.out.println("The read failed: " + databaseError.getCode());
 //            }
 //        });
-
-
 
 
 //        signout = (Button) v1.findViewById(R.id.signout);
@@ -144,12 +140,10 @@ public class Profile extends Fragment {
         Log.d("Main", "user id: " + loggedInUserName);
 
 
-
     }
 
     public String getLoggedInUserName() {
         return loggedInUserName;
     }
-
 
 }
