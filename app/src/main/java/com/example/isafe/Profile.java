@@ -31,11 +31,11 @@ public class Profile extends Fragment {
 
     private FirebaseAuth auth;
 
+    DatabaseReference databaseReference;
 
-//    FirebaseAuth.AuthStateListener authStateListener;
+    String designation, userid;
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference();
+    FirebaseAuth.AuthStateListener authStateListener;
 
     Button signout;
 
@@ -46,104 +46,63 @@ public class Profile extends Fragment {
         //Change R.layout.tab1 in you classes
         v1 = inflater.inflate(R.layout.tab5, container, false);
 
+        desig = (TextView) v1.findViewById(R.id.designation);
 
         auth = FirebaseAuth.getInstance();
 
         Log.i("bleh", post);
 
 
-//        authStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser user = auth.getCurrentUser();
-//
-//                String userid = user.getUid();
-//
-//                FirebaseDatabase.getInstance()
-//                        .getReference()
-//                        .push()
-//                        .setValue(new Message(post, FirebaseAuth.getInstance().getCurrentUser().getUid()));
-//
-//            }
-//        };
-//
-//        auth.addAuthStateListener(authStateListener);
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
 
-        // Attach a listener to read the data at our posts reference
-//        ref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Message post = dataSnapshot.getValue(Message.class);
-//                System.out.println(post);
-//
-//                Log.i("Bleh", "yayay" + post);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
+                FirebaseUser user = auth.getCurrentUser();
 
+                userid = user.getUid();
 
-//        signout = (Button) v1.findViewById(R.id.signout);
-//
-//        signout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                auth.signOut();
-//
-//            }
-//        });
+                databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
 
-        desig = (TextView) v1.findViewById(R.id.designation);
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        if (SignupActivity.i == 1 || LoginActivity.i == 1) {
+                        UserPost userPost = dataSnapshot.getValue(UserPost.class);
+                        designation = userPost.getPost();
 
-            desig.setText("Volunteer");
+                        desig.setText(designation);
 
-        } else if (SignupActivity.i == 2 || LoginActivity.i == 2) {
+                    }
 
-            desig.setText("Team Lead");
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        } else if (SignupActivity.i == 3 || LoginActivity.i == 3) {
+                    }
+                });
 
-            desig.setText("Team Member");
+            }
+        };
 
-        }
-
+        auth.addAuthStateListener(authStateListener);
 
         return v1;
     }
 
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//
-//        auth.addAuthStateListener(authStateListener);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//
-//        auth.removeAuthStateListener(authStateListener);
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
 
-
-    private void showAllOldMessages() {
-        loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.d("Main", "user id: " + loggedInUserName);
-
-
+        auth.addAuthStateListener(authStateListener);
     }
 
-    public String getLoggedInUserName() {
-        return loggedInUserName;
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        auth.removeAuthStateListener(authStateListener);
     }
+
 
 }

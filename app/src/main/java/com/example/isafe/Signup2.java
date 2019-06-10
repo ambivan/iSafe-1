@@ -24,7 +24,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import static com.example.isafe.Profile.desig;
@@ -53,6 +53,8 @@ public class Signup2 extends AppCompatActivity {
 
     int count;
 
+    FirebaseDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +77,6 @@ public class Signup2 extends AppCompatActivity {
         confirm = (EditText) findViewById(R.id.confirm);
         uid = (EditText) findViewById(R.id.collegeuid);
 
-        if (SignupActivity.i == 1) {
-            post = "Volunteer";
-        }
-        if (SignupActivity.i == 2) {
-            post = "Team Leader";
-        }
-        if (SignupActivity.i == 3) {
-            post = "Team Member";
-        }
 
         auth = FirebaseAuth.getInstance();
 
@@ -92,6 +85,8 @@ public class Signup2 extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
 
             }
         };
@@ -144,7 +139,6 @@ public class Signup2 extends AppCompatActivity {
 
 
                     if (same == 1) {
-
 
 
                         mProgress.setCancelable(false);
@@ -269,6 +263,27 @@ public class Signup2 extends AppCompatActivity {
 
                         if(task.isSuccessful()){
 
+                            userid = auth.getCurrentUser().getUid();
+
+                            if (SignupActivity.i == 1) {
+
+                                post = "Volunteer";
+
+                            }
+                            if (SignupActivity.i == 2) {
+                                post = "Team Leader";
+
+                            }
+                            if (SignupActivity.i == 3) {
+                                post = "Team Member";
+                            }
+
+                            FirebaseDatabase.getInstance()
+                                    .getReference()
+                                    .child(userid)
+                                    .setValue(new UserPost(post, userid));
+
+
                             Log.i("Success", "Signup completed");
 
                             Intent in = new Intent(Signup2.this, HomePageActivity.class);
@@ -293,5 +308,15 @@ public class Signup2 extends AppCompatActivity {
     }
 
 
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        auth.addAuthStateListener(authStateListener);
+//    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        auth.addAuthStateListener(authStateListener);
+    }
 }

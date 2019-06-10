@@ -8,7 +8,7 @@
 
     <string-array name="options1">
         <item>Volunteer</item>
-        <item>Team Lead</item>
+        <item>Team Leader</item>
         <item>Team Member</item>
     </string-array>
 

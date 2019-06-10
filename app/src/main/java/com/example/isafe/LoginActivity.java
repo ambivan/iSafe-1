@@ -2,7 +2,6 @@ package com.example.isafe;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +17,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static com.example.isafe.Profile.desig;
 import static com.example.isafe.Signup2.post;
@@ -32,11 +36,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
+    DatabaseReference databaseReference;
+
+    String designation = "";
+
 
     FirebaseAuth.AuthStateListener authStateListener;
 
     String userid;
-    static int i;
+    static int l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +65,33 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-                FirebaseUser user = auth.getCurrentUser();
+                final FirebaseUser user = auth.getCurrentUser();
 
                 if ((user != null)){
+
+                    userid = user.getUid();
+
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+
+
+
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            UserPost userPost = dataSnapshot.getValue(UserPost.class);
+                            designation = userPost.getPost();
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+
                     Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(home);
@@ -94,6 +126,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void showdata(DataSnapshot dataSnapshot) {
+
+
+    }
+
     private void loginuser() {
 
         String em, pa;
@@ -110,25 +147,16 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
 
-                                FirebaseUser user = auth.getCurrentUser();
+
                                 pro.dismiss();
-
-                                if (user != null){
-
 
                                     Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
 
 
-                                userid = user.getUid();
 
-                                FirebaseDatabase.getInstance()
-                                        .getReference()
-                                        .push()
-                                        .setValue(new Message(post, userid));
-
-                            } }
+                            }
                             else {
                                 pro.dismiss();
                                 Toast.makeText(LoginActivity.this, "WRONG EMAIL OR PASSWORD!!", Toast.LENGTH_SHORT).show();

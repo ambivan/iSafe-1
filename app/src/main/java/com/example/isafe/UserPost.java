@@ -2,17 +2,17 @@ package com.example.isafe;
 
 import android.provider.MediaStore;
 
-public class Message {
+public class UserPost {
 
   private String post;
   private String uid;
 
-  public Message(){
+  public UserPost(){
     this.post = getPost();
   }
 
 
-  public Message(String post, String uid){
+  public UserPost(String post, String uid){
     this.post = post;
     this.uid = uid;
 
