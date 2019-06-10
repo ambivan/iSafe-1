@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.isafe.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -61,6 +62,12 @@ public class Signup2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
 
+
+        if (SignupActivity.i == 2){
+
+
+        }
+
         FirebaseApp.initializeApp(Signup2.this);
 
         count = 0;
@@ -88,11 +95,14 @@ public class Signup2 extends AppCompatActivity {
 
 
 
+
             }
         };
 
 
         auth.addAuthStateListener(authStateListener);
+
+
 
         emailid.addTextChangedListener(new TextWatcher() {
             @Override
