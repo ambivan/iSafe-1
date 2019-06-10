@@ -22,8 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedListener {
 
@@ -36,8 +38,9 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
     EditText location;
 
-
     LinearLayout lin1, lin2, lin3;
+
+    static int counter = 0;
 
     View v;
     @Override
@@ -232,7 +235,6 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
     public void onTabReselected(TabLayout.Tab tab) {
 
         lin2.setVisibility(View.INVISIBLE);
-
 
         click.setVisibility(View.VISIBLE);
         loc.setVisibility(View.VISIBLE);

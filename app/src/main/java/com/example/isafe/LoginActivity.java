@@ -35,16 +35,11 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog pro;
 
     private FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener authStateListener;
 
     DatabaseReference databaseReference;
 
-    String designation = "";
-
-
-    FirebaseAuth.AuthStateListener authStateListener;
-
     String userid;
-    static int l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +73,6 @@ public class LoginActivity extends AppCompatActivity {
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            UserPost userPost = dataSnapshot.getValue(UserPost.class);
-                            designation = userPost.getPost();
 
                         }
 
