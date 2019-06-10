@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <TextView
+                android:padding="30dp"
+                android:layout_marginLeft = "65dp"
+                android:id="@+id/sharewhatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor = "#000"
+                android:textSize = "20sp"
+                android:layout_gravity="center"
+                android:fontFamily = "@font/actor"
+                android:text="Share on Whatsapp"
+                />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+            android:id ="@+id/cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src = "@drawable/cross"
+            android:layout_gravity="end"
+            android:padding = "25dp"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/horline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cfcfcf" >
+        </View>
+
+        <TextView
+            android:padding="30dp"
+
+            android:textColor = "#000"
+            android:textSize = "20sp"
+            android:fontFamily = "@font/actor"
+            android:id="@+id/sharetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share as Text Message"
+            android:layout_gravity="center"/>
+
+        <View
+            android:id="@+id/horline2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cfcfcf" >
+        </View>
+
+        <TextView
+            android:padding="30dp"
+            android:textColor = "#000"
+            android:textSize = "20sp"
+            android:fontFamily = "@font/actor"
+            android:id="@+id/copy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Copy Code"
+            android:layout_gravity="center"/>
+
+
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -19,6 +19,8 @@ public class CodeGenerator extends AppCompatActivity {
     LinearLayout first,second;
 
     EditText collegename, code;
+
+    static String codeg;
     Button share, generate, continuee;
 
 
@@ -35,7 +37,6 @@ public class CodeGenerator extends AppCompatActivity {
         generate = (Button) findViewById(R.id.generate);
         continuee = (Button) findViewById(R.id.conntinue);
 
-
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +48,7 @@ public class CodeGenerator extends AppCompatActivity {
                 rnd = new SecureRandom();
 
                 code.setText(randomString());
+                codeg = code.getText().toString();
 
                 continuee.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -58,17 +60,7 @@ public class CodeGenerator extends AppCompatActivity {
                 share.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-                        whatsappIntent.setType("text/plain");
-                        whatsappIntent.setPackage("com.whatsapp");
-                        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "The text you wanted to share");
-                        try {
-                            startActivity(whatsappIntent);
-                        } catch (android.content.ActivityNotFoundException ex) {
-
-                            Toast.makeText(CodeGenerator.this, "Whatsapp not installed", Toast.LENGTH_SHORT).show();
-
-                        }
+                        startActivity(new Intent(CodeGenerator.this, Share_popup.class) );
                     }
                 });
 

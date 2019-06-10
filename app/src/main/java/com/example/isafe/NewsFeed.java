@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -35,6 +36,8 @@ public class NewsFeed extends Fragment {
 
   EditText city;
 
+  CardView create;
+
 
   View vieww;
   @Override
@@ -47,6 +50,14 @@ public class NewsFeed extends Fragment {
     city = (EditText) vieww.findViewById(R.id.city);
 
     city.setText("Delhi");
+
+    create = (CardView) vieww.findViewById(R.id.create);
+
+    if (SignupActivity.i == 2){
+        create.setVisibility(View.INVISIBLE);
+    }
+
+
 
     MyListData[] myListData = new MyListData[] {
 
