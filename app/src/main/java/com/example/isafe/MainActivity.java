@@ -16,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
   Button login, signup;
 
-  String AB;
-  SecureRandom rnd;
-
   Handler handler = new Handler();
 
   Runnable runnable = new Runnable() {
@@ -43,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
     login = (Button) findViewById(R.id.login);
     signup = (Button) findViewById(R.id.signup);
 
-      AB = "012345678901234567890123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-      rnd = new SecureRandom();
-
-      System.out.println(randomString(5));
-
 
     login.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -68,10 +60,4 @@ public class MainActivity extends AppCompatActivity {
 
   }
 
-  String randomString( int len ){
-    StringBuilder sb = new StringBuilder( len );
-    for( int i = 0; i < len; i++ )
-      sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
-    return sb.toString();
-  }
 }

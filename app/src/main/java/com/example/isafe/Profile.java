@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static com.example.isafe.Signup2.post;
 
 public class Profile extends Fragment {
 
@@ -27,13 +26,13 @@ public class Profile extends Fragment {
 
     View v1;
 
-    static TextView desig;
+    TextView desig, profile_name;
 
     private FirebaseAuth auth;
 
     DatabaseReference databaseReference;
 
-    String designation, userid;
+    String userid;
 
     FirebaseAuth.AuthStateListener authStateListener;
 
@@ -47,11 +46,9 @@ public class Profile extends Fragment {
         v1 = inflater.inflate(R.layout.tab5, container, false);
 
         desig = (TextView) v1.findViewById(R.id.designation);
+        profile_name = (TextView) v1.findViewById(R.id.name_pro);
 
         auth = FirebaseAuth.getInstance();
-
-        Log.i("bleh", post);
-
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -69,9 +66,9 @@ public class Profile extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         UserPost userPost = dataSnapshot.getValue(UserPost.class);
-                        designation = userPost.getPost();
 
-                        desig.setText(designation);
+                        desig.setText( userPost.getPost());
+                        profile_name.setText(userPost.getName());
 
                     }
 

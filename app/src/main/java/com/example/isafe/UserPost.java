@@ -6,16 +6,22 @@ public class UserPost {
 
   private String post;
   private String uid;
+  private String Name;
 
-  public UserPost(){
-    this.post = getPost();
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public UserPost(){
   }
 
-
-  public UserPost(String post, String uid){
+  public UserPost(String Name, String post){
+    this.Name = Name;
     this.post = post;
-    this.uid = uid;
-
 
   }
 
@@ -27,16 +33,6 @@ public class UserPost {
 
     this.post = post;
 
-  }
-
-  public void setuid(String uid){
-
-    this.uid = uid;
-
-  }
-
-  public String getuid(){
-    return uid;
   }
 
 }

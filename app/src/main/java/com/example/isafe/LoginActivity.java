@@ -24,10 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static com.example.isafe.Profile.desig;
-import static com.example.isafe.Signup2.post;
-
-
 public class LoginActivity extends AppCompatActivity {
 
     EditText email, password;

@@ -28,7 +28,7 @@
         android:checkableBehavior="single"
         android:id="@+id/group3">
 
-    <item
+        <item
             android:id="@+id/RSA"
             android:title="Road Safety Audit" />
 

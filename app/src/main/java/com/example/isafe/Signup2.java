@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.isafe.R;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,9 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
-
-import static com.example.isafe.Profile.desig;
-
 public class Signup2 extends AppCompatActivity {
 
     private FirebaseAuth auth;
@@ -38,7 +34,7 @@ public class Signup2 extends AppCompatActivity {
 
     ProgressDialog mProgress;
 
-    EditText emailid, npassword, confirm, uid;
+    EditText emailid, npassword, confirm, uid, name, teamleadname;
 
     ImageView pass1, pass2;
 
@@ -46,7 +42,7 @@ public class Signup2 extends AppCompatActivity {
 
     String em, pa, con = null;
 
-    static String post = "";
+    String post = "", profilename;
 
     Button signup;
 
@@ -65,14 +61,13 @@ public class Signup2 extends AppCompatActivity {
 
         if (SignupActivity.i == 2){
 
+            setContentView(R.layout.signup2_teamlead);
 
         }
 
         FirebaseApp.initializeApp(Signup2.this);
 
         count = 0;
-
-        desig = (TextView) findViewById(R.id.designation);
 
         pass1 = (ImageView) findViewById(R.id.pass1);
         pass2 = (ImageView) findViewById(R.id.pass2);
@@ -83,7 +78,8 @@ public class Signup2 extends AppCompatActivity {
         npassword = (EditText) findViewById(R.id.newpassword);
         confirm = (EditText) findViewById(R.id.confirm);
         uid = (EditText) findViewById(R.id.collegeuid);
-
+        name = (EditText) findViewById(R.id.name);
+        teamleadname = (EditText) findViewById(R.id.teamleadname);
 
         auth = FirebaseAuth.getInstance();
 
@@ -92,9 +88,6 @@ public class Signup2 extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-
-
-
 
             }
         };
@@ -125,8 +118,6 @@ public class Signup2 extends AppCompatActivity {
 
                 if (isEmailValid(em))
                     emailid.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
-
-
             }
 
 
@@ -278,29 +269,41 @@ public class Signup2 extends AppCompatActivity {
                             if (SignupActivity.i == 1) {
 
                                 post = "Volunteer";
+                                profilename = name.getText().toString();
 
                             }
                             if (SignupActivity.i == 2) {
                                 post = "Team Leader";
+                                profilename = teamleadname.getText().toString();
 
                             }
                             if (SignupActivity.i == 3) {
                                 post = "Team Member";
+                                profilename = name.getText().toString();
+
                             }
 
                             FirebaseDatabase.getInstance()
                                     .getReference()
                                     .child(userid)
-                                    .setValue(new UserPost(post, userid));
+                                    .setValue(new UserPost(profilename, post));
 
 
                             Log.i("Success", "Signup completed");
 
-                            Intent in = new Intent(Signup2.this, HomePageActivity.class);
+                            if (SignupActivity.i==2){
+                                Intent in = new Intent(Signup2.this, CodeGenerator.class);
 
-                            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                            startActivity(in);
+                                startActivity(in);
+                            }else {
+                                Intent in = new Intent(Signup2.this, HomePageActivity.class);
+
+                                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                                startActivity(in);
+                            }
 
                             mProgress.dismiss();
 
@@ -318,11 +321,11 @@ public class Signup2 extends AppCompatActivity {
     }
 
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        auth.addAuthStateListener(authStateListener);
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authStateListener);
+    }
 
     @Override
     protected void onStop() {

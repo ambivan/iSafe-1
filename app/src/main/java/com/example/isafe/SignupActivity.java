@@ -51,7 +51,6 @@ public class SignupActivity extends AppCompatActivity {
                     i=3;
                 }
 
-
             }
 
             @Override
