@@ -26,6 +26,36 @@
 
     <group
         android:checkableBehavior="single"
+        android:id="@+id/group6">
+        <item
+            android:id="@+id/Meetings"
+            android:title="Meetings" />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/group7">
+        <item
+            android:id="@+id/Reimbursement"
+            android:title="Reimbursement" />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/group8">
+        <item
+            android:id="@+id/events"
+            android:title="Event Checklist" />
+
+    </group>
+
+
+
+
+    <group
+        android:checkableBehavior="single"
         android:id="@+id/group3">
 
         <item

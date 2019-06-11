@@ -105,9 +105,9 @@ public class CamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                count = 1;
 
                 camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                count = 1;
                 pictake(camIntent);
                 image2.setVisibility(View.VISIBLE);
                 image3.setVisibility(View.VISIBLE);
@@ -215,7 +215,7 @@ public class CamActivity extends AppCompatActivity {
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child(String.valueOf(ReportAccident.counter)).child("images/"+photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/"+photoURI.getLastPathSegment());
 
                     uploadTask = imagesref.putBytes(bytes);
 
@@ -248,7 +248,7 @@ public class CamActivity extends AppCompatActivity {
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child(String.valueOf(ReportAccident.counter)).child("images/"+photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/"+photoURI.getLastPathSegment());
 
                     uploadTask = imagesref.putBytes(bytes);
 

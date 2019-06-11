@@ -3,6 +3,7 @@ package com.example.isafe;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -17,14 +18,24 @@ import android.view.MenuItem;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class HomePageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, NavigationView.OnNavigationItemSelectedListener{
+public class HomePageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, OnNavigationItemSelectedListener{
 
     private ViewPager viewPager;
     public TabLayout tabLayout;
 
     FirebaseAuth auth;
+    FirebaseUser user;
+    String userid;
     FirebaseAuth.AuthStateListener authStateListener;
+    DatabaseReference databaseReference;
+    UserPost userPost;
+    NavigationView navigationView;
 
     static int frag = 0;
 
@@ -40,7 +51,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page2);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -51,9 +62,36 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
 
                 if (user != null){
+
+                    userid = user.getUid();
+
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            userPost = dataSnapshot.getValue(UserPost.class);
+
+                            if (userPost.getPost().equals("Team Leader")){
+
+                                navigationView.getMenu().clear();
+                                navigationView.inflateMenu(R.menu.navbar_teamlead);
+                            } else {
+                                navigationView.getMenu().clear();
+                                navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                 }else {
                     finish();
@@ -69,8 +107,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener((OnNavigationItemSelectedListener) this);
 
         TabLayout.Tab[] tabs = new TabLayout.Tab[5];
 
@@ -130,11 +169,18 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        }
+
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        }
+        else if (getFragmentManager().getBackStackEntryCount() > 0) {
+            super.onBackPressed();
         } else {
             moveTaskToBack(true);
         }
 
-    }
+        }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -154,12 +200,22 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         } else if (id == R.id.goodSamaritan) {
 
         } else if (id == R.id.signout) {
+
             auth.signOut();
+
+        } else if (id == R.id.Meetings) {
+
+            frag = new Meetings();
+
+        }else if (id == R.id.events) {
+
+        }else if (id == R.id.Reimbursement) {
+
         }
 
         if (frag != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, frag);
+            ft.replace(R.id.content_frame, frag).addToBackStack("My fragments");
             ft.commit();
         }
 

@@ -42,7 +42,9 @@ public class Share_popup extends Activity {
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getWindow().closeAllPanels();
+
+                startActivity(new Intent(Share_popup.this, CodeGenerator.class));
+
             }
         });
 

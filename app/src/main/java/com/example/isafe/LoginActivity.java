@@ -64,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
 
-
-
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -114,11 +112,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void showdata(DataSnapshot dataSnapshot) {
-
-
-    }
-
     private void loginuser() {
 
         String em, pa;
@@ -141,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
+                                    finishAndRemoveTask();
 
 
 
@@ -162,6 +156,7 @@ public class LoginActivity extends AppCompatActivity {
             pro.dismiss();
 
             Toast.makeText(LoginActivity.this, "Please enter email and password ", Toast.LENGTH_SHORT).show();
+
         }
 
 

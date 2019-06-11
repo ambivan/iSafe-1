@@ -12,6 +12,7 @@
         <item>Team Member</item>
     </string-array>
 
+    <string name="invite">Click on start to invite team\nmembers for a meeting</string>
     <string name="collegename">Unique Identification Code\nfor "College Name" is</string>
     <string name="generator">Generate Unique Identification\nfor your College</string>
     <string name="opp_info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ante arcu, luctus nec turpis dignissim, finibus dapibus velit. Vivamus nec nulla maximus, molestie mauris ac, porta velit. Nulla vel nibh sed nulla pretium sollicitudin sit amet non dolor. Suspendisse potenti. Nulla dignissim dui ac leo commodo, tempor consequat risus commodo.</string>

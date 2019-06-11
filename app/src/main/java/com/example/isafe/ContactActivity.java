@@ -1,6 +1,7 @@
 package com.example.isafe;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -19,9 +25,12 @@ public class ContactActivity extends AppCompatActivity {
 
     static String contactName, number;
 
-    static DatabaseReference rootRef, dataRef;
-
     static int c = 0;
+
+    DatabaseReference databaseReference;
+    FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener authStateListener;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +49,25 @@ public class ContactActivity extends AppCompatActivity {
         save = (Button)findViewById(R.id.save);
 
 
-        rootRef = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
 
-        dataRef = rootRef.child("Contact_Details");
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                final FirebaseUser user = auth.getCurrentUser();
+
+                if ((user != null)){
+
+                    userid = user.getUid();
+
+                }
+            }
+
+        };
+
+        auth.addAuthStateListener(authStateListener);
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -51,11 +76,14 @@ public class ContactActivity extends AppCompatActivity {
                 contactName = name.getText().toString();
                 number = phone.getText().toString();
 
-                dataRef.child("Name").setValue(contactName);
-                dataRef.child("Number").setValue(number);
+                databaseReference = FirebaseDatabase.getInstance().getReference().child(userid).child("Accident Report").push().child("Contact Details");
+                databaseReference.child("Name").setValue(contactName);
+                databaseReference.child("Phone Number").setValue(number);
+
                 c = 1;
 
                 startActivity(new Intent(ContactActivity.this, HomePageActivity.class));
+
             }
         });
 

@@ -49,9 +49,6 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
         //Returning the layout file after inflating
         v = inflater.inflate(R.layout.tab3, container, false);
 
-        DatabaseReference rootloc, dataloc;
-
-
         report = (Button) v.findViewById(R.id.report);
 
         click = (LinearLayout) v.findViewById(R.id.clicklin);
@@ -118,17 +115,10 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
         if (MapActivity.m == 1){
 
-            rootloc = FirebaseDatabase.getInstance().getReference();
-
-            dataloc = rootloc.child("Location_Details");
-
-
             loc.setVisibility(View.INVISIBLE);
             lin2.setVisibility(View.VISIBLE);
 
             location.setText(MapActivity.loc);
-
-            dataloc.child("Location").setValue(MapActivity.loc);
 
             if (CamActivity.i ==2) {
                 Toast.makeText(getActivity(), "You can report the accident now. Contact Details are optional. ", Toast.LENGTH_LONG).show();
@@ -150,9 +140,6 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                         CamActivity.i = 0;
                         MapActivity.m = 0;
                     }
-
-
-
                 }
             });
 
@@ -178,17 +165,13 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                 @Override
                 public void onClick(View v) {
 
-
-
                     Intent finalact = new Intent(getActivity(), FinalActivity.class);
                     finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(finalact);
 
                     CamActivity.i = 0;
                     MapActivity.m = 0;
-
                     ContactActivity.c = 0;
-
 
                 }
             });
@@ -234,7 +217,9 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+        lin1.setVisibility(View.INVISIBLE);
         lin2.setVisibility(View.INVISIBLE);
+        lin3.setVisibility(View.INVISIBLE);
 
         click.setVisibility(View.VISIBLE);
         loc.setVisibility(View.VISIBLE);

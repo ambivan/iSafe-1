@@ -6,7 +6,9 @@
         android:name="com.example.task.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="com.example.task.permission.MAPS_RECEIVE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
@@ -16,10 +18,6 @@
     <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!--
-Needed only if your calling app reads numbers from the `PHONE_STATE`
-       intent action.
-    -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-feature
@@ -43,13 +41,15 @@ Needed only if your calling app reads numbers from the `PHONE_STATE`
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CodeGenerator"></activity>
+        <activity android:name=".AgendaMeeting"></activity>
+        <activity android:name=".CodeGenerator" />
 
         <uses-library android:name="com.google.android.maps" />
 
         <activity android:name=".MapActivity" />
-        <activity android:name=".Share_popup"
-            android:theme="@style/CustomTheme"/>
+        <activity
+            android:name=".Share_popup"
+            android:theme="@style/CustomTheme" />
         <activity android:name=".FinalActivity" />
         <activity
             android:name=".ContactActivity"

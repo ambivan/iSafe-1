@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background = "#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Start a meeting with Team"
+            android:textStyle = "bold"
+            android:layout_marginTop = "50dp"
+            android:textAlignment="center"
+            android:textColor = "#000"
+            android:fontFamily = "@font/actor"
+            android:textSize = "25sp"
+
+            />
+
+
+
+        <TextView
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="85dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "@string/invite"
+            android:textSize = "20sp"
+            android:fontFamily = "@font/actor"
+            android:textAlignment="center"
+
+            />
+
+
+        <Button
+            android:id = "@+id/start"
+            android:layout_marginTop="65dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text = "Start"
+            android:fontFamily = "@font/actor"
+            android:textSize = "20sp"
+            android:textAllCaps = "false"
+            android:paddingLeft = "70dp"
+            android:paddingRight = "70dp"
+            android:textColor = "#fff"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_first_bg"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

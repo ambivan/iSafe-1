@@ -14,9 +14,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +40,6 @@ public class NewsFeed extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    //Returning the layout file after inflating
-    //Change R.layout.tab1 in you classes
     vieww =  inflater.inflate(R.layout.tab1, container, false);
 
     city = (EditText) vieww.findViewById(R.id.city);
@@ -54,7 +49,9 @@ public class NewsFeed extends Fragment {
     create = (CardView) vieww.findViewById(R.id.create);
 
     if (SignupActivity.i == 2){
-        create.setVisibility(View.INVISIBLE);
+        create.setVisibility(View.VISIBLE);
+    }else {
+      create.setVisibility(View.INVISIBLE);
     }
 
 
@@ -131,20 +128,15 @@ public class NewsFeed extends Fragment {
     if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
 
-      // Should we show an explanation?
       if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
               android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-        // Show an explanation to the user *asynchronously* -- don't block
-        // this thread waiting for the user's response! After the user
-        // sees the explanation, try again to request the permission.
         new AlertDialog.Builder(getContext())
                 .setTitle("Location Permission Needed")
                 .setMessage("This app needs the Location permission, please accept to use location functionality")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                   @Override
                   public void onClick(DialogInterface dialogInterface, int i) {
-                    //Prompt the user once explanation has been shown
                     ActivityCompat.requestPermissions(getActivity(),
                             new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                             MY_PERMISSIONS_REQUEST_LOCATION );
@@ -153,7 +145,6 @@ public class NewsFeed extends Fragment {
                 .create()
                 .show();
       } else {
-        // No explanation needed, we can request the permission.
         ActivityCompat.requestPermissions(getActivity(),
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 MY_PERMISSIONS_REQUEST_LOCATION );
