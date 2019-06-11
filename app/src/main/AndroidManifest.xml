@@ -41,7 +41,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AgendaMeeting"></activity>
+        <activity android:name=".MeetingReport"></activity>
+        <activity android:name=".ChatMeeting" />
+        <activity android:name=".AgendaMeeting" />
         <activity android:name=".CodeGenerator" />
 
         <uses-library android:name="com.google.android.maps" />

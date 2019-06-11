@@ -58,15 +58,14 @@
 
         app:layout_constraintTop_toBottomOf="@+id/chatbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_p"
         android:orientation="vertical"
         >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text = "Agenda of Meeting"
-            android:textStyle = "bold"
+            android:text = "Report for the 11th June Meeting"
             android:layout_marginTop = "30dp"
             android:textAlignment="center"
             android:textColor = "#000"
@@ -76,10 +75,25 @@
             />
 
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Agenda"
+            android:textStyle = "bold"
+            android:layout_marginLeft = "15dp"
+            android:layout_marginTop = "30dp"
+            android:textAlignment="start"
+            android:textColor = "#000"
+            android:fontFamily = "@font/actor"
+            android:textSize = "20sp"
+
+            />
+
+
         <android.support.v7.widget.CardView
-            android:id = "@+id/create"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:id = "@+id/writeagenda"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -95,43 +109,18 @@
                 android:layout_height="wrap_content"
                 >
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
-
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint = "Enter Agenda...."
-                        android:textColor = "#979595"
+                        android:hint = "Write Agenda...."
+                        android:paddingBottom = "50dp"
                         android:fontFamily = "@font/actor"
                         android:layout_gravity = "center"
                         android:textSize = "20sp"
                         android:backgroundTint="#0000"
-
-
-
                         />
 
 
-                </LinearLayout>
-
-
-                <Button
-                    android:layout_marginTop = "30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity = "end"
-                    android:textAllCaps = "false"
-                    android:fontFamily = "@font/actor"
-                    android:textSize = "18sp"
-                    android:layout_marginRight = "10dp"
-                    android:background = "@drawable/reportbuttonbg"
-                    android:text = "Save"
-
-                    />
 
             </LinearLayout>
 
@@ -140,24 +129,95 @@
         </android.support.v7.widget.CardView>
 
 
-
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text = "Invite Team Members"
-            android:textSize = "25sp"
+            android:text = "Minutes of the Meeting"
+            android:textStyle = "bold"
+            android:layout_marginLeft = "15dp"
+            android:layout_marginTop = "5dp"
+            android:textAlignment="start"
             android:textColor = "#000"
             android:fontFamily = "@font/actor"
+            android:textSize = "20sp"
+
             />
+
+
+        <android.support.v7.widget.CardView
+            android:id = "@+id/minutes"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom = "80dp"
+                android:fontFamily = "@font/actor"
+                android:layout_gravity = "center"
+                android:textSize = "20sp"
+                android:backgroundTint="#0000"
+                />
+
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Tasks Assigned"
+            android:textStyle = "bold"
+            android:layout_marginLeft = "15dp"
+            android:layout_marginTop = "5dp"
+            android:textAlignment="start"
+            android:textColor = "#000"
+            android:fontFamily = "@font/actor"
+            android:textSize = "20sp"
+
+            />
+
+        <android.support.v7.widget.CardView
+            android:id = "@+id/tasks"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding = "30dp"
+                android:fontFamily = "@font/actor"
+                android:layout_gravity = "center"
+                android:textSize = "20sp"
+                android:backgroundTint="#0000"
+                />
+
+
+        </android.support.v7.widget.CardView>
 
         <Button
             android:id = "@+id/inviteall"
             android:layout_marginTop="65dp"
+            android:layout_marginRight="20dp"
+
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:text = "Invite All"
+            android:layout_gravity="right"
+            android:text = "Save &amp; Share"
             android:fontFamily = "@font/actor"
             android:textSize = "20sp"
             android:textAllCaps = "false"
@@ -167,23 +227,6 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_first_bg"
             />
-
-        <Button
-            android:visibility = "gone"
-            android:id = "@+id/startmeet"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:text = "Start"
-            android:fontFamily = "@font/actor"
-            android:textSize = "20sp"
-            android:textAllCaps = "false"
-            android:paddingLeft = "30dp"
-            android:paddingRight = "30dp"
-            android:textColor = "#fff"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_first_bg"
-            />
-
 
     </LinearLayout>
 
