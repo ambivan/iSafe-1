@@ -6,14 +6,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,17 +28,20 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ChatMeeting extends AppCompatActivity {
 
-    private DatabaseReference mdatabase;
+    private DatabaseReference databaseReference;
+    String userid;
     private static final int SIGN_IN_REQUEST_CODE = 111;
-    private FirebaseListAdapter<Message> adapter;
+    public FirebaseListAdapter<Chat> adapter;
+    private ListView listView;
+    private String loggedInUserName = "";
+
     FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authStateListener;
-    static String userid;
-    DatabaseReference databaseReference;
 
-    private ListView listView;
-    private String loggedInUserName;
+    int position;
 
+
+    Button stop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +49,6 @@ public class ChatMeeting extends AppCompatActivity {
         setContentView(R.layout.activity_chat_meeting);
 
         FirebaseApp.initializeApp(this);
-
-        final EditText input = (EditText) findViewById(R.id.input);
-
-
-        listView = (ListView)findViewById(R.id.list);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-
 
         auth = FirebaseAuth.getInstance();
 
@@ -63,16 +61,42 @@ public class ChatMeeting extends AppCompatActivity {
 
                 userid = user.getUid();
 
-                Log.i("n=bleh", "user issss" + userid);
+                databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        UserPost userPost = dataSnapshot.getValue(UserPost.class);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         };
 
         auth.addAuthStateListener(authStateListener);
 
+        final EditText input = (EditText) findViewById(R.id.input);
 
+        listView = (ListView)findViewById(R.id.list);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        showAllOldMessages();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            // Start sign in/sign up activity
+            startActivityForResult(AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .build(), SIGN_IN_REQUEST_CODE);
+        } else {
+            // User is already signed in, show list of messages
+            showAllOldMessages();
+        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +107,7 @@ public class ChatMeeting extends AppCompatActivity {
                     FirebaseDatabase.getInstance()
                             .getReference()
                             .push()
-                            .setValue(new Message(input.getText().toString(),
+                            .setValue(new Chat(input.getText().toString(),
                                     FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
                                     FirebaseAuth.getInstance().getCurrentUser().getUid())
                             );
@@ -93,6 +117,20 @@ public class ChatMeeting extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.signout) {
+            AuthUI.getInstance().signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(ChatMeeting.this, "You have logged out!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+        }
+        return true;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -113,23 +151,20 @@ public class ChatMeeting extends AppCompatActivity {
 
 
     private void showAllOldMessages() {
-        loggedInUserName = userid;
+        loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("Main", "user id: " + loggedInUserName);
 
-        adapter = new FbaseListAdapter(this, Message.class, R.layout.incomingmessage,
+        adapter = new FbaseListAdapter(ChatMeeting.this, Chat.class, R.layout.incomingmessage,
                 FirebaseDatabase.getInstance().getReference());
         listView.setAdapter(adapter);
-
-        Log.i("bleh", "mesaagsedd" + userid);
     }
 
     public String getLoggedInUserName() {
         return loggedInUserName;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(authStateListener);
-    }
+
+
 }
+
+

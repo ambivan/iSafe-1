@@ -145,8 +145,6 @@
             android:fontFamily="@font/actor"
             />
 
-
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

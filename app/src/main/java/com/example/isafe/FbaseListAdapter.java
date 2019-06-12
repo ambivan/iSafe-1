@@ -8,19 +8,17 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseReference;
 
-public class FbaseListAdapter extends FirebaseListAdapter<Message> {
+ public class FbaseListAdapter extends FirebaseListAdapter<Chat> {
 
-    private ChatMeeting activity;
+    ChatMeeting chat;
 
-    public FbaseListAdapter(ChatMeeting activity, Class<Message> modelClass, int modelLayout, DatabaseReference ref) {
-        super(activity, modelClass, modelLayout, ref);
-        this.activity = activity;
+    public FbaseListAdapter(ChatMeeting chat, Class<Chat> modelClass, int modelLayout, DatabaseReference ref) {
+        super(chat, modelClass, modelLayout, ref);
+        this.chat = chat;
     }
 
-
-
     @Override
-    protected void populateView(View v, Message model, int position) {
+    protected void populateView(View v, Chat model, int position) {
         TextView messageText = (TextView) v.findViewById(R.id.message_text);
         TextView messageUser = (TextView) v.findViewById(R.id.message_user);
         TextView messageTime = (TextView) v.findViewById(R.id.message_time);
@@ -35,14 +33,12 @@ public class FbaseListAdapter extends FirebaseListAdapter<Message> {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        Message chatMessage = getItem(position);
+        Chat chatMessage = getItem(position);
 
-        System.out.println(chatMessage.getMessageUserId());
-
-        if (chatMessage.getMessageUserId().equals(activity.getLoggedInUserName()))
-            view = activity.getLayoutInflater().inflate(R.layout.outgoingmessage, viewGroup, false);
+        if (chatMessage.getMessageUserId().equals(chat.getLoggedInUserName()))
+            view = chat.getLayoutInflater().inflate(R.layout.outgoingmessage, viewGroup, false);
         else
-            view = activity.getLayoutInflater().inflate(R.layout.incomingmessage, viewGroup, false);
+            view = chat.getLayoutInflater().inflate(R.layout.incomingmessage, viewGroup, false);
 
         //generating view
         populateView(view, chatMessage, position);

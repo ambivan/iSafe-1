@@ -34,13 +34,13 @@ public class Signup2 extends AppCompatActivity {
 
     ProgressDialog mProgress;
 
-    EditText emailid, npassword, confirm, uid, name, teamleadname;
+    EditText emailid, npassword, confirm, collegeuid, name, teamleadname;
 
     ImageView pass1, pass2;
 
     static String userid;
 
-    String em, pa, con = null;
+    String em, pa, con, cuid;
 
     String post = "", profilename;
 
@@ -49,8 +49,6 @@ public class Signup2 extends AppCompatActivity {
     int same;
 
     int count;
-
-    FirebaseDatabase database;
 
 
     @Override
@@ -77,7 +75,7 @@ public class Signup2 extends AppCompatActivity {
         emailid = (EditText) findViewById(R.id.emailid);
         npassword = (EditText) findViewById(R.id.newpassword);
         confirm = (EditText) findViewById(R.id.confirm);
-        uid = (EditText) findViewById(R.id.collegeuid);
+        collegeuid = (EditText) findViewById(R.id.collegeuid);
         name = (EditText) findViewById(R.id.name);
         teamleadname = (EditText) findViewById(R.id.teamleadname);
 
@@ -256,7 +254,6 @@ public class Signup2 extends AppCompatActivity {
         pa = npassword.getText().toString().trim();
         con = confirm.getText().toString().trim();
 
-
         auth.createUserWithEmailAndPassword(em,pa)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -273,11 +270,13 @@ public class Signup2 extends AppCompatActivity {
 
                             }
                             if (SignupActivity.i == 2) {
+
                                 post = "Team Leader";
                                 profilename = teamleadname.getText().toString();
 
                             }
                             if (SignupActivity.i == 3) {
+
                                 post = "Team Member";
                                 profilename = name.getText().toString();
 
@@ -287,6 +286,8 @@ public class Signup2 extends AppCompatActivity {
                                     .getReference()
                                     .child(userid)
                                     .setValue(new UserPost(profilename, post));
+
+
 
 
                             Log.i("Success", "Signup completed");

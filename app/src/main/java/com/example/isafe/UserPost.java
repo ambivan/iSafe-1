@@ -5,8 +5,8 @@ import android.provider.MediaStore;
 public class UserPost {
 
   private String post;
-  private String uid;
   private String Name;
+
 
     public String getName() {
         return Name;

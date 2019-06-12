@@ -35,6 +35,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
     UserPost userPost;
+
     NavigationView navigationView;
 
     static int frag = 0;
@@ -108,7 +109,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-
         navigationView.setNavigationItemSelectedListener((OnNavigationItemSelectedListener) this);
 
         TabLayout.Tab[] tabs = new TabLayout.Tab[5];
@@ -174,10 +174,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         }
-        else if (getFragmentManager().getBackStackEntryCount() > 0) {
+        else {
             super.onBackPressed();
-        } else {
-            moveTaskToBack(true);
         }
 
         }
@@ -208,6 +206,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             frag = new Meetings();
 
         }else if (id == R.id.events) {
+
+            frag = new EventChecklist();
 
         }else if (id == R.id.Reimbursement) {
 

@@ -21,7 +21,7 @@ public class oppurtunitiesAdapter extends BaseExpandableListAdapter {
     TextView listTitleTextView;
 
     public oppurtunitiesAdapter(Context context, List<String> expandableListTitle,
-                                       HashMap<String, List<String>> expandableListDetail) {
+                                HashMap<String, List<String>> expandableListDetail) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
