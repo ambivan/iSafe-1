@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CodeGenerator extends AppCompatActivity {
@@ -82,7 +83,7 @@ public class CodeGenerator extends AppCompatActivity {
                 code.setText(randomString());
                 codeg = code.getText().toString();
 
-               DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+               final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                        .getReference()
                        .child("Codes")
                        .push();
@@ -97,23 +98,25 @@ public class CodeGenerator extends AppCompatActivity {
 
                 DatabaseReference db = dbref.child(key);
 
-                db.addValueEventListener(new ValueEventListener() {
+                dbref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        for (DataSnapshot child: dataSnapshot.getChildren()) {
+                            System.out.println(child.getKey()); // "-key1", "-key2", etc
+                            System.out.println(child.getValue()); // true, true, etc
+                        }
 
                         Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
                         Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
 
+                        ArrayList<String> list = new ArrayList<>();
 
-                        CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
-                        System.out.println(codeGen.getCode());
-                        System.out.println(codeGen.getUserid());
 
                         while (iterator.hasNext()) {
-                            DataSnapshot next = (DataSnapshot) iterator.next();
-                            Log.i("cdsjk", "Value = " + next.getValue() + userid);
 
+                            DataSnapshot next = (DataSnapshot) iterator.next();
+                            Log.i("cdsjk", "Value = " + next.getValue());
                         }
 
                     }
@@ -123,6 +126,26 @@ public class CodeGenerator extends AppCompatActivity {
 
                     }
                 });
+
+                db.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
+                        System.out.println(codeGen.getCode());
+                        System.out.println(codeGen.getUserid());
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
                 continuee.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -64,7 +64,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     static int m =0;
 
 
-    private FusedLocationProviderClient client;
+    public FusedLocationProviderClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,9 +186,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
         });
 
     }
-
-
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,

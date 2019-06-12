@@ -7,6 +7,8 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -49,7 +51,8 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:name=".MapActivity" />
+        <activity android:name=".MapActivity"
+            android:screenOrientation = "portrait"/>
         <activity
             android:name=".Share_popup"
             android:theme="@style/CustomTheme" />

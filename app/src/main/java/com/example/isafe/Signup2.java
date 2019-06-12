@@ -24,7 +24,14 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Signup2 extends AppCompatActivity {
 
@@ -45,6 +52,8 @@ public class Signup2 extends AppCompatActivity {
     String post = "", profilename;
 
     Button signup;
+
+    String id;
 
     int same;
 
@@ -280,15 +289,68 @@ public class Signup2 extends AppCompatActivity {
                                 post = "Team Member";
                                 profilename = name.getText().toString();
 
+
                             }
 
-                            FirebaseDatabase.getInstance()
-                                    .getReference()
-                                    .child(userid)
-                                    .setValue(new UserPost(profilename, post));
+                                FirebaseDatabase.getInstance()
+                                        .getReference()
+                                        .child(userid)
+                                        .setValue(new UserPost(profilename, post));
+
+                            if (SignupActivity.i == 3){
+
+                            final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
+
+                            dbref.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    for (DataSnapshot child: dataSnapshot.getChildren()) {
+                                        System.out.println(child.getKey()); // "-key1", "-key2", etc
+                                        System.out.println(child.getValue()); // true, true, etc
+
+                                        String key = child.getKey();
+
+                                        DatabaseReference d = dbref.child(key);
+
+                                        d.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
+                                                System.out.println(codeGen.getCode());
+
+                                                cuid = collegeuid.getText().toString();
+
+                                                if (post.equals("Team Member")){
+                                                    if (codeGen.getCode().equals(cuid)){
+                                                        id = codeGen.getUserid();
+                                                        System.out.println(id);
+                                                        FirebaseDatabase.getInstance()
+                                                                .getReference()
+                                                                .child(id)
+                                                                .child(userid)
+                                                                .setValue(new UserPost(profilename, post));
+                                                    }
+                                                }
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
 
 
-
+                            }
 
                             Log.i("Success", "Signup completed");
 
