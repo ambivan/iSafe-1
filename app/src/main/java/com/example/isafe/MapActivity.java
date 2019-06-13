@@ -283,7 +283,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
                                 etLocation.setText(addr);
                                 loc = etLocation.getText().toString();
 
-
                                 etLocation.addTextChangedListener(new TextWatcher() {
                                     @Override
                                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

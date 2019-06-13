@@ -33,11 +33,11 @@ public class Attendance extends Fragment {
 
         MyListData[] myListData = new MyListData[]{
 
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
-                new MyListData(R.drawable.institute, "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData( "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData( "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData( "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData( "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
+                new MyListData( "IIT", "writing compettiton", "on this and this day", "at this time", "topic" + "gettopic"),
 
         };
 

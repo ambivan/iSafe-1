@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".AgendaMeeting">
+
 
     <android.support.design.widget.AppBarLayout
         android:id = "@+id/chatbar"
@@ -52,6 +54,11 @@
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/content_frame2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 
@@ -150,45 +157,88 @@
             android:fontFamily = "@font/actor"
             />
 
-        <Button
-            android:id = "@+id/inviteall"
-            android:layout_marginTop="65dp"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:text = "Invite All"
-            android:fontFamily = "@font/actor"
-            android:textSize = "20sp"
-            android:textAllCaps = "false"
-            android:paddingLeft = "30dp"
-            android:paddingRight = "30dp"
-            android:textColor = "#fff"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_first_bg"
-            />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.example.isafe.ChatMeeting">
 
-        <Button
-            android:visibility = "gone"
-            android:id = "@+id/startmeet"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:text = "Start"
-            android:fontFamily = "@font/actor"
-            android:textSize = "20sp"
-            android:textAllCaps = "false"
-            android:paddingLeft = "30dp"
-            android:paddingRight = "30dp"
-            android:textColor = "#fff"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_first_bg"
-            />
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/rel"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="16dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="16dp"
+                android:stackFromBottom="true"
+                android:transcriptMode="alwaysScroll" />
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/rel"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation = "vertical"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:id="@+id/inviteall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="65dp"
+                            android:background="@drawable/button_first_bg"
+                            android:fontFamily="@font/actor"
+                            android:paddingLeft="30dp"
+                            android:paddingRight="30dp"
+                            android:text="Invite All"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:visibility = "gone"
+                            android:id = "@+id/startmeet"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:text = "Start"
+                            android:layout_centerInParent="true"
+                            android:fontFamily = "@font/actor"
+                            android:textSize = "20sp"
+                            android:textAllCaps = "false"
+                            android:paddingLeft = "30dp"
+                            android:paddingRight = "30dp"
+                            android:textColor = "#fff"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_first_bg"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
 
 
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

@@ -56,6 +56,10 @@
         <activity
             android:name=".Share_popup"
             android:theme="@style/CustomTheme" />
+
+        <activity android:name=".CreatEvent"
+            android:theme = "@style/CustomTheme"/>
+
         <activity android:name=".FinalActivity" />
         <activity
             android:name=".ContactActivity"

@@ -63,9 +63,9 @@ public class CamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam);
 
-         baos = new ByteArrayOutputStream();
+        baos = new ByteArrayOutputStream();
 
-         bytes = baos.toByteArray();
+        bytes = baos.toByteArray();
 
         storageref = FirebaseStorage.getInstance().getReference();
 

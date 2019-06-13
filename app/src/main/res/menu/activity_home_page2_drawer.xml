@@ -5,50 +5,50 @@
 
     tools:showIn="navigation_view">
 
-    <group
+  <group
 
-        android:id="@+id/group1"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/competitions"
-            android:title="Competitions" />
+      android:id="@+id/group1"
+      android:checkableBehavior="single">
+    <item
+        android:id="@+id/competitions"
+        android:title="Competitions" />
 
-    </group>
+  </group>
 
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group2">
-        <item
-            android:id="@+id/opportunities"
-            android:title="Opportunities" />
+  <group
+      android:checkableBehavior="single"
+      android:id="@+id/group2">
+    <item
+        android:id="@+id/opportunities"
+        android:title="Opportunities" />
 
-    </group>
+  </group>
 
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group3">
+  <group
+      android:checkableBehavior="single"
+      android:id="@+id/group3">
 
-        <item
-            android:id="@+id/RSA"
-            android:title="Road Safety Audit" />
+    <item
+        android:id="@+id/RSA"
+        android:title="Road Safety Audit" />
 
-    </group>
+  </group>
 
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group4">
-        <item
-            android:id="@+id/goodSamaritan"
-            android:title="Good Samaritan" />
-    </group>
+  <group
+      android:checkableBehavior="single"
+      android:id="@+id/group4">
+    <item
+        android:id="@+id/goodSamaritan"
+        android:title="Good Samaritan" />
+  </group>
 
-    <group
-        android:checkableBehavior="single"
-        android:id="@+id/group5">
-        <item
-            android:id="@+id/signout"
-            android:title="Log Out"/>
-    </group>
+  <group
+      android:checkableBehavior="single"
+      android:id="@+id/group5">
+    <item
+        android:id="@+id/signout"
+        android:title="Log Out"/>
+  </group>
 
 
 

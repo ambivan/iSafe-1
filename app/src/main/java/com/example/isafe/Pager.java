@@ -22,8 +22,10 @@ public class Pager extends FragmentPagerAdapter {
     switch (position) {
       case 0:
         return new NewsFeed();
+
       case 1:
         return new Attendance();
+
       case 2:
         return new ReportAccident();
 
@@ -32,7 +34,6 @@ public class Pager extends FragmentPagerAdapter {
 
       case 4:
         return new Profile();
-
 
       default:
         return null;

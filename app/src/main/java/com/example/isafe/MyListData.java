@@ -4,18 +4,19 @@ public class MyListData{
   private  int image;
   private  String title, event, date, time, topic;
 
+  public MyListData(String title, String event, String date, String time, String topic) {
 
-
-  public MyListData(int image ,String title, String event, String date, String time, String topic) {
-
-    this.image = image;
     this.title = title;
     this.date = date;
     this.event = event;
     this.time = time;
     this.topic = topic;
+
   }
 
+  public MyListData(){
+
+  }
 
   public int getImage() {
     return image;
@@ -65,13 +66,5 @@ public class MyListData{
   public String getTopic(){
     return topic;
   }
-
-
-
-
-
-
-
-
 
 }

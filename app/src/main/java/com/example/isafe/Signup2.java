@@ -307,7 +307,6 @@ public class Signup2 extends AppCompatActivity {
 
                                     for (DataSnapshot child: dataSnapshot.getChildren()) {
                                         System.out.println(child.getKey()); // "-key1", "-key2", etc
-                                        System.out.println(child.getValue()); // true, true, etc
 
                                         String key = child.getKey();
 

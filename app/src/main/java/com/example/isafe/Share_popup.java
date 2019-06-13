@@ -87,9 +87,9 @@ public class Share_popup extends Activity {
     }
 
     private void setClipboard(Context context, String text) {
-            ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            ClipData clip = ClipData.newPlainText("Copied Text", text);
-            clipboard.setPrimaryClip(clip);
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Copied Text", text);
+        clipboard.setPrimaryClip(clip);
 
         Toast.makeText(context, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
 

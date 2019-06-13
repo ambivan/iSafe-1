@@ -13,28 +13,28 @@ import android.widget.Button;
 public class Meetings extends Fragment {
 
 
-    View vm;
-    Button start;
+  View vm;
+  Button start;
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        vm = inflater.inflate(R.layout.meetings, container, false);
+    vm = inflater.inflate(R.layout.meetings, container, false);
 
-        start = (Button) vm.findViewById(R.id.start);
+    start = (Button) vm.findViewById(R.id.start);
 
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), AgendaMeeting.class));
-            }
-        });
+    start.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        startActivity(new Intent(getActivity(), AgendaMeeting.class));
+      }
+    });
 
-        return vm;
+    return vm;
 
-    }
+  }
 
 }

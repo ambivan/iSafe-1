@@ -16,7 +16,7 @@ public class AgendaMeeting extends AppCompatActivity {
     Button invite;
     Button startmeet;
 
-    Fragment fragment;
+//    Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class AgendaMeeting extends AppCompatActivity {
         setContentView(R.layout.activity_agenda_meeting);
 
 
+        chat = (ImageView) findViewById(R.id.chatnotif);
         invite = (Button) findViewById(R.id.inviteall);
         startmeet = (Button) findViewById(R.id.startmeet);
 
@@ -45,18 +46,18 @@ public class AgendaMeeting extends AppCompatActivity {
             }
         });
 
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 fragment = new ChatBox();
-            }
-        });
-
-        if (fragment != null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, fragment).addToBackStack("My fragments");
-            ft.commit();
-        }
+//        chat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                 fragment = new ChatBox();
+//            }
+//        });
+//
+//        if (fragment != null) {
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft.replace(R.id.content_frame2, fragment).addToBackStack("My fragments");
+//            ft.commit();
+//        }
 
 
     }

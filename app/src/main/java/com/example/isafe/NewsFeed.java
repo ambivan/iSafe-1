@@ -3,29 +3,45 @@ package com.example.isafe;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
+import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static ru.nikartm.support.util.DensityUtils.dpToPx;
 
 public class NewsFeed extends Fragment {
 
@@ -35,47 +51,136 @@ public class NewsFeed extends Fragment {
 
   CardView create;
 
+   FirebaseAuth auth;
+  FirebaseAuth.AuthStateListener authStateListener;
+  FirebaseUser user;
+    String userid;
+    UserPost userPost;
+
+    Button createbutton ;
+
+    int i ;
+
+    FirebaseDatabase database;
+    DatabaseReference myRef ;
+    List<MyListData> list;
+    RecyclerView recycle;
+    Button view;
 
   View vieww;
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
-    vieww =  inflater.inflate(R.layout.tab1, container, false);
+      vieww =  inflater.inflate(R.layout.tab1, container, false);
 
-    city = (EditText) vieww.findViewById(R.id.city);
+      auth = FirebaseAuth.getInstance();
 
-    city.setText("Delhi");
+      create = (CardView) vieww.findViewById(R.id.create);
+      createbutton = (Button) vieww.findViewById(R.id.createbutton);
 
-    create = (CardView) vieww.findViewById(R.id.create);
+      createbutton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              startActivity(new Intent(getActivity(), CreatEvent.class));
+          }
+      });
 
-    if (SignupActivity.i == 2){
-        create.setVisibility(View.VISIBLE);
-    }else {
-      create.setVisibility(View.INVISIBLE);
-    }
+    authStateListener = new FirebaseAuth.AuthStateListener() {
+      @Override
+      public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+        user = firebaseAuth.getCurrentUser();
+
+          userid = user.getUid();
+
+          DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+
+          databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+               userPost = dataSnapshot.getValue(UserPost.class);
+
+              if (userPost.getPost().equals("Team Leader")){
 
 
+              } else {
 
-    MyListData[] myListData = new MyListData[] {
+                  create.setVisibility(View.GONE);
 
-            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+              }
 
-            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+            }
 
-            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
+            }
+          });
 
-            new MyListData(R.drawable.institute, "IIT", "writing compettiton","on this and this day","at this time", "topic" + "gettopic"),
-
+        }
     };
+    auth.addAuthStateListener(authStateListener);
 
 
-    RecyclerView recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
-    MyListAdapter adapter = new MyListAdapter(myListData);
-    recyclerView.setHasFixedSize(true);
-    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    recyclerView.setAdapter(adapter);
+      city = (EditText) vieww.findViewById(R.id.city);
+
+      city.setText("Delhi");
+
+
+      final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Events");
+
+      dbref.addValueEventListener(new ValueEventListener() {
+          @Override
+          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+              list = new ArrayList<MyListData>();
+
+              for (DataSnapshot child: dataSnapshot.getChildren()) {
+                  System.out.println(child.getKey());
+
+                  System.out.println("list cbdsj" + child.getValue());
+
+                  MyListData events = child.getValue(MyListData.class);
+
+                  String title = events.getTitle();
+                  String event = events.getEvent();
+                  String date = events.getDate();
+                  String time = events.getTime();
+                  String topic = events.getTopic();
+
+                  MyListData eventlist = new MyListData(title, event, date, time, topic);
+
+//                  eventlist.setTitle(title);
+//                  eventlist.setEvent(event);
+//                  eventlist.setDate(date);
+//                  eventlist.setTime(time);
+//                  eventlist.setTopic(topic);
+
+                  list.add(eventlist);
+
+                  System.out.println(list);
+//
+                  RecyclerView recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
+
+                  MyListAdapter recyclerAdapter = new MyListAdapter(list, getContext());
+                  RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                  recyclerView.setLayoutManager(recyce);
+                  recyclerView.setItemAnimator( new DefaultItemAnimator());
+                  recyclerView.setAdapter(recyclerAdapter);
+
+              }
+
+          }
+
+          @Override
+          public void onCancelled(@NonNull DatabaseError databaseError) {
+
+          }
+      });
+
+
+
 
     checkLocationPermission();
 
@@ -150,5 +255,11 @@ public class NewsFeed extends Fragment {
                 MY_PERMISSIONS_REQUEST_LOCATION );
       }
     }
+  }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(authStateListener);
   }
 }

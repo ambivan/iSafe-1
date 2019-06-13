@@ -17,8 +17,6 @@ public class EventChecklist extends Fragment {
 
         ve = inflater.inflate(R.layout.event_checklist, container, false);
 
-
-
         return ve;
     }
 

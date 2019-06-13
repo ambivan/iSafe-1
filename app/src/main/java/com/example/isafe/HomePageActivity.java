@@ -85,6 +85,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                             if (userPost.getPost().equals("Team Leader")){
 
+
                                 navigationView.getMenu().clear();
                                 navigationView.inflateMenu(R.menu.navbar_teamlead);
                             } else {
@@ -203,6 +204,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.goodSamaritan) {
 
+            frag = new GoodSamaritan();
+
         } else if (id == R.id.signout) {
 
             auth.signOut();
@@ -224,6 +227,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             ft.replace(R.id.content_frame, frag).addToBackStack("My fragments");
             ft.commit();
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

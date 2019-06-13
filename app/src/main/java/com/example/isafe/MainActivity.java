@@ -12,52 +12,52 @@ import java.security.SecureRandom;
 
 public class MainActivity extends AppCompatActivity {
 
-  LinearLayout linlay2;
+    LinearLayout linlay2;
 
-  Button login, signup;
+    Button login, signup;
 
-  Handler handler = new Handler();
+    Handler handler = new Handler();
 
-  Runnable runnable = new Runnable() {
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+
+            linlay2.setVisibility(View.VISIBLE);
+
+        }
+    };
+
+
     @Override
-    public void run() {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-      linlay2.setVisibility(View.VISIBLE);
+        linlay2 = (LinearLayout) findViewById(R.id.linlay2);
+
+        handler.postDelayed(runnable, 1000);
+
+        login = (Button) findViewById(R.id.login);
+        signup = (Button) findViewById(R.id.signup);
+
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, SignupActivity.class));
+
+            }
+        });
+
 
     }
-  };
-
-
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-
-    linlay2 = (LinearLayout) findViewById(R.id.linlay2);
-
-    handler.postDelayed(runnable, 1000);
-
-    login = (Button) findViewById(R.id.login);
-    signup = (Button) findViewById(R.id.signup);
-
-
-    login.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-      }
-    });
-
-    signup.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-
-        startActivity(new Intent(MainActivity.this, SignupActivity.class));
-
-      }
-    });
-
-
-  }
 
 }
