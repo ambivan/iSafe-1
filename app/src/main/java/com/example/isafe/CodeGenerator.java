@@ -198,8 +198,7 @@ public class CodeGenerator extends AppCompatActivity {
                                     Intent sendIntent = new Intent(Intent.ACTION_VIEW);
                                     sendIntent.setType("vnd.android-dir/mms-sms");
                                     sendIntent.setData(Uri.parse("smsto:"));
-                                    sendIntent.putExtra("sms_body", codeg);
-
+                                    sendIntent.putExtra("sms_body","Hi, join the college team using this code: " + codeg);
                                     startActivity(sendIntent);
 
 
@@ -213,26 +212,16 @@ public class CodeGenerator extends AppCompatActivity {
                                 }
                             }
                         });
-
                         builder.show();
                        }
-                }
-                );
-
+                });
                 }else{
                     Toast.makeText(CodeGenerator.this, "Please enter your college name", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
 
 
-        }
-
-        );
-
-
-
+        });
     }
 
     @Override

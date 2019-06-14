@@ -1,6 +1,8 @@
 package com.example.isafe;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -109,6 +115,51 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
       this.send = (ImageView) itemView.findViewById(R.id.send);
       this.msg = (ImageView) itemView.findViewById(R.id.chatt);
 
+        DatabaseReference d =  FirebaseDatabase.getInstance().getReference()
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Registered Events");
+
+        d.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                System.out.println(dataSnapshot.getValue());
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    System.out.println(ds.getValue());
+
+                    MyListData events = ds.getValue(MyListData.class);
+
+                    MyListData eventlist = new MyListData();
+
+
+                    String title = events.getTitle();
+                    String event = events.getEvent();
+                    String city = events.getCity();
+                    String date = events.getDate();
+                    String time = events.getTime();
+                    String topic = events.getTopic();
+
+                    eventlist.setTitle(title + ",");
+                    eventlist.setCity(city);
+                    eventlist.setEvent("Organizing an " + event);
+                    eventlist.setDate("on " + date);
+                    eventlist.setTime("Starting at " + time);
+                    eventlist.setTopic( "Topic: " + topic);
+
+                    list.add(eventlist);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
       register.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -124,6 +175,10 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                       .push()
                       .setValue(new MyListData(mylist.getTitle(),mylist.getCity(),
                               mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic()));
+
+              register.setEnabled(false);
+              register.setBackgroundResource(R.drawable.reportbuttonbg);
+              register.setText("Registered");
 
 
           }
