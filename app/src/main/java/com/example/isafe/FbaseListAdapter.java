@@ -12,8 +12,8 @@ import com.google.firebase.database.DatabaseReference;
 
     ChatMeeting chat;
 
-    public FbaseListAdapter(ChatMeeting chat, Class<Chat> modelClass, int modelLayout, DatabaseReference ref) {
-        super(chat, modelClass, modelLayout, ref);
+    public FbaseListAdapter(ChatMeeting chat1, Class<Chat> modelClass, int modelLayout, DatabaseReference ref) {
+        super(chat1, modelClass, modelLayout, ref);
         this.chat = chat;
     }
 

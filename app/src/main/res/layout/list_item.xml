@@ -54,6 +54,15 @@
                         android:text="University Name"
                         android:layout_gravity="center"/>
 
+                    <TextView
+                        android:id="@+id/cityname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="City Name"
+                        android:layout_gravity="center"/>
+
+
 
                 </LinearLayout>
 

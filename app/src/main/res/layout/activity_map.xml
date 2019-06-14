@@ -6,53 +6,53 @@
     android:orientation="vertical"
     tools:context=".MapActivity" >
 
-    <RelativeLayout
+  <RelativeLayout
 
-        android:layout_marginTop="30dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/btn_find"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="find"
-            android:background="@drawable/outline"
-            android:layout_alignParentRight="true" />
-
-        <EditText
-            android:id="@+id/et_location"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Place"
-            android:layout_toLeftOf="@id/btn_find" />
-
-
-    </RelativeLayout>
+      android:layout_marginTop="30dp"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal" >
 
     <Button
-        android:id="@+id/locat"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_find"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/buttonbg"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:text="ATTACH LOCATION"
-        android:layout_alignParentBottom="true"/>
+        android:text="find"
+        android:background="@drawable/outline"
+        android:layout_alignParentRight="true" />
 
-    <fragment
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
+    <EditText
+        android:id="@+id/et_location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Place"
+        android:layout_toLeftOf="@id/btn_find" />
 
-        android:layout_width="match_parent"
-        tools:context=".MapActivity"
 
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_height="350dp"
-        android:layout_centerInParent="true"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+  </RelativeLayout>
+
+  <Button
+      android:id="@+id/locat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/buttonbg"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="60dp"
+      android:layout_marginRight="60dp"
+      android:text="ATTACH LOCATION"
+      android:layout_alignParentBottom="true"/>
+
+  <fragment
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:id="@+id/map"
+
+      android:layout_width="match_parent"
+      tools:context=".MapActivity"
+
+      android:name="com.google.android.gms.maps.SupportMapFragment"
+      android:layout_height="350dp"
+      android:layout_centerInParent="true"
+      class="com.google.android.gms.maps.SupportMapFragment" />
 
 </RelativeLayout>

@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:hint="Name"
-            android:id="@+id/teamleadname"
+            android:id="@+id/name"
             />
 
         <EditText
@@ -107,6 +107,17 @@
                 />
 
         </RelativeLayout>
+
+        <EditText
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:hint="Enter Team Name"
+            android:id="@+id/teamname"
+            />
+
 
         <Button
             android:layout_width="match_parent"

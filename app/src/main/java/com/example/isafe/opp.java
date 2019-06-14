@@ -31,15 +31,13 @@ public class opp extends Fragment {
         //returning our layout file
         v2 = inflater.inflate(R.layout.opp, container, false);
 
-
-        expandableListView = (ExpandableListView) v2.findViewById(R.id.expandableview);
+        expandableListView = (ExpandableListView) v2.findViewById(R.id.expandableview2);
         expandableListDetail = oppurtunitiesData.getData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new oppurtunitiesAdapter(getContext(), expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
         setListViewHeight(expandableListView);
-
 
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
@@ -61,6 +59,14 @@ public class opp extends Fragment {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
+
+                return false;
+            }
+        });
+
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 setListViewHeight(parent, groupPosition);
 
                 return false;

@@ -108,16 +108,16 @@
                 android:layout_height="wrap_content"
                 >
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint = "Write Agenda...."
-                        android:paddingBottom = "50dp"
-                        android:fontFamily = "@font/actor"
-                        android:layout_gravity = "center"
-                        android:textSize = "20sp"
-                        android:backgroundTint="#0000"
-                        />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint = "Write Agenda...."
+                    android:paddingBottom = "50dp"
+                    android:fontFamily = "@font/actor"
+                    android:layout_gravity = "center"
+                    android:textSize = "20sp"
+                    android:backgroundTint="#0000"
+                    />
 
 
 

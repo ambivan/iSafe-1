@@ -1,14 +1,22 @@
 package com.example.isafe;
 
+import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,9 +33,6 @@ import java.util.Iterator;
 
 public class CodeGenerator extends AppCompatActivity {
 
-    String AB;
-    SecureRandom rnd;
-
     LinearLayout first,second;
 
     EditText collegename, code;
@@ -35,6 +40,8 @@ public class CodeGenerator extends AppCompatActivity {
     String userid;
 
     static String codeg;
+
+    String code_created;
     Button share, generate, continuee;
 
     FirebaseAuth auth;
@@ -53,6 +60,8 @@ public class CodeGenerator extends AppCompatActivity {
         share = (Button) findViewById(R.id.share);
         generate = (Button) findViewById(R.id.generate);
         continuee = (Button) findViewById(R.id.conntinue);
+
+        code.setEnabled(false);
 
         auth = FirebaseAuth.getInstance();
 
@@ -74,13 +83,16 @@ public class CodeGenerator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                first.setVisibility(View.INVISIBLE);
-                second.setVisibility(View.VISIBLE);
 
-                AB = "012345678901234567890123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-                rnd = new SecureRandom();
+                String cn = collegename.getText().toString();
 
-                code.setText(randomString());
+                if (!TextUtils.isEmpty(cn)){
+
+                    first.setVisibility(View.INVISIBLE);
+                    second.setVisibility(View.VISIBLE);
+                    code_created = "isafe/" + cn + "/" + Signup2.team;
+
+                code.setText(code_created);
                 codeg = code.getText().toString();
 
                final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
@@ -130,11 +142,9 @@ public class CodeGenerator extends AppCompatActivity {
                 db.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                         CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
                         System.out.println(codeGen.getCode());
                         System.out.println(codeGen.getUserid());
-
 
                     }
 
@@ -143,7 +153,6 @@ public class CodeGenerator extends AppCompatActivity {
 
                     }
                 });
-
 
 
                 continuee.setOnClickListener(new View.OnClickListener() {
@@ -156,20 +165,74 @@ public class CodeGenerator extends AppCompatActivity {
                 share.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(CodeGenerator.this, Share_popup.class) );
-                    }
-                });
+
+
+                        final CharSequence options[] = new CharSequence[] {"Share on Whatsapp", "Share as Text Message", "Copy Code"};
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CodeGenerator.this);
+                        builder.setCancelable(false);
+                        builder.setTitle("Select your option:");
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if ("Share on Whatsapp".equals(options[which])){
+
+                                    Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+                                    whatsappIntent.setType("text/plain");
+                                    whatsappIntent.setPackage("com.whatsapp");
+                                    whatsappIntent.putExtra(Intent.EXTRA_TEXT, codeg);
+                                    whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                                    try {
+                                        startActivity(Intent.createChooser(whatsappIntent,"Share With "));
+
+                                    } catch (android.content.ActivityNotFoundException ex) {
+
+                                        Toast.makeText(CodeGenerator.this, "Whatsapp not installed", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                }else if ("Share as Text Message".equals(options[which])){
+
+                                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                                    sendIntent.setType("vnd.android-dir/mms-sms");
+                                    sendIntent.setData(Uri.parse("smsto:"));
+                                    sendIntent.putExtra("sms_body", codeg);
+
+                                    startActivity(sendIntent);
+
+
+                                }else if ("Copy Code".equals(options[which])){
+
+                                    ClipboardManager clipboard = (ClipboardManager) CodeGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                                    ClipData clip = ClipData.newPlainText("Copied Text", codeg);
+                                    clipboard.setPrimaryClip(clip);
+
+                                    Toast.makeText(CodeGenerator.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        builder.show();
+                       }
+                }
+                );
+
+                }else{
+                    Toast.makeText(CodeGenerator.this, "Please enter your college name", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
-        });
 
-    }
 
-    String randomString(){
-        StringBuilder sb = new StringBuilder(5);
-        for(int i = 0; i < 5; i++ )
-            sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
-        return sb.toString();
+        }
+
+        );
+
+
+
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.example.isafe;
 
 import android.Manifest;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,8 +16,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,17 +23,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -59,6 +64,8 @@ public class NewsFeed extends Fragment {
 
     Button createbutton ;
 
+    MyListAdapter recyclerAdapter;
+
     int i ;
 
     FirebaseDatabase database;
@@ -66,14 +73,22 @@ public class NewsFeed extends Fragment {
     List<MyListData> list;
     RecyclerView recycle;
     Button view;
+    RecyclerView recyclerView;
+    private FirebaseRecyclerAdapter adapter;
 
-  View vieww;
+
+    View vieww;
   @Override
   public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
       vieww =  inflater.inflate(R.layout.tab1, container, false);
 
+
+      FirebaseApp.initializeApp(getContext());
+
       auth = FirebaseAuth.getInstance();
+       recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
+
 
       create = (CardView) vieww.findViewById(R.id.create);
       createbutton = (Button) vieww.findViewById(R.id.createbutton);
@@ -81,7 +96,7 @@ public class NewsFeed extends Fragment {
       createbutton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              startActivity(new Intent(getActivity(), CreatEvent.class));
+              startActivity(new Intent(getActivity(), CreateEvent.class));
           }
       });
 
@@ -137,36 +152,38 @@ public class NewsFeed extends Fragment {
               list = new ArrayList<MyListData>();
 
               for (DataSnapshot child: dataSnapshot.getChildren()) {
+
                   System.out.println(child.getKey());
 
                   System.out.println("list cbdsj" + child.getValue());
 
                   MyListData events = child.getValue(MyListData.class);
 
+                  MyListData eventlist = new MyListData();
+
+
                   String title = events.getTitle();
                   String event = events.getEvent();
+                  String city = events.getCity();
                   String date = events.getDate();
                   String time = events.getTime();
                   String topic = events.getTopic();
 
-                  MyListData eventlist = new MyListData(title, event, date, time, topic);
-
-//                  eventlist.setTitle(title);
-//                  eventlist.setEvent(event);
-//                  eventlist.setDate(date);
-//                  eventlist.setTime(time);
-//                  eventlist.setTopic(topic);
+                  eventlist.setTitle(title + ",");
+                  eventlist.setCity(city);
+                  eventlist.setEvent("Organizing an " + event);
+                  eventlist.setDate("on " + date);
+                  eventlist.setTime("Starting at " + time);
+                  eventlist.setTopic( "Topic: " + topic);
 
                   list.add(eventlist);
 
                   System.out.println(list);
-//
-                  RecyclerView recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
 
-                  MyListAdapter recyclerAdapter = new MyListAdapter(list, getContext());
+                  recyclerAdapter = new MyListAdapter(list, getActivity());
                   RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
                   recyclerView.setLayoutManager(recyce);
-                  recyclerView.setItemAnimator( new DefaultItemAnimator());
+                  recyclerView.setHasFixedSize(true);
                   recyclerView.setAdapter(recyclerAdapter);
 
               }
@@ -178,7 +195,6 @@ public class NewsFeed extends Fragment {
 
           }
       });
-
 
 
 
@@ -225,7 +241,119 @@ public class NewsFeed extends Fragment {
 
     return vieww;
   }
-  public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
+//    public class ViewHolder extends RecyclerView.ViewHolder {
+//        public ImageView uni;
+//        public TextView title1, event1, date1, time1, topic1 ;
+//
+//        Button register;
+//        ImageView like, send, msg;
+//
+//        public ViewHolder(View itemView) {
+//            super(itemView);
+//
+//            this.uni = (ImageView) itemView.findViewById(R.id.uni);
+//
+//            this.title1 = (TextView) itemView.findViewById(R.id.title2);
+//            this.event1 = (TextView) itemView.findViewById(R.id.event);
+//            this.date1 = (TextView) itemView.findViewById(R.id.date);
+//            this.time1 = (TextView) itemView.findViewById(R.id.time);
+//            this.topic1 = (TextView) itemView.findViewById(R.id.topic);
+//
+//            this.register = (Button) itemView.findViewById(R.id.register);
+//
+//            this.like = (ImageView) itemView.findViewById(R.id.heart);
+//            this.send = (ImageView) itemView.findViewById(R.id.send);
+//            this.msg = (ImageView) itemView.findViewById(R.id.chatt);
+//
+//        }
+//
+//        public void setTitle(String title) {
+//            title1.setText(title);
+//        }
+//
+//        public void setEvent(String title) {
+//            this.title = title;
+//        }
+//
+//        public void setDate(String title) {
+//            this.title = title;
+//        }
+//
+//        public void setTime(String title) {
+//            this.title = title;
+//        }
+//
+//        public void setTopic(String title) {
+//            this.title = title;
+//        }
+//
+//
+//        public String getTitle(){
+//            return title;
+//        }
+//
+//        public String getEvent(){
+//            return event;
+//        }
+//
+//        public String getDate(){
+//            return date;
+//        }
+//
+//        public String getTime(){
+//            return time;
+//        }
+//
+//        public String getTopic(){
+//            return topic;
+//        }
+//    }
+//
+//    private void fetch() {
+//
+//        Query query = FirebaseDatabase.getInstance()
+//                .getReference()
+//                .child("Events");
+//
+//        FirebaseRecyclerOptions<MyListData> options =
+//                new FirebaseRecyclerOptions.Builder<MyListData>()
+//                        .setQuery(query, new SnapshotParser<MyListData>() {
+//                            @NonNull
+//                            @Override
+//                            public MyListData parseSnapshot(@NonNull DataSnapshot snapshot) {
+//                                return new MyListData(snapshot.child("title").getValue().toString(),
+//                                        snapshot.child("event").getValue().toString(),
+//                                        snapshot.child("date").getValue().toString(),
+//                                        snapshot.child("time").getValue().toString(),
+//                                        snapshot.child("topic").getValue().toString());
+//                            }
+//                        })
+//                        .build();
+//
+//        adapter = new FirebaseRecyclerAdapter<MyListData, ViewHolder>(options) {
+//            @Override
+//            public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.list_item, parent, false);
+//
+//                return new ViewHolder(view);
+//            }
+//
+//
+//            @Override
+//            protected void onBindViewHolder(ViewHolder holder, final int position, MyListData model) {
+//                holder.se(model.getTitle());
+//                holder.setTxtDesc(model.getEvent());
+//                holder.setTxtDesc(model.getEvent());
+//
+//            }
+//
+//        };
+//        recyclerView.setAdapter(adapter);
+//    }
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
 
 
@@ -257,9 +385,15 @@ public class NewsFeed extends Fragment {
     }
   }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        auth.addAuthStateListener(authStateListener);
-  }
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        adapter.startListening();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        adapter.stopListening();
+//    }
 }

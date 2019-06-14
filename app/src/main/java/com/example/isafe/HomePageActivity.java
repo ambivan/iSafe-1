@@ -88,9 +88,12 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                                 navigationView.getMenu().clear();
                                 navigationView.inflateMenu(R.menu.navbar_teamlead);
-                            } else {
+                            } else if (userPost.getPost().equals("Team Member")) {
                                 navigationView.getMenu().clear();
-                                navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
+                                navigationView.inflateMenu(R.menu.navbar_teammember);
+                            }else{
+                                navigationView.getMenu().clear();
+                                navigationView.inflateMenu(R.menu.navbar_teammember);
                             }
 
                         }
@@ -194,6 +197,10 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         int id = item.getItemId();
         Fragment frag = null;
 
+        if (id == R.id.Home){
+            finish();
+            startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
+        }
         if (id == R.id.competitions) {
             frag = new comp();
 
@@ -219,6 +226,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             frag = new EventChecklist();
 
         }else if (id == R.id.Reimbursement) {
+
+            frag = new Reimbursement();
 
         }
 

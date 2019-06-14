@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -41,13 +42,14 @@ public class Signup2 extends AppCompatActivity {
 
     ProgressDialog mProgress;
 
-    EditText emailid, npassword, confirm, collegeuid, name, teamleadname;
+    EditText emailid, npassword, confirm, collegeuid, name, teamname;
 
     ImageView pass1, pass2;
 
     static String userid;
 
     String em, pa, con, cuid;
+    static String team;
 
     String post = "", profilename;
 
@@ -86,7 +88,8 @@ public class Signup2 extends AppCompatActivity {
         confirm = (EditText) findViewById(R.id.confirm);
         collegeuid = (EditText) findViewById(R.id.collegeuid);
         name = (EditText) findViewById(R.id.name);
-        teamleadname = (EditText) findViewById(R.id.teamleadname);
+        teamname = (EditText) findViewById(R.id.teamname);
+
 
         auth = FirebaseAuth.getInstance();
 
@@ -137,32 +140,37 @@ public class Signup2 extends AppCompatActivity {
             public void onClick(View v) {
 
                 em = emailid.getText().toString();
+                con = confirm.getText().toString();
+                pa = npassword.getText().toString();
+                String n = name.getText().toString();
+                team = teamname.getText().toString();
 
-                if (!isEmailValid(em)){
+                if (!TextUtils.isEmpty(em) && !TextUtils.isEmpty(con) && !TextUtils.isEmpty(pa) && !TextUtils.isEmpty(n) && !TextUtils.isEmpty(team)) {
 
-                    Toast.makeText(Signup2.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                    if (!isEmailValid(em)) {
 
-                }else {
+                        Toast.makeText(Signup2.this, "Invalid Email", Toast.LENGTH_SHORT).show();
 
-
-
-                    if (same == 1) {
+                    } else {
 
 
-                        mProgress.setCancelable(false);
-                        mProgress.setCanceledOnTouchOutside(false);
-                        mProgress.setTitle("Creating Account");
-                        mProgress.setMessage("Please wait while account is being created...");
-                        mProgress.show();
+                        if (same == 1) {
 
-                        createUser();
-
-                        count++;
-                    }else if (same == 0){
-                        Toast.makeText(Signup2.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                            mProgress.setCancelable(false);
+                            mProgress.setCanceledOnTouchOutside(false);
+                            mProgress.setTitle("Creating Account");
+                            mProgress.setMessage("Please wait while account is being created...");
+                            mProgress.show();
+                            createUser();
+                            count++;
+                        } else if (same == 0) {
+                            Toast.makeText(Signup2.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
 
+                } else {
+                    Toast.makeText(Signup2.this, "Please fill out all fields!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -275,24 +283,21 @@ public class Signup2 extends AppCompatActivity {
                             if (SignupActivity.i == 1) {
 
                                 post = "Volunteer";
-                                profilename = name.getText().toString();
 
                             }
                             if (SignupActivity.i == 2) {
 
                                 post = "Team Leader";
-                                profilename = teamleadname.getText().toString();
 
                             }
                             if (SignupActivity.i == 3) {
 
                                 post = "Team Member";
-                                profilename = name.getText().toString();
-
-
                             }
 
-                                FirebaseDatabase.getInstance()
+                            profilename = name.getText().toString();
+
+                            FirebaseDatabase.getInstance()
                                         .getReference()
                                         .child(userid)
                                         .setValue(new UserPost(profilename, post));
@@ -369,8 +374,11 @@ public class Signup2 extends AppCompatActivity {
 
                             mProgress.dismiss();
 
-                        }else {
+                        }
+                        else {
+                            mProgress.dismiss();
                             Log.i("Fail", "Signup not completed");
+                            Toast.makeText(Signup2.this, "Email already registered!", Toast.LENGTH_SHORT).show();
                         }
 
                     }

@@ -44,6 +44,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CreateEvent"></activity>
         <activity android:name=".MeetingReport" />
         <activity android:name=".ChatMeeting" />
         <activity android:name=".AgendaMeeting" />
@@ -51,15 +52,12 @@
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:name=".MapActivity"
-            android:screenOrientation = "portrait"/>
         <activity
-            android:name=".Share_popup"
+            android:name=".MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreatEvent"
             android:theme="@style/CustomTheme" />
-
-        <activity android:name=".CreatEvent"
-            android:theme = "@style/CustomTheme"/>
-
         <activity android:name=".FinalActivity" />
         <activity
             android:name=".ContactActivity"
@@ -88,6 +86,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

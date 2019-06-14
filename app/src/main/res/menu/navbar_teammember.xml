@@ -45,15 +45,6 @@
 
     <group
         android:checkableBehavior="single"
-        android:id="@+id/group7">
-        <item
-            android:id="@+id/Reimbursement"
-            android:title="Reimbursement" />
-
-    </group>
-
-    <group
-        android:checkableBehavior="single"
         android:id="@+id/group8">
         <item
             android:id="@+id/events"

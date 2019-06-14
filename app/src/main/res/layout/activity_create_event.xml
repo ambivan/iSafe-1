@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -49,6 +58,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily = "@font/actor"
+                    android:textSize = "20sp"
+                    />
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_gravity = "center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text = "City: "
+                android:textSize = "20sp"
+                android:fontFamily = "@font/actor"
+                android:textColor = "#000"
+
+                />
+
+            <android.support.v7.widget.CardView
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="200dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:layout_marginRight = "10dp"
+
+                app:cardPreventCornerOverlap="true"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id = "@+id/cityname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily = "@font/actor"
                     android:layout_gravity = "center"
                     android:textSize = "20sp"
                     android:backgroundTint="#0000"
@@ -57,6 +107,7 @@
             </android.support.v7.widget.CardView>
 
         </LinearLayout>
+
 
 
         <LinearLayout
@@ -140,6 +191,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily = "@font/actor"
                     android:layout_gravity = "center"
+                    android:inputType = "date"
+                    android:hint = "DD/MM/YYYY"
                     android:textSize = "20sp"
                     android:backgroundTint="#0000"
                     />
@@ -257,3 +310,5 @@
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
