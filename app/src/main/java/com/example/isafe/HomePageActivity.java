@@ -43,6 +43,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     UserPost userPost;
 
     NavigationView navigationView;
+    static int h;
 
     static int frag = 0;
 
@@ -58,7 +59,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page2);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -88,12 +89,16 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                                 navigationView.getMenu().clear();
                                 navigationView.inflateMenu(R.menu.navbar_teamlead);
+                                h = 1;
+
                             } else if (userPost.getPost().equals("Team Member")) {
                                 navigationView.getMenu().clear();
                                 navigationView.inflateMenu(R.menu.navbar_teammember);
+                                h = 1;
                             }else{
                                 navigationView.getMenu().clear();
                                 navigationView.inflateMenu(R.menu.navbar_teammember);
+                                h = 0;
                             }
 
                         }

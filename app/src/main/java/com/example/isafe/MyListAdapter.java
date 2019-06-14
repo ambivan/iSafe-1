@@ -116,20 +116,14 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
               System.out.println(getPosition());
               mla = getPosition();
 
-//              FirebaseDatabase.getInstance().getReference()
-//                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                      .child("Registered Events")
-//                      .setValue(new MyListData());
-
               MyListData mylist = list.get(mla);
 
               FirebaseDatabase.getInstance().getReference()
                       .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                       .child("Registered Events")
                       .push()
-                      .setValue(new MyListData(mylist.getTitle(),mylist.getCity(), mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic()));
-
-
+                      .setValue(new MyListData(mylist.getTitle(),mylist.getCity(),
+                              mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic()));
 
 
           }

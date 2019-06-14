@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import static com.example.isafe.HomePageActivity.h;
+
 public class Pager extends FragmentPagerAdapter {
   //integer to count number of tabs
   int tabCount;
@@ -33,7 +35,11 @@ public class Pager extends FragmentPagerAdapter {
         return new Assist();
 
       case 4:
-        return new Profile();
+        if (h == 1){
+            return new teamProfile();
+        } else{
+            return new Profile();
+        }
 
       default:
         return null;
