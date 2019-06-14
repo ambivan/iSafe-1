@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,7 +53,8 @@ public class Attendance extends Fragment {
 
         mark = (Button) vv.findViewById(R.id.markatt);
 
-        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Events");
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Registered Events");
 
         dbref.addValueEventListener(new ValueEventListener() {
             @Override

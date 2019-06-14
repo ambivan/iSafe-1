@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
@@ -17,6 +20,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     List<MyListData> list;
     Context context;
+
+    static int mla;
 
     int position;
 
@@ -28,8 +33,11 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
   }
   @Override
   public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
     LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+
     View listItem= layoutInflater.inflate(R.layout.list_item, parent, false);
+
     ViewHolder viewHolder = new ViewHolder(listItem);
 
 
@@ -41,14 +49,12 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
   public void onBindViewHolder(ViewHolder holder, int position) {
 
     final MyListData myListData = list.get(position);
-    holder.title.setText(myListData.getTitle());
-    holder.event.setText(myListData.getEvent());
+      holder.title.setText(myListData.getTitle()) ;
+      holder.event.setText(myListData.getEvent());
       holder.date.setText(myListData.getDate());
       holder.time.setText(myListData.getTime());
       holder.topic.setText(myListData.getTopic());
       holder.city.setText(myListData.getCity());
-
-      this.position = position;
 
 
   }
@@ -67,11 +73,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
               arr=list.size();
           }
 
-
-
       }catch (Exception e){
-
-
 
       }
 
@@ -79,7 +81,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
       return arr;  }
 
-  public static class ViewHolder extends RecyclerView.ViewHolder {
+  public class ViewHolder extends RecyclerView.ViewHolder {
 
 
     public ImageView uni;
@@ -110,6 +112,23 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
       register.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+
+              System.out.println(getPosition());
+              mla = getPosition();
+
+//              FirebaseDatabase.getInstance().getReference()
+//                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                      .child("Registered Events")
+//                      .setValue(new MyListData());
+
+              MyListData mylist = list.get(mla);
+
+              FirebaseDatabase.getInstance().getReference()
+                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                      .child("Registered Events")
+                      .push()
+                      .setValue(new MyListData(mylist.getTitle(),mylist.getCity(), mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic()));
+
 
 
 

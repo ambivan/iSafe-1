@@ -34,7 +34,6 @@ public class AgendaMeeting extends AppCompatActivity {
     ArrayList<Integer> tick;
 
 
-//    Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,38 +78,50 @@ public class AgendaMeeting extends AppCompatActivity {
 
                 List<HashMap<String, ArrayList<String>>> aList = new ArrayList<HashMap<String, ArrayList<String>>>();
 
-
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     String key = ds.getKey();
                     System.out.println("hi" + key);
 
                     if (!key.equals("name")&&!key.equals("post")){
-                        DatabaseReference a = dbref.child(key);
 
-                        a.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (key != null) {
+                            DatabaseReference a = dbref.child(key);
+
+                            a.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                                     UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
                                     System.out.println(userPost.getName());
 
-                                    arrayList.add(userPost.getName());
+                                    if (userPost.getName()== null){
 
+                                        arrayList.add("You have no team members yet.");
 
-                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(AgendaMeeting.this, android.R.layout.simple_list_item_1, arrayList);
+                                    }else {
 
-                                    listView2.setAdapter(arrayAdapter);
+                                        arrayList.add(userPost.getName());
 
+                                        if (arrayList != null) {
 
+                                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(AgendaMeeting.this, android.R.layout.simple_list_item_1, arrayList);
 
-                            }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            listView2.setAdapter(arrayAdapter);
 
-                            }
-                        });
+                                        }
 
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        }
                     }
 
                 }
@@ -121,24 +132,6 @@ public class AgendaMeeting extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-//        chat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                 fragment = new ChatBox();
-//            }
-//        });
-//
-//        if (fragment != null) {
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.content_frame2, fragment).addToBackStack("My fragments");
-//            ft.commit();
-//        }
-
 
     }
 }

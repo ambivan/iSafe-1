@@ -9,9 +9,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static com.example.isafe.MyListAdapter.mla;
 
 public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHolder> {
     List<MyListData> list;
@@ -22,6 +27,8 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
       this.list = list;
       this.context = context;
   }
+
+
   @Override
   public MyListAdapter2.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -39,7 +46,6 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
     holder.time.setText(myListData.getTime());
     holder.topic.setText(myListData.getTopic());
     holder.city.setText(myListData.getCity());
-
   }
 
 

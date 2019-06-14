@@ -90,9 +90,7 @@ public class Signup2 extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         teamname = (EditText) findViewById(R.id.teamname);
 
-
         auth = FirebaseAuth.getInstance();
-
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -336,7 +334,6 @@ public class Signup2 extends AppCompatActivity {
                                                                 .setValue(new UserPost(profilename, post));
                                                     }
                                                 }
-
                                             }
 
                                             @Override

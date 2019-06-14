@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_gravity = "center"
+            android:orientation="vertical"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            >
+
+            <ImageView
+                android:id = "@+id/profpic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/outline"
+                android:layout_gravity="start"
+                android:src="@drawable/profile" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_gravity="center"
+                android:textAlignment="center"
+
+                />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Team Name : "
+                android:textSize = "25sp"
+                android:textColor = "#000"
+                android:fontFamily = "@font/actor"
+                />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:id = "@+id/team_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = ""
+                android:textSize = "25sp"
+                android:textColor = "#000"
+                android:fontFamily = "@font/actor"
+                />
+
+        </LinearLayout>
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Team Members : "
+                android:textSize = "25sp"
+                android:textColor = "#000"
+                android:fontFamily = "@font/actor"
+                />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="30dp"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerViewh"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Events Conducted : "
+            android:textSize = "25sp"
+            android:textColor = "#000"
+            android:fontFamily = "@font/actor"
+            />
+
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "TOTAL SCORE"
+            android:textStyle = "bold"
+            android:layout_gravity = "center"
+            android:textSize = "25sp"
+            android:textColor = "#000"
+            android:fontFamily = "@font/actor"
+            />
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = ""
+            android:textStyle = "bold"
+            android:layout_gravity = "center"
+            android:textSize = "25sp"
+            android:textColor = "#000"
+            android:fontFamily = "@font/actor"
+            />
+
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
