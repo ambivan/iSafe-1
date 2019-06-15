@@ -97,7 +97,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                 h = 1;
                             }else{
                                 navigationView.getMenu().clear();
-                                navigationView.inflateMenu(R.menu.navbar_teammember);
+                                navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
                                 h = 0;
                             }
 

@@ -17,9 +17,22 @@
       android:textAlignment="center"
       android:layout_marginTop="30dp"/>
 
+  <TextView
+      android:id="@+id/regfirst"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Please Register first to mark your attendance!"
+      android:layout_below="@+id/mark"
+
+      android:fontFamily="@font/actor"
+      android:textSize="18dp"
+      android:textAlignment="center"
+      android:layout_marginTop="30dp"/>
+
+
 
   <android.support.v7.widget.RecyclerView
-      android:layout_below="@+id/mark"
+      android:layout_below="@+id/regfirst"
       android:layout_marginTop="15dp"
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:tools="http://schemas.android.com/tools"

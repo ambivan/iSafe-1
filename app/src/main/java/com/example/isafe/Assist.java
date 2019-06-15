@@ -48,7 +48,7 @@ public class Assist extends Fragment {
         know.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ww2.road-safety.co.in/"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.isafeassist.org/"));
                 startActivity(browserIntent);
             }
         });

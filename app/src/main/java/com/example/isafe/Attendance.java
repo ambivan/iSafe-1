@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -44,12 +45,16 @@ public class Attendance extends Fragment {
 
     Button mark ;
 
+    TextView regfirst;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         vv = inflater.inflate(R.layout.tab2, container, false);
 
         recyclerView = (RecyclerView) vv.findViewById(R.id.recyclerView2);
+        regfirst = (TextView) vv.findViewById(R.id.regfirst);
 
         mark = (Button) vv.findViewById(R.id.markatt);
 
@@ -79,14 +84,19 @@ public class Attendance extends Fragment {
                     String time = events.getTime();
                     String topic = events.getTopic();
 
-                    eventlist.setTitle(title + ",");
+                    eventlist.setTitle(title);
                     eventlist.setCity(city);
-                    eventlist.setEvent("Organizing an " + event);
-                    eventlist.setDate("on " + date);
-                    eventlist.setTime("Starting at " + time);
-                    eventlist.setTopic( "Topic" + topic);
+                    eventlist.setEvent(event);
+                    eventlist.setDate(date);
+                    eventlist.setTime(time);
+                    eventlist.setTopic(topic);
 
                     list.add(eventlist);
+
+                    if (list != null){
+                        regfirst.setVisibility(View.GONE);
+
+                    }
 
                     System.out.println(list);
 

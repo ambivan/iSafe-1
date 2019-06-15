@@ -126,9 +126,8 @@ public class Signup2 extends AppCompatActivity {
 
                 if (isEmailValid(em))
                     emailid.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
+
             }
-
-
         });
 
         signup = (Button) findViewById(R.id.signup2);
@@ -141,9 +140,12 @@ public class Signup2 extends AppCompatActivity {
                 con = confirm.getText().toString();
                 pa = npassword.getText().toString();
                 String n = name.getText().toString();
-                team = teamname.getText().toString();
 
-                if (!TextUtils.isEmpty(em) && !TextUtils.isEmpty(con) && !TextUtils.isEmpty(pa) && !TextUtils.isEmpty(n) && !TextUtils.isEmpty(team)) {
+                if (SignupActivity.i == 2) {
+                    team = teamname.getText().toString();
+                }
+
+                if (!TextUtils.isEmpty(em) && !TextUtils.isEmpty(con) && !TextUtils.isEmpty(pa) && !TextUtils.isEmpty(n)) {
 
                     if (!isEmailValid(em)) {
 
@@ -361,7 +363,7 @@ public class Signup2 extends AppCompatActivity {
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 startActivity(in);
-                            }else {
+                            }else if (SignupActivity.i == 1 || SignupActivity.i == 3) {
                                 Intent in = new Intent(Signup2.this, HomePageActivity.class);
 
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

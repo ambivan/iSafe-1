@@ -1,15 +1,21 @@
 package com.example.isafe;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
+
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -43,11 +49,13 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     final String expandedListText = (String) getChild(listPosition, expandedListPosition);
 
 
-
     if (convertView == null) {
       LayoutInflater layoutInflater = (LayoutInflater) this.context
               .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       convertView = layoutInflater.inflate(R.layout.childtext, null);
+
+
+
     }
 
     TextView expandedListTextView = (TextView) convertView.findViewById(R.id.expandedListItem);
@@ -81,11 +89,14 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
   @Override
   public View getGroupView(int listPosition, boolean isExpanded,
                            View convertView, ViewGroup parent) {
+
     String listTitle = (String) getGroup(listPosition);
     if (convertView == null) {
       LayoutInflater layoutInflater = (LayoutInflater) this.context.
               getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       convertView = layoutInflater.inflate(R.layout.listheading, null);
+
+
     }
     TextView listTitleTextView = (TextView) convertView
             .findViewById(R.id.listTitle);
