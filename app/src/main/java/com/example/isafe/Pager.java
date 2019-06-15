@@ -4,6 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.isafe.Fragments.Assist;
+import com.example.isafe.Fragments.Attendance;
+import com.example.isafe.Fragments.NewsFeed;
+import com.example.isafe.Fragments.teamProfile;
+
 import static com.example.isafe.HomePageActivity.h;
 
 public class Pager extends FragmentPagerAdapter {

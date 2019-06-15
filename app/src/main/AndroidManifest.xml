@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.isafe">
 
     <permission
@@ -7,6 +8,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -43,11 +45,12 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".CreateEvent"></activity>
-        <activity android:name=".MeetingReport" />
-        <activity android:name=".ChatMeeting" />
-        <activity android:name=".AgendaMeeting" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activities.CreateEvent"></activity>
+        <activity android:name=".Activities.MeetingReport" />
+        <activity android:name=".Activities.ChatMeeting" />
+        <activity android:name=".Activities.AgendaMeeting" />
         <activity android:name=".CodeGenerator" />
 
         <uses-library android:name="com.google.android.maps" />
@@ -55,9 +58,7 @@
         <activity
             android:name=".MapActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".CreatEvent"
-            android:theme="@style/CustomTheme" />
+
         <activity android:name=".FinalActivity" />
         <activity
             android:name=".ContactActivity"
@@ -72,13 +73,13 @@
             android:name=".Signup2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".Activities.SignupActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -110,6 +111,14 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

@@ -1,15 +1,17 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.Manifest;
+
+import com.example.isafe.Adapters.MyListAdapter;
+import com.example.isafe.Activities.CreateEvent;
+import com.example.isafe.Classes.MyListData;
+import com.example.isafe.Classes.UserPost;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -23,14 +25,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.auth.data.model.User;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,15 +35,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-
-import static ru.nikartm.support.util.DensityUtils.dpToPx;
 
 public class NewsFeed extends Fragment {
 
@@ -81,17 +73,17 @@ public class NewsFeed extends Fragment {
   @Override
   public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
-      vieww =  inflater.inflate(R.layout.tab1, container, false);
+      vieww =  inflater.inflate(com.example.isafe.R.layout.tab1, container, false);
 
 
       FirebaseApp.initializeApp(getContext());
 
       auth = FirebaseAuth.getInstance();
-       recyclerView = (RecyclerView) vieww.findViewById(R.id.recyclerView);
+       recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
 
 
-      create = (CardView) vieww.findViewById(R.id.create);
-      createbutton = (Button) vieww.findViewById(R.id.createbutton);
+      create = (CardView) vieww.findViewById(com.example.isafe.R.id.create);
+      createbutton = (Button) vieww.findViewById(com.example.isafe.R.id.createbutton);
 
       createbutton.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -138,7 +130,7 @@ public class NewsFeed extends Fragment {
     auth.addAuthStateListener(authStateListener);
 
 
-      city = (EditText) vieww.findViewById(R.id.city);
+      city = (EditText) vieww.findViewById(com.example.isafe.R.id.city);
 
       city.setText("Delhi");
 

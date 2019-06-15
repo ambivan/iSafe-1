@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.isafe.Adapters.profileAdapter;
+import com.example.isafe.Classes.profileM;
 
 import java.util.ArrayList;
 
@@ -26,16 +27,16 @@ public class teamProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        vt = inflater.inflate(R.layout.tab5team, container, false);
+        vt = inflater.inflate(com.example.isafe.R.layout.tab5team, container, false);
 
-        team_name = (TextView) vt.findViewById(R.id.team_name);
-        recyclerView= (RecyclerView) vt.findViewById(R.id.recyclerViewh);
+        team_name = (TextView) vt.findViewById(com.example.isafe.R.id.team_name);
+        recyclerView= (RecyclerView) vt.findViewById(com.example.isafe.R.id.recyclerViewh);
 
         profileM[] profileMS = new profileM[]{
-                new profileM("Shambhavi", R.drawable.profile),
-                new profileM("Varun", R.drawable.profile),
-                new profileM("Mansi", R.drawable.profile),
-                new profileM("Manasvi", R.drawable.profile)
+                new profileM("Shambhavi", com.example.isafe.R.drawable.profile),
+                new profileM("Varun", com.example.isafe.R.drawable.profile),
+                new profileM("Mansi", com.example.isafe.R.drawable.profile),
+                new profileM("Manasvi", com.example.isafe.R.drawable.profile)
         };
 
         adapter = new profileAdapter(getContext(), profileMS);

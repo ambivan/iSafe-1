@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +10,9 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.isafe.Adapters.oppurtunitiesAdapter;
+import com.example.isafe.Classes.oppurtunitiesData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,9 +31,9 @@ public class opp extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //returning our layout file
-        v2 = inflater.inflate(R.layout.opp, container, false);
+        v2 = inflater.inflate(com.example.isafe.R.layout.opp, container, false);
 
-        expandableListView = (ExpandableListView) v2.findViewById(R.id.expandableview2);
+        expandableListView = (ExpandableListView) v2.findViewById(com.example.isafe.R.id.expandableview2);
         expandableListDetail = oppurtunitiesData.getData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new oppurtunitiesAdapter(getContext(), expandableListTitle, expandableListDetail);

@@ -40,7 +40,8 @@
             android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:backgroundTint="#000"
-
+            android:imeOptions="actionNext"
+            android:singleLine = "true"
             android:layout_height="match_parent"
             android:layout_marginTop="40dp"
             android:hint="Email - ID"
@@ -56,6 +57,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:hint="Password"
+            android:imeOptions="actionNext"
+            android:singleLine = "true"
             android:backgroundTint="#000"
             android:id="@+id/password"
             />

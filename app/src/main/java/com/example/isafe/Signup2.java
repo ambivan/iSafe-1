@@ -16,9 +16,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.isafe.Activities.SignupActivity;
+import com.example.isafe.Classes.CodeGen;
+import com.example.isafe.Classes.UserPost;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -30,9 +32,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class Signup2 extends AppCompatActivity {
 
@@ -284,15 +285,23 @@ public class Signup2 extends AppCompatActivity {
 
                                 post = "Volunteer";
 
+                                FirebaseMessaging.getInstance().subscribeToTopic("Volunteers");
+
                             }
                             if (SignupActivity.i == 2) {
 
                                 post = "Team Leader";
 
+                                FirebaseMessaging.getInstance().subscribeToTopic("TeamLeaders");
+
+
                             }
                             if (SignupActivity.i == 3) {
 
                                 post = "Team Member";
+
+                                FirebaseMessaging.getInstance().subscribeToTopic("TeamMembers");
+
                             }
 
                             profilename = name.getText().toString();

@@ -1,10 +1,10 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,17 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.isafe.HomePageActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,14 +41,14 @@ public class LoginActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_login);
+    setContentView(com.example.isafe.R.layout.activity_login);
 
     pro = new ProgressDialog(LoginActivity.this);
 
-    email = (EditText) findViewById(R.id.email);
-    password = (EditText) findViewById(R.id.password);
+    email = (EditText) findViewById(com.example.isafe.R.id.email);
+    password = (EditText) findViewById(com.example.isafe.R.id.password);
 
-    login = (Button) findViewById(R.id.loginbutton);
+    login = (Button) findViewById(com.example.isafe.R.id.loginbutton);
 
     auth = FirebaseAuth.getInstance();
 
@@ -134,6 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                     finishAndRemoveTask();
 
 
+
                   } else {
                     pro.dismiss();
                     Toast.makeText(LoginActivity.this, "WRONG EMAIL OR PASSWORD!!", Toast.LENGTH_SHORT).show();
@@ -141,6 +143,20 @@ public class LoginActivity extends AppCompatActivity {
                   }
 
                 }
+
+                  String topic = "highScores";
+
+                  // See documentation on defining a message payload.
+                  Message message = Message.builder()
+                          .putData("score", "850")
+                          .putData("time", "2:45")
+                          .setTopic(topic)
+                          .build();
+
+                  // Send a message to the devices subscribed to the provided topic.
+                  String response = FirebaseMessaging.getInstance().send(message);
+// Response is a message ID string.
+System.out.println("Successfully sent message: " + response);
 
               });
 
@@ -154,6 +170,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
   }
+
+
 
   @Override
   public void onBackPressed() {

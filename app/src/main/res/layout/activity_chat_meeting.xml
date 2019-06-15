@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.isafe.ChatMeeting">
+    tools:context="com.example.isafe.Activities.ChatMeeting">
 
     <ListView
         android:id="@+id/list"
@@ -70,6 +70,8 @@
                         android:layout_toStartOf="@id/fab">
 
                              <EditText
+                                 android:imeOptions="actionNext"
+                                 android:singleLine = "true"
                                 android:id="@+id/input"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

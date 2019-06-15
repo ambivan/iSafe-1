@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.isafe.Adapters.MyListAdapter2;
+import com.example.isafe.Classes.MyListData;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,14 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
-import static com.example.isafe.MapActivity.MY_PERMISSIONS_REQUEST_LOCATION;
 
 public class Attendance extends Fragment {
 
@@ -51,12 +45,12 @@ public class Attendance extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        vv = inflater.inflate(R.layout.tab2, container, false);
+        vv = inflater.inflate(com.example.isafe.R.layout.tab2, container, false);
 
-        recyclerView = (RecyclerView) vv.findViewById(R.id.recyclerView2);
-        regfirst = (TextView) vv.findViewById(R.id.regfirst);
+        recyclerView = (RecyclerView) vv.findViewById(com.example.isafe.R.id.recyclerView2);
+        regfirst = (TextView) vv.findViewById(com.example.isafe.R.id.regfirst);
 
-        mark = (Button) vv.findViewById(R.id.markatt);
+        mark = (Button) vv.findViewById(com.example.isafe.R.id.markatt);
 
         final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Registered Events");

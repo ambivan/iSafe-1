@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -48,10 +48,10 @@ public class oppurtunitiesAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.opp_child, null);
+            convertView = layoutInflater.inflate(com.example.isafe.R.layout.opp_child, null);
         }
 
-        TextView expandedListTextView = (TextView) convertView.findViewById(R.id.expandedListItem);
+        TextView expandedListTextView = (TextView) convertView.findViewById(com.example.isafe.R.id.expandedListItem);
 
         expandedListTextView.setText(expandedListText);
 
@@ -86,10 +86,10 @@ public class oppurtunitiesAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.opp_headings, null);
+            convertView = layoutInflater.inflate(com.example.isafe.R.layout.opp_headings, null);
         }
         TextView listTitleTextView = (TextView) convertView
-                .findViewById(R.id.listTitle);
+                .findViewById(com.example.isafe.R.id.listTitle);
         listTitleTextView.setTypeface(null, Typeface.BOLD);
 
         listTitleTextView.setText(listTitle);

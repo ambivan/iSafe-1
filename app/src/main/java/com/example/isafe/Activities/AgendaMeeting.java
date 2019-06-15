@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.isafe.Classes.UserPost;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,19 +40,19 @@ public class AgendaMeeting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agenda_meeting);
+        setContentView(com.example.isafe.R.layout.activity_agenda_meeting);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(com.example.isafe.R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         arrayList = new ArrayList<>();
 
 
-        chat = (ImageView) findViewById(R.id.chatnotif);
-        invite = (Button) findViewById(R.id.inviteall);
-        startmeet = (Button) findViewById(R.id.startmeet);
-        listView2 = (ListView) findViewById(R.id.list2);
+        chat = (ImageView) findViewById(com.example.isafe.R.id.chatnotif);
+        invite = (Button) findViewById(com.example.isafe.R.id.inviteall);
+        startmeet = (Button) findViewById(com.example.isafe.R.id.startmeet);
+        listView2 = (ListView) findViewById(com.example.isafe.R.id.list2);
 
         invite.setOnClickListener(new View.OnClickListener() {
             @Override

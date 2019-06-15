@@ -88,6 +88,8 @@
                     android:fontFamily = "@font/actor"
                     android:layout_gravity = "center"
                     android:textSize = "20sp"
+                    android:imeOptions="actionNext"
+                    android:singleLine = "true"
                     android:backgroundTint="#0000"
                     />
 
@@ -135,6 +137,8 @@
                     android:fontFamily = "@font/actor"
                     android:layout_gravity = "center"
                     android:textSize = "20sp"
+                    android:imeOptions="actionNext"
+                    android:singleLine = "true"
                     android:backgroundTint="#0000"
                     />
 

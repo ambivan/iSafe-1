@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Classes;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -10,7 +10,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-class Utility {
+public class Utility {
 
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

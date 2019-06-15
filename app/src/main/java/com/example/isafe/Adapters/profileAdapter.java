@@ -1,16 +1,14 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.isafe.Classes.profileM;
 
 public class profileAdapter extends RecyclerView.Adapter<profileAdapter.ViewHolder> {
 
@@ -32,7 +30,7 @@ public class profileAdapter extends RecyclerView.Adapter<profileAdapter.ViewHold
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-        View listItem= layoutInflater.inflate(R.layout.horizontal_rv, parent, false);
+        View listItem= layoutInflater.inflate(com.example.isafe.R.layout.horizontal_rv, parent, false);
 
         profileAdapter.ViewHolder viewHolder = new profileAdapter.ViewHolder(listItem);
 
@@ -50,8 +48,6 @@ public class profileAdapter extends RecyclerView.Adapter<profileAdapter.ViewHold
     }
     @Override
     public int getItemCount() {
-
-
         return list.length;
     }
 
@@ -65,8 +61,8 @@ public class profileAdapter extends RecyclerView.Adapter<profileAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
 
-            this.name  = (TextView) itemView.findViewById(R.id.membername);
-            this.profile_pic = (ImageView) itemView.findViewById(R.id.recyclerprofile);
+            this.name  = (TextView) itemView.findViewById(com.example.isafe.R.id.membername);
+            this.profile_pic = (ImageView) itemView.findViewById(com.example.isafe.R.id.recyclerprofile);
 
         }
     }

@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -27,10 +27,10 @@ public class Assist extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.tab4, container, false);
+        view = inflater.inflate(com.example.isafe.R.layout.tab4, container, false);
 
-        call = (Button) view.findViewById(R.id.buttonassist);
-        know = (TextView) view.findViewById(R.id.knowmore);
+        call = (Button) view.findViewById(com.example.isafe.R.id.buttonassist);
+        know = (TextView) view.findViewById(com.example.isafe.R.id.knowmore);
 
 
         call.setOnClickListener(new View.OnClickListener() {

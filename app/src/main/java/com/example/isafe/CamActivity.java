@@ -276,4 +276,9 @@ public class CamActivity extends AppCompatActivity {
         super.onStop();
         auth.addAuthStateListener(authStateListener);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

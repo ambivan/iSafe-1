@@ -1,17 +1,16 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.isafe.Classes.MyListData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +41,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-    View listItem= layoutInflater.inflate(R.layout.list_item, parent, false);
+    View listItem= layoutInflater.inflate(com.example.isafe.R.layout.list_item, parent, false);
 
     ViewHolder viewHolder = new ViewHolder(listItem);
 
@@ -100,20 +99,20 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public ViewHolder(View itemView) {
       super(itemView);
 
-      this.uni = (ImageView) itemView.findViewById(R.id.uni);
+      this.uni = (ImageView) itemView.findViewById(com.example.isafe.R.id.uni);
 
-      this.title = (TextView) itemView.findViewById(R.id.title2);
-      this.event = (TextView) itemView.findViewById(R.id.event);
-      this.date = (TextView) itemView.findViewById(R.id.date);
-      this.time = (TextView) itemView.findViewById(R.id.time);
-      this.topic = (TextView) itemView.findViewById(R.id.topic);
-      this.city = (TextView) itemView.findViewById(R.id.cityname);
+      this.title = (TextView) itemView.findViewById(com.example.isafe.R.id.title2);
+      this.event = (TextView) itemView.findViewById(com.example.isafe.R.id.event);
+      this.date = (TextView) itemView.findViewById(com.example.isafe.R.id.date);
+      this.time = (TextView) itemView.findViewById(com.example.isafe.R.id.time);
+      this.topic = (TextView) itemView.findViewById(com.example.isafe.R.id.topic);
+      this.city = (TextView) itemView.findViewById(com.example.isafe.R.id.cityname);
 
-      this.register = (Button) itemView.findViewById(R.id.register);
+      this.register = (Button) itemView.findViewById(com.example.isafe.R.id.register);
 
-      this.like = (ImageView) itemView.findViewById(R.id.heart);
-      this.send = (ImageView) itemView.findViewById(R.id.send);
-      this.msg = (ImageView) itemView.findViewById(R.id.chatt);
+      this.like = (ImageView) itemView.findViewById(com.example.isafe.R.id.heart);
+      this.send = (ImageView) itemView.findViewById(com.example.isafe.R.id.send);
+      this.msg = (ImageView) itemView.findViewById(com.example.isafe.R.id.chatt);
 
         DatabaseReference d =  FirebaseDatabase.getInstance().getReference()
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -177,7 +176,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                               mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic()));
 
               register.setEnabled(false);
-              register.setBackgroundResource(R.drawable.reportbuttonbg);
+              register.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
               register.setText("Registered");
 
 

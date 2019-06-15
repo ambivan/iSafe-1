@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -52,13 +52,13 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     if (convertView == null) {
       LayoutInflater layoutInflater = (LayoutInflater) this.context
               .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-      convertView = layoutInflater.inflate(R.layout.childtext, null);
+      convertView = layoutInflater.inflate(com.example.isafe.R.layout.childtext, null);
 
 
 
     }
 
-    TextView expandedListTextView = (TextView) convertView.findViewById(R.id.expandedListItem);
+    TextView expandedListTextView = (TextView) convertView.findViewById(com.example.isafe.R.id.expandedListItem);
 
     expandedListTextView.setText(expandedListText);
 
@@ -94,12 +94,12 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     if (convertView == null) {
       LayoutInflater layoutInflater = (LayoutInflater) this.context.
               getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-      convertView = layoutInflater.inflate(R.layout.listheading, null);
+      convertView = layoutInflater.inflate(com.example.isafe.R.layout.listheading, null);
 
 
     }
     TextView listTitleTextView = (TextView) convertView
-            .findViewById(R.id.listTitle);
+            .findViewById(com.example.isafe.R.id.listTitle);
     listTitleTextView.setTypeface(null, Typeface.BOLD);
 
     listTitleTextView.setText(listTitle);

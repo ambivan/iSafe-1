@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Classes;
 
 public class CodeGen {
 

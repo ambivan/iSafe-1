@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.isafe.Classes.Chat;
+import com.example.isafe.Classes.UserPost;
+import com.example.isafe.FbaseListAdapter;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,7 +49,7 @@ public class ChatMeeting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_meeting);
+        setContentView(com.example.isafe.R.layout.activity_chat_meeting);
 
         FirebaseApp.initializeApp(this);
 
@@ -83,10 +86,10 @@ public class ChatMeeting extends AppCompatActivity {
 
         auth.addAuthStateListener(authStateListener);
 
-        final EditText input = (EditText) findViewById(R.id.input);
+        final EditText input = (EditText) findViewById(com.example.isafe.R.id.input);
 
-        listView = (ListView)findViewById(R.id.list);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        listView = (ListView)findViewById(com.example.isafe.R.id.list);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(com.example.isafe.R.id.fab);
 
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             // Start sign in/sign up activity
@@ -119,7 +122,7 @@ public class ChatMeeting extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.signout) {
+        if (item.getItemId() == com.example.isafe.R.id.signout) {
             AuthUI.getInstance().signOut(this)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -154,7 +157,7 @@ public class ChatMeeting extends AppCompatActivity {
         loggedInUserName = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("Main", "user id: " + loggedInUserName);
 
-        adapter = new FbaseListAdapter(ChatMeeting.this, Chat.class, R.layout.incomingmessage,
+        adapter = new FbaseListAdapter(ChatMeeting.this, Chat.class, com.example.isafe.R.layout.incomingmessage,
                 FirebaseDatabase.getInstance().getReference());
         listView.setAdapter(adapter);
     }

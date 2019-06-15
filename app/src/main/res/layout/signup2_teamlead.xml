@@ -25,6 +25,8 @@
             />
 
         <EditText
+            android:imeOptions="actionNext"
+            android:singleLine = "true"
             android:inputType="textEmailAddress"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
@@ -43,6 +45,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:hint="Enter Email - id"
+            android:imeOptions="actionNext"
+            android:singleLine = "true"
             android:id="@+id/emailid"
             />
 
@@ -61,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="New Password"
-
+                android:imeOptions="actionNext"
+                android:singleLine = "true"
                 android:id="@+id/newpassword"
                 />
 
@@ -93,6 +98,8 @@
                 android:layout_marginTop="20dp"
                 android:hint="Confirm Password"
                 android:id="@+id/confirm"
+                android:imeOptions="actionNext"
+                android:singleLine = "true"
                 />
 
             <ImageView
@@ -115,6 +122,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
             android:hint="Enter Team Name"
+            android:imeOptions="actionNext"
+            android:singleLine = "true"
             android:id="@+id/teamname"
             />
 

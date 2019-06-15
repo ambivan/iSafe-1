@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Classes;
 
 import java.util.ArrayList;
 import java.util.HashMap;

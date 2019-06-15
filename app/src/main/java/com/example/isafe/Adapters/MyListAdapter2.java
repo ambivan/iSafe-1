@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,14 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.isafe.Classes.MyListData;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import static com.example.isafe.MyListAdapter.mla;
 
 public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHolder> {
     List<MyListData> list;
@@ -32,7 +29,7 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
   @Override
   public MyListAdapter2.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-    View listItem= layoutInflater.inflate(R.layout.attendance_item, parent, false);
+    View listItem= layoutInflater.inflate(com.example.isafe.R.layout.attendance_item, parent, false);
     MyListAdapter2.ViewHolder viewHolder2 = new MyListAdapter2.ViewHolder(listItem);
     return viewHolder2;
   }
@@ -81,20 +78,20 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
     public ViewHolder(View itemView) {
       super(itemView);
 
-      this.uni = (ImageView) itemView.findViewById(R.id.uni);
+      this.uni = (ImageView) itemView.findViewById(com.example.isafe.R.id.uni);
 
-      this.title = (TextView) itemView.findViewById(R.id.title2);
-      this.event = (TextView) itemView.findViewById(R.id.event);
-      this.date = (TextView) itemView.findViewById(R.id.date);
-      this.time = (TextView) itemView.findViewById(R.id.time);
-      this.topic = (TextView) itemView.findViewById(R.id.topic);
-      this.city = (TextView) itemView.findViewById(R.id.cityname);
+      this.title = (TextView) itemView.findViewById(com.example.isafe.R.id.title2);
+      this.event = (TextView) itemView.findViewById(com.example.isafe.R.id.event);
+      this.date = (TextView) itemView.findViewById(com.example.isafe.R.id.date);
+      this.time = (TextView) itemView.findViewById(com.example.isafe.R.id.time);
+      this.topic = (TextView) itemView.findViewById(com.example.isafe.R.id.topic);
+      this.city = (TextView) itemView.findViewById(com.example.isafe.R.id.cityname);
 
-      this.markatt = (Button) itemView.findViewById(R.id.markatt);
+      this.markatt = (Button) itemView.findViewById(com.example.isafe.R.id.markatt);
 
-      this.like = (ImageView) itemView.findViewById(R.id.heart);
-      this.send = (ImageView) itemView.findViewById(R.id.send);
-      this.msg = (ImageView) itemView.findViewById(R.id.chatt);
+      this.like = (ImageView) itemView.findViewById(com.example.isafe.R.id.heart);
+      this.send = (ImageView) itemView.findViewById(com.example.isafe.R.id.send);
+      this.msg = (ImageView) itemView.findViewById(com.example.isafe.R.id.chatt);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = new Date();
@@ -102,12 +99,12 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
 
         if (formatter.format((date1)).equals(date.getText().toString())){
 
-            markatt.setBackgroundResource(R.drawable.button_first_bg);
+            markatt.setBackgroundResource(com.example.isafe.R.drawable.button_first_bg);
 
 
         }else {
 
-            markatt.setBackgroundResource(R.drawable.reportbuttonbg);
+            markatt.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
 
         }
 
