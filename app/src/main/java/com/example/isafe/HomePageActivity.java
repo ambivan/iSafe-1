@@ -200,23 +200,24 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        Fragment frag = null;
+        Fragment frag1 = null;
 
         if (id == R.id.Home){
             finish();
+            frag = 0;
             startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
         }
         if (id == R.id.competitions) {
-            frag = new comp();
+            frag1 = new comp();
 
         } else if (id == R.id.opportunities) {
-            frag = new opp();
+            frag1 = new opp();
 
         } else if (id == R.id.RSA) {
 
         } else if (id == R.id.goodSamaritan) {
 
-            frag = new GoodSamaritan();
+            frag1 = new GoodSamaritan();
 
         } else if (id == R.id.signout) {
 
@@ -224,21 +225,21 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.Meetings) {
 
-            frag = new Meetings();
+            frag1 = new Meetings();
 
         }else if (id == R.id.events) {
 
-            frag = new EventChecklist();
+            frag1 = new EventChecklist();
 
         }else if (id == R.id.Reimbursement) {
 
-            frag = new Reimbursement();
+            frag1 = new Reimbursement();
 
         }
 
-        if (frag != null) {
+        if (frag1 != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.content_frame, frag).addToBackStack("My fragments");
+            ft.replace(R.id.content_frame, frag1).addToBackStack("My fragments");
             ft.commit();
         }
 

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".MapActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:id= "@+id/tool"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+
+        android:theme="@style/AppTheme.NoActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_below ="@+id/tool"
+
+        android:layout_margin="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto"
+        android:padding="15sp"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:id="@+id/confirmloc"
+        android:text="Confirm Location"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft = "30dp"
+        android:layout_marginRight = "30dp"
+        android:orientation="horizontal"
+        android:layout_below= "@+id/confirmloc"
+        android:layout_marginTop = "15dp"
+
+        >
+
+        <ImageView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/blue" />
+
+
+        <EditText
+
+            android:enabled = "false"
+            android:id="@+id/yourloc"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Your Location"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft = "30dp"
+
+        android:orientation="horizontal"
+        android:layout_below= "@+id/map"
+        android:layout_marginTop = "15dp"
+
+        >
+
+        <ImageView
+            android:padding="10dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/red" />
+
+
+        <EditText
+
+        android:enabled = "false"
+        android:id="@+id/venueloc"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Venue Location"
+            android:layout_marginRight = "30dp"
+
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/locat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonbg"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:text="ATTACH LOCATION"
+        android:layout_alignParentBottom="true"/>
+
+    <fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+
+        android:layout_width="match_parent"
+        tools:context=".MapActivity"
+
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        class="com.google.android.gms.maps.SupportMapFragment" />
+
+</RelativeLayout>

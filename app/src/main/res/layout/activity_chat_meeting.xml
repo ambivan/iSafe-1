@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.isafe.Activities.ChatMeeting">
+    tools:context="com.example.isafe.ChatMeeting">
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/list1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rel"
@@ -20,69 +20,33 @@
 
 
 
-
     <RelativeLayout
         android:id="@+id/rel"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
 
-        <LinearLayout
+            android:src="@drawable/ic_send_black_24dp"
+            android:tint="@android:color/white"
+            app:fabSize="mini" />
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation = "vertical"
-            >
+            android:layout_toStartOf="@id/fab">
 
-            <Button
-                android:id = "@+id/stop"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:text = "Stop"
-                android:fontFamily = "@font/actor"
-                android:textSize = "20sp"
-                android:textAllCaps = "false"
-                android:paddingLeft = "30dp"
-                android:paddingRight = "30dp"
-                android:textColor = "#fff"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_first_bg"
-                />
-
-
-
-            <RelativeLayout
-                android:layout_alignParentBottom="true"
+            <EditText
+                android:id="@+id/input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                     <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/fab"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-
-                        android:tint="@android:color/white"
-                        app:fabSize="mini" />
-
-                      <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_toStartOf="@id/fab">
-
-                             <EditText
-                                 android:imeOptions="actionNext"
-                                 android:singleLine = "true"
-                                android:id="@+id/input"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="Input" />
-
-                      </android.support.design.widget.TextInputLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
+                android:layout_height="wrap_content"
+                android:hint="Input" />
+        </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
 

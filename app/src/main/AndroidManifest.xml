@@ -49,9 +49,10 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".Activities.CreateEvent"></activity>
         <activity android:name=".Activities.MeetingReport" />
-        <activity android:name=".Activities.ChatMeeting" />
+        <activity android:name=".ChatMeeting" />
         <activity android:name=".Activities.AgendaMeeting" />
         <activity android:name=".CodeGenerator" />
+        <activity android:name=".MarkAttendanceMap"/>
 
         <uses-library android:name="com.google.android.maps" />
 

@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -143,20 +142,6 @@ public class LoginActivity extends AppCompatActivity {
                   }
 
                 }
-
-                  String topic = "highScores";
-
-                  // See documentation on defining a message payload.
-                  Message message = Message.builder()
-                          .putData("score", "850")
-                          .putData("time", "2:45")
-                          .setTopic(topic)
-                          .build();
-
-                  // Send a message to the devices subscribed to the provided topic.
-                  String response = FirebaseMessaging.getInstance().send(message);
-// Response is a message ID string.
-System.out.println("Successfully sent message: " + response);
 
               });
 

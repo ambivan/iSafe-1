@@ -5,22 +5,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.isafe.Activities.ChatMeeting;
-import com.example.isafe.Classes.Chat;
+import com.example.isafe.Classes.Message;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DatabaseReference;
 
- public class FbaseListAdapter extends FirebaseListAdapter<Chat> {
+public class MyListAdapter3 extends FirebaseListAdapter<Message> {
 
-    ChatMeeting chat;
+    private ChatMeeting activity;
 
-    public FbaseListAdapter(ChatMeeting chat1, Class<Chat> modelClass, int modelLayout, DatabaseReference ref) {
-        super(chat1, modelClass, modelLayout, ref);
-        this.chat = chat;
+    public MyListAdapter3(ChatMeeting activity, Class<Message> modelClass, int modelLayout, DatabaseReference ref) {
+        super(activity, modelClass, modelLayout, ref);
+        this.activity = activity;
     }
 
+
+
     @Override
-    protected void populateView(View v, Chat model, int position) {
+    protected void populateView(View v, Message model, int position) {
         TextView messageText = (TextView) v.findViewById(R.id.message_text);
         TextView messageUser = (TextView) v.findViewById(R.id.message_user);
         TextView messageTime = (TextView) v.findViewById(R.id.message_time);
@@ -35,12 +36,15 @@ import com.google.firebase.database.DatabaseReference;
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
-        Chat chatMessage = getItem(position);
+        Message chatMessage = getItem(position);
+        System.out.println( "what" + chatMessage);
+        
+        System.out.println(chatMessage.getMessageUserId());
 
-        if (chatMessage.getMessageUserId().equals(chat.getLoggedInUserName()))
-            view = chat.getLayoutInflater().inflate(R.layout.outgoingmessage, viewGroup, false);
+        if (chatMessage.getMessageUserId().equals(activity.getLoggedInUserName()))
+            view = activity.getLayoutInflater().inflate(R.layout.outgoingmessage, viewGroup, false);
         else
-            view = chat.getLayoutInflater().inflate(R.layout.incomingmessage, viewGroup, false);
+            view = activity.getLayoutInflater().inflate(R.layout.incomingmessage, viewGroup, false);
 
         //generating view
         populateView(view, chatMessage, position);

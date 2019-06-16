@@ -1,6 +1,7 @@
 package com.example.isafe.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.isafe.Classes.MyListData;
+import com.example.isafe.MarkAttendanceMap;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,6 +20,7 @@ import java.util.List;
 public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHolder> {
     List<MyListData> list;
     Context context;
+    public static int i;
 
   // RecyclerView recyclerView;
   public MyListAdapter2(List<MyListData> list, Context context) {
@@ -43,6 +46,18 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
     holder.time.setText(myListData.getTime());
     holder.topic.setText(myListData.getTopic());
     holder.city.setText(myListData.getCity());
+
+      holder.markatt.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+
+              //if you need position, just use recycleViewHolder.getAdapterPosition();
+              Intent intent = new Intent(v.getContext(), MarkAttendanceMap.class);
+              context.startActivity(intent);
+
+          }
+      });
+
   }
 
 
@@ -107,6 +122,8 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
             markatt.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
 
         }
+
+
 
     }
   }

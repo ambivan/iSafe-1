@@ -1,6 +1,7 @@
 package com.example.isafe.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,8 @@ public class Attendance extends Fragment {
     Button mark ;
 
     TextView regfirst;
+
+    Context context;
 
 
     @Override
@@ -110,9 +113,8 @@ public class Attendance extends Fragment {
             }
         });
 
-
-
         return vv;
+
     }
 
 
