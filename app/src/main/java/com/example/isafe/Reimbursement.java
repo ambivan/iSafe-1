@@ -2,6 +2,7 @@ package com.example.isafe;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,6 +22,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -197,8 +206,45 @@ public class Reimbursement extends Fragment {
         else if (requestCode == SELECT_FILE){
             if(resultCode == RESULT_OK){
                 Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
-                bill.setImageURI(selectedImage);
+                String url = selectedImage.getLastPathSegment();
+                final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Bleh").child(url);
+
+                storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Task<Uri> img = storageReference.getDownloadUrl();
+
+
+
+
+                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+
+                                ProgressDialog mProgress = new ProgressDialog(getActivity());
+                                mProgress.setCancelable(false);
+                                mProgress.setCanceledOnTouchOutside(false);
+                                mProgress.setTitle("Creating Account");
+                                mProgress.setMessage("Please wait while account is being created...");
+                                mProgress.show();
+                                String url = uri.toString();
+                                FirebaseDatabase.getInstance()
+                                        .getReference()
+                                        .child("URL")
+                                        .setValue(url);
+                                System.out.println(url);
+                                Glide.with(getContext()).load(url).into(bill);
+                                mProgress.dismiss();
+
+                            }
+                        });
+
+                    }
+
+                });
+
             }
+
         }
 
     }
