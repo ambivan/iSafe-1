@@ -74,7 +74,7 @@ public class MarkAttendanceMap  extends FragmentActivity implements OnMapReadyCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.mark_attendance_map);
 
         checkLocationPermission();
 
@@ -99,7 +99,7 @@ public class MarkAttendanceMap  extends FragmentActivity implements OnMapReadyCa
                 try {
 
                     createGeofences(location.getLatitude(), location.getLongitude());
-                    System.out.println(getGeofencingRequest());
+                    getGeofencingRequest();
                     System.out.println(getGeofencePendingIntent());
 
                     addressList1 = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
@@ -148,9 +148,6 @@ public class MarkAttendanceMap  extends FragmentActivity implements OnMapReadyCa
 
             }
         });
-
-
-
 
         checkLocationPermission();
 
@@ -487,12 +484,12 @@ public class MarkAttendanceMap  extends FragmentActivity implements OnMapReadyCa
     }
 
 
-    private GeofencingRequest getGeofencingRequest() {
+    private void getGeofencingRequest() {
 
         GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
         builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
         builder.addGeofences(mGeofenceList);
-        return builder.build();
+         builder.build();
 
     }
 

@@ -32,7 +32,7 @@
 
     </style>
 
-    <style name="CustomTheme" >
+    <style name="CustomTheme">
 
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>

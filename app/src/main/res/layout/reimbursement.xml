@@ -227,6 +227,7 @@
             />
 
         <Button
+            android:visibility = "gone"
             android:id = "@+id/attachedsend"
             android:layout_width="wrap_content"
             android:layout_gravity="center"

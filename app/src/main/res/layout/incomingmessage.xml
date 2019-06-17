@@ -9,7 +9,9 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_alignParentLeft="true"
-		android:padding="15dp"
+		android:paddingLeft="15dp"
+		android:paddingRight="15dp"
+        android:paddingBottom = "5dp"
 		android:id="@+id/rell"
 		android:background="@drawable/inmessage">
 
@@ -23,25 +25,15 @@
 			android:textStyle="normal|bold" />
 
 		<TextView
-			android:id="@+id/message_text"
-			android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/message_text"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/message_user"
 			android:textColor="@android:color/white"
-			android:layout_marginTop="5dp"
 			android:text=""
 			android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 			android:textSize="18sp" />
-
-		<TextView
-			android:id="@+id/message_time"
-			android:layout_margin="5dp"
-			android:layout_width="wrap_content"
-
-			android:layout_height="wrap_content"
-			android:layout_below="@id/message_text"
-			android:text="" />
 
 	</RelativeLayout>
 

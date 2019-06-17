@@ -74,9 +74,13 @@ public class ChatMeeting extends AppCompatActivity {
                                     .getReference()
                                     .child("Messages")
                                     .push()
-                                    .setValue(new Message(input.getText().toString(),
+                                    .setValue(new Message(input.getText().toString().trim(),
                                             userPost.getName(),
                                             FirebaseAuth.getInstance().getCurrentUser().getUid())) ;
+
+                            input.setText("");
+
+
                         }
 
                         @Override
@@ -84,11 +88,13 @@ public class ChatMeeting extends AppCompatActivity {
 
                         }
                     });
-                }
-            }
-        });
 
-        input.setText("");
+                }
+
+            }
+
+
+        });
     }
 
     @Override

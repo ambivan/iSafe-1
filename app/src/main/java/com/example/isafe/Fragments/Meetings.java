@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.isafe.Activities.AgendaMeeting;
+import com.example.isafe.Agenda_Meeting;
 
 
 public class Meetings extends Fragment {
@@ -31,7 +31,7 @@ public class Meetings extends Fragment {
     start.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        startActivity(new Intent(getActivity(), AgendaMeeting.class));
+        startActivity(new Intent(getActivity(), Agenda_Meeting.class));
       }
     });
 

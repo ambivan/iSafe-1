@@ -1,15 +1,17 @@
 package com.example.isafe;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
@@ -41,6 +43,8 @@ public class Reimbursement extends Fragment {
     Bitmap photobill;
 
     Intent camIntent;
+    private static final int SELECT_FILE = 2;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +53,7 @@ public class Reimbursement extends Fragment {
 
         bill = (ImageView) vr.findViewById(R.id.bill);
         send = (Button) vr.findViewById(R.id.attachedsend);
+
 
         if (Build.VERSION.SDK_INT >= 23){
             requestPermissions(new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
@@ -59,9 +64,37 @@ public class Reimbursement extends Fragment {
             public void onClick(View v) {
 
                 System.out.println("Blehhhh");
-                camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                pictake(camIntent);
-                
+
+                final CharSequence options[] = new CharSequence[] {"PDF", "png/jpeg"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setCancelable(false);
+                builder.setTitle("Select your option:");
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if ("PDF".equals(options[which])){
+
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_GET_CONTENT);
+                            intent.setType("image*/application/pdf");
+
+                            startActivityForResult(intent, 1212);
+
+
+                        }else if ("png/jpeg".equals(options[which])){
+
+                            Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            startActivityForResult(pickPhoto , SELECT_FILE);
+
+                        }
+                    }
+                });
+
+                builder.show();
+
                 send.setVisibility(View.VISIBLE);
                 
                 send.setOnClickListener(new View.OnClickListener() {
@@ -124,14 +157,48 @@ public class Reimbursement extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST) {
+//        if (resultCode == RESULT_OK) {
+//            if (requestCode == CAMERA_REQUEST) {
+//
+//                    photobill = BitmapFactory.decodeFile(path);
+//                    bill.setImageBitmap(photobill);
+//
+//            }
+//
+//        }
+        if (requestCode == 1212){
 
-                    photobill = BitmapFactory.decodeFile(path);
-                    bill.setImageBitmap(photobill);
+            if (resultCode == RESULT_OK) {
+                // Get the Uri of the selected file
+                Uri uri = data.getData();
+                String uriString = uri.toString();
+                File myFile = new File(uriString);
+                String path = myFile.getAbsolutePath();
+                String displayName = null;
 
+                if (uriString.startsWith("content://")) {
+                    Cursor cursor = null;
+                    try {
+                        cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+                        if (cursor != null && cursor.moveToFirst()) {
+                            displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                        }
+                    } finally {
+                        cursor.close();
+                    }
+                } else if (uriString.startsWith("file://")) {
+                    displayName = myFile.getName();
+                }
             }
 
+        }
+
+
+        else if (requestCode == SELECT_FILE){
+            if(resultCode == RESULT_OK){
+                Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
+                bill.setImageURI(selectedImage);
+            }
         }
 
     }

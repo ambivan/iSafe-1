@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".AgendaMeeting">
+
+
+        <FrameLayout
+            android:id="@+id/content_frame2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+
+            android:layout_marginTop = "80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text = "Agenda of Meeting"
+                android:textStyle = "bold"
+                android:layout_marginTop = "30dp"
+                android:textAlignment="center"
+                android:textColor = "#000"
+                android:fontFamily = "@font/actor"
+                android:textSize = "25sp"
+
+                />
+
+
+            <android.support.v7.widget.CardView
+                android:id = "@+id/create"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint = "Enter Agenda...."
+                            android:textColor = "#979595"
+                            android:fontFamily = "@font/actor"
+                            android:layout_gravity = "center"
+                            android:textSize = "20sp"
+                            android:backgroundTint="#0000"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:layout_margin = "10dp"
+                        android:layout_marginTop = "30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity = "end"
+                        android:textAllCaps = "false"
+                        android:fontFamily = "@font/actor"
+                        android:textSize = "18sp"
+                        android:layout_marginRight = "10dp"
+                        android:background = "@drawable/reportbuttonbg"
+                        android:text = "Save"
+
+                        />
+
+                </LinearLayout>
+
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text = "Invite Team Members"
+                android:textSize = "25sp"
+                android:textColor = "#000"
+                android:fontFamily = "@font/actor"
+                />
+
+
+            <ListView
+                android:id="@+id/list2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="16dp"
+                android:stackFromBottom="true"
+                android:transcriptMode="alwaysScroll" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation = "vertical"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/inviteall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="65dp"
+                        android:background="@drawable/button_first_bg"
+                        android:fontFamily="@font/actor"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:text="Invite All"
+                        android:textAllCaps="false"
+                        android:textColor="#fff"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:visibility = "gone"
+                        android:id = "@+id/startmeet"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:text = "Start"
+                        android:layout_centerInParent="true"
+                        android:fontFamily = "@font/actor"
+                        android:textSize = "20sp"
+                        android:textAllCaps = "false"
+                        android:paddingLeft = "30dp"
+                        android:paddingRight = "30dp"
+                        android:textColor = "#fff"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_first_bg"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

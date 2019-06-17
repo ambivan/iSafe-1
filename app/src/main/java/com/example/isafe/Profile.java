@@ -74,7 +74,6 @@ public class Profile extends Fragment {
       @Override
       public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-
         FirebaseUser user = auth.getCurrentUser();
 
         userid = user.getUid();

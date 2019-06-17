@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:theme="@style/AppTheme.NoActionBar"
     android:layout_height="match_parent"
-    tools:context=".HomePageActivity">
+    tools:context=".Agenda_Meeting">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id = "@+id/appbar"
         android:background="#fff"
         android:theme="@style/AppTheme.NoActionBar">
 
@@ -25,13 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.v7.widget.SearchView
-                    android:layout_width="wrap_content"
-
-
-                    android:layout_height="wrap_content">
-
-                </android.support.v7.widget.SearchView>
 
                 <Space
                     android:layout_width="0dp"
@@ -52,14 +45,14 @@
                     app:ibv_visibleBadge="true"
                     app:ibv_badgeLimitValue="true"
                     android:layout_gravity="center"
-                    android:src="@drawable/notif" />
+                    android:src="@drawable/message" />
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_home_page" />
-
+    <include layout="@layout/content_agenda__meeting"
+         />
 
 </android.support.design.widget.CoordinatorLayout>

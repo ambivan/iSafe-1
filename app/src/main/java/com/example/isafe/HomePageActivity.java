@@ -45,7 +45,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     NavigationView navigationView;
     static int h;
 
-    static int frag = 0;
+    public static int frag = 0;
 
     private int[] imageResId = {
             R.drawable.profile,

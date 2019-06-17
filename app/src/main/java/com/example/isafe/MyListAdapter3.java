@@ -1,6 +1,5 @@
 package com.example.isafe;
 
-import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,22 +23,17 @@ public class MyListAdapter3 extends FirebaseListAdapter<Message> {
     protected void populateView(View v, Message model, int position) {
         TextView messageText = (TextView) v.findViewById(R.id.message_text);
         TextView messageUser = (TextView) v.findViewById(R.id.message_user);
-        TextView messageTime = (TextView) v.findViewById(R.id.message_time);
 
         messageText.setText(model.getMessageText());
         messageUser.setText(model.getMessageUser());
 
         // Format the date before showing it
-        messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
         Message chatMessage = getItem(position);
-        System.out.println( "what" + chatMessage);
-        
-        System.out.println(chatMessage.getMessageUserId());
 
         if (chatMessage.getMessageUserId().equals(activity.getLoggedInUserName()))
             view = activity.getLayoutInflater().inflate(R.layout.outgoingmessage, viewGroup, false);
