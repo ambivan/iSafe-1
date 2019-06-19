@@ -54,10 +54,33 @@
             android:background="@drawable/button_first_bg"
             />
 
+
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="85dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text = "Earlier Meetings"
+            android:textSize = "25sp"
+            android:fontFamily = "@font/roboto"
+
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="30dp"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView4"
+            >
+
+        </android.support.v7.widget.RecyclerView>
+
+
+
     </LinearLayout>
-
-
-
 
 
 </android.support.constraint.ConstraintLayout>

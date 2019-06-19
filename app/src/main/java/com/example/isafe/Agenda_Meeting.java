@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.isafe.Classes.AgendaGen;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.comp;
@@ -32,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -67,24 +69,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         startmeet = (Button) findViewById(R.id.startmeet);
         listView2 = (ListView) findViewById(R.id.list2);
 
-        invite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                invite.setVisibility(View.INVISIBLE);
-
-                startmeet.setVisibility(View.VISIBLE);
-                startmeet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        startActivity(new Intent(Agenda_Meeting.this, ChatMeeting.class));
-
-                    }
-                });
-
-            }
-        });
-
+        invite.setEnabled(false);
 
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -119,10 +104,14 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                     String key = ds.getKey();
                     System.out.println("hi" + key);
 
-                    if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")){
+                    if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")&& !key.equals("Registered Events")){
 
                         if (key != null) {
                             DatabaseReference a = dbref.child(key);
+                            System.out.println("k" + key);
+
+
+
 
                             a.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -141,16 +130,11 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
                                         arrayList.add(userPost.getName());
 
-
                                     }
 
-                                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Agenda_Meeting.this, android.R.layout.simple_list_item_1, arrayList);
-
+                                        ArrayAdapter<String > arrayAdapter = new ArrayAdapter<>(Agenda_Meeting.this, android.R.layout.simple_list_item_1, arrayList);
                                         System.out.println(arrayList);
                                         listView2.setAdapter(arrayAdapter);
-
-
-
                                 }
 
                                 @Override
@@ -181,17 +165,93 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String agen = agenda.getText().toString();
+                final String agen = agenda.getText().toString();
 
                 if (!TextUtils.isEmpty(agen)){
 
-                    FirebaseDatabase.getInstance()
+
+                    final String userid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                             .getReference()
-                            .child("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("Agendas")
-                            .child(String.valueOf(new Date().getTime()))
-                            .setValue(agen);
+                            .child(String.valueOf(new SimpleDateFormat("ddmyyyy").format(new Date().getTime())));
+                            databaseReference.setValue(new AgendaGen(userid1, agen));
+
+                        invite.setEnabled(true);
+
+
+                            invite.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                            final DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                            d.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    {
+
+                                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                            System.out.println("ds" + ds.getKey());
+
+                                            String key = ds.getKey();
+
+
+                                        if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")&& !key.equals("Registered Events")&&!key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+
+
+                                            if (key != null) {
+
+                                                System.out.println("k" + key);
+
+                                                final DatabaseReference a = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+
+                                                a.child("Agendas")
+                                                        .child(String.valueOf(new SimpleDateFormat("ddmyyyy").format(new Date().getTime())))
+                                                        .setValue(new AgendaGen(userid1, agen));
+
+
+                                                }
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                                    invite.setVisibility(View.GONE);
+
+                                    startmeet.setVisibility(View.VISIBLE);
+                                    startmeet.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+
+
+                                            startActivity(new Intent(Agenda_Meeting.this, ChatMeeting.class));
+
+
+                                        }
+                                    });
+
+                                }
+
+
+
+
+                            });
+//
 
                 }else {
                     Toast.makeText(Agenda_Meeting.this, "Please enter Agenda of meeting.", Toast.LENGTH_SHORT).show();

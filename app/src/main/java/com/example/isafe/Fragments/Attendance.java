@@ -91,6 +91,7 @@ public class Attendance extends Fragment {
                     list.add(eventlist);
 
                     if (list != null){
+
                         regfirst.setVisibility(View.GONE);
 
                     }

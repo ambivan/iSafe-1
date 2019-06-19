@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
 
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"
@@ -148,8 +147,8 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/send"
                         android:id="@+id/send"
                         android:layout_gravity="left"
@@ -162,8 +161,8 @@
 
                     <ImageView
                         android:id="@+id/heart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/heart"
                         android:layout_gravity="center"
                         />
@@ -176,8 +175,8 @@
 
                     <ImageView
                         android:id="@+id/chatt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:src="@drawable/chat2"
                         android:layout_gravity="right"
                         />

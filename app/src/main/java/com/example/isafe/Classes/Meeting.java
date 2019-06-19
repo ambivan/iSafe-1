@@ -20,7 +20,7 @@ public class Meeting {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
