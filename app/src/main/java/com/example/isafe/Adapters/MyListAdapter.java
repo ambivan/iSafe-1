@@ -114,7 +114,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
       this.send = (ImageView) itemView.findViewById(com.example.isafe.R.id.send);
       this.msg = (ImageView) itemView.findViewById(com.example.isafe.R.id.chatt);
 
-        DatabaseReference d =  FirebaseDatabase.getInstance().getReference()
+        DatabaseReference d =  FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Registered Events");
 
@@ -129,7 +129,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                     MyListData events = ds.getValue(MyListData.class);
 
                     MyListData eventlist = new MyListData();
-
 
                     String title = events.getTitle();
                     String event = events.getEvent();
@@ -169,6 +168,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
               MyListData mylist = list.get(mla);
 
               FirebaseDatabase.getInstance().getReference()
+                      .child("Users")
                       .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                       .child("Registered Events")
                       .push()

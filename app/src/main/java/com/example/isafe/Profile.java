@@ -78,7 +78,7 @@ public class Profile extends Fragment {
 
         userid = user.getUid();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
           @Override

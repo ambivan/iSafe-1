@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:id="@+id/reportacc"
-        android:text="REPORT ACCIDENT"
+        android:text="Report Accident"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent" />
 

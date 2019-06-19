@@ -21,14 +21,16 @@
 
             <ImageView
                 android:id = "@+id/profpic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:padding="10dp"
-                android:background="@drawable/outline"
                 android:layout_gravity="start"
-                android:src="@drawable/profile" />
+                android:src="@drawable/ic_account_circle_black_24dp"
+                />
 
             <TextView
+                android:id="@+id/pro_name"
+                android:fontFamily="@font/roboto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -55,7 +57,7 @@
                 android:text = "Team Name : "
                 android:textSize = "25sp"
                 android:textColor = "#000"
-                android:fontFamily = "@font/actor"
+                android:fontFamily = "@font/roboto"
                 />
 
             <TextView
@@ -80,7 +82,7 @@
                 android:text = "Team Members : "
                 android:textSize = "25sp"
                 android:textColor = "#000"
-                android:fontFamily = "@font/actor"
+                android:fontFamily = "@font/roboto"
                 />
 
 
@@ -102,7 +104,7 @@
             android:text = "Events Conducted : "
             android:textSize = "25sp"
             android:textColor = "#000"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             />
 
 
@@ -115,7 +117,7 @@
             android:layout_gravity = "center"
             android:textSize = "25sp"
             android:textColor = "#000"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             />
 
         <TextView
@@ -127,7 +129,7 @@
             android:layout_gravity = "center"
             android:textSize = "25sp"
             android:textColor = "#000"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             />
 
 

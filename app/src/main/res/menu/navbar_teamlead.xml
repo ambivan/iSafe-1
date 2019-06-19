@@ -83,6 +83,17 @@
     </group>
 
     <group
+
+        android:id="@+id/group10"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/feedback"
+            android:title="Feedback" />
+
+    </group>
+
+
+    <group
         android:checkableBehavior="single"
         android:id="@+id/group5">
         <item

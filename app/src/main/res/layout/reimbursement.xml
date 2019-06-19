@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text = "Please fill in the required details to receive Reimbursement"
             android:textSize = "20sp"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             android:textColor = "#000"
 
             />
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text = "Event Type:"
                 android:textSize = "20sp"
-                android:fontFamily = "@font/actor"
+                android:fontFamily = "@font/roboto"
                 android:textColor = "#000"
 
                 />
@@ -85,7 +85,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily = "@font/actor"
+                    android:fontFamily = "@font/roboto"
                     android:layout_gravity = "center"
                     android:textSize = "20sp"
                     android:imeOptions="actionNext"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:text = "Date of Event:"
                 android:textSize = "20sp"
-                android:fontFamily = "@font/actor"
+                android:fontFamily = "@font/roboto"
                 android:textColor = "#000"
 
                 />
@@ -159,7 +159,7 @@
             android:layout_height="wrap_content"
             android:text = "Attach Bill"
             android:textSize = "20sp"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             android:textColor = "#000"
 
             />
@@ -221,7 +221,7 @@
             android:layout_height="wrap_content"
             android:text = "*pdf, png, jpeg supported"
             android:textSize = "20sp"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             android:textColor = "#000"
 
             />
@@ -233,7 +233,7 @@
             android:layout_gravity="center"
             android:layout_marginTop = "30dp"
             android:text = "Send"
-            android:fontFamily = "@font/actor"
+            android:fontFamily = "@font/roboto"
             android:textSize = "20sp"
             android:textAllCaps = "false"
             android:paddingLeft = "30dp"

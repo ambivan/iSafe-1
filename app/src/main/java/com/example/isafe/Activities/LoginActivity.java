@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
           userid = user.getUid();
 
-          databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+          databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
           databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -132,6 +134,12 @@ public class LoginActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finishAndRemoveTask();
+
+                    RemoteMessage rm = new RemoteMessage.Builder("test")
+                            .addData("message", "Hello")
+
+                            .build();
+                    FirebaseMessaging.getInstance().send(rm);
 
 
 

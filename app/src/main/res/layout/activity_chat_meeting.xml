@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.isafe.ChatMeeting">
 
+
     <ListView
         android:id="@+id/list1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/rel"
+        android:layout_above="@id/re"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="16dp"
         android:divider="@android:color/transparent"
@@ -19,19 +20,47 @@
         android:transcriptMode="alwaysScroll" />
 
 
-
     <RelativeLayout
-        android:id="@+id/rel"
         android:layout_alignParentBottom="true"
+        android:id="@+id/re"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_gravity = "bottom"
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_first_bg"
+                android:fontFamily="@font/actor"
+                android:text="Stop"
+                android:paddingLeft="80dp"
+                android:paddingRight="80dp"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:id="@+id/rel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-
             android:src="@drawable/ic_send_black_24dp"
             android:tint="@android:color/white"
             app:fabSize="mini" />
@@ -42,11 +71,17 @@
             android:layout_toStartOf="@id/fab">
 
             <EditText
+                android:imeOptions="actionNext"
+                android:singleLine = "true"
                 android:id="@+id/input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Input" />
         </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+
+  </LinearLayout>
 
     </RelativeLayout>
 

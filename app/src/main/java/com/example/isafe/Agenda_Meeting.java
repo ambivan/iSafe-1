@@ -11,12 +11,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.Meetings;
@@ -30,8 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Date;
 
 public class Agenda_Meeting extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,15 +44,17 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
     ListView listView2;
     ArrayList<String> arrayList;
-    ArrayList<Integer> pic;
-    ArrayList<Integer> tick;
+
+    Button save ;
+
+    EditText agenda;
 
     NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.example.isafe.R.layout.activity_agenda__meeting);
+        setContentView(R.layout.activity_agenda__meeting);
 
         Toolbar toolbar = (Toolbar) findViewById(com.example.isafe.R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,10 +62,10 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
         arrayList = new ArrayList<>();
 
-        chat = (ImageView) findViewById(com.example.isafe.R.id.chatnotif);
-        invite = (Button) findViewById(com.example.isafe.R.id.inviteall);
-        startmeet = (Button) findViewById(com.example.isafe.R.id.startmeet);
-        listView2 = (ListView) findViewById(com.example.isafe.R.id.list2);
+        chat = (ImageView) findViewById(R.id.chatnotif);
+        invite = (Button) findViewById(R.id.inviteall);
+        startmeet = (Button) findViewById(R.id.startmeet);
+        listView2 = (ListView) findViewById(R.id.list2);
 
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +88,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child(userid);
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -111,13 +115,11 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
                 }
 
-                List<HashMap<String, ArrayList<String>>> aList = new ArrayList<HashMap<String, ArrayList<String>>>();
-
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     String key = ds.getKey();
                     System.out.println("hi" + key);
 
-                    if (!key.equals("name")&&!key.equals("post")){
+                    if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")){
 
                         if (key != null) {
                             DatabaseReference a = dbref.child(key);
@@ -128,28 +130,26 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
                                     UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
-
-
                                     System.out.println(userPost.getName());
 
                                     if (userPost.getName()== null){
 
                                         arrayList.add("You have no team members yet.");
+                                        System.out.println("hey " + arrayList);
 
                                     }else {
 
                                         arrayList.add(userPost.getName());
 
-                                        if (arrayList != null) {
-
-                                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Agenda_Meeting.this, android.R.layout.simple_list_item_1, arrayList);
-
-                                            System.out.println(arrayList);
-                                            listView2.setAdapter(arrayAdapter);
-
-                                        }
 
                                     }
+
+                                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Agenda_Meeting.this, android.R.layout.simple_list_item_1, arrayList);
+
+                                        System.out.println(arrayList);
+                                        listView2.setAdapter(arrayAdapter);
+
+
 
                                 }
 
@@ -170,6 +170,32 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        agenda = (EditText) findViewById(R.id.enteragenda);
+
+        save = (Button) findViewById(R.id.save);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String agen = agenda.getText().toString();
+
+                if (!TextUtils.isEmpty(agen)){
+
+                    FirebaseDatabase.getInstance()
+                            .getReference()
+                            .child("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("Agendas")
+                            .child(String.valueOf(new Date().getTime()))
+                            .setValue(agen);
+
+                }else {
+                    Toast.makeText(Agenda_Meeting.this, "Please enter Agenda of meeting.", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

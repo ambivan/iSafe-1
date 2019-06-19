@@ -98,9 +98,9 @@ public class MarkAttendanceMap  extends FragmentActivity implements OnMapReadyCa
                 List<Address> addressList1 = null;
                 try {
 
-                    createGeofences(location.getLatitude(), location.getLongitude());
-                    getGeofencingRequest();
-                    System.out.println(getGeofencePendingIntent());
+//                    createGeofences(location.getLatitude(), location.getLongitude());
+//                    getGeofencingRequest();
+//                    System.out.println(getGeofencePendingIntent());
 
                     addressList1 = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
 
@@ -484,41 +484,41 @@ public class MarkAttendanceMap  extends FragmentActivity implements OnMapReadyCa
     }
 
 
-    private void getGeofencingRequest() {
-
-        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
-        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
-        builder.addGeofences(mGeofenceList);
-         builder.build();
-
-    }
-
-    private PendingIntent getGeofencePendingIntent() {
-
-        // Reuse the PendingIntent if we already have it.
-        if (mGeofencePendingIntent != null) {
-            return mGeofencePendingIntent;
-        }
-        Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);
-        // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
-        // calling addGeofences() and removeGeofences().
-        return PendingIntent.getService(this, 0, intent, PendingIntent.
-                FLAG_UPDATE_CURRENT);
-
-    }
-
-    public void createGeofences(double latitude, double longitude) {
-
-        String id = UUID.randomUUID().toString();
-        Geofence fence = new Geofence.Builder()
-                .setRequestId(id)
-                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
-                .setCircularRegion(latitude, longitude, 200) // Try changing your radius
-                .setExpirationDuration(Geofence.NEVER_EXPIRE)
-                .build();
-
-        mGeofenceList.add(fence);
-
-    }
+//    private void getGeofencingRequest() {
+//
+//        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();
+//        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);
+//        builder.addGeofences(mGeofenceList);
+//         builder.build();
+//
+//    }
+//
+//    private PendingIntent getGeofencePendingIntent() {
+//
+//        // Reuse the PendingIntent if we already have it.
+//        if (mGeofencePendingIntent != null) {
+//            return mGeofencePendingIntent;
+//        }
+//        Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);
+//        // We use FLAG_UPDATE_CURRENT so that we get the same pending intent back when
+//        // calling addGeofences() and removeGeofences().
+//        return PendingIntent.getService(this, 0, intent, PendingIntent.
+//                FLAG_UPDATE_CURRENT);
+//
+//    }
+//
+//    public void createGeofences(double latitude, double longitude) {
+//
+//        String id = UUID.randomUUID().toString();
+//        Geofence fence = new Geofence.Builder()
+//                .setRequestId(id)
+//                .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
+//                .setCircularRegion(latitude, longitude, 200) // Try changing your radius
+//                .setExpirationDuration(Geofence.NEVER_EXPIRE)
+//                .build();
+//
+//        mGeofenceList.add(fence);
+//
+//    }
 
 }

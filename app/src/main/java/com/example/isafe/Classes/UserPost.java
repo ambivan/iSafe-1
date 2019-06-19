@@ -1,11 +1,10 @@
 package com.example.isafe.Classes;
 
-import android.provider.MediaStore;
-
 public class UserPost {
 
   private String post;
   private String Name;
+  private String teamname;
 
 
     public String getName() {
@@ -19,9 +18,18 @@ public class UserPost {
     public UserPost(){
   }
 
-  public UserPost(String Name, String post){
+    public String getTeamname() {
+        return teamname;
+    }
+
+    public void setTeamname(String teamname) {
+        this.teamname = teamname;
+    }
+
+    public UserPost(String Name, String post, String teamname){
     this.Name = Name;
     this.post = post;
+    this.teamname = teamname;
 
   }
 

@@ -55,7 +55,7 @@ public class Attendance extends Fragment {
 
         mark = (Button) vv.findViewById(com.example.isafe.R.id.markatt);
 
-        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Registered Events");
 
         dbref.addValueEventListener(new ValueEventListener() {

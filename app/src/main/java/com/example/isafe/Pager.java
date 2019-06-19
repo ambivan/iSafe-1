@@ -9,8 +9,6 @@ import com.example.isafe.Fragments.Attendance;
 import com.example.isafe.Fragments.NewsFeed;
 import com.example.isafe.Fragments.teamProfile;
 
-import static com.example.isafe.HomePageActivity.h;
-
 public class Pager extends FragmentPagerAdapter {
   //integer to count number of tabs
   int tabCount;
@@ -40,10 +38,14 @@ public class Pager extends FragmentPagerAdapter {
         return new Assist();
 
       case 4:
-        if (h == 1){
+        if (HomePageActivity.h == 1){
+
             return new teamProfile();
+
         } else{
+
             return new Profile();
+
         }
 
       default:

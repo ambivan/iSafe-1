@@ -134,7 +134,8 @@
                     android:textAllCaps="false"
                     android:background="@drawable/button_first_bg"
                     android:textColor="#fff"
-                    android:fontFamily="@font/actor"
+                    android:fontFamily="@font/roboto"
+                    android:textStyle="bold"
                     android:paddingRight="50dp"
                     android:paddingLeft="50dp"
                     android:textSize="18sp"/>

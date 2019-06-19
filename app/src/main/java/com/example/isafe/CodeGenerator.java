@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.isafe.Classes.CodeGen;
+import com.example.isafe.Classes.UserPost;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -93,6 +94,12 @@ public class CodeGenerator extends AppCompatActivity {
 
                 code.setText(code_created);
                 codeg = code.getText().toString();
+
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .child("Users")
+                        .child(userid)
+                        .setValue(new UserPost(Signup2.profilename, "Team Leader", code_created));
 
                final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                        .getReference()

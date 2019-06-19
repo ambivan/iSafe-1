@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:text = "Creat an event here...."
                     android:textColor = "#979595"
-                    android:fontFamily = "@font/actor"
+                    android:fontFamily = "@font/roboto"
                     android:layout_gravity = "center"
                     />
 

@@ -32,7 +32,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="100dp"
       android:id="@+id/context"
-      android:text="CONTACT PERSON"
+      android:text="Contact Person"
       android:textAlignment="center"
       app:layout_constraintTop_toTopOf="parent" />
 

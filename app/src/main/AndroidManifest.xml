@@ -46,7 +46,7 @@
         <activity
             android:name=".Agenda_Meeting"
             android:label="@string/title_activity_agenda__meeting"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CreateEvent" />
         <activity android:name=".Activities.MeetingReport" />
         <activity android:name=".ChatMeeting" />

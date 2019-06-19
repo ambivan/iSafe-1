@@ -15,13 +15,13 @@
         android:id="@+id/reporttext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/roboto"
         android:padding="15sp"
         android:text="Report an Accident"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="25sp"
-        android:layout_marginTop="50dp"
-        android:fontFamily = "@font/roboto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,8 +44,6 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/background"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             >
 
 
@@ -89,7 +87,7 @@
                 android:textAlignment="textStart"
 
                 android:id="@+id/phototext"
-                android:fontFamily="@font/actor"
+                android:fontFamily="@font/roboto"
                 android:textSize="20sp"
                 android:textColor="#000"/>
 
@@ -181,12 +179,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Attach Location"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/actor"
-                android:textColor="#000"
                 android:layout_gravity="center_vertical"
-                />
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="Attach Location"
+                android:textColor="#000" />
 
         </LinearLayout>
 
@@ -207,7 +204,7 @@
                 android:textAlignment="textStart"
 
                 android:id="@+id/loctext"
-                android:fontFamily="@font/actor"
+                android:fontFamily="@font/roboto"
                 android:textSize="20sp"
                 android:textColor="#000"
                 />
@@ -266,11 +263,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contact Person"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
-                android:fontFamily="@font/actor"
-                android:textColor="#000"
-                android:layout_gravity="center_vertical"/>
+                android:fontFamily="@font/roboto"
+                android:text="Contact Person"
+                android:textColor="#000" />
 
 
 
@@ -293,7 +290,7 @@
                 android:textAlignment="textStart"
 
                 android:id="@+id/context"
-                android:fontFamily="@font/actor"
+                android:fontFamily="@font/roboto"
                 android:textSize="20sp"
                 android:textColor="#000"
                 />
@@ -344,9 +341,10 @@
         android:layout_marginEnd="90dp"
         android:text="Report"
         android:textAllCaps="false"
-        android:fontFamily="@font/actor"
+        android:fontFamily="@font/roboto"
+
         android:textSize="20sp"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:background="@drawable/reportbuttonbg"
 
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,13 +1,6 @@
 package com.example.isafe.Fragments;
 
 import android.Manifest;
-
-import com.example.isafe.Adapters.MyListAdapter;
-import com.example.isafe.Activities.CreateEvent;
-import com.example.isafe.Classes.MyListData;
-import com.example.isafe.Classes.UserPost;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.isafe.Activities.CreateEvent;
+import com.example.isafe.Adapters.MyListAdapter;
+import com.example.isafe.Classes.MyListData;
+import com.example.isafe.Classes.UserPost;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.firebase.FirebaseApp;
@@ -100,7 +98,7 @@ public class NewsFeed extends Fragment {
 
           userid = user.getUid();
 
-          DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+          DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
           databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

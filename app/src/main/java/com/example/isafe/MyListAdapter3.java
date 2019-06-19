@@ -27,7 +27,6 @@ public class MyListAdapter3 extends FirebaseListAdapter<Message> {
         messageText.setText(model.getMessageText());
         messageUser.setText(model.getMessageUser());
 
-        // Format the date before showing it
     }
 
     @Override

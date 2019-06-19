@@ -29,13 +29,12 @@
                 >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/outline"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="start"
                 android:id = "@+id/recyclerprofile"
                 android:padding="20dp"
-                android:src="@drawable/profile" />
+                android:src="@drawable/ic_account_circle_black_24dp" />
 
             <TextView
                 android:id = "@+id/membername"

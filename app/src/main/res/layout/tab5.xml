@@ -23,7 +23,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/profile" />
+            android:src="@drawable/ic_account_circle_black_24dp"
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,6 +33,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:fontFamily="@font/roboto"
                 android:id="@+id/name_pro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,6 +45,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:fontFamily="@font/roboto"
                 android:id="@+id/designation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/actor"
+        android:fontFamily="@font/roboto"
         android:text="Stars Recieved : "
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@id/prolinlay" />
@@ -71,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/actor"
+        android:fontFamily="@font/roboto"
         android:text="Hours Devoted : "
         android:textSize="18dp"
         app:layout_constraintTop_toBottomOf="@id/stars" />
@@ -82,8 +85,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif"
         android:text="Great Work!! "
+        android:fontFamily="@font/roboto"
+
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="30sp"
@@ -93,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:fontFamily="sans-serif-condensed-medium"
+        android:fontFamily="@font/roboto"
         android:gravity="center"
         android:text="@string/morestars"
         android:textSize="20sp"

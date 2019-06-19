@@ -115,7 +115,7 @@ public class CreateEvent extends Activity {
                             .push()
                             .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic));
 
-                    FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("Events")
                             .push()
                             .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic));

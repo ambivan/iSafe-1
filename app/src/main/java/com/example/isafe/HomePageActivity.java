@@ -1,6 +1,7 @@
 package com.example.isafe;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
@@ -12,9 +13,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.isafe.Activities.MainActivity;
 import com.example.isafe.Classes.UserPost;
@@ -41,6 +42,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
     UserPost userPost;
+    TextView profile_name;
+
 
     NavigationView navigationView;
     static int h;
@@ -65,6 +68,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         FirebaseApp.initializeApp(this);
 
+        profile_name = (TextView) findViewById(R.id.profile_name);
+
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -76,7 +81,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                     userid = user.getUid();
 
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child(userid);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -84,21 +89,26 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                             userPost = dataSnapshot.getValue(UserPost.class);
 
-                            if (userPost.getPost().equals("Team Leader")){
+                            if (userPost != null) {
+//                                profile_name.setText(userPost.getName());
+                            }
 
+                            if (userPost != null) {
+                                if (userPost.getPost().equals("Team Leader")){
 
-                                navigationView.getMenu().clear();
-                                navigationView.inflateMenu(R.menu.navbar_teamlead);
-                                h = 1;
+                                    navigationView.getMenu().clear();
+                                    navigationView.inflateMenu(R.menu.navbar_teamlead);
+                                    h = 1;
 
-                            } else if (userPost.getPost().equals("Team Member")) {
-                                navigationView.getMenu().clear();
-                                navigationView.inflateMenu(R.menu.navbar_teammember);
-                                h = 1;
-                            }else{
-                                navigationView.getMenu().clear();
-                                navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
-                                h = 0;
+                                } else if (userPost.getPost().equals("Team Member")) {
+                                    navigationView.getMenu().clear();
+                                    navigationView.inflateMenu(R.menu.navbar_teammember);
+                                    h = 1;
+                                }else{
+                                    navigationView.getMenu().clear();
+                                    navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
+                                    h = 0;
+                                }
                             }
 
                         }
@@ -235,6 +245,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
             frag1 = new Reimbursement();
 
+        } else if (id == R.id.feedback){
+            frag1 = new Feedback();
         }
 
         if (frag1 != null) {

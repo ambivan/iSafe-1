@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -49,9 +48,6 @@ public class Reimbursement extends Fragment {
 
     String path;
 
-    Bitmap photobill;
-
-    Intent camIntent;
     private static final int SELECT_FILE = 2;
 
 
@@ -175,6 +171,7 @@ public class Reimbursement extends Fragment {
 //            }
 //
 //        }
+
         if (requestCode == 1212){
 
             if (resultCode == RESULT_OK) {

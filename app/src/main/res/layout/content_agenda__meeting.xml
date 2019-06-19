@@ -39,7 +39,7 @@
                 android:layout_marginTop = "30dp"
                 android:textAlignment="center"
                 android:textColor = "#000"
-                android:fontFamily = "@font/actor"
+                android:fontFamily = "@font/roboto"
                 android:textSize = "25sp"
 
                 />
@@ -75,7 +75,8 @@
                             android:layout_height="wrap_content"
                             android:hint = "Enter Agenda...."
                             android:textColor = "#979595"
-                            android:fontFamily = "@font/actor"
+                            android:fontFamily = "@font/roboto"
+                            android:id = "@+id/enteragenda"
                             android:layout_gravity = "center"
                             android:textSize = "20sp"
                             android:backgroundTint="#0000"
@@ -91,8 +92,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity = "end"
+                        android:id = "@+id/save"
                         android:textAllCaps = "false"
-                        android:fontFamily = "@font/actor"
+                        android:fontFamily = "@font/roboto"
                         android:textSize = "18sp"
                         android:layout_marginRight = "10dp"
                         android:background = "@drawable/reportbuttonbg"
@@ -116,7 +118,7 @@
                 android:text = "Invite Team Members"
                 android:textSize = "25sp"
                 android:textColor = "#000"
-                android:fontFamily = "@font/actor"
+                android:fontFamily = "@font/roboto"
                 />
 
 
@@ -146,11 +148,12 @@
                         android:layout_centerInParent="true"
                         android:layout_marginTop="65dp"
                         android:background="@drawable/button_first_bg"
-                        android:fontFamily="@font/actor"
+                        android:fontFamily="@font/roboto"
                         android:paddingLeft="30dp"
                         android:paddingRight="30dp"
                         android:text="Invite All"
                         android:textAllCaps="false"
+                        android:textStyle="bold"
                         android:textColor="#fff"
                         android:textSize="20sp" />
 
@@ -161,7 +164,8 @@
                         android:layout_gravity="center"
                         android:text = "Start"
                         android:layout_centerInParent="true"
-                        android:fontFamily = "@font/actor"
+                        android:fontFamily = "@font/roboto"
+                        android:textStyle="bold"
                         android:textSize = "20sp"
                         android:textAllCaps = "false"
                         android:paddingLeft = "30dp"
