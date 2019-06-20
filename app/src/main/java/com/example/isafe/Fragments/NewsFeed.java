@@ -133,8 +133,7 @@ public class NewsFeed extends Fragment {
       city.setText("Delhi");
 
 
-      final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Events");
-
+      final DatabaseReference dbref =  FirebaseDatabase.getInstance().getReference().child("Events");
       dbref.addValueEventListener(new ValueEventListener() {
           @Override
           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -145,12 +144,11 @@ public class NewsFeed extends Fragment {
 
                   System.out.println(child.getKey());
 
-                  System.out.println("list cbdsj" + child.getValue());
+                  System.out.println("list" + child.getValue());
 
                   MyListData events = child.getValue(MyListData.class);
 
                   MyListData eventlist = new MyListData();
-
 
                   String title = events.getTitle();
                   String event = events.getEvent();

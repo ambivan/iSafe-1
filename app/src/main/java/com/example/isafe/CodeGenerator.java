@@ -31,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static com.example.isafe.Signup2.s;
+
 public class CodeGenerator extends AppCompatActivity {
 
     LinearLayout first,second;
@@ -100,6 +102,12 @@ public class CodeGenerator extends AppCompatActivity {
                         .child("Users")
                         .child(userid)
                         .setValue(new UserPost(Signup2.profilename, "Team Leader", code_created));
+
+                FirebaseDatabase.getInstance().getReference()
+                        .child("Users")
+                        .child(userid)
+                        .child("Domain")
+                        .setValue(s);
 
                final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                        .getReference()

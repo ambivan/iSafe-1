@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.example.isafe.R;
 
 public class GoodSamaritan extends Fragment {
 

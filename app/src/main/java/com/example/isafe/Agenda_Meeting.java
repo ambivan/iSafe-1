@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.isafe.Classes.AgendaGen;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.Fragments.GoodSamaritan;
 import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
@@ -104,14 +105,11 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                     String key = ds.getKey();
                     System.out.println("hi" + key);
 
-                    if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")&& !key.equals("Registered Events")){
+                    if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")&& !key.equals("Registered Events") && !key.equals("Domain") && !key.equals("Events") &&!key.equals("Liked Events")){
 
                         if (key != null) {
                             DatabaseReference a = dbref.child(key);
                             System.out.println("k" + key);
-
-
-
 
                             a.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -209,7 +207,6 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                                 final DatabaseReference a = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
 
                                                 a.child("Agendas")
-                                                        .child(String.valueOf(new SimpleDateFormat("ddmyyyy").format(new Date().getTime())))
                                                         .setValue(new AgendaGen(userid1, agen));
 
 
@@ -236,8 +233,6 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                     startmeet.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-
-
 
                                             startActivity(new Intent(Agenda_Meeting.this, ChatMeeting.class));
 
@@ -337,7 +332,6 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
             ft.replace(com.example.isafe.R.id.content_frame, frag1).addToBackStack("My fragments");
             ft.commit();
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(com.example.isafe.R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

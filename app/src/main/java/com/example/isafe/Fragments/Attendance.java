@@ -11,10 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.isafe.Adapters.MyListAdapter2;
 import com.example.isafe.Classes.MyListData;
+import com.example.isafe.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,7 @@ public class Attendance extends Fragment {
     RecyclerView recyclerView;
     List<MyListData> list;
     MyListAdapter2 recyclerAdapter;
+    ImageView image ;
 
 
 
@@ -45,6 +48,8 @@ public class Attendance extends Fragment {
     Context context;
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -53,7 +58,9 @@ public class Attendance extends Fragment {
         recyclerView = (RecyclerView) vv.findViewById(com.example.isafe.R.id.recyclerView2);
         regfirst = (TextView) vv.findViewById(com.example.isafe.R.id.regfirst);
 
-        mark = (Button) vv.findViewById(com.example.isafe.R.id.markatt);
+        mark = (Button) vv.findViewById(R.id.markatt);
+        image = (ImageView) vv.findViewById(R.id.heart);
+
 
         final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Registered Events");

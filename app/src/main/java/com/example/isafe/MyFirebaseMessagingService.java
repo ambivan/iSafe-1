@@ -25,6 +25,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     public void showNotification(String title, String message){
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "My notifications")
                 .setContentTitle(title)
                 .setSmallIcon(R.drawable.notif)

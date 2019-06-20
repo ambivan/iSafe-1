@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.example.isafe.Activities.MainActivity;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.Fragments.Feedback;
+import com.example.isafe.Fragments.GoodSamaritan;
 import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;

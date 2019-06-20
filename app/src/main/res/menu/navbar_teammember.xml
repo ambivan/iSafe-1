@@ -25,6 +25,8 @@
 
     </group>
 
+
+
     <group
         android:checkableBehavior="single"
         android:id="@+id/group2">
@@ -33,6 +35,17 @@
             android:title="Opportunities" />
 
     </group>
+
+    <group
+
+        android:id="@+id/group11"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/projects"
+            android:title="Projects" />
+
+    </group>
+
 
     <group
         android:checkableBehavior="single"

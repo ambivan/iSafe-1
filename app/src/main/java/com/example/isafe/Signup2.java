@@ -13,9 +13,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.isafe.Activities.SignupActivity;
@@ -45,6 +48,8 @@ public class Signup2 extends AppCompatActivity {
 
     ImageView pass1, pass2;
 
+    static String s;
+
     static String userid;
 
     String em, pa, con, cuid;
@@ -68,9 +73,57 @@ public class Signup2 extends AppCompatActivity {
         setContentView(R.layout.activity_signup2);
 
 
-        if (SignupActivity.i == 2){
+        if (SignupActivity.i == 2) {
 
             setContentView(R.layout.signup2_teamlead);
+
+            final Spinner spinner = (Spinner) findViewById(R.id.spinnerdomain);
+
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.domains));
+
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(spinnerArrayAdapter);
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                    switch (position) {
+
+                        case 0:
+                            s = "Tech";
+                            break;
+                        case 1:
+                            s = "Medical";
+                            break;
+                        case 2:
+                            s = "Law";
+                            break;
+                        case 3:
+                            s = "Mass & Media";
+                            break;
+                        case 4:
+                            s = "Awareness";
+                            break;
+                        case 5:
+                            s = "Creative";
+                            break;
+                        case 6:
+                            s = "Research";
+                            break;
+
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
 
         }
 
@@ -102,7 +155,6 @@ public class Signup2 extends AppCompatActivity {
 
 
         auth.addAuthStateListener(authStateListener);
-
 
 
         emailid.addTextChangedListener(new TextWatcher() {
@@ -179,7 +231,7 @@ public class Signup2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                switch ( event.getAction() ) {
+                switch (event.getAction()) {
 
                     case MotionEvent.ACTION_UP:
                         npassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -200,7 +252,7 @@ public class Signup2 extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                switch ( event.getAction() ) {
+                switch (event.getAction()) {
 
                     case MotionEvent.ACTION_UP:
                         confirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -229,13 +281,13 @@ public class Signup2 extends AppCompatActivity {
                 con = confirm.getText().toString();
                 pa = npassword.getText().toString();
 
-                if (con.equals(pa)){
+                if (con.equals(pa)) {
                     npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
                     confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.correct), PorterDuff.Mode.SRC_ATOP);
 
                     same = 1;
 
-                }else {
+                } else {
                     npassword.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
                     confirm.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorAccent), PorterDuff.Mode.SRC_ATOP);
 
@@ -255,14 +307,10 @@ public class Signup2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if (count >0){
+        if (count > 0) {
             moveTaskToBack(true);
         }
     }
-
-
-
-
 
 
     private void createUser() {
@@ -271,12 +319,12 @@ public class Signup2 extends AppCompatActivity {
         pa = npassword.getText().toString().trim();
         con = confirm.getText().toString().trim();
 
-        auth.createUserWithEmailAndPassword(em,pa)
+        auth.createUserWithEmailAndPassword(em, pa)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isSuccessful()) {
+                        if (task.isSuccessful()) {
 
                             userid = auth.getCurrentUser().getUid();
 
@@ -302,7 +350,6 @@ public class Signup2 extends AppCompatActivity {
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 startActivity(in);
-
 
 
                             }
@@ -334,57 +381,57 @@ public class Signup2 extends AppCompatActivity {
 
                             }
 
-                            if (SignupActivity.i == 3){
+                            if (SignupActivity.i == 3) {
 
-                            final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
+                                final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
 
-                            dbref.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                dbref.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                    for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                        System.out.println(child.getKey());
+                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                            System.out.println(child.getKey());
 
-                                        String key = child.getKey();
+                                            String key = child.getKey();
 
-                                        DatabaseReference d = dbref.child(key);
+                                            DatabaseReference d = dbref.child(key);
 
-                                        d.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
-                                                System.out.println(codeGen.getCode());
+                                            d.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
+                                                    System.out.println(codeGen.getCode());
 
-                                                cuid = collegeuid.getText().toString();
-                                                System.out.println("cuid" + cuid);
+                                                    cuid = collegeuid.getText().toString();
+                                                    System.out.println("cuid" + cuid);
 
-                                                if (post.equals("Team Member")) {
-                                                    if (codeGen.getCode().equals(cuid)) {
-                                                        id = codeGen.getUserid();
-                                                        System.out.println(id);
-                                                        FirebaseDatabase.getInstance()
-                                                                .getReference()
-                                                                .child("Users")
-                                                                .child(id)
-                                                                .child(userid)
-                                                                .setValue(new UserPost(profilename, post, cuid));
+                                                    if (post.equals("Team Member")) {
+                                                        if (codeGen.getCode().equals(cuid)) {
+                                                            id = codeGen.getUserid();
+                                                            System.out.println(id);
+                                                            FirebaseDatabase.getInstance()
+                                                                    .getReference()
+                                                                    .child("Users")
+                                                                    .child(id)
+                                                                    .child(userid)
+                                                                    .setValue(new UserPost(profilename, post, cuid));
+                                                        }
                                                     }
                                                 }
-                                            }
 
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                            }
-                                        });
+                                                }
+                                            });
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
+                                    }
+                                });
 
                                 Intent in = new Intent(Signup2.this, HomePageActivity.class);
 
@@ -392,16 +439,13 @@ public class Signup2 extends AppCompatActivity {
 
                                 startActivity(in);
 
-                        }
+                            }
 
                             Log.i("Success", "Signup completed");
 
                             mProgress.dismiss();
 
-                        }
-
-
-                        else {
+                        } else {
                             mProgress.dismiss();
                             Log.i("Fail", "Signup not completed");
                             Toast.makeText(Signup2.this, "Email already registered!", Toast.LENGTH_SHORT).show();
@@ -409,7 +453,7 @@ public class Signup2 extends AppCompatActivity {
 
                     }
                 });
-            }
+    }
 
 
     boolean isEmailValid(CharSequence email) {

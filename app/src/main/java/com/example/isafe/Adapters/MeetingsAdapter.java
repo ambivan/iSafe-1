@@ -18,7 +18,6 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
 
     List<Meeting> list;
     Context context;
-    public static int i;
 
     public MeetingsAdapter(List<Meeting> list, Context context) {
         this.list = list;
@@ -64,10 +63,8 @@ public class MeetingsAdapter extends RecyclerView.Adapter<MeetingsAdapter.ViewHo
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        System.out.println("size" + arr);
-
-        return arr;  }
+        return arr;
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 

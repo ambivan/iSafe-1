@@ -12,6 +12,17 @@
         <item>Team Member</item>
     </string-array>
 
+    <string-array name="domains">
+        <item>Tech</item>
+        <item>Medical</item>
+        <item>Law</item>
+        <item>Mass &amp; Media</item>
+        <item>Awareness</item>
+        <item>Creative</item>
+        <item>Research</item>
+
+    </string-array>
+
     <string name="save">Save &amp; Share</string>
     <string name="iSafe">The National Safer India Challenge comes with the\nvision to ignite the competitive spirit of the youth to\nachieve path breaking changes in the field of road \nsafety. We want to do this by enabling the youth\n and providing them a platform to do, what they like \nto do and in the process, create sustainable impact.\n\n\nThus, the Safer India Challenge\' 17 provides the \ncollege to choose the domain they have\nan expertise on, domain consisting of activities that\n require the specific skill they possess, so that we\n can create overall impact on the field of road safety\n across technology, law, health and awareness.\n\nThe colleges have been provided a large number\n of activities under their domains in various sub-\nsections from which they can chose on the activity\n they like and perform those over 8 months.\n\nNot only the domains have activities concerning\n the specific skill sets but they also come in with the\n benefits for these students in particular which\n would help them in their future pursuits.\n</string>
     <string name="invite">Click on start to invite team\nmembers for a meeting</string>

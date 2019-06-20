@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.isafe.Classes.MyListData;
@@ -27,7 +28,9 @@ import java.util.Date;
 public class CreateEvent extends Activity {
 
     EditText event,date, time,topic, college, city;
-    String sevent,sdate, stime,stopic, scollege, userid, scity;
+    ImageView image;
+    String sevent,sdate, stime,stopic, scollege, userid, scity, simage;
+
 
     FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authStateListener;
@@ -113,12 +116,12 @@ public class CreateEvent extends Activity {
                     FirebaseDatabase.getInstance().getReference()
                             .child("Events")
                             .push()
-                            .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic));
+                            .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic, "0"));
 
                     FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("Events")
                             .push()
-                            .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic));
+                            .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic, "0"));
 
                     startActivity(new Intent(CreateEvent.this, HomePageActivity.class));
 

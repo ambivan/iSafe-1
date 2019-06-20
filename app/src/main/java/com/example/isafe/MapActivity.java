@@ -10,13 +10,12 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -85,6 +84,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
             @Override
             public void onSuccess(Location location) {
 
+                checkLocationPermission();
+
                 String addr1 = "";
 
                 Geocoder geocoder = new Geocoder(MapActivity.this, Locale.getDefault());
@@ -131,10 +132,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
                     e.printStackTrace();
                     Log.i("nuh", "uh");
                 }
-
-
-
-
             }
         });
 
@@ -408,28 +405,28 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
             mGoogleMap.clear();
 
             // Adding Markers on Google Map for each matching address
-            for(int i=0;i<addresses.size();i++){
+            if (addresses != null) {
+                for(int i=0;i<addresses.size();i++){
 
-                Address address = (Address) addresses.get(i);
+                    Address address = (Address) addresses.get(i);
 
-                // Creating an instance of GeoPoint, to display in Google Map
-                latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    // Creating an instance of GeoPoint, to display in Google Map
+                    latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-                String addressText = String.format("%s, %s",
-                        address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
-                        address.getCountryName());
+                    String addressText = String.format("%s, %s",
+                            address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
+                            address.getCountryName());
 
-                markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
-                markerOptions.title(etLocation.getText().toString());
+                    markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(etLocation.getText().toString());
+                    mGoogleMap.addMarker(markerOptions);
 
-
-                mGoogleMap.addMarker(markerOptions);
-
-                // Locate the first location
-                if(i==0)
-                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
+                    // Locate the first location
+                    if(i==0)
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
+                }
             }
         }
     }

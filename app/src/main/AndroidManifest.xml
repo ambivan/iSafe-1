@@ -7,6 +7,8 @@
         android:name="com.example.task.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -110,6 +112,19 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <service android:enabled="true"
+            android:name=".NotificationService"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped"/>
+
+        <receiver
+            android:name=".NotificationService$NotifyServiceReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+        </receiver>
+
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

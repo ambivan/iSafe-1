@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.isafe.HomePageActivity;
+import com.example.isafe.NotificationService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -64,11 +65,23 @@ public class LoginActivity extends AppCompatActivity {
 
           userid = user.getUid();
 
-          databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
+          databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid).child("Agendas");
 
           databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for(DataSnapshot child: children) {
+
+                    System.out.println(child);
+
+                    NotificationService notificationService = new NotificationService();
+
+                    Intent intent = new Intent(LoginActivity.this, NotificationService.class);
+                    startService(intent);
+
+                }
 
             }
 

@@ -1,158 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
 
-    android:background="#fff"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    >
+    android:background="#fff">
 
-    <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#fff">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/logo"
-
-            android:layout_marginTop="60dp"
-            android:id="@+id/loginLogo"
-            />
-
-        <EditText
-            android:imeOptions="actionNext"
-            android:singleLine = "true"
-            android:inputType="textEmailAddress"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="Name"
-            android:id="@+id/name"
-            />
-
-        <EditText
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="Enter Email - id"
-            android:imeOptions="actionNext"
-            android:singleLine = "true"
-            android:id="@+id/emailid"
-            />
-
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_gravity="center"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="New Password"
-                android:imeOptions="actionNext"
-                android:singleLine = "true"
-                android:id="@+id/newpassword"
-                />
-
-            <ImageView
-                android:id="@+id/pass1"
-                android:src="@drawable/viewpass"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-
-            android:layout_width="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_gravity="center"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Confirm Password"
-                android:id="@+id/confirm"
-                android:imeOptions="actionNext"
-                android:singleLine = "true"
-                />
-
-            <ImageView
-                android:id="@+id/pass2"
-                android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_height="wrap_content"
-                android:src="@drawable/viewpass"
-                android:padding="10dp"
-
-                android:layout_centerInParent="true"
-                />
-
-        </RelativeLayout>
-
-        <EditText
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:hint="Enter Team Name"
-            android:imeOptions="actionNext"
-            android:singleLine = "true"
-            android:id="@+id/teamname"
-            />
-
-
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_first_bg"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
-            android:text="Sign Up"
-            android:id="@+id/signup2"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="20sp"
-            android:layout_marginTop="100dp"
-            android:fontFamily="@font/roboto"
-            android:textStyle="bold"
-            />
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/loginLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-</android.support.constraint.ConstraintLayout>
+                android:layout_marginTop="60dp"
+                android:src="@drawable/logo" />
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:hint="Name"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/emailid"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:hint="Enter Email - id"
+                android:imeOptions="actionNext"
+                android:singleLine="true" />
+
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <EditText
+                    android:id="@+id/newpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="New Password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
+
+                <ImageView
+                    android:id="@+id/pass1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:src="@drawable/viewpass" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <EditText
+                    android:id="@+id/confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:hint="Confirm Password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:singleLine="true" />
+
+                <ImageView
+                    android:id="@+id/pass2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+
+                    android:src="@drawable/viewpass" />
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/teamname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:hint="Enter Team Name"
+                android:imeOptions="actionNext"
+                android:singleLine="true" />
+
+            <Spinner
+                android:id="@+id/spinnerdomain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:background="@drawable/dropdownbg"
+                >
+
+            </Spinner>
+
+
+
+            <Button
+                android:id="@+id/signup2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginRight="80dp"
+                android:background="@drawable/button_first_bg"
+                android:fontFamily="@font/roboto"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
 </ScrollView>
