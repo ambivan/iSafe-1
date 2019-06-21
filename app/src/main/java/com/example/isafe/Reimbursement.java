@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -204,7 +205,8 @@ public class Reimbursement extends Fragment {
             if(resultCode == RESULT_OK){
                 Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
                 String url = selectedImage.getLastPathSegment();
-                final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Bleh").child(url);
+                final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Reimbursements").child(url);
 
                 storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override

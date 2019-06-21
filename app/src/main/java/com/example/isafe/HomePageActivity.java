@@ -15,8 +15,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.isafe.Activities.MainActivity;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.Feedback;
@@ -44,8 +47,10 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
     UserPost userPost;
-    TextView profile_name;
 
+    TextView profile_name;
+    View header;
+    ImageView profile;
 
     NavigationView navigationView;
     static int h;
@@ -69,8 +74,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         FirebaseApp.initializeApp(this);
-
-        profile_name = (TextView) findViewById(R.id.profile_name);
 
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -111,6 +114,36 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                     navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
                                     h = 0;
                                 }
+
+                                header = navigationView.getHeaderView(0);
+                                profile_name = (TextView) header.findViewById(R.id.profile_name);
+                                profile = (ImageView) header.findViewById(R.id.profile_pic);
+
+                                profile_name.setText(userPost.getName());
+
+                                DatabaseReference d = FirebaseDatabase.getInstance()
+                                        .getReference()
+                                        .child("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child("Profile URL");
+
+                                d.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        System.out.println(dataSnapshot.getValue());
+
+                                        Glide.with(HomePageActivity.this).load(dataSnapshot.getValue()).into(profile);
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
                             }
 
                         }

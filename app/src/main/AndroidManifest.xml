@@ -8,7 +8,6 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -45,6 +44,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activities.ForgotPasswordActivity"></activity>
         <activity
             android:name=".Agenda_Meeting"
             android:label="@string/title_activity_agenda__meeting"
@@ -113,18 +113,17 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <service android:enabled="true"
+        <service
             android:name=".NotificationService"
+            android:enabled="true"
             android:exported="true"
-            android:label="RestartServiceWhenStopped"/>
+            android:label="RestartServiceWhenStopped" />
 
         <receiver
             android:name=".NotificationService$NotifyServiceReceiver"
             android:enabled="true"
             android:exported="true"
-            android:label="RestartServiceWhenStopped">
-        </receiver>
-
+            android:label="RestartServiceWhenStopped"></receiver>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

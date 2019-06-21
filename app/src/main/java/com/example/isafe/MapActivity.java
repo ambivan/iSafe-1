@@ -52,16 +52,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     Marker mCurrLocationMarker;
     GoogleApiClient mGoogleApiClient;
 
-
     EditText etLocation;
     static String loc;
     Button btn_find;
 
     String addr = "";
-
-
     static int m =0;
-
 
     public FusedLocationProviderClient client;
 

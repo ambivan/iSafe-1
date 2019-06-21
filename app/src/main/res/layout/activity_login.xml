@@ -85,6 +85,20 @@
             android:textSize="25sp"
 
             />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/roboto"
+            android:text="Forgot Password ?"
+            android:textSize="18sp"
+            android:id="@+id/forgot"
+            android:textColor="#047cfc"
+            />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

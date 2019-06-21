@@ -29,7 +29,7 @@
             >
 
             <ImageView
-                android:id = "@+id/profpic"
+                android:id = "@+id/prof_ilepic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:padding="10dp"

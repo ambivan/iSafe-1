@@ -31,7 +31,12 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
     static Context context;
     public static int i;
 
+     public static String university;
+    public static String city1;
+
     ArrayList<MyListData> list1;
+
+
 
   // RecyclerView recyclerView;
   public MyListAdapter2(List<MyListData> list, Context context) {
@@ -61,6 +66,15 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
       holder.markatt.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+
+              System.out.println("yes " + i);
+              MyListData mll = list.get(i);
+
+              university = mll.getTitle();
+              city1 = mll.getCity();
+
+              System.out.println("uni"  + university);
+              System.out.println("city" + city1);
 
               //if you need position, just use recycleViewHolder.getAdapterPosition();
               Intent intent = new Intent(v.getContext(), MarkAttendanceMap.class);
@@ -189,7 +203,6 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
     public ImageView uni;
     public TextView title, event, date, time, topic, city ;
 
-
     Button markatt;
     ImageView like, send, msg;
 
@@ -216,21 +229,25 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
         Date date1 = new Date();
         System.out.println(formatter.format(date1));
 
-        if (formatter.format((date1)).equals(date.getText().toString())){
-
-            markatt.setBackgroundResource(com.example.isafe.R.drawable.button_first_bg);
-
-
-        }else {
-
-            markatt.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
-
-        }
+//        if (formatter.format((date1)).equals(date.getText().toString())){
+//
+//            markatt.setBackgroundResource(com.example.isafe.R.drawable.button_first_bg);
+//
+//
+//        }else {
+//
+//            markatt.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
+//
+//        }
 
         markatt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                i = getPosition();
+
+
                 context.startActivity(new Intent(context, MarkAttendanceMap.class));
+
             }
         });
 
@@ -254,7 +271,6 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
                 a.putExtra(Intent.EXTRA_SUBJECT, shareSub);
                 a.putExtra(Intent.EXTRA_TEXT, shareBody);
                 context.startActivity(Intent.createChooser(a, "Share Using"));
-
 
             }
         });

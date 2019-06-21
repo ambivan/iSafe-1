@@ -105,7 +105,15 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                     String key = ds.getKey();
                     System.out.println("hi" + key);
 
-                    if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")&& !key.equals("Registered Events") && !key.equals("Domain") && !key.equals("Events") &&!key.equals("Liked Events")){
+                    if (!key.equals("name")
+                            &&!key.equals("post")
+                            && !key.equals("Meeting Reports")
+                            &&!key.equals("teamname")
+                            && !key.equals("Registered Events")
+                            && !key.equals("Domain")
+                            && !key.equals("Events")
+                            &&!key.equals("Liked Events")
+                            && !key.equals("Profile URL")){
 
                         if (key != null) {
                             DatabaseReference a = dbref.child(key);
@@ -197,7 +205,12 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                             String key = ds.getKey();
 
 
-                                        if (!key.equals("name")&&!key.equals("post") && !key.equals("Meeting Reports")&&!key.equals("teamname")&& !key.equals("Registered Events")&&!key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                        if (!key.equals("name")
+                                                &&!key.equals("post")
+                                                && !key.equals("Meeting Reports")
+                                                &&!key.equals("teamname")
+                                                && !key.equals("Registered Events")
+                                                &&!key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
 
 
                                             if (key != null) {
