@@ -131,6 +131,7 @@ public class NewsFeed extends Fragment {
       city = (EditText) vieww.findViewById(com.example.isafe.R.id.city);
 
       city.setText("Delhi");
+      city.setEnabled(false);
 
 
       final DatabaseReference dbref =  FirebaseDatabase.getInstance().getReference().child("Events");

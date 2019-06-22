@@ -118,7 +118,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                 @Override
                 public void onClick(View v) {
 
-
+                    startActivity(new Intent(getActivity(), MapActivity.class));
 
                 }
             });

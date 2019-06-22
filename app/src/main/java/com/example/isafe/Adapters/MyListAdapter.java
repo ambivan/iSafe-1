@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
+public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
 
     List<MyListData> list;
     Context context;
@@ -33,180 +33,97 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     int position;
 
-  // RecyclerView recyclerView;
-  public MyListAdapter(List<MyListData> list, Context context) {
-    this.list = list;
-    this.context = context;
+    // RecyclerView recyclerView;
+    public MyListAdapter(List<MyListData> list, Context context) {
+        this.list = list;
+        this.context = context;
 
-  }
-  @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    }
 
-    LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-    View listItem= layoutInflater.inflate(com.example.isafe.R.layout.list_item, parent, false);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 
-    ViewHolder viewHolder = new ViewHolder(listItem);
+        View listItem = layoutInflater.inflate(com.example.isafe.R.layout.list_item, parent, false);
 
-
-
-    return viewHolder;
-  }
-
-  @Override
-  public void onBindViewHolder(final ViewHolder holder, int position) {
-
-    final MyListData myListData = list.get(position);
-      holder.title.setText(myListData.getTitle()) ;
-      holder.event.setText(myListData.getEvent());
-      holder.date.setText(myListData.getDate());
-      holder.time.setText(myListData.getTime());
-      holder.topic.setText(myListData.getTopic());
-      holder.city.setText(myListData.getCity());
+        ViewHolder viewHolder = new ViewHolder(listItem);
 
 
-      holder.like.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
+        return viewHolder;
+    }
 
-              myListData.setIs_liked("1");
-              if (myListData.getIs_liked().equals("1")) {
-                  holder.like.setImageResource(R.drawable.redheart);
-              }
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
-              FirebaseDatabase.getInstance().getReference()
-                      .child("Users")
-                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                      .child("Liked Events").push().setValue(new MyListData(myListData.getTitle(),myListData.getCity(),
-                      myListData.getEvent(), myListData.getDate(), myListData.getTime(), myListData.getTopic(), myListData.getIs_liked()) );
+        final MyListData myListData = list.get(position);
+        holder.title.setText(myListData.getTitle());
+        holder.event.setText(myListData.getEvent());
+        holder.date.setText(myListData.getDate());
+        holder.time.setText(myListData.getTime());
+        holder.topic.setText(myListData.getTopic());
+        holder.city.setText(myListData.getCity());
 
-          }
-      });
+//        if (myListData.getIs_liked().equals("1")) {
+//            holder.like.setImageResource(R.drawable.redheart);
+//        }
 
+        holder.register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyListData mylist = list.get(mla);
 
+                FirebaseDatabase.getInstance().getReference()
+                        .child("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Registered Events")
+                        .push()
+                        .setValue(new MyListData(mylist.getTitle(), mylist.getCity(),
+                                mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic(), "0"));
 
-      DatabaseReference d =  FirebaseDatabase.getInstance().getReference()
-              .child("Events");
-
-      d.addValueEventListener(new ValueEventListener() {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-              list1 = new ArrayList<MyListData>();
-
-              for (DataSnapshot child: dataSnapshot.getChildren()) {
-
-                  System.out.println(child.getKey());
-
-                  System.out.println("list cbdsj" + child.getValue());
-
-                  MyListData events = child.getValue(MyListData.class);
-
-                  MyListData eventlist = new MyListData();
-
-                  String title = events.getTitle();
-                  String event = events.getEvent();
-                  String city = events.getCity();
-                  String date = events.getDate();
-                  String time = events.getTime();
-                  String topic = events.getTopic();
-                  String is_liked = events.getIs_liked();
-
-                  if (is_liked.equals("0")){
-                      holder.like.setImageResource(R.drawable.heart);
-                  }else {
-                      holder.like.setImageResource(R.drawable.redheart);
-                  }
-
-                  eventlist.setTitle(title);
-                  eventlist.setCity(city);
-                  eventlist.setEvent(event);
-                  eventlist.setDate(date);
-                  eventlist.setTime(time);
-                  eventlist.setTopic(topic);
-
-                  list.add(eventlist);
-
-                  System.out.println(list);
-
-              }
+                holder.register.setEnabled(false);
+                holder.register.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
+                holder.register.setText("Registered");
+            }
+        });
 
 
+        holder.like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-          }
+                myListData.setIs_liked("1");
+                if (myListData.getIs_liked().equals("1")) {
+                    holder.like.setImageResource(R.drawable.redheart);
+                }
 
-          @Override
-          public void onCancelled(@NonNull DatabaseError databaseError) {
+                FirebaseDatabase.getInstance().getReference()
+                        .child("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Liked Events").push().setValue(new MyListData(myListData.getTitle(), myListData.getCity(),
+                        myListData.getEvent(), myListData.getDate(), myListData.getTime(), myListData.getTopic(), myListData.getIs_liked()));
 
-          }
-      });
-  }
-
-  @Override
-  public int getItemCount() {
-      int arr = 0;
-
-      try{
-          if(list.size()==0){
-
-              arr = 0;
-
-          }
-          else{
-
-              arr=list.size();
-          }
-
-      }catch (Exception e){
-
-      }
-
-      System.out.println("size" + arr);
-
-      return arr;  }
-
-  public class ViewHolder extends RecyclerView.ViewHolder {
+            }
+        });
 
 
-    public ImageView uni;
-    public TextView title, event, date, time, topic, city ;
-
-    Button register;
-    ImageView like, send, msg;
-
-
-    public ViewHolder(View itemView) {
-      super(itemView);
-
-      this.uni = (ImageView) itemView.findViewById(com.example.isafe.R.id.uni);
-
-      this.title = (TextView) itemView.findViewById(com.example.isafe.R.id.title2);
-      this.event = (TextView) itemView.findViewById(com.example.isafe.R.id.event);
-      this.date = (TextView) itemView.findViewById(com.example.isafe.R.id.date);
-      this.time = (TextView) itemView.findViewById(com.example.isafe.R.id.time);
-      this.topic = (TextView) itemView.findViewById(com.example.isafe.R.id.topic);
-      this.city = (TextView) itemView.findViewById(com.example.isafe.R.id.cityname);
-
-      this.register = (Button) itemView.findViewById(com.example.isafe.R.id.register);
-
-      this.like = (ImageView) itemView.findViewById(com.example.isafe.R.id.heart);
-      this.send = (ImageView) itemView.findViewById(com.example.isafe.R.id.send);
-      this.msg = (ImageView) itemView.findViewById(com.example.isafe.R.id.chatt);
-
-        DatabaseReference d =  FirebaseDatabase.getInstance().getReference().child("Events")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Registered Events");
+        DatabaseReference d = FirebaseDatabase.getInstance().getReference()
+                .child("Events");
 
         d.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot.getValue());
 
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    System.out.println(ds.getValue());
 
-                    MyListData events = ds.getValue(MyListData.class);
+                list1 = new ArrayList<MyListData>();
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+
+                    System.out.println(child.getKey());
+
+                    System.out.println("list cbdsj" + child.getValue());
+
+                    MyListData events = child.getValue(MyListData.class);
 
                     MyListData eventlist = new MyListData();
 
@@ -216,18 +133,28 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                     String date = events.getDate();
                     String time = events.getTime();
                     String topic = events.getTopic();
+                    String is_liked = events.getIs_liked();
 
-                    eventlist.setTitle(title + ",");
+                    if (is_liked.equals("0")) {
+                        holder.like.setImageResource(R.drawable.heart);
+                    } else {
+                        holder.like.setImageResource(R.drawable.redheart);
+                    }
+
+                    eventlist.setTitle(title);
                     eventlist.setCity(city);
-                    eventlist.setEvent("Organizing a " + event);
-                    eventlist.setDate("on " + date);
-                    eventlist.setTime("Starting at " + time);
-                    eventlist.setTopic( "Topic: " + topic);
+                    eventlist.setEvent(event);
+                    eventlist.setDate(date);
+                    eventlist.setTime(time);
+                    eventlist.setTopic(topic);
 
                     list.add(eventlist);
 
+                    System.out.println(list);
 
                 }
+
+
             }
 
             @Override
@@ -235,33 +162,73 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
             }
         });
+    }
+
+    @Override
+    public int getItemCount() {
+        int arr = 0;
+
+        try {
+            if (list.size() == 0) {
+
+                arr = 0;
+
+            } else {
+
+                arr = list.size();
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        System.out.println("size" + arr);
+
+        return arr;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+
+        public ImageView uni;
+        public TextView title, event, date, time, topic, city;
+
+        Button register;
+        ImageView like, send, msg;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            this.uni = (ImageView) itemView.findViewById(com.example.isafe.R.id.uni);
+
+            this.title = (TextView) itemView.findViewById(com.example.isafe.R.id.title2);
+            this.event = (TextView) itemView.findViewById(com.example.isafe.R.id.event);
+            this.date = (TextView) itemView.findViewById(com.example.isafe.R.id.date);
+            this.time = (TextView) itemView.findViewById(com.example.isafe.R.id.time);
+            this.topic = (TextView) itemView.findViewById(com.example.isafe.R.id.topic);
+            this.city = (TextView) itemView.findViewById(com.example.isafe.R.id.cityname);
+
+            this.register = (Button) itemView.findViewById(com.example.isafe.R.id.register);
+
+            this.like = (ImageView) itemView.findViewById(com.example.isafe.R.id.heart);
+            this.send = (ImageView) itemView.findViewById(com.example.isafe.R.id.send);
+            this.msg = (ImageView) itemView.findViewById(com.example.isafe.R.id.chatt);
 
 
 
-      register.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
+            register.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-              System.out.println(getPosition());
-              mla = getPosition();
-
-              MyListData mylist = list.get(mla);
-
-              FirebaseDatabase.getInstance().getReference()
-                      .child("Users")
-                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                      .child("Registered Events")
-                      .push()
-                      .setValue(new MyListData(mylist.getTitle(),mylist.getCity(),
-                              mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic(), "0") );
-
-              register.setEnabled(false);
-              register.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
-              register.setText("Registered");
+                    System.out.println(getPosition());
+                    mla = getPosition();
 
 
-          }
-      });
+
+
+                }
+            });
 
 //      like.setOnClickListener(new View.OnClickListener() {
 //          @Override
@@ -278,6 +245,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 //                      .setValue(new MyListData(ma.getTitle(), ma.getCity(), ma.getEvent(), ma.getDate(), ma.getTime(), ma.getTopic(), ma.getIs_liked()));
 //          }
 //      });
+        }
     }
-  }
 }

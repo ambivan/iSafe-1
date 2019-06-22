@@ -7,6 +7,8 @@
         android:name="com.example.task.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -44,7 +46,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.MeetingRequest"></activity>
         <activity android:name=".Activities.Chatone" />
         <activity android:name=".Activities.IndividualChat" />
         <activity android:name=".Activities.ForgotPasswordActivity" />

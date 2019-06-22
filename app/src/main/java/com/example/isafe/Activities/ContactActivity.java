@@ -40,16 +40,12 @@ public class ContactActivity extends AppCompatActivity {
 
         HomePageActivity.frag = 3;
 
-
-
         name = (EditText) findViewById(R.id.name);
         phone = (EditText) findViewById(R.id.contactno);
 
         save = (Button)findViewById(R.id.save);
 
-
         auth = FirebaseAuth.getInstance();
-
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

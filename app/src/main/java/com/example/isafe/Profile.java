@@ -183,9 +183,8 @@ public class Profile extends Fragment {
     }
 
     private void cameraIntent() {
-         intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         pictake(intent);
-
     }
 
     private void pictake(Intent intent) {
@@ -254,7 +253,7 @@ public class Profile extends Fragment {
             case REQUEST_CAMERA:
                 if (resultCode == RESULT_OK) {
 
-                    Uri selected = Uri.parse(String.valueOf(data.getData()));
+                    Uri selected = photoURI;
                     String url = selected.getLastPathSegment();
 
                     final StorageReference storageReference = FirebaseStorage.getInstance().getReference()
@@ -270,13 +269,7 @@ public class Profile extends Fragment {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    ProgressDialog mProgress = new ProgressDialog(getActivity());
-                                    mProgress.setCancelable(false);
-                                    mProgress.setCanceledOnTouchOutside(false);
-                                    mProgress.setTitle("Creating Account");
-                                    mProgress.setMessage("Please wait while account is being created...");
-                                    mProgress.show();
-                                    String url = uri.toString();
+                                                                        String url = uri.toString();
                                     FirebaseDatabase.getInstance()
                                             .getReference()
                                             .child("Users")
@@ -285,7 +278,6 @@ public class Profile extends Fragment {
                                             .setValue(url);
                                     System.out.println(url);
                                     Glide.with(getContext()).load(url).into(profilpic);
-                                    mProgress.dismiss();
 
                                 }
                             });

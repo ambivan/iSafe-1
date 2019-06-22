@@ -74,34 +74,33 @@ public class teamProfile extends Fragment {
         vt = inflater.inflate(com.example.isafe.R.layout.tab5team, container, false);
 
         team_name = (TextView) vt.findViewById(R.id.team_name);
-        recyclerView= (RecyclerView) vt.findViewById(R.id.recyclerViewh);
+        recyclerView = (RecyclerView) vt.findViewById(R.id.recyclerViewh);
         prof_name = (TextView) vt.findViewById(R.id.pro_name);
         pro_pic = (ImageView) vt.findViewById(R.id.prof_ilepic);
-
 
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         databaseReference
                 .addListenerForSingleValueEvent(new ValueEventListener() {
-                                                             @Override
-                                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                                                 UserPost userPost = dataSnapshot.getValue(UserPost.class);
+                        UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
-                                                                 if (userPost != null) {
-                                                                     prof_name.setText(userPost.getName());
-                                                                 }
+                        if (userPost != null) {
+                            prof_name.setText(userPost.getName());
+                        }
 
 
-                                                             }
+                    }
 
-                                                             @Override
-                                                             public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                                             }
+                    }
 
-                                                         });
+                });
 
 
         pro_pic.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +122,7 @@ public class teamProfile extends Fragment {
 
                 System.out.println(dataSnapshot.getValue());
 
-                if (dataSnapshot.getValue() != null){
+                if (dataSnapshot.getValue() != null) {
 
                     Glide.with(getContext()).load(dataSnapshot.getValue()).into(pro_pic);
 
@@ -137,7 +136,6 @@ public class teamProfile extends Fragment {
 
             }
         });
-
 
 
         profileM[] profileMS = new profileM[]{
@@ -170,7 +168,8 @@ public class teamProfile extends Fragment {
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
                     if (result)
-                        cameraIntent();
+                        System.out.println("Yes");
+                    cameraIntent();
                 } else if (items[item].equals("Choose from Library")) {
                     userChoosenTask = "Choose from Library";
                     if (result)
@@ -184,12 +183,17 @@ public class teamProfile extends Fragment {
     }
 
     private void cameraIntent() {
-        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        System.out.println("Yes");
+
+        intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         pictake(intent);
 
     }
 
     private void pictake(Intent intent) {
+
+        System.out.println("Yes");
+
 
         if (intent.resolveActivity(getActivity().getApplicationContext().getPackageManager()) != null) {
             File photofile = createPhotoFile();
@@ -198,18 +202,18 @@ public class teamProfile extends Fragment {
 
                 path = photofile.getAbsolutePath();
 
-                photoURI = FileProvider.getUriForFile(getContext(), "com.example.isafe.fileprovider", photofile);
+                Uri photoURI = FileProvider.getUriForFile(getContext(), "com.example.isafe.fileprovider", photofile);
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
                 startActivityForResult(intent, REQUEST_CAMERA);
-
-
             }
         }
     }
 
     private File createPhotoFile() {
+
+        System.out.println("Yes");
 
         String name = new SimpleDateFormat("yyyy_MM_dd").format(new Date());
         File storagedir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
@@ -237,6 +241,8 @@ public class teamProfile extends Fragment {
         switch (requestCode) {
             case REQUEST_CAMERA:
                 if (resultCode == RESULT_OK) {
+
+                    System.out.println("Yes");
 
                     Uri selected = Uri.parse(String.valueOf(data.getData()));
                     String url = selected.getLastPathSegment();

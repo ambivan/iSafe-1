@@ -35,15 +35,15 @@ import java.util.Date;
 public class CamActivity extends AppCompatActivity {
 
     Button cam, attach;
-    static final int CAMERA_REQUEST = 1;
+    int CAMERA_REQUEST = 1;
 
-    static ImageView image, image2, image3 ;
+    static ImageView image, image2, image3;
     String path, userid;
     public static Bitmap photo;
     public static Bitmap photo2;
     public static Bitmap photo3;
-    public static int i=0;
-    TextView upload ;
+    public static int i = 0;
+    TextView upload;
 
     UploadTask uploadTask;
 
@@ -86,8 +86,8 @@ public class CamActivity extends AppCompatActivity {
         upload = (TextView) findViewById(R.id.upload);
 
 
-        if (Build.VERSION.SDK_INT >= 23){
-            requestPermissions(new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
+        if (Build.VERSION.SDK_INT >= 23) {
+            requestPermissions(new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
         }
 
         auth = FirebaseAuth.getInstance();
@@ -103,10 +103,10 @@ public class CamActivity extends AppCompatActivity {
             }
         };
 
+
         cam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 count = 1;
 
                 camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -123,7 +123,7 @@ public class CamActivity extends AppCompatActivity {
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count ++;
+                count++;
                 image2.setBackgroundResource(R.drawable.transbg);
                 image2Int = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictake(image2Int);
@@ -133,7 +133,7 @@ public class CamActivity extends AppCompatActivity {
         image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count ++;
+                count++;
                 attach.setVisibility(View.VISIBLE);
                 image3.setBackgroundResource(R.drawable.transbg);
                 image2.setBackgroundResource(R.drawable.transbg);
@@ -148,13 +148,13 @@ public class CamActivity extends AppCompatActivity {
         attach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (count < 3){
+                if (count < 3) {
 
                     Toast.makeText(CamActivity.this, "Please take 3 photos!", Toast.LENGTH_SHORT).show();
 
-                }else{
+                } else {
 
-                    i=1;
+                    i = 1;
 
                     startActivity(new Intent(CamActivity.this, HomePageActivity.class));
 
@@ -166,10 +166,10 @@ public class CamActivity extends AppCompatActivity {
 
     private void pictake(Intent intent) {
 
-        if(intent.resolveActivity(getPackageManager()) != null){
+        if (intent.resolveActivity(getPackageManager()) != null) {
             File photofile = createPhotoFile();
 
-            if (photofile != null){
+            if (photofile != null) {
 
                 path = photofile.getAbsolutePath();
 
@@ -192,7 +192,7 @@ public class CamActivity extends AppCompatActivity {
         try {
             image = File.createTempFile(name, ".jpg", storagedir);
 
-        }catch (IOException e){
+        } catch (IOException e) {
             Log.d("mine", e.toString());
         }
 
@@ -208,15 +208,15 @@ public class CamActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
 
-                if(count==1){
+                if (count == 1) {
 
                     photo = BitmapFactory.decodeFile(path);
 
-                    photo.compress(Bitmap.CompressFormat.JPEG,100, baos);
+                    photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child("images/"+photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/" + photoURI.getLastPathSegment());
 
                     uploadTask = imagesref.putBytes(bytes);
 
@@ -225,15 +225,15 @@ public class CamActivity extends AppCompatActivity {
                     image.setImageBitmap(photo);
 
 
-                }else if (count==2){
+                } else if (count == 2) {
 
                     photo2 = BitmapFactory.decodeFile(path);
 
-                    photo2.compress(Bitmap.CompressFormat.JPEG,100, baos);
+                    photo2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child("images/"+photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/" + photoURI.getLastPathSegment());
 
                     uploadTask = imagesref.putBytes(bytes);
 
@@ -241,15 +241,15 @@ public class CamActivity extends AppCompatActivity {
 
                     image2.setImageBitmap(photo2);
 
-                }else if (count==3){
+                } else if (count == 3) {
 
                     photo3 = BitmapFactory.decodeFile(path);
 
-                    photo3.compress(Bitmap.CompressFormat.JPEG,100, baos);
+                    photo3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child("images/"+photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/" + photoURI.getLastPathSegment());
 
                     uploadTask = imagesref.putBytes(bytes);
 

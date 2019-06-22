@@ -380,8 +380,10 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
 
                         if (a>100.00){
                             mark.setEnabled(false);
+                            mark.setBackgroundResource(R.drawable.reportbuttonbg);
                             Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
                         } else if (a<100.00){
+                            mark.setBackgroundResource(R.drawable.reportbuttonbg);
                             mark.setEnabled(true);
                         }
 //                       
