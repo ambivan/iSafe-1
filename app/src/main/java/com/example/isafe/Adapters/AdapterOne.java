@@ -1,32 +1,30 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.isafe.Activities.Chatone;
 import com.example.isafe.Classes.Message;
+import com.example.isafe.R;
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 
-public class MyListAdapter3 extends FirebaseListAdapter<Message> {
+public class AdapterOne extends FirebaseListAdapter<Message> {
 
-    private ChatMeeting activity;
+    private Chatone activity;
 
-    public MyListAdapter3(ChatMeeting activity, Class<Message> modelClass, int modelLayout, DatabaseReference ref) {
+    public AdapterOne(Chatone activity, Class<Message> modelClass, int modelLayout, Query ref) {
         super(activity, modelClass, modelLayout, ref);
+
         this.activity = activity;
     }
-
-
 
     @Override
     protected void populateView(View v, Message model, int position) {
         TextView messageText = (TextView) v.findViewById(R.id.message_text);
-        TextView messageUser = (TextView) v.findViewById(R.id.message_user);
 
         messageText.setText(model.getMessageText());
-        messageUser.setText(model.getMessageUser());
-
     }
 
     @Override

@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.isafe.Activities.ChatMeeting">
+    tools:context="com.example.isafe.Activities.Chatone">
+
+
+    <LinearLayout
+        android:id="@+id/profilelin"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_marginTop="70dp"
+            android:id="@+id/memberprofile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_account_circle_black_24dp"/>
+
+        <TextView
+            android:id="@+id/membername"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/datemem"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            />
+
+
+    </LinearLayout>
 
     <ListView
-        android:id="@+id/list1"
+        android:id="@+id/list14"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/profilelin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/re"
-        android:layout_alignParentTop="true"
         android:layout_marginBottom="16dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="16dp"
@@ -24,29 +68,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
-
-
-        <LinearLayout
-            android:id="@+id/lin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:orientation="vertical">
-
-
-            <Button
-                android:id="@+id/stop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/button_first_bg"
-                android:fontFamily="@font/actor"
-                android:paddingLeft="80dp"
-                android:paddingRight="80dp"
-                android:text="Stop"
-                android:textAllCaps="false"
-                android:textColor="#fff"
-                android:textSize="20sp" />
 
             <RelativeLayout
                 android:id="@+id/rel"
@@ -69,7 +90,7 @@
                     android:layout_toStartOf="@id/fab">
 
                     <EditText
-                        android:id="@+id/input"
+                        android:id="@+id/input2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext"
@@ -78,7 +99,6 @@
 
             </RelativeLayout>
 
-        </LinearLayout>
 
     </RelativeLayout>
 

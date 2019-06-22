@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.isafe.Activities.HomePageActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,8 +39,10 @@ public class CamActivity extends AppCompatActivity {
 
     static ImageView image, image2, image3 ;
     String path, userid;
-    static Bitmap photo, photo2, photo3;
-    static int i=0;
+    public static Bitmap photo;
+    public static Bitmap photo2;
+    public static Bitmap photo3;
+    public static int i=0;
     TextView upload ;
 
     UploadTask uploadTask;

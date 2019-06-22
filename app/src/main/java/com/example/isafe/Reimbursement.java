@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.isafe.Activities.HomePageActivity;
+import com.example.isafe.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,13 +39,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
-import static com.example.isafe.CamActivity.CAMERA_REQUEST;
 
 public class Reimbursement extends Fragment {
 
     View vr;
     ImageView bill;
     Button attach, send;
+
+    final int CAMERA_REQUEST = 1;
+
 
     Uri photoURI;
 

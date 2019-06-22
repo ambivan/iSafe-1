@@ -14,7 +14,7 @@
     android:layout_width="match_parent"
     android:theme="@style/AppTheme.NoActionBar"
     android:layout_height="match_parent"
-    tools:context=".Agenda_Meeting">
+    tools:context=".Activities.Agenda_Meeting">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -55,6 +55,7 @@
                     app:ibv_badgeLimitValue="true"
                     android:layout_gravity="center"
                     android:src="@drawable/message" />
+
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>

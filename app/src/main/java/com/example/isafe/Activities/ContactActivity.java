@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.isafe.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,9 +21,10 @@ public class ContactActivity extends AppCompatActivity {
 
     Button save;
 
-    static String contactName, number;
+    public static String contactName;
+    public static String number;
 
-    static int c = 0;
+    public static int c = 0;
 
     DatabaseReference databaseReference;
     FirebaseAuth auth;

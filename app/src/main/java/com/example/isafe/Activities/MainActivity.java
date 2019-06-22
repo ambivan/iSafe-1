@@ -9,15 +9,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.isafe.NotificationService;
+import com.example.isafe.Services.NotificationService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println("user" + user.getUid());
 
-                    DatabaseReference d = FirebaseDatabase.getInstance().getReference().child(user.getUid())
+                    DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid())
                             .child("Agendas");
 
                     d.addValueEventListener(new ValueEventListener() {
@@ -108,18 +110,61 @@ public class MainActivity extends AppCompatActivity {
 
                                 System.out.println(child);
 
-                                notificationService = new NotificationService();
-
-                                intent = new Intent(MainActivity.this, NotificationService.class);
-                                startService(intent);
-
-                                if (!isMyServiceRunning(notificationService.getClass())){
-                                    startService(intent);
-                                }
-
+//                                notificationService = new NotificationService();
+//
+//                                intent = new Intent(MainActivity.this, NotificationService.class);
+//                                startService(intent);
+//
+//                                if (!isMyServiceRunning(notificationService.getClass())){
+//                                    startService(intent);
+//                                }
+//
 
                             }
 
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    d.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                            notificationService = new NotificationService();
+
+                            intent = new Intent(MainActivity.this, NotificationService.class);
+                            startService(intent);
+
+                            if (!isMyServiceRunning(notificationService.getClass())) {
+                                startService(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+                            notificationService = new NotificationService();
+
+                            intent = new Intent(MainActivity.this, NotificationService.class);
+                            startService(intent);
+
+                            if (!isMyServiceRunning(notificationService.getClass())) {
+                                startService(intent);
+                            }
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                         }
 

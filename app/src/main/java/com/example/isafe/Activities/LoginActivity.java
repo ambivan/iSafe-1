@@ -13,8 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.isafe.HomePageActivity;
-import com.example.isafe.NotificationService;
+import com.example.isafe.Services.NotificationService;
 import com.example.isafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

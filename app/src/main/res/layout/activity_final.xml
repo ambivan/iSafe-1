@@ -7,17 +7,17 @@
     android:theme="@style/Theme.AppCompat.NoActionBar"
 
     android:layout_height="match_parent"
-    tools:context=".FinalActivity">
+    tools:context=".Activities.FinalActivity">
 
     <TextView
         android:id="@+id/noble"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aladin"
-        android:text="Accident Reported! A noble work has been done!"
+        android:fontFamily="@font/roboto"
+        android:text="@string/noble"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

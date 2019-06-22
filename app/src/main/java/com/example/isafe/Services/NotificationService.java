@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,7 +11,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.example.isafe.Activities.MainActivity;
+import com.example.isafe.Activities.HomePageActivity;
 
 public class NotificationService extends Service {
 
@@ -45,7 +45,7 @@ public class NotificationService extends Service {
         registerReceiver(notifyServiceReceiver, intentFilter);
 
 
-        intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent = new Intent(getApplicationContext(), HomePageActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
 
@@ -83,7 +83,7 @@ public class NotificationService extends Service {
                 stopSelf();
             }
 
-            arg0.startService(new Intent(arg0, NotificationService.class));;
+            arg0.startService(new Intent(arg0, NotificationService.class));
 
         }
     }

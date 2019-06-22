@@ -44,15 +44,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.ForgotPasswordActivity"></activity>
+        <activity android:name=".Activities.MeetingRequest"></activity>
+        <activity android:name=".Activities.Chatone" />
+        <activity android:name=".Activities.IndividualChat" />
+        <activity android:name=".Activities.ForgotPasswordActivity" />
         <activity
-            android:name=".Agenda_Meeting"
+            android:name=".Activities.Agenda_Meeting"
             android:label="@string/title_activity_agenda__meeting"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CreateEvent" />
         <activity android:name=".Activities.MeetingReport" />
-        <activity android:name=".ChatMeeting" />
-        <activity android:name=".CodeGenerator" />
+        <activity android:name=".Activities.ChatMeeting" />
+        <activity android:name=".Activities.CodeGenerator" />
         <activity android:name=".MarkAttendanceMap" />
 
         <uses-library android:name="com.google.android.maps" />
@@ -60,18 +63,18 @@
         <activity
             android:name=".MapActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".FinalActivity" />
+        <activity android:name=".Activities.FinalActivity" />
         <activity
-            android:name=".ContactActivity"
+            android:name=".Activities.ContactActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CamActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HomePageActivity"
+            android:name=".Activities.HomePageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Signup2"
+            android:name=".Activities.Signup2"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.SignupActivity"
@@ -114,18 +117,18 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name=".NotificationService"
+            android:name=".Services.NotificationService"
             android:enabled="true"
             android:exported="true"
             android:label="RestartServiceWhenStopped" />
 
         <receiver
-            android:name=".NotificationService$NotifyServiceReceiver"
+            android:name=".Services.NotificationService$NotifyServiceReceiver"
             android:enabled="true"
             android:exported="true"
-            android:label="RestartServiceWhenStopped"></receiver>
+            android:label="RestartServiceWhenStopped" />
 
-        <service android:name=".MyFirebaseMessagingService">
+        <service android:name=".Services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>

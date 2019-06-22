@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.isafe.Activities.HomePageActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -53,11 +54,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     GoogleApiClient mGoogleApiClient;
 
     EditText etLocation;
-    static String loc;
+    public static String loc;
     Button btn_find;
 
     String addr = "";
-    static int m =0;
+    public static int m =0;
 
     public FusedLocationProviderClient client;
 

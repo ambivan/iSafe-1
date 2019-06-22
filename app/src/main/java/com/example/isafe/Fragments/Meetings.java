@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.isafe.Adapters.MeetingsAdapter;
-import com.example.isafe.Agenda_Meeting;
-import com.example.isafe.ChatMeeting;
+import com.example.isafe.Activities.Agenda_Meeting;
+import com.example.isafe.Activities.ChatMeeting;
 import com.example.isafe.Classes.Meeting;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
@@ -38,6 +38,8 @@ public class Meetings extends Fragment {
 
   MeetingsAdapter recyclerAdapter;
   List<Meeting> list;
+
+
 
 
   @Nullable

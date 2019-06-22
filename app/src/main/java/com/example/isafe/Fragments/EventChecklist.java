@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,19 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.isafe.R;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
-import static com.example.isafe.CamActivity.CAMERA_REQUEST;
 
 public class EventChecklist extends Fragment {
 
     View ve;
 
     ImageView eimage, eimage2, eimage3, doc, doc3,doc2;
+
+    final int CAMERA_REQUEST = 1;
 
 
     Uri photoURI;

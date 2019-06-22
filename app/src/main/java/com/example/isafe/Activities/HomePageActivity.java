@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,13 +20,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.isafe.Activities.MainActivity;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.Feedback;
 import com.example.isafe.Fragments.GoodSamaritan;
 import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
+import com.example.isafe.Adapters.Pager;
+import com.example.isafe.R;
+import com.example.isafe.Reimbursement;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,10 +39,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import ru.nikartm.support.ImageBadgeView;
+
 public class HomePageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, OnNavigationItemSelectedListener{
 
     private ViewPager viewPager;
     public TabLayout tabLayout;
+
+    ImageBadgeView img;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -53,7 +60,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     ImageView profile;
 
     NavigationView navigationView;
-    static int h;
+    public static int h;
+
+    int p ;
 
     public static int frag = 0;
 
@@ -74,6 +83,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         FirebaseApp.initializeApp(this);
+
+        img = (ImageBadgeView) findViewById(R.id.icon1);
 
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -104,11 +115,13 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.navbar_teamlead);
                                     h = 1;
+                                    p = 0;
 
                                 } else if (userPost.getPost().equals("Team Member")) {
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.navbar_teammember);
                                     h = 1;
+                                    p = 1;
                                 }else{
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
@@ -133,7 +146,10 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                                         System.out.println(dataSnapshot.getValue());
 
-                                        Glide.with(HomePageActivity.this).load(dataSnapshot.getValue()).into(profile);
+                                        if (dataSnapshot.getValue() != null) {
+
+                                            Glide.with(HomePageActivity.this).load(dataSnapshot.getValue()).into(profile);
+                                        }
 
                                     }
 
@@ -270,7 +286,28 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.Meetings) {
 
-            frag1 = new Meetings();
+            if (p == 0) {
+                frag1 = new Meetings();
+            }
+
+            else if (p==1){
+                frag1 = new MeetingRequest();
+            }
+            img.setImageResource(R.drawable.message);
+
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+
+                    if (p == 0) {
+                        startActivity(new Intent(HomePageActivity.this, IndividualChat.class));
+
+                    } else if (p == 1){
+                        startActivity(new Intent(HomePageActivity.this, Chatone.class));
+                    }
+                }
+            });
 
         }else if (id == R.id.events) {
 

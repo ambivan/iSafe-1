@@ -1,13 +1,16 @@
-package com.example.isafe;
+package com.example.isafe.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.isafe.Activities.HomePageActivity;
 import com.example.isafe.Fragments.Assist;
 import com.example.isafe.Fragments.Attendance;
 import com.example.isafe.Fragments.NewsFeed;
 import com.example.isafe.Fragments.teamProfile;
+import com.example.isafe.Profile;
+import com.example.isafe.Fragments.ReportAccident;
 
 public class Pager extends FragmentPagerAdapter {
   //integer to count number of tabs

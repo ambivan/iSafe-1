@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,10 +23,13 @@ import android.widget.Toast;
 
 import com.example.isafe.Classes.AgendaGen;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.GoodSamaritan;
 import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
+import com.example.isafe.R;
+import com.example.isafe.Reimbursement;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

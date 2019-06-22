@@ -1,5 +1,6 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -21,9 +22,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.isafe.Activities.SignupActivity;
 import com.example.isafe.Classes.CodeGen;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -48,15 +49,15 @@ public class Signup2 extends AppCompatActivity {
 
     ImageView pass1, pass2;
 
-    static String s;
+    public static String s;
 
     static String userid;
 
     String em, pa, con, cuid;
-    static String team;
+    public static String team;
 
     String post = "";
-    static String profilename;
+    public static String profilename;
 
     Button signup;
 
@@ -67,6 +68,7 @@ public class Signup2 extends AppCompatActivity {
     int count;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

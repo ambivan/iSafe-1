@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.isafe.Classes.CodeGen;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static com.example.isafe.Signup2.s;
+import static com.example.isafe.Activities.Signup2.s;
 
 public class CodeGenerator extends AppCompatActivity {
 

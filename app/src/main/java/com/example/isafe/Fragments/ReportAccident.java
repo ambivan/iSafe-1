@@ -1,16 +1,9 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
+import com.example.isafe.Activities.ContactActivity;
+import com.example.isafe.Activities.FinalActivity;
+import com.example.isafe.CamActivity;
+import com.example.isafe.MapActivity;
+import com.example.isafe.R;
 
 public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedListener {
 
@@ -34,7 +27,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
     ImageView second, third, what;
 
-    Button report;
+    Button report, viewonmap;
 
     EditText location;
 
@@ -50,6 +43,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
         v = inflater.inflate(R.layout.tab3, container, false);
 
         report = (Button) v.findViewById(R.id.report);
+        viewonmap = (Button) v.findViewById(R.id.viewonmap);
 
         click = (LinearLayout) v.findViewById(R.id.clicklin);
         loc = (LinearLayout) v.findViewById(R.id.loclin);
@@ -119,6 +113,15 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
             lin2.setVisibility(View.VISIBLE);
 
             location.setText(MapActivity.loc);
+
+            viewonmap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                }
+            });
 
             if (CamActivity.i ==2) {
                 Toast.makeText(getActivity(), "You can report the accident now. Contact Details are optional. ", Toast.LENGTH_LONG).show();

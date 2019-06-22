@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,9 +14,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.isafe.Activities.MeetingReport;
+import com.example.isafe.Adapters.MyListAdapter3;
 import com.example.isafe.Classes.Message;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.R;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
