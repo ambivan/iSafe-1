@@ -3,6 +3,7 @@ package com.example.isafe;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,10 +17,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.isafe.Activities.HomePageActivity;
 import com.example.isafe.Adapters.MyListAdapter2;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -375,17 +378,25 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                         lat2 = address.getLatitude();
                         long2 = address.getLongitude();
 
-                        Double a = CalculationByDistance(lat1, long1, lat2, long2);
+                        final Double a = CalculationByDistance(lat1, long1, lat2, long2);
                         System.out.println(a);
 
-                        if (a>100.00){
-                            mark.setEnabled(false);
-                            mark.setBackgroundResource(R.drawable.reportbuttonbg);
-                            Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
-                        } else if (a<100.00){
-                            mark.setBackgroundResource(R.drawable.reportbuttonbg);
-                            mark.setEnabled(true);
-                        }
+                        mark.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (a>100.00){
+                                    mark.setBackgroundResource(R.drawable.reportbuttonbg);
+                                    Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
+                                } else if (a<100.00){
+                                    mark.setBackgroundResource(R.drawable.reportbuttonbg);
+                                    Toast.makeText(MarkAttendanceMap.this, "Attendance Marked!", Toast.LENGTH_SHORT).show();
+                                    HomePageActivity.frag = 1;
+                                    startActivity(new Intent(MarkAttendanceMap.this, HomePageActivity.class));
+                                }
+                            }
+                        });
+
+
 //                       
 
                         String addressText = String.format("%s, %s",

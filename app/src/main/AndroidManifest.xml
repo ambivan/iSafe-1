@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.isafe">
 
@@ -39,7 +40,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/capt"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -53,7 +54,8 @@
             android:name=".Activities.Agenda_Meeting"
             android:label="@string/title_activity_agenda__meeting"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.CreateEvent" />
+        <activity android:name=".Activities.CreateEvent"
+            android:parentActivityName=".Activities.MainActivity"/>
         <activity android:name=".Activities.MeetingReport" />
         <activity android:name=".Activities.ChatMeeting" />
         <activity android:name=".Activities.CodeGenerator" />

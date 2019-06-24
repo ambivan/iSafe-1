@@ -65,6 +65,8 @@
                 android:textColor = "#fff"
                 android:layout_height="wrap_content"
                 android:background="@drawable/call_buttonbg"
+                android:elevation="25dp"
+                android:layout_marginBottom="30dp"
                 />
 
         </LinearLayout>

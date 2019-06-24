@@ -191,6 +191,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
             loc.setVisibility(View.VISIBLE);
             contact.setVisibility(View.VISIBLE);
 
+
         }
 
         return v;

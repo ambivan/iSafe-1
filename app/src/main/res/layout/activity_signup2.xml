@@ -13,7 +13,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#fff"
     tools:context=".Activities.Signup2">
 
@@ -157,6 +157,7 @@
             android:layout_marginLeft="80dp"
             android:layout_marginRight="80dp"
             android:text="Sign Up"
+            android:layout_marginBottom="20dp"
             android:id="@+id/signup2"
             android:textAllCaps="false"
             android:textColor="#fff"

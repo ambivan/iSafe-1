@@ -12,7 +12,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -74,13 +73,16 @@ public class teamProfile extends Fragment {
         vt = inflater.inflate(com.example.isafe.R.layout.tab5team, container, false);
 
         team_name = (TextView) vt.findViewById(R.id.team_name);
-        recyclerView = (RecyclerView) vt.findViewById(R.id.recyclerViewh);
+//        recyclerView = (RecyclerView) vt.findViewById(R.id.recyclerViewh);
         prof_name = (TextView) vt.findViewById(R.id.pro_name);
         pro_pic = (ImageView) vt.findViewById(R.id.prof_ilepic);
+        final ArrayList<String> arrayList = new ArrayList<>();
+        final String[] c = new String[1];
 
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
+        final String[] b = new String[1];
         databaseReference
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -88,8 +90,28 @@ public class teamProfile extends Fragment {
 
                         UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
+
+                        String str = userPost.getTeamname();
+                        String[] arrOfStr = str.split("/", 2);
+
+                        for (String a : arrOfStr) {
+
+                            System.out.println(a);
+
+                             b[0] = a;
+
+                        }
+                        String [] arr = b[0].split("/", 2);
+                        for (String a : arr){
+
+                            System.out.println(a);
+                            team_name.setText(a);
+
+                        }
+
                         if (userPost != null) {
                             prof_name.setText(userPost.getName());
+
                         }
 
 
@@ -126,6 +148,7 @@ public class teamProfile extends Fragment {
 
                     Glide.with(getContext()).load(dataSnapshot.getValue()).into(pro_pic);
 
+
                 }
 
 
@@ -138,19 +161,18 @@ public class teamProfile extends Fragment {
         });
 
 
-        profileM[] profileMS = new profileM[]{
-                new profileM("Shambhavi", R.drawable.profile),
-                new profileM("Varun", R.drawable.profile),
-                new profileM("Mansi", R.drawable.profile),
-                new profileM("Manasvi", R.drawable.profile)
-        };
+//        profileM[] profileMS = new profileM[]{
+//                new profileM("Shambhavi", R.drawable.profile),
+//                new profileM("Varun", R.drawable.profile),
+//                new profileM("Mansi", R.drawable.profile),
+//                new profileM("Manasvi", R.drawable.profile)
+//        };
+//
+//        adapter = new profileAdapter(getContext(), profileMS);
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//
 
-        adapter = new profileAdapter(getContext(), profileMS);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
-
-        team_name.setText("Roadies");
 
         return vt;
 

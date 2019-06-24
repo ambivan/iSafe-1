@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.isafe.Classes.MyListData;
+import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,7 +36,7 @@ public class CreateEvent extends Activity {
     FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
 
-    Button createevent;
+    Button createevent, cancel;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -51,7 +52,17 @@ public class CreateEvent extends Activity {
         college = (EditText) findViewById(com.example.isafe.R.id.college);
         city = (EditText) findViewById(com.example.isafe.R.id.cityname);
 
+        cancel = (Button) findViewById(R.id.cancel);
         sdate = date.getText().toString();
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                HomePageActivity.frag = 1;
+                startActivity(new Intent(CreateEvent.this, HomePageActivity.class));
+            }
+        });
 
 
             date.addTextChangedListener(new TextWatcher() {
@@ -97,7 +108,7 @@ public class CreateEvent extends Activity {
             }
         });
 
-        createevent = (Button) findViewById(com.example.isafe.R.id.createeventbutton);
+        createevent = (Button) findViewById(R.id.createeventbutton);
 
         createevent.setOnClickListener(new View.OnClickListener() {
             @Override

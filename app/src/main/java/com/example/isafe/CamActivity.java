@@ -35,7 +35,7 @@ import java.util.Date;
 public class CamActivity extends AppCompatActivity {
 
     Button cam, attach;
-    int CAMERA_REQUEST = 1;
+    private int CAMERA_REQUEST = 1;
 
     static ImageView image, image2, image3;
     String path, userid;

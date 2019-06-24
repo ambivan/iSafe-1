@@ -23,9 +23,9 @@ import com.example.isafe.Activities.CreateEvent;
 import com.example.isafe.Adapters.MyListAdapter;
 import com.example.isafe.Classes.MyListData;
 import com.example.isafe.Classes.UserPost;
+import com.example.isafe.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -77,12 +77,10 @@ public class NewsFeed extends Fragment {
       FirebaseApp.initializeApp(getContext());
 
       auth = FirebaseAuth.getInstance();
-       recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
-
+      recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
 
       create = (CardView) vieww.findViewById(com.example.isafe.R.id.create);
       createbutton = (Button) vieww.findViewById(com.example.isafe.R.id.createbutton);
-
       createbutton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
@@ -128,16 +126,60 @@ public class NewsFeed extends Fragment {
     auth.addAuthStateListener(authStateListener);
 
 
-      city = (EditText) vieww.findViewById(com.example.isafe.R.id.city);
+      city = (EditText) vieww.findViewById(R.id.city);
 
-      city.setText("Delhi");
-      city.setEnabled(false);
-
+//      client = LocationServices.getFusedLocationProviderClient(getActivity());
+//
+//      client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+//          @Override
+//          public void onSuccess(Location location) {
+//
+//
+//              String addr1 = "";
+//
+//              Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+//
+//
+//              List<Address> addressList1 = null;
+//              try {
+//
+//                  addressList1 = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+//
+//
+//                  if (addressList1 != null && addressList1.size() > 0) {
+//                      Log.i("PlaceInfo", addressList1.get(0).toString());
+//
+//                      System.out.println("yeah" + addressList1.get(0).getLocality());
+//
+//                      city.setText(addressList1.get(0).getLocality());
+//
+//                      for (int i = 0; i < 7; i++) {
+//
+//                          if (addressList1.get(0).getAddressLine(i) != null) {
+//                              addr1 += addressList1.get(0).getAddressLine(i) + " ";
+//
+//                              System.out.println("add"+addr1);
+//                              System.out.println("add"+ addr1.length());
+//                              System.out.println("add"+addr1);
+//
+//
+//
+//                          }
+//                      }
+//                  }
+//
+//              } catch (IOException e) {
+//                  e.printStackTrace();
+//                  Log.i("nuh", "uh");
+//              }
+//          }
+//      });
 
       final DatabaseReference dbref =  FirebaseDatabase.getInstance().getReference().child("Events");
       dbref.addValueEventListener(new ValueEventListener() {
           @Override
           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
 
               list = new ArrayList<MyListData>();
 
@@ -184,45 +226,6 @@ public class NewsFeed extends Fragment {
       });
 
     checkLocationPermission();
-
-    client = LocationServices.getFusedLocationProviderClient(getActivity());
-
-//        client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-//            @Override
-//            public void onSuccess(Location location) {
-//
-//                String addr1 = "";
-//
-//                Geocoder geocoder = new Geocoder(getContext(),Locale.getDefault());
-//
-//
-//                List<Address> addressList1 = null;
-//                try {
-//                    addressList1 = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-//
-//                    if (addressList1 != null && addressList1.size()>0){
-//                        Log.i("PlaceInfo", addressList1.get(0).toString());
-//
-//                        for (int i=0; i<7; i++) {
-//
-//                            if (addressList1.get(0).getAddressLine(i) != null) {
-//                                addr1 += addressList1.get(0).getAddressLine(i) + " ";
-//
-//                                city.setText(addr1);
-//
-//                            }
-//
-//                        }
-//                    }
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Log.i("nuh", "uh");
-//                }
-//
-//            }
-//        });
-
 
     return vieww;
   }

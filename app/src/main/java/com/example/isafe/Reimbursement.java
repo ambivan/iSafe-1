@@ -9,34 +9,30 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.isafe.Activities.HomePageActivity;
-import com.example.isafe.R;
+import com.example.isafe.Classes.Constants;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -46,14 +42,20 @@ public class Reimbursement extends Fragment {
     ImageView bill;
     Button attach, send;
 
+    final static int PICK_PDF_CODE = 2342;
+
     final int CAMERA_REQUEST = 1;
 
 
     Uri photoURI;
+    TextView file, support;
 
     String path;
 
     private static final int SELECT_FILE = 2;
+
+    StorageReference mStorageReference;
+    DatabaseReference mDatabaseReference;
 
 
     @Override
@@ -61,8 +63,14 @@ public class Reimbursement extends Fragment {
 
         vr = inflater.inflate(R.layout.reimbursement, container, false);
 
+
+        mStorageReference = FirebaseStorage.getInstance().getReference();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
         bill = (ImageView) vr.findViewById(R.id.bill);
         send = (Button) vr.findViewById(R.id.attachedsend);
+        file = (TextView) vr.findViewById(R.id.filename);
+        support = (TextView) vr.findViewById(R.id.support);
 
 
         if (Build.VERSION.SDK_INT >= 23){
@@ -88,9 +96,9 @@ public class Reimbursement extends Fragment {
 
                             Intent intent = new Intent();
                             intent.setAction(Intent.ACTION_GET_CONTENT);
-                            intent.setType("image*/application/pdf");
+                            intent.setType("application/pdf");
 
-                            startActivityForResult(intent, 1212);
+                            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PDF_CODE);
 
 
                         }else if ("png/jpeg".equals(options[which])){
@@ -125,83 +133,32 @@ public class Reimbursement extends Fragment {
 
     }
 
-    private void pictake(Intent intent) {
-
-        System.out.println("Blehhhh");
-
-        if(intent.resolveActivity(getActivity().getApplicationContext().getPackageManager()) != null){
-            File photofile = createPhotoFile();
-            System.out.println("Blehhhh");
 
 
-            if (photofile != null){
-
-                path = photofile.getAbsolutePath();
-
-                photoURI = FileProvider.getUriForFile(getContext(), "com.example.isafe.fileprovider", photofile);
-
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-
-                startActivityForResult(intent, CAMERA_REQUEST);
-
-            }
-        }
-    }
-
-    private File createPhotoFile() {
-
-        String name = new SimpleDateFormat("yyyy_MM_dd").format(new Date());
-        File storagedir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = null;
-        try {
-            image = File.createTempFile(name, ".jpg", storagedir);
-        }catch (IOException e){
-            Log.d("mine", e.toString());
-        }
-        return image;
-    }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
-//        if (resultCode == RESULT_OK) {
-//            if (requestCode == CAMERA_REQUEST) {
-//
-//                    photobill = BitmapFactory.decodeFile(path);
-//                    bill.setImageBitmap(photobill);
-//
-//            }
-//
-//        }
-
-        if (requestCode == 1212){
+        if (requestCode == PICK_PDF_CODE) {
 
             if (resultCode == RESULT_OK) {
                 // Get the Uri of the selected file
                 Uri uri = data.getData();
-                String uriString = uri.toString();
-                File myFile = new File(uriString);
-                String path = myFile.getAbsolutePath();
-                String displayName = null;
 
-                if (uriString.startsWith("content://")) {
-                    Cursor cursor = null;
-                    try {
-                        cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-                        if (cursor != null && cursor.moveToFirst()) {
-                            displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                        }
-                    } finally {
-                        cursor.close();
-                    }
-                } else if (uriString.startsWith("file://")) {
-                    displayName = myFile.getName();
-                }
+
+                bill.setVisibility(View.GONE);
+                support.setVisibility(View.GONE);
+
+                String u = getFileName(uri);
+                file.setText(u);
+
+                uploadFile(uri);
+
+
+
             }
-
         }
 
 
@@ -217,19 +174,10 @@ public class Reimbursement extends Fragment {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         Task<Uri> img = storageReference.getDownloadUrl();
 
-
-
-
                         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
 
-                                ProgressDialog mProgress = new ProgressDialog(getActivity());
-                                mProgress.setCancelable(false);
-                                mProgress.setCanceledOnTouchOutside(false);
-                                mProgress.setTitle("Creating Account");
-                                mProgress.setMessage("Please wait while account is being created...");
-                                mProgress.show();
                                 String url = uri.toString();
                                 FirebaseDatabase.getInstance()
                                         .getReference()
@@ -237,8 +185,6 @@ public class Reimbursement extends Fragment {
                                         .setValue(url);
                                 System.out.println(url);
                                 Glide.with(getContext()).load(url).into(bill);
-                                mProgress.dismiss();
-
                             }
                         });
 
@@ -250,6 +196,73 @@ public class Reimbursement extends Fragment {
 
         }
 
+    }
+
+    private void uploadFile(Uri data) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading File .....");
+        progressDialog.setProgress(0);
+        progressDialog.show();
+
+        final String fileName = Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis();
+
+        final StorageReference sRef = mStorageReference.child("Reimbursements").child(fileName);
+        sRef.putFile(data)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @SuppressWarnings("VisibleForTests")
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                        String url = sRef.getDownloadUrl().toString();
+                        mDatabaseReference
+                                .child("Users")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .child("Reimbursements")
+                                .child(fileName)
+                                .setValue(url);
+
+                        progressDialog.dismiss();
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Toast.makeText(getActivity().getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                int progress = (int) ((100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount());
+                progressDialog.setProgress(progress);
+            }
+        });
+
+
+    }
+
+    public String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
 }

@@ -17,12 +17,14 @@
 
     <ImageView
         android:id="@+id/linlay3"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:gravity="center_horizontal"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src = "@drawable/isafeassist"/>
 
@@ -34,7 +36,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:textAlignment="center"
-        android:textStyle="italic|bold"
+        android:textStyle="italic"
         android:textColor="#000"
         android:fontFamily="@font/roboto"
         android:text="@string/assist"
@@ -67,13 +69,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
+        android:elevation="25dp"
         android:background="@drawable/call_buttonbg"
         android:fontFamily="@font/roboto"
         android:text="Call for Assistance"
         android:textAllCaps="false"
-        android:textSize="25dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#fff"
+        android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@+id/get"
         tools:layout_editor_absoluteX="40dp" />
 

@@ -52,7 +52,8 @@ public class MeetingReport extends AppCompatActivity {
                         .push()
                         .setValue(new Meeting(sagen, sminutes, stask));
 
-                finish();
+
+                Toast.makeText(MeetingReport.this, "Your meeting report has been recorded.", Toast.LENGTH_SHORT).show();
                 HomePageActivity.frag = 1;
                 startActivity(new Intent(MeetingReport.this, HomePageActivity.class));
 

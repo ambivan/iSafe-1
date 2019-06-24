@@ -114,6 +114,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                             &&!key.equals("teamname")
                             && !key.equals("Registered Events")
                             && !key.equals("Domain")
+                            &&!key.equals("Reimbursements")
                             && !key.equals("Events")
                             &&!key.equals("Liked Events")
                             && !key.equals("Profile URL")){
@@ -213,6 +214,9 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                                 && !key.equals("Meeting Reports")
                                                 &&!key.equals("teamname")
                                                 && !key.equals("Registered Events")
+                                                &&!key.equals("Reimbursements")
+                                                && !key.equals("Domain")
+                                                &&!key.equals("Profile URL")
                                                 &&!key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
 
 

@@ -1,6 +1,7 @@
 package com.example.isafe.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -67,26 +68,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 //        if (myListData.getIs_liked().equals("1")) {
 //            holder.like.setImageResource(R.drawable.redheart);
 //        }
-
-        holder.register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MyListData mylist = list.get(mla);
-
-                FirebaseDatabase.getInstance().getReference()
-                        .child("Users")
-                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .child("Registered Events")
-                        .push()
-                        .setValue(new MyListData(mylist.getTitle(), mylist.getCity(),
-                                mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic(), "0"));
-
-                holder.register.setEnabled(false);
-                holder.register.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
-                holder.register.setText("Registered");
-            }
-        });
-
 
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,21 +196,27 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             this.send = (ImageView) itemView.findViewById(com.example.isafe.R.id.send);
             this.msg = (ImageView) itemView.findViewById(com.example.isafe.R.id.chatt);
 
-
-
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    System.out.println(getPosition());
                     mla = getPosition();
 
+                    MyListData mylist = list.get(mla);
 
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("Registered Events")
+                            .push()
+                            .setValue(new MyListData(mylist.getTitle(), mylist.getCity(),
+                                    mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic(), "0"));
 
-
+                    register.setEnabled(false);
+                    register.setBackgroundResource(R.drawable.report);
+                    register.setText("Registered");
                 }
             });
-
 //      like.setOnClickListener(new View.OnClickListener() {
 //          @Override
 //          public void onClick(View v) {
@@ -245,6 +232,29 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 //                      .setValue(new MyListData(ma.getTitle(), ma.getCity(), ma.getEvent(), ma.getDate(), ma.getTime(), ma.getTopic(), ma.getIs_liked()));
 //          }
 //      });
+
+            send.setOnClickListener(new View.OnClickListener() {
+
+
+                @Override
+                public void onClick(View v) {
+
+                    int m = getPosition();
+                    Intent a = new Intent(Intent.ACTION_SEND);
+
+                    MyListData mll = list.get(m);
+
+                    final String event = mll.getTitle() + mll.getCity() + " is" + mll.getEvent() + " " + mll.getDate() + ".\n" + mll.getTime() + "\n" + mll.getTopic();
+
+                    a.setType("text/plain");
+                    String shareBody = "Hey!!" + "\n" + event + "\n" + "Would You like to be a part of this?";
+                    String shareSub = "iSAFE";
+                    a.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                    a.putExtra(Intent.EXTRA_TEXT, shareBody);
+                    context.startActivity(Intent.createChooser(a, "Share Using"));
+
+                }
+            });
         }
     }
 }

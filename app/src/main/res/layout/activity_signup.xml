@@ -15,7 +15,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="#fff"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.isafe.Activities.SignupActivity">
 
   <LinearLayout
@@ -27,8 +27,9 @@
       android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
         android:src="@drawable/capt"
 
         android:layout_marginTop="60dp"
@@ -51,7 +52,7 @@
           android:fontFamily="sans-serif"
           android:text="Hi there "
           android:textColor="#000"
-          android:textSize="40sp"
+          android:textSize="25sp"
           />
 
       <ImageView
@@ -74,7 +75,7 @@
         android:gravity="center_horizontal"
         android:text="Let's start by knowing you! "
         android:textColor="#000"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
     <TextView
 
@@ -86,7 +87,7 @@
         android:gravity="center_horizontal"
         android:text="Who are You ?"
         android:textColor="#000"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
 
     <Spinner
@@ -109,6 +110,7 @@
         android:layout_marginRight="80dp"
         android:text="Proceed"
         android:id="@+id/proceed"
+        android:layout_marginBottom="20dp"
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="20sp"

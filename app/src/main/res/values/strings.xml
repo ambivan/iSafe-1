@@ -42,5 +42,6 @@
     <string name="title_activity_home_page">HomePage</string>
     <string name="title_activity_comp">Comp</string>
     <string name="title_activity_agenda__meeting">Agenda_Meeting</string>
+    <string name="addproject">Attach pdf and ppt or images if any about your project</string>
 
 </resources>

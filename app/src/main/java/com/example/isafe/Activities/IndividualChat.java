@@ -58,6 +58,7 @@ public class IndividualChat extends AppCompatActivity {
                             && !key.equals("Domain")
                             && !key.equals("Events")
                             &&!key.equals("Liked Events")
+                            &&!key.equals("Reimbursements")
                             && !key.equals("Profile URL")){
 
                         if (key != null) {
