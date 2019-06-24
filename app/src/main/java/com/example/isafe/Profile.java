@@ -202,7 +202,6 @@ public class Profile extends Fragment {
 
                 startActivityForResult(intent, REQUEST_CAMERA);
 
-
             }
         }
     }

@@ -2,155 +2,156 @@
 
 <ScrollView
 
-    android:background="#fff"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".CamActivity">
+    android:layout_height="match_parent"
+    android:background="#fff">
 
-
-    <TextView
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/roboto"
-        android:padding="15sp"
-        android:textSize="30sp"
-        android:textColor="#000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/reportacc"
-        android:text="Report Accident"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_gravity = "bottom"
+    <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/linlay"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/reportacc">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".CamActivity">
 
-
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="150dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:src="@drawable/camera1" />
 
         <TextView
-            android:layout_margin="5dp"
+            android:id="@+id/reportacc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto"
             android:padding="15sp"
-            android:textSize="20sp"
+            android:text="Report Accident"
+            android:textAlignment="center"
             android:textColor="#000"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:id="@+id/upload"
-            android:text="Click at least 3 photos of the nearby location."
-            android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_gravity = "bottom"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/linlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="30dp"
-            android:orientation="horizontal">
+            android:layout_gravity="bottom"
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/reportacc">
 
 
             <ImageView
-                android:id="@+id/image2"
+                android:id="@+id/image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:padding="5dp"
-                android:background="@drawable/outline"
-                android:layout_gravity="start"
-                android:src="@drawable/addphoto" />
+                android:layout_gravity="center"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/camera1" />
+
+            <TextView
+                android:id="@+id/upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/roboto"
+                android:padding="15sp"
+                android:text="Click at least 3 photos of the nearby location."
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-            <ImageView
-                android:id="@+id/image3"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:padding="5dp"
-                android:background="@drawable/outline"
-                android:layout_gravity="end"
-                android:src="@drawable/addphoto" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="start"
+                    android:background="@drawable/outline"
+                    android:padding="5dp"
+                    android:src="@drawable/addphoto" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="end"
+                    android:background="@drawable/outline"
+                    android:padding="5dp"
+                    android:src="@drawable/addphoto" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
 
+        <Button
+            android:id="@+id/clickpic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/button_first_bg"
+            android:fontFamily="@font/roboto"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:text="Click"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linlay"
 
-    </LinearLayout>
+            />
 
+        <Button
+            android:id="@+id/attach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="80dp"
+            android:background="@drawable/button_first_bg"
+            android:text="Attach"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/linlay"
 
-    <Button
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:paddingRight="50dp"
-        android:paddingLeft="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linlay"
-        android:layout_marginTop="25dp"
-        android:id="@+id/clickpic"
-        android:text="Click"
-        android:textSize="20sp"
-        android:fontFamily="@font/roboto"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/button_first_bg"
-
-        />
-
-    <Button
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/linlay"
-        android:layout_marginTop="25dp"
-        android:id="@+id/attach"
-        android:text="Attach"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:background="@drawable/button_first_bg"
-
-        />
+            />
 
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

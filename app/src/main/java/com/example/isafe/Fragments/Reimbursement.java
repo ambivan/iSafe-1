@@ -1,4 +1,4 @@
-package com.example.isafe;
+package com.example.isafe.Fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -23,9 +23,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.isafe.Activities.HomePageActivity;
 import com.example.isafe.Classes.Constants;
+import com.example.isafe.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -42,12 +42,8 @@ public class Reimbursement extends Fragment {
     ImageView bill;
     Button attach, send;
 
-    final static int PICK_PDF_CODE = 2342;
+    final int PICK_PDF_CODE = 2342;
 
-    final int CAMERA_REQUEST = 1;
-
-
-    Uri photoURI;
     TextView file, support;
 
     String path;
@@ -80,8 +76,6 @@ public class Reimbursement extends Fragment {
         bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                System.out.println("Blehhhh");
 
                 final CharSequence options[] = new CharSequence[] {"PDF", "png/jpeg"};
 
@@ -172,17 +166,22 @@ public class Reimbursement extends Fragment {
                 storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Task<Uri> img = storageReference.getDownloadUrl();
+
+
+                        final String fileName = Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis();
 
                         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
 
                                 String url = uri.toString();
-                                FirebaseDatabase.getInstance()
-                                        .getReference()
-                                        .child("URL")
+                                mDatabaseReference
+                                        .child("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child("Reimbursements")
+                                        .child(fileName)
                                         .setValue(url);
+
                                 System.out.println(url);
                                 Glide.with(getContext()).load(url).into(bill);
                             }
@@ -208,7 +207,7 @@ public class Reimbursement extends Fragment {
 
         final String fileName = Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis();
 
-        final StorageReference sRef = mStorageReference.child("Reimbursements").child(fileName);
+        final StorageReference sRef = mStorageReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Reimbursements").child(fileName);
         sRef.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")

@@ -40,26 +40,26 @@ import java.util.List;
 
 public class NewsFeed extends Fragment {
 
-  private FusedLocationProviderClient client;
+    private FusedLocationProviderClient client;
 
-  EditText city;
+    EditText city;
 
-  CardView create;
+    CardView create;
 
-   FirebaseAuth auth;
-  FirebaseAuth.AuthStateListener authStateListener;
-  FirebaseUser user;
+    FirebaseAuth auth;
+    FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseUser user;
     String userid;
     UserPost userPost;
 
-    Button createbutton ;
+    Button createbutton;
 
     MyListAdapter recyclerAdapter;
 
-    int i ;
+    int i;
 
     FirebaseDatabase database;
-    DatabaseReference myRef ;
+    DatabaseReference myRef;
     List<MyListData> list;
     RecyclerView recycle;
     Button view;
@@ -68,65 +68,66 @@ public class NewsFeed extends Fragment {
 
 
     View vieww;
-  @Override
-  public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
-      vieww =  inflater.inflate(com.example.isafe.R.layout.tab1, container, false);
+    @Override
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+
+        vieww = inflater.inflate(com.example.isafe.R.layout.tab1, container, false);
 
 
-      FirebaseApp.initializeApp(getContext());
+        FirebaseApp.initializeApp(getContext());
 
-      auth = FirebaseAuth.getInstance();
-      recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
+        auth = FirebaseAuth.getInstance();
+        recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
 
-      create = (CardView) vieww.findViewById(com.example.isafe.R.id.create);
-      createbutton = (Button) vieww.findViewById(com.example.isafe.R.id.createbutton);
-      createbutton.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              startActivity(new Intent(getActivity(), CreateEvent.class));
-          }
-      });
-
-    authStateListener = new FirebaseAuth.AuthStateListener() {
-      @Override
-      public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-        user = firebaseAuth.getCurrentUser();
-
-          userid = user.getUid();
-
-          DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
-
-          databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        create = (CardView) vieww.findViewById(com.example.isafe.R.id.create);
+        createbutton = (Button) vieww.findViewById(com.example.isafe.R.id.createbutton);
+        createbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), CreateEvent.class));
+            }
+        });
 
-               userPost = dataSnapshot.getValue(UserPost.class);
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-              if (userPost.getPost().equals("Team Leader")){
+                user = firebaseAuth.getCurrentUser();
+
+                userid = user.getUid();
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        userPost = dataSnapshot.getValue(UserPost.class);
+
+                        if (userPost.getPost().equals("Team Leader")) {
 
 
-              } else {
+                        } else {
 
-                  create.setVisibility(View.GONE);
+                            create.setVisibility(View.GONE);
 
-              }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-          });
-
-        }
-    };
-    auth.addAuthStateListener(authStateListener);
+        };
+        auth.addAuthStateListener(authStateListener);
 
 
-      city = (EditText) vieww.findViewById(R.id.city);
+        city = (EditText) vieww.findViewById(R.id.city);
 
 //      client = LocationServices.getFusedLocationProviderClient(getActivity());
 //
@@ -175,94 +176,92 @@ public class NewsFeed extends Fragment {
 //          }
 //      });
 
-      final DatabaseReference dbref =  FirebaseDatabase.getInstance().getReference().child("Events");
-      dbref.addValueEventListener(new ValueEventListener() {
-          @Override
-          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Events");
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-              list = new ArrayList<MyListData>();
+                list = new ArrayList<MyListData>();
 
-              for (DataSnapshot child: dataSnapshot.getChildren()) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
 
-                  System.out.println(child.getKey());
+                    System.out.println(child.getKey());
 
-                  System.out.println("list" + child.getValue());
+                    System.out.println("list" + child.getValue());
 
-                  MyListData events = child.getValue(MyListData.class);
+                    MyListData events = child.getValue(MyListData.class);
 
-                  MyListData eventlist = new MyListData();
+                    MyListData eventlist = new MyListData();
 
-                  String title = events.getTitle();
-                  String event = events.getEvent();
-                  String city = events.getCity();
-                  String date = events.getDate();
-                  String time = events.getTime();
-                  String topic = events.getTopic();
+                    String title = events.getTitle();
+                    String event = events.getEvent();
+                    String city = events.getCity();
+                    String date = events.getDate();
+                    String time = events.getTime();
+                    String topic = events.getTopic();
 
-                  eventlist.setTitle(title + ",");
-                  eventlist.setCity(city);
-                  eventlist.setEvent("Organizing an " + event);
-                  eventlist.setDate("on " + date);
-                  eventlist.setTime("Starting at " + time);
-                  eventlist.setTopic( "Topic: " + topic);
+                    eventlist.setTitle(title + ",");
+                    eventlist.setCity(city);
+                    eventlist.setEvent("Organizing an " + event);
+                    eventlist.setDate("on " + date);
+                    eventlist.setTime("Starting at " + time);
+                    eventlist.setTopic("Topic: " + topic);
 
-                  list.add(eventlist);
+                    list.add(eventlist);
 
-                  recyclerAdapter = new MyListAdapter(list, getActivity());
-                  RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
-                  recyclerView.setLayoutManager(recyce);
-                  recyclerView.setHasFixedSize(true);
-                  recyclerView.setAdapter(recyclerAdapter);
+                    recyclerAdapter = new MyListAdapter(list, getActivity());
+                    RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
+                    recyclerView.setLayoutManager(recyce);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setAdapter(recyclerAdapter);
 
-              }
+                }
 
-          }
+            }
 
-          @Override
-          public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-          }
-      });
+            }
+        });
 
-    checkLocationPermission();
+        checkLocationPermission();
 
-    return vieww;
-  }
-
+        return vieww;
+    }
 
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
 
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
-  private void checkLocationPermission() {
-    if (ContextCompat.checkSelfPermission(getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-      if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
-              android.Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-        new AlertDialog.Builder(getContext())
-                .setTitle("Location Permission Needed")
-                .setMessage("This app needs the Location permission, please accept to use location functionality")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                  @Override
-                  public void onClick(DialogInterface dialogInterface, int i) {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                            MY_PERMISSIONS_REQUEST_LOCATION );
-                  }
-                })
-                .create()
-                .show();
-      } else {
-        ActivityCompat.requestPermissions(getActivity(),
-                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                MY_PERMISSIONS_REQUEST_LOCATION );
-      }
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Location Permission Needed")
+                        .setMessage("This app needs the Location permission, please accept to use location functionality")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+        }
     }
-  }
 
 
 }
