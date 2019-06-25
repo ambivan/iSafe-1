@@ -360,18 +360,20 @@
         <Button
 
             android:id="@+id/report"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="90dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="90dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/reportbuttonbg"
+            android:elevation="25dp"
             android:fontFamily="@font/roboto"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
             android:text="Report"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="20sp"
 
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/relative3" />

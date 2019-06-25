@@ -25,7 +25,6 @@ import com.example.isafe.Classes.MyListData;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,9 +39,7 @@ import java.util.List;
 
 public class NewsFeed extends Fragment {
 
-    private FusedLocationProviderClient client;
-
-    EditText city;
+    EditText city1;
 
     CardView create;
 
@@ -54,17 +51,19 @@ public class NewsFeed extends Fragment {
 
     Button createbutton;
 
+    String c;
+
     MyListAdapter recyclerAdapter;
 
     int i;
 
-    FirebaseDatabase database;
-    DatabaseReference myRef;
     List<MyListData> list;
     RecyclerView recycle;
     Button view;
     RecyclerView recyclerView;
     private FirebaseRecyclerAdapter adapter;
+
+    Button fin;
 
 
     View vieww;
@@ -76,6 +75,10 @@ public class NewsFeed extends Fragment {
 
 
         FirebaseApp.initializeApp(getContext());
+
+        list = new ArrayList<MyListData>();
+
+        fin = vieww.findViewById(R.id.find);
 
         auth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
@@ -127,54 +130,47 @@ public class NewsFeed extends Fragment {
         auth.addAuthStateListener(authStateListener);
 
 
-        city = (EditText) vieww.findViewById(R.id.city);
+        city1 = (EditText) vieww.findViewById(R.id.city);
 
-//      client = LocationServices.getFusedLocationProviderClient(getActivity());
+//        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(getActivity());
 //
-//      client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
-//          @Override
-//          public void onSuccess(Location location) {
-//
-//
-//              String addr1 = "";
-//
-//              Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+//        client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+//            @Override
+//            public void onSuccess(Location location) {
 //
 //
-//              List<Address> addressList1 = null;
-//              try {
+//                String addr1 = "";
 //
-//                  addressList1 = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-//
-//
-//                  if (addressList1 != null && addressList1.size() > 0) {
-//                      Log.i("PlaceInfo", addressList1.get(0).toString());
-//
-//                      System.out.println("yeah" + addressList1.get(0).getLocality());
-//
-//                      city.setText(addressList1.get(0).getLocality());
-//
-//                      for (int i = 0; i < 7; i++) {
-//
-//                          if (addressList1.get(0).getAddressLine(i) != null) {
-//                              addr1 += addressList1.get(0).getAddressLine(i) + " ";
-//
-//                              System.out.println("add"+addr1);
-//                              System.out.println("add"+ addr1.length());
-//                              System.out.println("add"+addr1);
+//                Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
 //
 //
+//                List<Address> addressList1 = null;
+//                try {
 //
-//                          }
-//                      }
-//                  }
+//                    addressList1 = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 //
-//              } catch (IOException e) {
-//                  e.printStackTrace();
-//                  Log.i("nuh", "uh");
-//              }
-//          }
-//      });
+//
+//                    if (addressList1 != null && addressList1.size() > 0) {
+//                        Log.i("PlaceInfo", addressList1.get(0).toString());
+//
+//                        System.out.println("yeah" + addressList1.get(0).getLocality());
+//
+//                        city1.setText(addressList1.get(0).getLocality());
+//
+//                        c = addressList1.get(0).getLocality();
+//
+//                    }
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    Log.i("nuh", "uh");
+//                }
+//            }
+//        });
+//
+
+        city1.setText("Delhi");
+        checkLocationPermission();
 
         final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Events");
         dbref.addValueEventListener(new ValueEventListener() {
@@ -182,24 +178,23 @@ public class NewsFeed extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                list = new ArrayList<MyListData>();
+                list.clear();
 
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                EditText city2 = vieww.findViewById(R.id.city);
 
-                    System.out.println(child.getKey());
-
-                    System.out.println("list" + child.getValue());
+                for (final DataSnapshot child : dataSnapshot.getChildren()) {
 
                     MyListData events = child.getValue(MyListData.class);
 
-                    MyListData eventlist = new MyListData();
+                    final MyListData eventlist = new MyListData();
 
                     String title = events.getTitle();
                     String event = events.getEvent();
-                    String city = events.getCity();
+                    final String city = events.getCity();
                     String date = events.getDate();
                     String time = events.getTime();
                     String topic = events.getTopic();
+                    String isliked = events.getIs_liked();
 
                     eventlist.setTitle(title + ",");
                     eventlist.setCity(city);
@@ -207,8 +202,13 @@ public class NewsFeed extends Fragment {
                     eventlist.setDate("on " + date);
                     eventlist.setTime("Starting at " + time);
                     eventlist.setTopic("Topic: " + topic);
+                    eventlist.setIs_liked(isliked);
 
-                    list.add(eventlist);
+                    if (city2.getText().toString().equals(eventlist.getCity())){
+
+                        list.add(eventlist);
+
+                    }
 
                     recyclerAdapter = new MyListAdapter(list, getActivity());
                     RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
@@ -225,8 +225,6 @@ public class NewsFeed extends Fragment {
 
             }
         });
-
-        checkLocationPermission();
 
         return vieww;
     }

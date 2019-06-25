@@ -27,7 +27,7 @@ public class MeetingReport extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(com.example.isafe.R.layout.activity_meeting_report);
+    setContentView(R.layout.activity_meeting_report);
 
     agen = (EditText) findViewById(R.id.agendaa);
     minutes = (EditText) findViewById(R.id.mins);

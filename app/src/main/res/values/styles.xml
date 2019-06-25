@@ -13,6 +13,13 @@
 
     </style>
 
+    <style name="Custom" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
 
@@ -45,7 +52,7 @@
 
     <style name="NavigationDrawer">
         <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">@font/actor</item>
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 
 

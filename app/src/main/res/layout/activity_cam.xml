@@ -19,31 +19,53 @@
         tools:context=".CamActivity">
 
 
-        <TextView
-            android:id="@+id/reportacc"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/roboto"
-            android:padding="15sp"
-            android:text="Report Accident"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="#fff"
+            android:id="@+id/appbarlay"
+            android:theme="@style/AppTheme.NoActionBar">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar1"
+                android:layout_width="match_parent"
+
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/linlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginTop="80dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/reportacc">
+            app:layout_constraintTop_toBottomOf="@id/appbarlay">
+
+            <TextView
+                android:id="@+id/reportacc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/roboto"
+                android:padding="15sp"
+                android:text="Report Accident"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="30sp"
+                />
 
 
             <ImageView
@@ -75,6 +97,8 @@
 
 
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/twocam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"

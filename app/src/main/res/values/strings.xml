@@ -44,4 +44,178 @@
     <string name="title_activity_agenda__meeting">Agenda_Meeting</string>
     <string name="addproject">Attach pdf and ppt or images if any about your project</string>
 
+    <string name="check1">CHECKLIST 1 - STAGE 1 AUDIT (DURING FEASIBILITY STUDY)</string>
+    <string name="q1"> What is the category of road for which the feasibility study has been carried out e.g.,
+      expressway, national highway, state highway or other roads?
+    </string>
+    <string name="q2">Is the road intended to carry high-speed traffic or serve local access needs only?</string>
+    <string name="q3">What kind of traffic is likely ranging from high speed mixed traffic or for more general
+    use, including bicycles and significant pedestrian traffic?</string>
+    <string name="q4">Do the chosen type of road and the standards,\n alignment and cross-section offer
+    optimum road\n safety to all groups of road user including\n disabled in combination with
+    the\n expected traffic density and speeds?</string>
+    <string name="q5"> Will the proposed scheme be compatible\n with the standard of conjoining road
+    sections?</string>
+    <string name="q6"> Will there be sufficient opportunities for overtaking?</string>
+    <string name="q7">Are the number and distribution of intersections appropriate in relation to:
+    a) The desired function of the new road?
+    b) Impact on the surrounding, adjacent and/or off-loaded road network (does the
+    project simply move present problems?)?\n
+    c) Accessibility for public transport and emergency vehicles?</string>
+    <string name="q8"> Are the proposed horizontal and vertical\n alignments consistent with visibility
+    requirements\n both along the road and junctions?</string>
+    <string name="q9"> Has lighting been planned? If so, does the \nlighting offer maximum safety, both on\n links
+    and at junctions?</string>
+    <string name="q10">Will the project have any effect on existing pedestrian\n and cycle routes?</string>
+    <string name="q11">Does the project include measures for\n vulnerable road-users and if so, do\n these
+    measures offer maximum safety?\n Do the available accident data for the existing/adjacent\n road network give reason to
+    expect particular\n road safety problems in the proposed project?</string>
+    <string name="q12"> Whether non-motorised traffic is expected\n to cause problems?</string>
+    <string name="q13">What is the likelihood of future widening?</string>
+    <string name="q14"> Check any special events creating unusual or hazardous conditions and any other
+    matter, which may have a bearing on safety.</string>
+
+    <string name="check2">CHECKLIST 2 - STAGE 2 AUDIT (COMPLETION OF PRELIMINARY DESIGN)</string>
+    <string name="q15">Is the desired speed compatible with the cross-section and other design elements
+     and is the desired speed realistic?
+   </string>
+
+
+    <string name="q16">Is there adequate space for all groups of road users ?</string>
+    <string name="q17">Is there appropriate separation between various groups of road users?</string>
+    <string name="q18">Do the proposed alignment satisfy any demands on visibility at junctions and
+    sight distances on free sections?</string>
+    <string name="q19"> Will sight distances/visibility be blocked by traffic signs, guardrails, bridge
+    parapets, buildings, rigid obstacles or plantations (now and in the future)</string>
+    <string name="q20">Junctions, interchanges and their design:
+    a) Will road users coming from all directions (including side roads) be able to see
+    that they are approaching a conflict area? Are give-way lines, stop lines,
+    turning lanes and ramps clearly visible?
+    b) Are existing conjoining and intersecting roads appropriately adjusted and
+    matched to the new road (without sharp bends and gradients)?
+    c) Do the routes of road users through the junction seem clear for all directions
+    and manoeuvres?
+    d) Is there sufficient space for all types of vehicles to undertake all manoeuvres?
+    e) Are the crossing facilities for pedestrians and non-motorised traffic adequate
+    and safe?
+    f) Can parking cause problems?
+    g) Have roundabouts been considered?
+
+    In urban areas, ghost markings and left-turning lanes with islands are safest; they
+    prevent overtaking and assist pedestrians and cyclists who are crossing the road.
+</string>
+    <string name="q21">Decide whether or not old, unremoved section of road can give undesired optical
+    directions.</string>
+    <string name="q22">Special points at roundabouts:
+    a)  Are all entrance lanes curved and is speed adequately reduced?
+    b)  Will the central island be visible?
+    c)  Are the measures taken for the benefit of pedestrians from a safe stopping
+    distance and cycle traffic adequate?</string>
+    <string name="q23"> Are existing junctions and intersections adjusted and matched to the new road
+    appropriately (without sharp bends and gradients)?</string>
+    <string name="q24">Are there any constructions that will be difficult to drain ?</string>
+    <string name="q25">Will overtaking be prevented at critical places (not simply by restrictions, but also by
+    making it quite apparent that overtaking is prohibited)?</string>
+
+
+
+
+
+    <string name="q26">If signs and road markings have been proposed:
+    a) Are the markings consistent and are they adequate?
+    b) Has the quantity of information been kept at a reasonable level?</string>
+    <string name="q27">If markings have not been proposed: will special markings be necessary?</string>
+    <string name="q28">Is there any risk that cannot be "marked out of existence"?</string>
+    <string name="q29"> Will there be any large sign constructions? Is so; will guardrails or breakaway safety
+    devices protect them?</string>
+    <string name="q30"> Has it been proposed that lighting be located on the outside or inside of bends?</string>
+    <string name="q31">Will it be possible to carry out maintenance work (on lighting, gantries, plantations,
+    etc.) safely and without using the carriageway or cycle path?</string>
+    <string name="q32">Is the landscaping design or plantation likely to lead to a lowering of safety with mature
+    or seasonal growth? Is frangible vegetation appropriate?</string>
+    <string name="q33"> Are there arrangements for safe access by emergency vehicles? Check the design of
+    medians and barriers, and the ability of emergency vehicles to stop without
+    necessarily disrupting traffic?</string>
+    <string name="q34">  Pedestrians
+    a) Have pedestrian needs been considered?
+    b) If footpaths are not specifically provided, is the road layout safe for use by
+    pedestrians, particularly at blind corners and on bridges?
+    c) Are pedestrian subways or footbridges sited to provide maximum use?
+    d) Is the avoidance of footbridges or subways possible by crossing the road at
+    grade?
+    e) Has specific provision been made for pedestrian crossings, school crossings
+    or pedestrian signals?
+    f) Are pedestrian refuges/kerb extensions needed?
+    g) Whether needs of disabled road users taken care of?</string>
+    <string name="q35"> Have the needs of public transport users been considered? Are bus stops positioned
+    for safety?</string>
+    <string name="q36">Is lighting envisaged in specified locations of the project? Are the difficulties of
+    illuminating sections of the road caused by trees or over bridges, for example? Are
+    there any aspects of the provision of the lighting poles, which would require
+    consideration from the safety point of view in their being struck by vehicles?</string>
+    <string name="q37"> Is adequate safe access to the work site available?</string>
+    <string name="q38"> Are there any factors requiring specific road safety provision, including maintenance?</string>
+    <string name="q39">Are there any traffic management features, which would require special attention
+    during construction or during the transition from construction to full operation?</string>
+    <string name="q40"></string>
+    <string name="q41"></string>
+    <string name="q42"></string>
+    <string name="q43"></string>
+    <string name="q44"></string>
+    <string name="q45"></string>
+    <string name="q46"></string>
+    <string name="q47"></string>
+    <string name="q48"></string>
+    <string name="q49"></string>
+    <string name="q50"></string>
+    <string name="q51"></string>
+    <string name="q52"></string>
+    <string name="q53"></string>
+    <string name="q55"></string>
+    <string name="q56"></string>
+    <string name="q57"></string>
+    <string name="q58"></string>
+    <string name="q59"></string>
+    <string name="q60"></string>
+    <string name="q61"></string>
+    <string name="q62"></string>
+    <string name="q63"></string>
+    <string name="q64"></string>
+    <string name="q65"></string>
+    <string name="q66"></string>
+    <string name="q67"></string>
+    <string name="q68"></string>
+    <string name="q69"></string>
+    <string name="q70"></string>
+    <string name="q71"></string>
+    <string name="q72"></string>
+    <string name="q73"></string>
+    <string name="q74"></string>
+    <string name="q75"></string>
+    <string name="q76"></string>
+    <string name="q77"></string>
+    <string name="q78"></string>
+    <string name="q79"></string>
+    <string name="q80"></string>
+    <string name="q82"></string>
+    <string name="q83"></string>
+    <string name="q84"></string>
+    <string name="q85"></string>
+    <string name="q86"></string>
+    <string name="q87"></string>
+    <string name="q88"></string>
+    <string name="q89"></string>
+    <string name="q90"></string>
+    <string name="q91"></string>
+    <string name="q92"></string>
+    <string name="q93"></string>
+    <string name="q94"></string>
+    <string name="q95"></string>
+    <string name="q96"></string>
+    <string name="q97"></string>
+    <string name="q98"></string>
+    <string name="q99"></string>
+    <string name="q100"></string>
+
+
 </resources>

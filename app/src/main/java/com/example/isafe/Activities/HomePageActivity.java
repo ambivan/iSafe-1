@@ -26,6 +26,8 @@ import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.Feedback;
 import com.example.isafe.Fragments.GoodSamaritan;
 import com.example.isafe.Fragments.Meetings;
+import com.example.isafe.Fragments.Projects;
+import com.example.isafe.Fragments.RoadSafetyAudit;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
 import com.example.isafe.Adapters.Pager;
@@ -279,6 +281,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.RSA) {
 
+            frag1 = new RoadSafetyAudit();
+
         } else if (id == R.id.goodSamaritan) {
 
             frag1 = new GoodSamaritan();
@@ -322,7 +326,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.feedback){
             frag1 = new Feedback();
-        }
+        } else if (id == R.id.projects)
+            frag1 = new Projects();
+
 
         if (frag1 != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

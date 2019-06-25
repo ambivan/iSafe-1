@@ -33,21 +33,16 @@ public class Attendance extends Fragment {
     RecyclerView recyclerView;
     List<MyListData> list;
     MyListAdapter2 recyclerAdapter;
-    ImageView image ;
-
+    ImageView image;
 
 
     private FusedLocationProviderClient client;
 
     View vv;
 
-    Button mark ;
-
+    Button mark;
     TextView regfirst;
-
     Context context;
-
-
 
 
     @Override
@@ -57,6 +52,8 @@ public class Attendance extends Fragment {
 
         recyclerView = (RecyclerView) vv.findViewById(com.example.isafe.R.id.recyclerView2);
         regfirst = (TextView) vv.findViewById(com.example.isafe.R.id.regfirst);
+        list = new ArrayList<MyListData>();
+
 
         mark = (Button) vv.findViewById(R.id.markatt);
         image = (ImageView) vv.findViewById(R.id.heart);
@@ -69,13 +66,9 @@ public class Attendance extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                list = new ArrayList<MyListData>();
+                list.clear();
 
-                for (DataSnapshot child: dataSnapshot.getChildren()) {
-
-                    System.out.println(child.getKey());
-
-                    System.out.println("list cbdsj" + child.getValue());
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
 
                     MyListData events = child.getValue(MyListData.class);
 
@@ -97,13 +90,11 @@ public class Attendance extends Fragment {
 
                     list.add(eventlist);
 
-                    if (list != null){
-
+                    if (list != null) {
                         regfirst.setVisibility(View.GONE);
-
                     }
 
-                    System.out.println(list);
+
 
                     recyclerAdapter = new MyListAdapter2(list, getActivity());
                     RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());

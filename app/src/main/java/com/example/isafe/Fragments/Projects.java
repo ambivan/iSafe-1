@@ -22,10 +22,12 @@ import com.example.isafe.Classes.Constants;
 import com.example.isafe.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -63,12 +65,46 @@ public class Projects extends Fragment {
         project = new ArrayList<>();
         projectlist = (ListView) vp.findViewById(R.id.list5);
 
+        mStorageReference = FirebaseStorage.getInstance().getReference();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+        final DatabaseReference a = mDatabaseReference
+                .child("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Projects");
+
+
+        a.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+
+                    System.out.println("whaaa" + d.getValue());
+                    project.add(String.valueOf(d.getValue()));
+
+                    System.out.println(project);
+
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+
+                    projectlist.setAdapter(arrayAdapter);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final CharSequence options[] = new CharSequence[] {"PDF", "png/jpeg"};
+                final CharSequence options[] = new CharSequence[]{"PDF", "png/jpeg"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setCancelable(false);
@@ -77,7 +113,7 @@ public class Projects extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if ("PDF".equals(options[which])){
+                        if ("PDF".equals(options[which])) {
 
                             Intent intent = new Intent();
                             intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -86,11 +122,11 @@ public class Projects extends Fragment {
                             startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PDF_CODE);
 
 
-                        }else if ("png/jpeg".equals(options[which])){
+                        } else if ("png/jpeg".equals(options[which])) {
 
                             Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            startActivityForResult(pickPhoto , SELECT_FILE);
+                            startActivityForResult(pickPhoto, SELECT_FILE);
 
                         }
                     }
@@ -114,18 +150,19 @@ public class Projects extends Fragment {
             if (resultCode == RESULT_OK) {
                 // Get the Uri of the selected file
                 Uri uri = data.getData();
+                System.out.println(uri);
 
                 String u = getFileName(uri);
+                System.out.println("wh" + u);
+
                 uploadFile(uri);
 
-
-
+                Uri a = Uri.parse((String.valueOf(data.getData())));
+                String ul = a.getLastPathSegment();
+                System.out.println(ul);
             }
-        }
-
-
-        else if (requestCode == SELECT_FILE){
-            if(resultCode == RESULT_OK){
+        } else if (requestCode == SELECT_FILE) {
+            if (resultCode == RESULT_OK) {
                 Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
                 String url = selectedImage.getLastPathSegment();
                 final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -134,23 +171,44 @@ public class Projects extends Fragment {
                 storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Task<Uri> img = storageReference.getDownloadUrl();
 
                         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
 
                                 String url = uri.toString();
-                                FirebaseDatabase.getInstance()
-                                        .getReference()
+                                mDatabaseReference
+                                        .child("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("Projects")
+                                        .push()
                                         .setValue(url);
-                                project.add(url);
-                                System.out.println(project);
 
-                                ArrayAdapter<String > arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+                                final DatabaseReference a = mDatabaseReference
+                                        .child("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child("Projects");
 
-                                projectlist.setAdapter(arrayAdapter);
+                                a.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        for (DataSnapshot b : dataSnapshot.getChildren()) {
+                                            project.add(String.valueOf(b.getValue()));
+
+                                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+
+                                            projectlist.setAdapter(arrayAdapter);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
                             }
                         });
 
@@ -181,15 +239,26 @@ public class Projects extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        String url = sRef.getDownloadUrl().toString();
-                        mDatabaseReference
-                                .child("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .child("Projects")
-                                .child(fileName)
-                                .setValue(url);
+                        sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
 
-                        progressDialog.dismiss();
+                                String url = uri.toString();
+
+                                mDatabaseReference
+                                        .child("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child("Projects")
+                                        .push()
+                                        .setValue(url);
+
+                                progressDialog.dismiss();
+
+
+
+                            }
+                        });
+
 
                     }
                 })

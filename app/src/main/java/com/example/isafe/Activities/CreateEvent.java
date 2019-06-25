@@ -1,10 +1,10 @@
 package com.example.isafe.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -25,7 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CreateEvent extends Activity {
+public class CreateEvent extends AppCompatActivity {
 
     EditText event,date, time,topic, college, city;
     ImageView image;
@@ -44,6 +44,7 @@ public class CreateEvent extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(com.example.isafe.R.layout.activity_create_event);
+
 
         event = (EditText) findViewById(com.example.isafe.R.id.eventtype);
         date = (EditText) findViewById(com.example.isafe.R.id.dateevent);
@@ -122,6 +123,8 @@ public class CreateEvent extends Activity {
                 scity = city.getText().toString();
 
                 if (!TextUtils.isEmpty(sevent)||!TextUtils.isEmpty(sdate)||!TextUtils.isEmpty(stime)||!TextUtils.isEmpty(stopic)||!TextUtils.isEmpty(scollege)||!TextUtils.isEmpty(scity)) {
+
+                    createevent.setBackgroundResource(R.drawable.button_first_bg);
 
                     FirebaseDatabase.getInstance().getReference()
                             .child("Events")

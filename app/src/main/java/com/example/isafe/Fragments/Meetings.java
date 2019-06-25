@@ -66,10 +66,6 @@ public class Meetings extends Fragment {
 
               for (DataSnapshot child: dataSnapshot.getChildren()) {
 
-                  System.out.println(child.getKey());
-
-                  System.out.println("list cbdsj" + child.getValue());
-
                   Meeting events = child.getValue(Meeting.class);
 
                   Meeting eventlist = new Meeting();
