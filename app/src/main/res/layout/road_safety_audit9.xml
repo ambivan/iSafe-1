@@ -8,31 +8,11 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto"
-                android:text="@string/check1"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="20sp"
-
-                />
-
-        </LinearLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,13 +20,12 @@
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/roboto"
-                android:text="@string/check1"
+                android:text="@string/check9"
                 android:textAlignment="center"
                 android:textColor="#000"
                 android:textSize="20sp"
@@ -57,43 +36,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/q1"
-                    android:textColor="#000"
-                    android:textSize="15sp" />
-
-
-            </LinearLayout>
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:backgroundTint="#000"
-                android:fontFamily="@font/roboto"
-                android:hint="Enter your remarks here."
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:background="#D3D1D1" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toTopOf="parent">
@@ -108,8 +50,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q2"
+                        android:text="@string/q96"
                         android:textColor="#000"
                         android:textSize="15sp" />
 
@@ -137,52 +80,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q3"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -200,103 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q4"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q5"
-
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q6"
+                        android:text="@string/q97"
                         android:textColor="#000"
                         android:textSize="15sp" />
 
@@ -324,7 +125,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -339,11 +139,10 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q7"
+                        android:text="@string/q98"
                         android:textColor="#000"
                         android:textSize="15sp" />
 
@@ -371,7 +170,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -386,60 +184,13 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q8"
+                        android:text="@string/q99"
                         android:textColor="#000"
                         android:textSize="15sp" />
 
-                </LinearLayout>
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q9"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -464,7 +215,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -479,13 +229,13 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q10"
+                        android:text="@string/q100"
                         android:textColor="#000"
                         android:textSize="15sp" />
+
 
                 </LinearLayout>
 
@@ -510,7 +260,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -525,11 +274,10 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q11"
+                        android:text="@string/q101"
                         android:textColor="#000"
                         android:textSize="15sp" />
 
@@ -558,7 +306,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -573,48 +320,10 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q12"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q13"
+                        android:text="@string/q102"
                         android:textColor="#000"
                         android:textSize="15sp" />
 
@@ -640,10 +349,8 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
@@ -658,13 +365,103 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/q14"
+                        android:text="@string/q103"
                         android:textColor="#000"
                         android:textSize="15sp" />
+
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#000"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Enter your remarks here."
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#D3D1D1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/q104"
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+
+
+                </LinearLayout>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="#000"
+                    android:fontFamily="@font/roboto"
+                    android:hint="Enter your remarks here."
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#D3D1D1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/q105"
+                        android:textColor="#000"
+                        android:textSize="15sp" />
+
 
                 </LinearLayout>
 
@@ -689,7 +486,8 @@
 
 
             <Button
-                android:id="@+id/next1"
+                android:id="@+id/save9"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -697,11 +495,13 @@
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/reportbuttonbg"
                 android:elevation="25dp"
-                android:text="Next"
+                android:text="Save"
                 android:textAllCaps="false"
                 android:textColor="#fff" />
 
+
         </LinearLayout>
+
 
     </android.support.constraint.ConstraintLayout>
 

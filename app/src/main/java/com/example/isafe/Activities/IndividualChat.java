@@ -85,7 +85,6 @@ public class IndividualChat extends AppCompatActivity {
                                     if (userPost.getName()== null){
 
                                         arrayList2.add("You have no team members yet.");
-                                        System.out.println("hey " + arrayList2);
 
                                     }else {
 

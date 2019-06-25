@@ -100,7 +100,6 @@
     and safe?
     f) Can parking cause problems?
     g) Have roundabouts been considered?
-
     In urban areas, ghost markings and left-turning lanes with islands are safest; they
     prevent overtaking and assist pedestrians and cyclists who are crossing the road.
 </string>
@@ -116,10 +115,6 @@
     <string name="q24">Are there any constructions that will be difficult to drain ?</string>
     <string name="q25">Will overtaking be prevented at critical places (not simply by restrictions, but also by
     making it quite apparent that overtaking is prohibited)?</string>
-
-
-
-
 
     <string name="q26">If signs and road markings have been proposed:
     a) Are the markings consistent and are they adequate?
@@ -157,65 +152,229 @@
     <string name="q38"> Are there any factors requiring specific road safety provision, including maintenance?</string>
     <string name="q39">Are there any traffic management features, which would require special attention
     during construction or during the transition from construction to full operation?</string>
-    <string name="q40"></string>
-    <string name="q41"></string>
-    <string name="q42"></string>
-    <string name="q43"></string>
-    <string name="q44"></string>
-    <string name="q45"></string>
-    <string name="q46"></string>
-    <string name="q47"></string>
-    <string name="q48"></string>
-    <string name="q49"></string>
-    <string name="q50"></string>
-    <string name="q51"></string>
-    <string name="q52"></string>
-    <string name="q53"></string>
-    <string name="q55"></string>
-    <string name="q56"></string>
-    <string name="q57"></string>
-    <string name="q58"></string>
-    <string name="q59"></string>
-    <string name="q60"></string>
-    <string name="q61"></string>
-    <string name="q62"></string>
-    <string name="q63"></string>
-    <string name="q64"></string>
-    <string name="q65"></string>
-    <string name="q66"></string>
-    <string name="q67"></string>
-    <string name="q68"></string>
-    <string name="q69"></string>
-    <string name="q70"></string>
-    <string name="q71"></string>
-    <string name="q72"></string>
-    <string name="q73"></string>
-    <string name="q74"></string>
-    <string name="q75"></string>
-    <string name="q76"></string>
-    <string name="q77"></string>
-    <string name="q78"></string>
-    <string name="q79"></string>
-    <string name="q80"></string>
-    <string name="q82"></string>
-    <string name="q83"></string>
-    <string name="q84"></string>
-    <string name="q85"></string>
-    <string name="q86"></string>
-    <string name="q87"></string>
-    <string name="q88"></string>
-    <string name="q89"></string>
-    <string name="q90"></string>
-    <string name="q91"></string>
-    <string name="q92"></string>
-    <string name="q93"></string>
-    <string name="q94"></string>
-    <string name="q95"></string>
-    <string name="q96"></string>
-    <string name="q97"></string>
-    <string name="q98"></string>
-    <string name="q99"></string>
-    <string name="q100"></string>
+
+    <string name="check3">CHECKLIST 3 - STAGE 3 AUDIT (COMPLETION OF DETAILED DESIGN)</string>
+    <string name="q40">Check whether sight lines are obstructed by:
+    Safety fences
+    Boundary fences
+    Street furniture
+    Parking facilities
+    Signs
+    Landscaping
+    Bridge abutments</string>
+    <string name="q41"> Check whether railway crossings, bridges and other hazards are conspicuous.</string>
+    <string name="q42"> Will sight lines to be obstructed by temporary features such as parked vehicles
+    in lay-byes or parked or queued traffic has been taken care of?</string>
+    <string name="q43"> Lighting columns, traffic signals, sign standards, etc:
+    a)  Have requirements on safe distances to carriageway and cycle path been
+    observed?
+    b) Have breakaway safety devices or such like been proposed?</string>
+    <string name="q44">Signs and markings:
+    a) Are markings consistent along the entire road section?
+    b) Is the information clear?
+    c) Are there enough signs?
+    d) Are there too many signs?
+    e)  Will signs mask each other or traffic signals (be sure to include all plans for
+    signs and markings in your assessment)?
+    f)   Are the signs correctly positioned, without obstructing sight distances/visibility
+    in any way?</string>
+    <string name="q45">Lighting:
+    a) Is there any risk that the lighting can be optically misleading and will it have any
+    detrimental effects on traffic signals and signs?
+    b) Are there any unlit areas that could conceal hazards?
+    c) Will an illuminated side road mislead road users on the planned, unlit road?
+    d) Are all pedestrian crossings illuminated (not merely the formally marked
+    crossings, but also unmarked places where pedestrians could be expected to
+    cross)?
+    e) Will powerful illumination of adjoining areas or strongly illuminated
+    advertisements cause problems?
+    f) Decide whether or not old, unremoved section of road can give undesired optical
+    directions</string>
+    <string name="q46"> Guardrails, hedges and railings:
+    a) Are all vulnerable areas protected?
+    b) Are bridge pillars, steel posts, trees etc., protected by guardrails where
+    necessary?
+    c) Are there places where hedges are necessary to prevent pedestrians from
+    crossing?
+    d) Are the chosen hedges/guardrails "light" enough?
+    e) Do guardrails/road side furniture have any hazardous sharp protruding edges?</string>
+    <string name="q47"> At junction/transition to existing road network (especially from multi-lane to two-lane,
+    end of central reserve)
+    a) Is there sufficient advance warning?
+    b) Are reflector posts correctly positioned?
+    c) Are ghost markings appropriate in connection with the merging of two lanes?
+    d) Is there continuity of edge markings?</string>
+
+    <string name="q48">For two-lane sections prepared for expansion to four lanes with central reserve
+    (e.g. expressways built as "semi-motorways")
+    a) Will road users be clear everywhere that they are not on a one-way, two-lane
+    carriageway?
+    b) Should night illumination of signs be of extra high standard?
+    c) Is overtaking prevented at ail points where prevention is necessary?
+    d) Should special measures be adopted at bridges built with a view to future
+    expansion?</string>
+    <string name="q49"> Additional temporary signs will be necessary for most new constructions. In this
+    context consider:
+    a) Is the text, etc. comprehensible and correct?
+    b) Have all signs etc., been positioned safely?
+    c) When will they be removed?
+    Be sure also to use the separate checklists for specific facilities and measures.</string>
+    <string name="q50">Plantations:
+    a) Will plantations obscure visibility and has a maximum height been specified?
+    b) Are plantations likely to encroach on markings or lighting?
+    c) Will fully-grown trees constitute a hazard (have the requirements on distances
+    to rigid obstacles be observed?)?
+    d) Can maintenance be carried out safely?</string>
+    <string name="q51"> Lay byes:
+    a) Are there any lay-byes available in the section?
+    b) Is the lay bye properly located and it is not inconvenient to the drivers to stop the
+    vehicles?
+    c) Is there any need to modify the lay-bye design (if yes, suggest the parameters
+    that need modification)? /
+    d) Are advance warning signs and markings properly guiding the driver about the
+    lay-bye?
+    e) Is there any need of any additional signs and markings?</string>
+    <string name="q52">Are there any poles located adjacent to moving traffic which could be sited elsewhere?</string>
+    <string name="q53">Have frangible or breakaway poles been detailed?
+    Is a crash barrier provided wherever necessary and is it properly detailed?</string>
+    <string name="q55">Check for the arrangement for temporary and permanent traffic control devices,
+    including possible signals, temporary diversion etc.</string>
+    <string name="q56"> Check that the design duly considers the needs of persons with disabilities.</string>
+
+    <string name="check4">CHECKLIST 4 - ROAD SIGNS</string>
+    <string name="q57">Is the provision for road signs (regulatory, warning and informatory signs and
+    delineators) adequate and in accordance with standards? (Check with respect to size,
+    shape and placement etc.)</string>
+    <string name="q58"> Check for any unauthorized traffic signs and use of non-standard signs (colour and
+    shape).</string>
+    <string name="q59">Location and spacing of signs
+    a) Note locations where there are too many signs placed
+    b) Note the signs placed too close to each other</string>
+
+
+    <string name="q60">Note if all traffic signs are clearly visible and are prominently displayed for the
+    intended road users.</string>
+    <string name="q61">Note if all traffic signs are clearly visible and are prominently displayed for the
+    intended road users.</string>
+    <string name="q62"> Determine effectiveness of traffic signs by observing them at night and identify any
+    lack of reflectivity.</string>
+    <string name="q63">Examine type of sign posts used and record situations where sign posts constitute
+    a fixed roadside hazard or where the use of frangible sign posts should be
+    considered.</string>
+    <string name="q64"> Are there any situations where traffic signs themselves are obstructing essential \'Line
+    of Sight\' for drivers and pedestrians.</string>
+    <string name="q65"> Regulatory and Warning signs
+    a) Are appropriate regulatory signs provided where necessary?
+    b) Are warning signs provided only where they are warranted?</string>
+    <string name="q66"> Informatory signs
+    a) Has signing been done on a systematic route or regional strategy that it is
+    logical and meets needs of unfamiliar driver?
+    b) Are all important junctions provided with advance direction sign, distance
+    information sign and intersection sign etc.?
+    c) Are these signs correctly positioned to enable the required timely action to be
+    taken by the intended drivers?
+    d) Find instances of poor legibility and poor arrangement of information on
+    signs.
+    e) Overhead signs - size, message information adequate, languages as per IRC
+    standards.</string>
+
+    <string name="check5">CHECKLIST 5 - ROAD MARKINGS</string>
+    <string name="q67"> General adequacy and visibility of road markings, during day/night time and in
+    wet/ dry weather conditions</string>
+    <string name="q68"> Has correct type of markings been used in various situations (e.g. lane line, edge line)</string>
+    <string name="q69">Are correct colours used for laying road markings?</string>
+    <string name="q70">Is there any deficiency in the delineation of merge and diverge areas, including
+    situations where \'through\' traffic may inadvertently lead into auxiliary and turn lanes?</string>
+    <string name="q71">Are zebra crossing markings provided at junctions and mid-blocks of the sections
+    (depending upon the movement of pedestrian)?</string>
+    <string name="q72">Is positioning of stop lines appropriate?</string>
+    <string name="q73"> Are the directional arrows marked on the pavement guiding the driver or creating
+    confusion to the driver?</string>
+    <string name="q74">Are there locations where there is a lack of \'Hazard markings\' at approach end of
+    island, medians and culverts/ bridges etc.?</string>
+    <string name="q75">Have retro-reflective markers been installed? Where coloured markers are used, have
+    they been installed correctly?</string>
+    <string name="q76">If chevron alignment markers are installed, have the correct types of markers been
+    Used?</string>
+
+
+    <string name="check6">CHECKLIST 6 - LIGHTING</string>
+    <string name="q77">Is there any need of lighting on the project roads, or parts of it, to be lighted at night
+    (particularly where there are pedestrians and parking along the road) important
+    interchanges, bus bays, truck lay byes, toll plazas?</string>
+    <string name="q78">Are the proposed lighting scheme and illumination levels of an appropriate standard,
+    consistent with the needs of the location, pedestrian and other factors?</string>
+    <string name="q79">Does the existing street lighting enhance as \'route guidance\', rather than confuse the
+    drivers ability to \'see the direction of the route ahead\'?</string>
+
+    <string name="check7">CHECKLIST 7 - VULNERABLE ROAD USERS</string>
+    <string name="q80">Has there been a survey of non-motorised vehicle and pedestrian flows?</string>
+    <string name="q82">Will there be any major conflicts between motorised traffic and pedestrians and other
+    disabled / handicapped road users?</string>
+    <string name="q83">Have pedestrians need for crossing the road and walking safely alongside is been
+    adequately provided for? (Check particularly in towns and villages and at all junctions
+    - check shoulder width - check whether it is desirable and feasible to provide a
+    segregated footway - check whether steps are provided where pedestrians will have
+    to climb high embankments).</string>
+    <string name="q84">Is the provision for pedestrians and non-motorised vehicles at bridges and narrow
+    sections adequate in relation to pedestrian and vehicular traffic volumes and traffic
+    speeds?</string>
+    <string name="q85">Have measures been taken to reduce the accident risk for children going to and from
+    roadside schools (Pedestrian guardrail may be needed to prevent children from
+    running out into the road)?</string>
+    <string name="q86">Have the need of cyclists and other non-motorised vehicles been provided for (Check
+    shoulder width - check the need and feasibility of segregated cycle/cycle rickshaw
+    lanes, especially in towns)?</string>
+    <string name="q87">Are bicycle safe grates provided at drainage pits where necessary?</string>
+    <string name="q88">Does the volume of motorcycle traffic justify the provision of separate lanes? (Check
+    in towns).</string>
+    <string name="q89">Are bus stops appropriately located with adequate clearance from the traffic lane for
+    safety and visibility?</string>
+    <string name="q90">Where necessary, is fencing installed to guide pedestrians and cyclists at crossings
+    or overpasses?</string>
+
+
+    <string name="check8">CHECKLIST 8 - DEVELOPMENT PROPOSALS</string>
+    <string name="q91">Parking Provision:
+    a) Is off-site parking adequate to minimise on street parking and associated risks?
+    b) Are parking areas conveniently located, with adequate turning facilities?</string>
+    <string name="q92"> Servicing Facilities:
+    a) Are off street loading/unloading areas provided?
+    b) Are there any turning facilities for large vehicles?
+    c) Is emergency vehicles access provided for?</string>
+    <string name="q93"> Traffic Signs and Road Markings
+    a) Have necessary traffic signs and road markings been provided as part of
+    development?</string>
+    <string name="q94">Other Traffic Control Devices - Road Side furniture, delineators, crash barriers, guard
+    rails, etc.</string>
+    <string name="q95"> Others
+    a) Will there be area-wide effect on other roads?
+    b) Will design keep speeds down where necessary?
+    c) Are number of access points to busy roads minimised by layout?
+    d) Are footpaths (side walks) necessary and provided adequately?
+    e) Are cycle tracks required?
+    f) Is street lighting required/ adequate?
+    g) Are bus bays and stops safely located?
+    h) Are dropped crossings provided at preferred pedestrian route or crossing
+    points?
+    i) Is pedestrian guardrail provided where walkways join the highway?
+    j) Are truck lay byes required?
+    k) Are toll plazas congestion free?</string>
+
+    <string name="check9">CHECKLIST 9 - MAINTENANCE WORK</string>
+    <string name="q96">Is it publicised to the necessary extent about road works, including applicable speed
+    limits and diversions?</string>
+    <string name="q97"> Are temporary traffic signals or road markings adequate and does the message reach
+    all road users?</string>
+    <string name="q98">Has a temporary speed limit been suggested and is it proper?</string>
+    <string name="q99">Will the unaffected road users misunderstand temporary traffic signals?</string>
+    <string name="q100">Is the standard of proposed signs adequate?</string>
+    <string name="q101">Will it be necessary to illuminate critical points?</string>
+    <string name="q102">Will the work site, enclosing material, etc. behave as a rigid obstacle?</string>
+    <string name="q103"> Will there be safe access to the work place?</string>
+    <string name="q104">Has a safety zone been proposed and is it adequate?</string>
+    <string name="q105">Has due consideration been given to all groups of road users in the layout of
+    staggering and diversions?</string>
 
 
 </resources>

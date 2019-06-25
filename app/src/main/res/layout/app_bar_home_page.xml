@@ -25,34 +25,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <android.support.v7.widget.SearchView
-                    android:layout_width="wrap_content"
-
-
-                    android:layout_height="wrap_content">
-
-                </android.support.v7.widget.SearchView>
-
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     />
 
-                <ru.nikartm.support.ImageBadgeView
-                    android:id="@+id/icon1"
-                    android:layout_marginRight="8dp"
+                <FrameLayout
+                    style="?attr/actionButtonStyle"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:ibv_badgeValue="1"
-                    app:ibv_badgePadding="5dp"
-                    app:ibv_badgeTextSize="12sp"
-                    app:ibv_badgeTextColor="#ffffff"
-                    app:ibv_badgeColor="#E40B0B"
-                    app:ibv_visibleBadge="true"
-                    app:ibv_badgeLimitValue="true"
-                    android:layout_gravity="center"
-                    android:src="@drawable/notif" />
+                    android:clipToPadding="false"
+                    android:focusable="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:id="@+id/icon1"
+                        android:src="@drawable/notif"/>
+
+                    <TextView
+                        android:id="@+id/badge"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="right|end|top"
+                        android:layout_marginEnd="-5dp"
+                        android:layout_marginRight="-5dp"
+                        android:layout_marginTop="3dp"
+                        android:background="@drawable/badge"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:textColor="@android:color/white"
+                        android:text="0"
+                        android:textSize="10sp"/>
+
+                </FrameLayout>
             </LinearLayout>
 
         </android.support.v7.widget.Toolbar>

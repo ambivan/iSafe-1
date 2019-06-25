@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.isafe">
 
@@ -8,8 +7,7 @@
         android:name="com.example.task.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -46,55 +44,68 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.Chatone"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.IndividualChat" />
-        <activity android:name=".Activities.IndividualChat"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.Agenda_Meeting"/>
-        <activity android:name=".Activities.ForgotPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.LoginActivity"/>
+        <activity android:name=".Activities.road9"></activity>
+        <activity android:name=".Activities.road8" />
+        <activity android:name=".Activities.road7" />
+        <activity android:name=".Activities.road6" />
+        <activity android:name=".Activities.road5" />
+        <activity android:name=".Activities.road4" />
+        <activity android:name=".Activities.road3" />
+        <activity android:name=".Activities.road2" />
+        <activity
+            android:name=".Activities.Chatone"
+            android:parentActivityName=".Activities.IndividualChat"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.IndividualChat"
+            android:parentActivityName=".Activities.HomePageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.ForgotPasswordActivity"
+            android:parentActivityName=".Activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Agenda_Meeting"
             android:label="@string/title_activity_agenda__meeting"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.CreateEvent"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.HomePageActivity"/>
+        <activity
+            android:name=".Activities.CreateEvent"
+            android:parentActivityName=".Activities.HomePageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.MeetingReport" />
         <activity android:name=".Activities.ChatMeeting" />
         <activity android:name=".Activities.CodeGenerator" />
-        <activity android:name=".MarkAttendanceMap"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.HomePageActivity"/>
+        <activity
+            android:name=".MarkAttendanceMap"
+            android:parentActivityName=".Activities.HomePageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <uses-library android:name="com.google.android.maps" />
 
         <activity
             android:name=".MapActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Activities.HomePageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.FinalActivity" />
         <activity
             android:name=".Activities.ContactActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Activities.HomePageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CamActivity"
+            android:parentActivityName=".Activities.HomePageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.HomePageActivity"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.HomePageActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.Signup2"
+            android:parentActivityName=".Activities.SignupActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".Activities.SignupActivity"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.SignupActivity"
             android:screenOrientation="portrait" />

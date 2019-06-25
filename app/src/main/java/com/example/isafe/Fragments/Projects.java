@@ -43,7 +43,7 @@ public class Projects extends Fragment {
     View vp;
 
     final int PICK_PDF_CODE = 2342;
-    private static final int SELECT_FILE = 2;
+    private final int SELECT_FILE = 2;
 
     Button add;
 
@@ -82,13 +82,16 @@ public class Projects extends Fragment {
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
 
                     System.out.println("whaaa" + d.getValue());
-                    project.add(String.valueOf(d.getValue()));
 
-                    System.out.println(project);
+                    if (d.getValue()!=null) {
+                        project.add(String.valueOf(d.getValue()));
 
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+                        System.out.println(project);
 
-                    projectlist.setAdapter(arrayAdapter);
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+
+                        projectlist.setAdapter(arrayAdapter);
+                    }
                 }
 
             }
@@ -157,15 +160,14 @@ public class Projects extends Fragment {
 
                 uploadFile(uri);
 
-                Uri a = Uri.parse((String.valueOf(data.getData())));
-                String ul = a.getLastPathSegment();
-                System.out.println(ul);
+
             }
         } else if (requestCode == SELECT_FILE) {
             if (resultCode == RESULT_OK) {
                 Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
                 String url = selectedImage.getLastPathSegment();
-                final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                final StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .child("Projects").child(url);
 
                 storageReference.putFile(selectedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -196,7 +198,8 @@ public class Projects extends Fragment {
                                         for (DataSnapshot b : dataSnapshot.getChildren()) {
                                             project.add(String.valueOf(b.getValue()));
 
-                                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+                                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
+                                                    (getContext(), android.R.layout.simple_list_item_1, project);
 
                                             projectlist.setAdapter(arrayAdapter);
                                         }
@@ -232,7 +235,10 @@ public class Projects extends Fragment {
 
         final String fileName = Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis();
 
-        final StorageReference sRef = mStorageReference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Projects").child(fileName);
+        final StorageReference sRef = mStorageReference
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Projects")
+                .child(fileName);
         sRef.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
