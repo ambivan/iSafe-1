@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -19,12 +18,6 @@ import android.widget.LinearLayout;
 import com.example.isafe.Services.NotificationService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -80,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        Intent intent = new Intent(MainActivity.this, NotificationService.class);
+        startService(intent);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel channel = new NotificationChannel("My notifications", "My notifications", NotificationManager.IMPORTANCE_DEFAULT);
 
@@ -100,81 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println("user" + user.getUid());
 
-                    DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid())
-                            .child("Agendas");
-
-                    d.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                            for(DataSnapshot child: children){
-
-                                System.out.println(child);
-
-//                                notificationService = new NotificationService();
-//
-//                                intent = new Intent(MainActivity.this, NotificationService.class);
-//                                startService(intent);
-//
-//                                if (!isMyServiceRunning(notificationService.getClass())){
-//                                    startService(intent);
-//                                }
-//
-
-                            }
-
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    d.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                            notificationService = new NotificationService();
-
-                            intent = new Intent(MainActivity.this, NotificationService.class);
-                            startService(intent);
-
-                            if (!isMyServiceRunning(notificationService.getClass())) {
-                                startService(intent);
-                            }
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-
-                            notificationService = new NotificationService();
-
-                            intent = new Intent(MainActivity.this, NotificationService.class);
-                            startService(intent);
-
-                            if (!isMyServiceRunning(notificationService.getClass())) {
-                                startService(intent);
-                            }
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
 
 
                 }

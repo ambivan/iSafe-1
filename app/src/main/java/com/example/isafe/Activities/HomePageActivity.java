@@ -34,6 +34,7 @@ import com.example.isafe.Fragments.RoadSafetyAudit;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
 import com.example.isafe.R;
+import com.example.isafe.Services.NotificationService;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,7 +52,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
     ImageView img;
 
-    int count = 0 ;
+    public static int count = 0 ;
+
+    NotificationService notificationService;
 
 
     FirebaseAuth auth;
@@ -110,7 +113,12 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                count++;
+
+                notificationService = new NotificationService();
+
+                Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
+                startService(intent);
+
                 badge.setText(String.valueOf(count));
 
             }

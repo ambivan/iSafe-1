@@ -2,7 +2,6 @@ package com.example.isafe.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -22,16 +21,12 @@ import com.example.isafe.CamActivity;
 import com.example.isafe.MapActivity;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedListener {
-
 
 
     ArrayList<String> photolist;
@@ -48,6 +43,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
     static int counter = 0;
 
     View v;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -66,8 +62,8 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        click =  v.findViewById(R.id.clicklin);
-        loc =  v.findViewById(R.id.loclin);
+        click = v.findViewById(R.id.clicklin);
+        loc = v.findViewById(R.id.loclin);
         contact = v.findViewById(R.id.contactlin);
 
         location = (EditText) v.findViewById(R.id.loctag);
@@ -109,41 +105,12 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
             }
         });
 
-        if (CamActivity.i==1){
+        if (CamActivity.i == 1) {
 
             click.setVisibility(View.INVISIBLE);
 
 
             lin1.setVisibility(View.VISIBLE);
-
-            DatabaseReference d = databaseReference
-                    .child("Users")
-                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .child("Accident Report")
-                    .child("Photos");
-
-            d.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                    for(DataSnapshot d : dataSnapshot.getChildren()){
-
-                        photolist.add(String.valueOf(d.getValue()));
-
-//                        Glide.with(getContext()).load(photolist.get(0)).into(what);
-//                        Glide.with(getContext()).load(photolist.get(1)).into(second);
-//                        Glide.with(getContext()).load(photolist.get(2)).into(third);
-
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
 
             CamActivity.i = 2;
 
@@ -154,7 +121,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
         third.setImageBitmap(CamActivity.photo3);
 
 
-        if (MapActivity.m == 1){
+        if (MapActivity.m == 1) {
 
             click.setVisibility(View.INVISIBLE);
 
@@ -173,10 +140,6 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                     .child("Location")
                     .setValue(MapActivity.loc);
 
-//            what.setImageBitmap(CamActivity.photo);
-//            second.setImageBitmap(CamActivity.photo2);
-//            third.setImageBitmap(CamActivity.photo3);
-
             viewonmap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -186,7 +149,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                 }
             });
 
-            if (CamActivity.i ==2) {
+            if (CamActivity.i == 2) {
                 Toast.makeText(getActivity(), "You can report the accident now. Contact Details are optional. ", Toast.LENGTH_LONG).show();
             }
             report.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +163,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                         MapActivity.m = 0;
 
                         startActivity(finalact);
-                    }else {
+                    } else {
                         Toast.makeText(getActivity(), "Please Upload Photos.", Toast.LENGTH_SHORT).show();
 
                         CamActivity.i = 0;
@@ -212,7 +175,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
         }
 
-        if (ContactActivity.c == 1){
+        if (ContactActivity.c == 1) {
 
             click.setVisibility(View.INVISIBLE);
 
@@ -250,8 +213,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
         }
 
 
-
-        if (ContactActivity.c == 0 && MapActivity.m == 0 && CamActivity.i == 0){
+        if (ContactActivity.c == 0 && MapActivity.m == 0 && CamActivity.i == 0) {
 
             lin1.setVisibility(View.INVISIBLE);
             lin2.setVisibility(View.INVISIBLE);
@@ -301,7 +263,6 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
 
     }
-
 
 
 }

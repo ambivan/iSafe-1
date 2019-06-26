@@ -9,9 +9,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.isafe.Activities.HomePageActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class NotificationService extends Service {
 
@@ -21,11 +27,13 @@ public class NotificationService extends Service {
     private Notification myNotification;
     NotifyServiceReceiver notifyServiceReceiver;
 
+    public static final String ACTION_REQUEST_ACCEPTED = "ACTION-REQUEST-ACCEPTED";
+
+    NotificationService notificationService;
+
     final static String ACTION = "NotifyServiceAction";
     final static String STOP_SERVICE = "";
     final static int RQS_STOP_SERVICE = 1;
-    private final String myBlog = "http://android-er.blogspot.com/";
-    private static final int MY_NOTIFICATION_ID = 1;
 
     @Nullable
     @Override
@@ -37,10 +45,35 @@ public class NotificationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Agendas");
+
+        d.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for(DataSnapshot child: children){
+
+                    System.out.println(child);
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ACTION);
@@ -48,6 +81,8 @@ public class NotificationService extends Service {
 
 
         intent = new Intent(getApplicationContext(), HomePageActivity.class);
+
+        HomePageActivity.count++;
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
 
@@ -61,6 +96,9 @@ public class NotificationService extends Service {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(1, notification);
+
+        super.onStartCommand(intent, flags, startId);
+
 
         return START_STICKY;
 
