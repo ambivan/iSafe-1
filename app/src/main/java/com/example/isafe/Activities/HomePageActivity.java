@@ -3,6 +3,7 @@ package com.example.isafe.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
@@ -36,6 +37,7 @@ import com.example.isafe.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +50,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     public TabLayout tabLayout;
 
     ImageView img;
+
+    int count = 0 ;
+
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -91,8 +96,42 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         img = (ImageView) findViewById(R.id.icon1);
         badge = findViewById(R.id.badge);
 
+        DatabaseReference e = FirebaseDatabase.getInstance().getReference()
+                .child("Events");
 
-        badge.setText("1");
+
+        e.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                count++;
+                badge.setText(String.valueOf(count));
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
