@@ -57,8 +57,6 @@ public class NotificationService extends Service {
 
                     System.out.println(child);
 
-
-
                 }
 
 
@@ -85,6 +83,8 @@ public class NotificationService extends Service {
         HomePageActivity.count++;
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
+
+
 
         Notification notification = new Notification.Builder(getApplicationContext())
                 .setContentTitle("its going good!")

@@ -18,8 +18,6 @@ import android.widget.LinearLayout;
 import com.example.isafe.Services.NotificationService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     Button login, signup;
 
     Handler handler = new Handler();
-
-    private NotificationService notificationService;
 
     Intent intent;
 
@@ -51,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(com.example.isafe.R.layout.activity_main);
 
-        linlay2 = (LinearLayout) findViewById(com.example.isafe.R.id.linlay2);
+        linlay2 = findViewById(com.example.isafe.R.id.linlay2);
 
         handler.postDelayed(runnable, 1000);
 
-        login = (Button) findViewById(com.example.isafe.R.id.login);
-        signup = (Button) findViewById(com.example.isafe.R.id.signup);
+        login =  findViewById(com.example.isafe.R.id.login);
+        signup =  findViewById(com.example.isafe.R.id.signup);
 
 
         login.setOnClickListener(   new View.OnClickListener() {
@@ -105,17 +101,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mAuth.addAuthStateListener(mAuthListener);
-        String messageid = String.valueOf(System.currentTimeMillis());
-
-        FirebaseMessaging.getInstance()
-                .send(new RemoteMessage.Builder("86299482060" + "@gcm.googleapis.com")
-                        .setMessageId(messageid)
-                        .addData("Yaya", "yayay")
-                        .build());
-        // Response is a message ID string.
-        System.out.println("Successfully sent message: ");
-
     }
+
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -133,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.i("MAINACT", "onDestroy!");
         super.onDestroy();
-
     }
 
 }
