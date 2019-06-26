@@ -15,6 +15,8 @@ import com.example.isafe.Activities.HomePageActivity;
 
 public class NotificationService extends Service {
 
+
+
     private NotificationManager notificationManager;
     private Notification myNotification;
     NotifyServiceReceiver notifyServiceReceiver;

@@ -1,7 +1,6 @@
 package com.example.isafe;
 
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -58,7 +57,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
     Double lat1, long1, lat2, long2, lat11, long11;
     Marker mCurrLocationMarker;
     GoogleApiClient mGoogleApiClient;
-    PendingIntent mGeofencePendingIntent;
     ArrayList<Geofence> mGeofenceList;
 
     Button mark;
@@ -398,7 +396,7 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                                     mark.setBackgroundResource(R.drawable.reportbuttonbg);
                                     Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
                                 } else if (a<100.00){
-                                    mark.setBackgroundResource(R.drawable.reportbuttonbg);
+                                    mark.setBackgroundResource(R.drawable.button_first_bg);
                                     Toast.makeText(MarkAttendanceMap.this, "Attendance Marked!", Toast.LENGTH_SHORT).show();
                                     HomePageActivity.frag = 1;
                                     startActivity(new Intent(MarkAttendanceMap.this, HomePageActivity.class));

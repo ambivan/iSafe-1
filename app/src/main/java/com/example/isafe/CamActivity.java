@@ -17,12 +17,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.isafe.Activities.HomePageActivity;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,6 +41,12 @@ public class CamActivity extends AppCompatActivity {
 
     Button cam, attach;
     private int CAMERA_REQUEST = 1;
+
+
+    DatabaseReference d;
+
+    LinearLayout l ;
+
 
     static ImageView image, image2, image3;
     String path, userid;
@@ -75,6 +85,10 @@ public class CamActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
 
         baos = new ByteArrayOutputStream();
+
+        d =  FirebaseDatabase.getInstance().getReference();
+
+        l = findViewById(R.id.twocam);
 
         bytes = baos.toByteArray();
 
@@ -120,6 +134,8 @@ public class CamActivity extends AppCompatActivity {
 
                 camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictake(camIntent);
+
+                l.setVisibility(View.VISIBLE);
                 image2.setVisibility(View.VISIBLE);
                 image3.setVisibility(View.VISIBLE);
                 upload.setVisibility(View.INVISIBLE);
@@ -225,11 +241,34 @@ public class CamActivity extends AppCompatActivity {
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child("images/" + photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/" + System.currentTimeMillis());
 
                     uploadTask = imagesref.putBytes(bytes);
 
                     uploadTask = imagesref.putFile(photoURI);
+
+                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    System.out.println(uri.toString());
+
+                                    d.child("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .child("Accident Report")
+                                            .child("Photos")
+                                            .child("1")
+                                            .setValue(uri.toString());
+
+                                }
+                            });
+
+                        }
+                    });
 
                     image.setImageBitmap(photo);
 
@@ -242,11 +281,36 @@ public class CamActivity extends AppCompatActivity {
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child("images/" + photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/" + System.currentTimeMillis());
 
                     uploadTask = imagesref.putBytes(bytes);
 
                     uploadTask = imagesref.putFile(photoURI);
+
+
+                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    System.out.println(uri.toString());
+
+                                    d.child("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .child("Accident Report")
+                                            .child("Photos")
+                                            .child("2")
+                                            .setValue(uri.toString());
+
+                                }
+                            });
+
+                        }
+                    });
+
 
                     image2.setImageBitmap(photo2);
 
@@ -258,11 +322,35 @@ public class CamActivity extends AppCompatActivity {
 
                     bytes = baos.toByteArray();
 
-                    imagesref = storageref.child(userid).child("images/" + photoURI.getLastPathSegment());
+                    imagesref = storageref.child(userid).child("images/" + System.currentTimeMillis());
 
                     uploadTask = imagesref.putBytes(bytes);
 
                     uploadTask = imagesref.putFile(photoURI);
+
+                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    System.out.println(uri.toString());
+
+                                    d.child("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .child("Accident Report")
+                                            .child("Photos")
+                                            .child("3")
+                                            .setValue(uri.toString());
+
+                                }
+                            });
+
+                        }
+                    });
+
 
                     image3.setImageBitmap(photo3);
 

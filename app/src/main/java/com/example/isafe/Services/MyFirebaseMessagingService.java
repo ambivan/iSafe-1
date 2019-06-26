@@ -16,6 +16,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public void onNewToken(String s) {
         super.onNewToken(s);
         Log.e("NEW_TOKEN",s);
+
     }
 
     @Override
@@ -39,17 +40,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String topic = "highScores";
 
-        // See documentation on defining a message payload.
-        Message message = Message.builder()
-                .putData("score", "850")
-                .putData("time", "2:45")
-                .setTopic(topic)
+
+        String messageid = String.valueOf(System.currentTimeMillis());
+
+        RemoteMessage remoteMessage = new RemoteMessage.Builder("86299482060" + "@gcm.googleapis.com")
+                .setMessageId(messageid)
+                .addData("Yaya", "yayay")
                 .build();
 
-        // Send a message to the devices subscribed to the provided topic.
-        String response = FirebaseMessaging.getInstance().send(message);
-        // Response is a message ID string.
-        System.out.println("Successfully sent message: " + response);
+        FirebaseMessaging.getInstance()
+                .send(remoteMessage);
+
+
+        // See documentation on defining a message payload.
+
     }
 }
 

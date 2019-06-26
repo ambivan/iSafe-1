@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -181,6 +183,15 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mAuth.addAuthStateListener(mAuthListener);
+        String messageid = String.valueOf(System.currentTimeMillis());
+
+        FirebaseMessaging.getInstance()
+                .send(new RemoteMessage.Builder("86299482060" + "@gcm.googleapis.com")
+                        .setMessageId(messageid)
+                        .addData("Yaya", "yayay")
+                        .build());
+        // Response is a message ID string.
+        System.out.println("Successfully sent message: ");
 
     }
 

@@ -2,8 +2,10 @@ package com.example.isafe.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +21,21 @@ import com.example.isafe.Activities.FinalActivity;
 import com.example.isafe.CamActivity;
 import com.example.isafe.MapActivity;
 import com.example.isafe.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedListener {
 
 
-    LinearLayout click, loc, contact;
+
+    ArrayList<String> photolist;
+    CardView click, loc, contact;
 
     ImageView second, third, what;
 
@@ -42,12 +54,21 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
         //Returning the layout file after inflating
         v = inflater.inflate(R.layout.tab3, container, false);
 
+        what = (ImageView) v.findViewById(R.id.what);
+        second = (ImageView) v.findViewById(R.id.second);
+        third = (ImageView) v.findViewById(R.id.third);
+
+
         report = (Button) v.findViewById(R.id.report);
         viewonmap = (Button) v.findViewById(R.id.viewonmap);
 
-        click = (LinearLayout) v.findViewById(R.id.clicklin);
-        loc = (LinearLayout) v.findViewById(R.id.loclin);
-        contact = (LinearLayout) v.findViewById(R.id.contactlin);
+        photolist = new ArrayList<>();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        click =  v.findViewById(R.id.clicklin);
+        loc =  v.findViewById(R.id.loclin);
+        contact = v.findViewById(R.id.contactlin);
 
         location = (EditText) v.findViewById(R.id.loctag);
 
@@ -92,27 +113,69 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
             click.setVisibility(View.INVISIBLE);
 
-            what = (ImageView) v.findViewById(R.id.what);
-            second = (ImageView) v.findViewById(R.id.second);
-            third = (ImageView) v.findViewById(R.id.third);
 
             lin1.setVisibility(View.VISIBLE);
 
-            what.setImageBitmap(CamActivity.photo);
-            second.setImageBitmap(CamActivity.photo2);
-            third.setImageBitmap(CamActivity.photo3);
+            DatabaseReference d = databaseReference
+                    .child("Users")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("Accident Report")
+                    .child("Photos");
+
+            d.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for(DataSnapshot d : dataSnapshot.getChildren()){
+
+                        photolist.add(String.valueOf(d.getValue()));
+
+//                        Glide.with(getContext()).load(photolist.get(0)).into(what);
+//                        Glide.with(getContext()).load(photolist.get(1)).into(second);
+//                        Glide.with(getContext()).load(photolist.get(2)).into(third);
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
 
             CamActivity.i = 2;
 
         }
 
+        what.setImageBitmap(CamActivity.photo);
+        second.setImageBitmap(CamActivity.photo2);
+        third.setImageBitmap(CamActivity.photo3);
+
 
         if (MapActivity.m == 1){
+
+            click.setVisibility(View.INVISIBLE);
+
+
+            lin1.setVisibility(View.VISIBLE);
 
             loc.setVisibility(View.INVISIBLE);
             lin2.setVisibility(View.VISIBLE);
 
             location.setText(MapActivity.loc);
+
+            databaseReference
+                    .child("Users")
+                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .child("Accident Report")
+                    .child("Location")
+                    .setValue(MapActivity.loc);
+
+//            what.setImageBitmap(CamActivity.photo);
+//            second.setImageBitmap(CamActivity.photo2);
+//            third.setImageBitmap(CamActivity.photo3);
 
             viewonmap.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,6 +214,11 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
         if (ContactActivity.c == 1){
 
+            click.setVisibility(View.INVISIBLE);
+
+
+            lin1.setVisibility(View.VISIBLE);
+
             contact.setVisibility(View.INVISIBLE);
 
             lin3.setVisibility(View.VISIBLE);
@@ -180,6 +248,8 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
             });
 
         }
+
+
 
         if (ContactActivity.c == 0 && MapActivity.m == 0 && CamActivity.i == 0){
 

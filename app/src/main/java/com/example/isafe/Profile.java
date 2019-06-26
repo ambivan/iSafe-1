@@ -268,7 +268,7 @@ public class Profile extends Fragment {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                                                        String url = uri.toString();
+                                    String url = uri.toString();
                                     FirebaseDatabase.getInstance()
                                             .getReference()
                                             .child("Users")
@@ -324,12 +324,12 @@ public class Profile extends Fragment {
 
                                 }
                             });
-
                         }
 
                     });
                 }
                 break;
+            }
         }
     }
-}
+

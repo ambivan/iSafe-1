@@ -151,6 +151,7 @@
             android:paddingRight="50dp"
             android:text="Click"
             android:textAllCaps="false"
+            android:layout_marginBottom="30dp"
             android:textColor="#fff"
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"

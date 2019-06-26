@@ -80,7 +80,7 @@ public class ContactActivity extends AppCompatActivity {
                 contactName = name.getText().toString();
                 number = phone.getText().toString();
 
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid).child("Accident Report").push().child("Contact Details");
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid).child("Accident Report").child("Contact Details");
                 databaseReference.child("Name").setValue(contactName);
                 databaseReference.child("Phone Number").setValue(number);
 
