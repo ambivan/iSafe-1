@@ -3,7 +3,6 @@ package com.example.isafe.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
@@ -38,7 +37,6 @@ import com.example.isafe.Services.NotificationService;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,8 +49,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     public TabLayout tabLayout;
 
     ImageView img;
-
-    public static int count = 0 ;
 
     NotificationService notificationService;
 
@@ -100,36 +96,13 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         badge = findViewById(R.id.badge);
 
         DatabaseReference e = FirebaseDatabase.getInstance().getReference()
-                .child("Events");
+                .child("Status");
 
-
-        e.addChildEventListener(new ChildEventListener() {
-
+        e.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-
-                notificationService = new NotificationService();
-
-                Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
-                startService(intent);
-
-                badge.setText(String.valueOf(count));
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                badge.setText(String.valueOf(dataSnapshot.getValue()));
 
             }
 
@@ -139,6 +112,46 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             }
         });
 
+
+        Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
+        startService(intent);
+
+//        e.addChildEventListener(new ChildEventListener() {
+//
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//
+//                notificationService = new NotificationService();
+//
+//                Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
+//                startService(intent);
+//
+//                badge.setText(String.valueOf(count));
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
 
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {

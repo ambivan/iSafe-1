@@ -60,15 +60,20 @@ public class IndividualChat extends AppCompatActivity {
                     System.out.println("hi" + key);
 
                     if (!key.equals("name")
+                            &&!key.equals("MemberCount")
                             &&!key.equals("post")
                             && !key.equals("Meeting Reports")
                             &&!key.equals("teamname")
                             && !key.equals("Registered Events")
                             && !key.equals("Domain")
                             && !key.equals("Events")
+                            && !key.equals("Projects")
+                            &&!key.equals("Accident Report")
+                            && !key.equals("EventDay")
                             &&!key.equals("Liked Events")
                             &&!key.equals("Reimbursements")
-                            && !key.equals("Profile URL")){
+                            && !key.equals("Profile URL")
+                            ){
 
                         if (key != null) {
                             DatabaseReference a = dbref.child(key);

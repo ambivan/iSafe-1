@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.example.isafe.Classes.CodeGen;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
+import com.example.isafe.Services.NotificationService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -51,6 +52,9 @@ public class Signup2 extends AppCompatActivity {
     ImageView pass1, pass2;
 
     public static String s;
+
+
+    int membercount;
 
     static String userid;
 
@@ -425,6 +429,20 @@ public class Signup2 extends AppCompatActivity {
                                                                     .child(id)
                                                                     .child(userid)
                                                                     .setValue(new UserPost(profilename, post, cuid));
+
+                                                            membercount++;
+
+                                                            FirebaseDatabase.getInstance()
+                                                                    .getReference()
+                                                                    .child("Users")
+                                                                    .child(id)
+                                                                    .child("MemberCount")
+                                                                    .setValue(membercount);
+
+
+                                                            Intent intent = new Intent(Signup2.this, NotificationService.class);
+                                                            startService(intent);
+
                                                         }
                                                     }
                                                 }

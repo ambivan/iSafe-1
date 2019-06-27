@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,11 @@ import android.widget.LinearLayout;
 import com.example.isafe.Services.NotificationService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,6 +61,28 @@ public class MainActivity extends AppCompatActivity {
         signup =  findViewById(com.example.isafe.R.id.signup);
 
 
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                if(user != null){
+
+                    System.out.println("user" + user.getUid());
+
+
+
+                }
+
+            }
+        };
+
+        mAuth.addAuthStateListener(mAuthListener);
+
+
         login.setOnClickListener(   new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,26 +109,42 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        mAuth = FirebaseAuth.getInstance();
+        DatabaseReference e = FirebaseDatabase.getInstance().getReference()
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+                .child("Agendas");
+
+
+        e.addChildEventListener(new ChildEventListener() {
+
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-                FirebaseUser user = mAuth.getCurrentUser();
-
-                if(user != null){
-
-                    System.out.println("user" + user.getUid());
-
-
-
-                }
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
-        };
 
-        mAuth.addAuthStateListener(mAuthListener);
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+                Intent intent = new Intent(MainActivity.this, NotificationService.class);
+                startService(intent);
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

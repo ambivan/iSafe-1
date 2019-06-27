@@ -73,7 +73,6 @@ public class NewsFeed extends Fragment {
 
         vieww = inflater.inflate(com.example.isafe.R.layout.tab1, container, false);
 
-
         FirebaseApp.initializeApp(getContext());
 
         list = new ArrayList<MyListData>();
@@ -102,12 +101,16 @@ public class NewsFeed extends Fragment {
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
+                System.out.println(userid);
+
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         userPost = dataSnapshot.getValue(UserPost.class);
 
+
+                        System.out.println(userPost.getPost());
                         if (userPost.getPost().equals("Team Leader")) {
 
 

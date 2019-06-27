@@ -98,7 +98,7 @@ public class Chatone extends AppCompatActivity {
                                 FirebaseDatabase.getInstance()
                                         .getReference()
                                         .child("Messages")
-                                        .child(IndividualChat.unique + userPost.getTeamname())
+                                        .child(userPost.getTeamname() + IndividualChat.unique)
                                         .push()
                                         .setValue(new Message(input.getText().toString().trim(),
                                                 userPost.getName(),
@@ -108,7 +108,7 @@ public class Chatone extends AppCompatActivity {
                                 FirebaseDatabase.getInstance()
                                         .getReference()
                                         .child("Messages")
-                                        .child(userPost.getName() + userPost.getTeamname())
+                                        .child(userPost.getTeamname() + userPost.getName())
                                          .push()
                                 .setValue(new Message(input.getText().toString().trim(), userPost.getName(),
                                         FirebaseAuth.getInstance().getCurrentUser().getUid()));
@@ -172,11 +172,11 @@ public class Chatone extends AppCompatActivity {
                         membername.setText(userPost.getName());
 
                         adapter = new AdapterOne(Chatone.this, Message.class, R.layout.outgoingmessage,
-                                FirebaseDatabase.getInstance().getReference().child("Messages").child(userPost.getName() + userPost.getTeamname()));
+                                FirebaseDatabase.getInstance().getReference().child("Messages").child(userPost.getTeamname() + userPost.getName() ));
                     } else if (userPost.getPost().equals("Team Leader")){
                         System.out.println("yes" + userPost.getName());
                         adapter = new AdapterOne(Chatone.this, Message.class, R.layout.outgoingmessage,
-                                FirebaseDatabase.getInstance().getReference().child("Messages").child(IndividualChat.unique + userPost.getTeamname()));
+                                FirebaseDatabase.getInstance().getReference().child("Messages").child(userPost.getTeamname() + IndividualChat.unique ));
                     }
 
                 }
