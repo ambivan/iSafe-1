@@ -159,9 +159,9 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 }
             });
 
+
+
             send.setOnClickListener(new View.OnClickListener() {
-
-
                 @Override
                 public void onClick(View v) {
 
@@ -170,7 +170,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
                     MyListData mll = list.get(m);
 
-                    final String event = mll.getTitle() + mll.getCity() + " is" + mll.getEvent() + " " + mll.getDate() + ".\n" + mll.getTime() + "\n" + mll.getTopic();
+                    final String event = mll.getTitle() + mll.getCity() + " is " + mll.getEvent() + " " + mll.getDate() + ".\n" + mll.getTime() + "\n" + mll.getTopic();
 
                     a.setType("text/plain");
                     String shareBody = "Hey!!" + "\n" + event + "\n" + "Would You like to be a part of this?";
@@ -188,11 +188,10 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 public void onClick(View v) {
 
                     ml = getPosition();
-                    System.out.println(ml);
                     MyListData m = list.get(ml);
-                    System.out.println(m);
                     if (m.getIs_liked().equals("0")){
                         m.setIs_liked("1");
+
                         like.setImageResource(R.drawable.redheart);
                     }else{
                         m.setIs_liked("0");

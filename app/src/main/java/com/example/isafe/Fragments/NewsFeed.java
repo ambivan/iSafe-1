@@ -25,6 +25,8 @@ import com.example.isafe.Classes.MyListData;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -76,8 +78,6 @@ public class NewsFeed extends Fragment {
         FirebaseApp.initializeApp(getContext());
 
         list = new ArrayList<MyListData>();
-
-        fin = vieww.findViewById(R.id.find);
 
         auth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) vieww.findViewById(com.example.isafe.R.id.recyclerView);
@@ -135,8 +135,8 @@ public class NewsFeed extends Fragment {
 
         city1 = (EditText) vieww.findViewById(R.id.city);
 
-//        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(getActivity());
-//
+        FusedLocationProviderClient client = LocationServices.getFusedLocationProviderClient(getActivity());
+
 //        client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
 //            @Override
 //            public void onSuccess(Location location) {
@@ -170,7 +170,7 @@ public class NewsFeed extends Fragment {
 //                }
 //            }
 //        });
-//
+
 
         city1.setText("Delhi");
         checkLocationPermission();
@@ -207,11 +207,9 @@ public class NewsFeed extends Fragment {
                     eventlist.setTopic("Topic: " + topic);
                     eventlist.setIs_liked(isliked);
 
-                    if (city2.getText().toString().equals(eventlist.getCity())){
 
                         list.add(eventlist);
 
-                    }
 
                     recyclerAdapter = new MyListAdapter(list, getActivity());
                     RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());

@@ -2,6 +2,7 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Custom"
@@ -90,6 +91,7 @@
 
 
                 <EditText
+                    android:textColor="#000"
                     android:id="@+id/college"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -123,7 +125,7 @@
                 <EditText
                     android:id="@+id/cityname"
                     android:layout_width="match_parent"
-
+                    android:textColor="#000"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#000"
@@ -156,6 +158,7 @@
 
                 <EditText
                     android:id="@+id/eventtype"
+                    android:textColor="#000"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -189,6 +192,7 @@
 
                 <EditText
                     android:id="@+id/dateevent"
+                    android:textColor="#000"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -229,6 +233,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="#000"
+
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
                     android:textSize="20sp" />
@@ -264,43 +270,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="Description:"
                     android:textColor="#000"
-                    android:textSize="20sp"
 
-                    />
-
-                <EditText
-                    android:id="@+id/desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
                     android:textSize="20sp" />
 
             </LinearLayout>
+
 
 
 

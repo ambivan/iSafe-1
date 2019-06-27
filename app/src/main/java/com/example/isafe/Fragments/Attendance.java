@@ -38,7 +38,7 @@ public class Attendance extends Fragment {
 
     private FusedLocationProviderClient client;
 
-    View vv;
+        View vv;
 
     Button mark;
     TextView regfirst;
