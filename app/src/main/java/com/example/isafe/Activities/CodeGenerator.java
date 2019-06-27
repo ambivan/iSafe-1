@@ -7,9 +7,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -31,8 +31,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import static com.example.isafe.Activities.Signup2.s;
 
 public class CodeGenerator extends AppCompatActivity {
 
@@ -108,7 +106,7 @@ public class CodeGenerator extends AppCompatActivity {
                         .child("Users")
                         .child(userid)
                         .child("Domain")
-                        .setValue(s);
+                        .setValue(Signup2.s);
 
                final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
                        .getReference()

@@ -201,138 +201,140 @@ public class NotificationService extends Service {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
-                                if (userPost.getPost().equals("Team Leader")){
+                                if (userPost != null) {
+                                    if (userPost.getPost().equals("Team Leader")){
 
-                                    String str = userPost.getTeamname();
-                                    String[] arrOfStr = str.split("/", 2);
+                                        String str = userPost.getTeamname();
+                                        String[] arrOfStr = str.split("/", 2);
 
-                                    for (String a : arrOfStr) {
+                                        for (String a : arrOfStr) {
 
-                                        System.out.println(a);
+                                            System.out.println(a);
 
-                                        c[0] = a;
+                                            c[0] = a;
 
+                                        }
+                                        String [] arr = c[0].split("/", 2);
+
+                                        DatabaseReference x = FirebaseDatabase.getInstance().getReference()
+                                                .child("Messages")
+                                                .child("isafe")
+                                                .child(arr[0]);
+
+                                        x.addChildEventListener(new ChildEventListener() {
+                                            @Override
+                                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                                Notification notification = new Notification.Builder(getApplicationContext())
+                                                        .setContentTitle("iSAFE")
+                                                        .setContentText("You have new messages!")
+                                                        .setContentIntent(pendingIntent)
+                                                        .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
+                                                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                                                        .build();
+
+                                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                                notificationManager.notify(1, notification);
+                                            }
+
+                                            @Override
+                                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                                Notification notification = new Notification.Builder(getApplicationContext())
+                                                        .setContentTitle("iSAFE")
+                                                        .setContentText("You have new messages!")
+                                                        .setContentIntent(pendingIntent)
+                                                        .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
+                                                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                                                        .build();
+
+                                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                                notificationManager.notify(1, notification);
+
+                                            }
+
+                                            @Override
+                                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                     }
-                                    String [] arr = c[0].split("/", 2);
 
-                                    DatabaseReference x = FirebaseDatabase.getInstance().getReference()
-                                            .child("Messages")
-                                            .child("isafe")
-                                            .child(arr[0]);
+                                    else if (userPost.getPost().equals("Team Member")){
 
-                                    x.addChildEventListener(new ChildEventListener() {
-                                        @Override
-                                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                                            Notification notification = new Notification.Builder(getApplicationContext())
-                                                    .setContentTitle("iSAFE")
-                                                    .setContentText("You have new messages!")
-                                                    .setContentIntent(pendingIntent)
-                                                    .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
-                                                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                                                    .build();
+                                        String str = userPost.getTeamname();
+                                        String[] arrOfStr = str.split("/", 2);
 
-                                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                            notificationManager.notify(1, notification);
-                                        }
+                                        for (String a : arrOfStr) {
 
-                                        @Override
-                                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                            System.out.println(a);
 
-                                            Notification notification = new Notification.Builder(getApplicationContext())
-                                                    .setContentTitle("iSAFE")
-                                                    .setContentText("You have new messages!")
-                                                    .setContentIntent(pendingIntent)
-                                                    .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
-                                                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                                                    .build();
-
-                                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                            notificationManager.notify(1, notification);
+                                            c[0] = a;
 
                                         }
+                                        String [] arr = c[0].split("/", 2);
 
-                                        @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                                        DatabaseReference x = FirebaseDatabase.getInstance().getReference()
+                                                .child("Messages")
+                                                .child("isafe")
+                                                .child(arr[0]);
 
-                                        }
+                                        x.addChildEventListener(new ChildEventListener() {
+                                            @Override
+                                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                                Notification notification = new Notification.Builder(getApplicationContext())
+                                                        .setContentTitle("iSAFE")
+                                                        .setContentText("You have new messages!")
+                                                        .setContentIntent(pendingIntent)
+                                                        .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
+                                                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                                                        .build();
 
-                                        @Override
-                                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                                notificationManager.notify(1, notification);
+                                            }
 
-                                        }
+                                            @Override
+                                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                Notification notification = new Notification.Builder(getApplicationContext())
+                                                        .setContentTitle("iSAFE")
+                                                        .setContentText("You have new messages!")
+                                                        .setContentIntent(pendingIntent)
+                                                        .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
+                                                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                                                        .build();
 
-                                        }
-                                    });
-                                }
+                                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                                notificationManager.notify(1, notification);
 
-                                else if (userPost.getPost().equals("Team Member")){
+                                            }
 
-                                    String str = userPost.getTeamname();
-                                    String[] arrOfStr = str.split("/", 2);
+                                            @Override
+                                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
-                                    for (String a : arrOfStr) {
+                                            }
 
-                                        System.out.println(a);
+                                            @Override
+                                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                                        c[0] = a;
+                                            }
 
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
                                     }
-                                    String [] arr = c[0].split("/", 2);
-
-                                    DatabaseReference x = FirebaseDatabase.getInstance().getReference()
-                                            .child("Messages")
-                                            .child("isafe")
-                                            .child(arr[0]);
-
-                                    x.addChildEventListener(new ChildEventListener() {
-                                        @Override
-                                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                                            Notification notification = new Notification.Builder(getApplicationContext())
-                                                    .setContentTitle("iSAFE")
-                                                    .setContentText("You have new messages!")
-                                                    .setContentIntent(pendingIntent)
-                                                    .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
-                                                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                                                    .build();
-
-                                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                            notificationManager.notify(1, notification);
-                                        }
-
-                                        @Override
-                                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                                            Notification notification = new Notification.Builder(getApplicationContext())
-                                                    .setContentTitle("iSAFE")
-                                                    .setContentText("You have new messages!")
-                                                    .setContentIntent(pendingIntent)
-                                                    .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
-                                                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                                                    .build();
-
-                                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                            notificationManager.notify(1, notification);
-
-                                        }
-
-                                        @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                                        }
-
-                                        @Override
-                                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
                                 }
 
                             }
