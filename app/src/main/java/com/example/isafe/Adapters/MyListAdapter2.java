@@ -29,6 +29,8 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
     ArrayList<MyListData> list1;
 
 
+
+
     // RecyclerView recyclerView;
     public MyListAdapter2(List<MyListData> list, Context context) {
         this.list = list;
@@ -58,14 +60,12 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
             @Override
             public void onClick(View v) {
 
-                System.out.println("yes " + i);
-                MyListData mll = list.get(i);
+                int b = holder.getPosition();
+
+                MyListData mll = list.get(b);
 
                 university = mll.getTitle();
                 city1 = mll.getCity();
-
-                System.out.println("uni" + university);
-                System.out.println("city" + city1);
 
                 //if you need position, just use recycleViewHolder.getAdapterPosition();
                 Intent intent = new Intent(v.getContext(), MarkAttendanceMap.class);
@@ -75,14 +75,6 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
         });
 
 
-
-//      if (myListData.getIs_liked().equals("0")){
-//          myListData.setIs_liked("0");
-//          holder.like.setImageResource(R.drawable.heart);
-//      }else {
-//          myListData.setIs_liked("1");
-//          holder.like.setImageResource(R.drawable.redheart);
-//      }
 
     }
 
@@ -144,19 +136,6 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
 //            markatt.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
 //
 //        }
-
-            markatt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    i = getPosition();
-
-
-                    context.startActivity(new Intent(context, MarkAttendanceMap.class));
-
-                }
-            });
-
-
         }
     }
 }

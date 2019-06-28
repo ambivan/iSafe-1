@@ -82,6 +82,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
+                        android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -133,6 +134,7 @@
                         android:layout_gravity="center"
                         android:backgroundTint="#0000"
                         android:fontFamily="@font/roboto"
+                        android:textColor="#000"
                         android:hint=""
                         android:imeOptions="actionNext"
                         android:paddingRight="210dp"

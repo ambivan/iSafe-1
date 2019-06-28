@@ -69,11 +69,11 @@ public class Chatone extends AppCompatActivity {
 
         date.setText(dateString);
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
         showAllOldMessages();
 
+        membername.setText(IndividualChat.unique);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,6 @@ public class Chatone extends AppCompatActivity {
                             }
 
                             input.setText("");
-
 
 
                         }
@@ -169,7 +168,6 @@ public class Chatone extends AppCompatActivity {
                 if (userPost != null) {
                     if (userPost.getPost().equals("Team Member")) {
                         System.out.println("yes" + userPost.getName());
-                        membername.setText(userPost.getName());
 
                         adapter = new AdapterOne(Chatone.this, Message.class, R.layout.outgoingmessage,
                                 FirebaseDatabase.getInstance().getReference().child("Messages").child(userPost.getTeamname() + userPost.getName() ));

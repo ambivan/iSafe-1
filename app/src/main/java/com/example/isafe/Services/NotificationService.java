@@ -132,6 +132,8 @@ public class NotificationService extends Service {
 
                                 String key = dataSnapshot.getKey();
                                 if (!key.equals("name")
+                                        &&!key.equals("RoadSafetyAudit")
+                                        &&!key.equals("AttendedEvents")
                                         && !key.equals("MemberCount")
                                         && !key.equals("post")
                                         && !key.equals("Meeting Reports")
@@ -146,7 +148,6 @@ public class NotificationService extends Service {
                                         && !key.equals("Reimbursements")
                                         && !key.equals("Profile URL")) {
 
-                                    membercount++;
                                     FirebaseDatabase.getInstance()
                                             .getReference()
                                             .child("Users")

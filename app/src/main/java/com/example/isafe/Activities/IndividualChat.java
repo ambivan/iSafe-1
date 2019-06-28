@@ -61,6 +61,8 @@ public class IndividualChat extends AppCompatActivity {
 
                     if (!key.equals("name")
                             &&!key.equals("MemberCount")
+                            &&!key.equals("RoadSafetyAudit")
+                            &&!key.equals("AttendedEvents")
                             &&!key.equals("post")
                             && !key.equals("Meeting Reports")
                             &&!key.equals("teamname")

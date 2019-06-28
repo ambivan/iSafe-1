@@ -91,8 +91,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
         velocation = (EditText) findViewById(R.id.venueloc);
         mark = (Button) findViewById(R.id.marker);
 
-        velocation.setText("IIT Delhi");
-
         etLocation.setEnabled(false);
 
         mGeofenceList = new ArrayList<Geofence>();
@@ -161,7 +159,7 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                 .addApi(LocationServices.API)
                 .build();
 
-        System.out.println(city1);
+        System.out.println(MyListAdapter2.city1);
         System.out.println(MyListAdapter2.university);
 
         velocation.setText(university + city1);
@@ -393,10 +391,8 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                             @Override
                             public void onClick(View v) {
                                 if (a>100.00){
-                                    mark.setBackgroundResource(R.drawable.reportbuttonbg);
                                     Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
                                 } else if (a<100.00){
-                                    mark.setBackgroundResource(R.drawable.button_first_bg);
                                     Toast.makeText(MarkAttendanceMap.this, "Attendance Marked!", Toast.LENGTH_SHORT).show();
                                     HomePageActivity.frag = 1;
                                     startActivity(new Intent(MarkAttendanceMap.this, HomePageActivity.class));
