@@ -12,6 +12,14 @@
         <item>Team Member</item>
     </string-array>
 
+    <string-array name="Times">
+
+        <item>AM</item>
+        <item>PM</item>
+
+    </string-array>
+
+
     <string-array name="domains">
         <item>Tech</item>
         <item>Medical</item>

@@ -3,13 +3,17 @@ package com.example.isafe.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.isafe.CamActivity;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,6 +49,17 @@ public class IndividualChat extends AppCompatActivity {
 
         arrayList2 = new ArrayList<>();
         listView3 = (ListView) findViewById(R.id.list2);
+
+        Window window = IndividualChat.this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(IndividualChat.this,R.color.mystatus));
 
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

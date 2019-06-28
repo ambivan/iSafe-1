@@ -198,6 +198,7 @@ public class NewsFeed extends Fragment {
                     String time = events.getTime();
                     String topic = events.getTopic();
                     String isliked = events.getIs_liked();
+                    String eventid = events.getEventid();
 
                     eventlist.setTitle(title + ",");
                     eventlist.setCity(city);
@@ -206,6 +207,7 @@ public class NewsFeed extends Fragment {
                     eventlist.setTime("Starting at " + time);
                     eventlist.setTopic("Topic: " + topic);
                     eventlist.setIs_liked(isliked);
+                    eventlist.setEventid(eventid);
 
 
                         list.add(eventlist);

@@ -17,12 +17,21 @@ public class MyListData{
     private String topic;
     private String city;
     private String is_liked;
+    private String eventid;
 
     public void setImage(int image) {
         this.image = image;
     }
 
-    public MyListData(String title, String city, String event, String date, String time, String topic, String is_liked) {
+    public String getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(String eventid) {
+        this.eventid = eventid;
+    }
+
+    public MyListData(String eventid, String title, String city, String event, String date, String time, String topic, String is_liked) {
 
     this.title = title;
     this.date = date;
@@ -31,6 +40,7 @@ public class MyListData{
     this.topic = topic;
     this.city = city;
     this.is_liked = is_liked;
+    this.eventid = eventid;
 
   }
 

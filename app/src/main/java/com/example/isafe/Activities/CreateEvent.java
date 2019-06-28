@@ -1,20 +1,26 @@
 package com.example.isafe.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.isafe.CamActivity;
 import com.example.isafe.Classes.MyListData;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,18 +29,24 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class CreateEvent extends AppCompatActivity {
 
-    EditText event,date, time,topic, college, city;
+    EditText event,date, hrs, mins,topic, college, city;
     ImageView image;
-    String sevent,sdate, stime,stopic, scollege, userid, scity, simage;
+    String sevent,sdate, stime,stopic, scollege, userid, eventid, scity, simage;
 
 
     FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
+
+    String ampm;
+
+    Calendar myCalendar = Calendar.getInstance();
 
     Button createevent, cancel;
 
@@ -45,13 +57,70 @@ public class CreateEvent extends AppCompatActivity {
 
         setContentView(com.example.isafe.R.layout.activity_create_event);
 
+        Window window = CreateEvent.this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(CreateEvent.this,R.color.mystatus));
+
 
         event = (EditText) findViewById(com.example.isafe.R.id.eventtype);
-        date = (EditText) findViewById(com.example.isafe.R.id.dateevent);
-        time = (EditText) findViewById(com.example.isafe.R.id.starttime);
+        hrs = (EditText) findViewById(R.id.hrs);
+        mins = (EditText) findViewById(R.id.mins);
         topic = (EditText) findViewById(com.example.isafe.R.id.topic);
         college = (EditText) findViewById(com.example.isafe.R.id.college);
         city = (EditText) findViewById(com.example.isafe.R.id.cityname);
+
+        final Spinner spinner = (Spinner) findViewById(R.id.spinnertime);
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+                this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.Times));
+
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerArrayAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+
+                if (position == 0){
+
+                    ampm = "A.M.";
+
+                }else if (position == 1){
+                    ampm = "P.M.";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        final EditText date = (EditText) findViewById(R.id.dateevent);
+        final DatePickerDialog.OnDateSetListener datee = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
 
         cancel = (Button) findViewById(R.id.cancel);
         sdate = date.getText().toString();
@@ -66,46 +135,14 @@ public class CreateEvent extends AppCompatActivity {
         });
 
 
-            date.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+        date.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-                String working = s.toString();
-                if (working.length()==2 && before ==0) {
-                    {
-                        working+="/";
-                        date.setText(working);
-                        date.setSelection(working.length());
-                    }
-                } else if (working.length()==5 && before ==0) {
-                    {
-                        working+="/";
-                        date.setText(working);
-                        date.setSelection(working.length());
-                    }
-                }
-//                else if (working.length()== && before ==0) {
-//                    String enteredYear = working.substring(3);
-//                    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-//                }
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                int type = date.getInputType();
-
-                if (type == (InputType.TYPE_CLASS_DATETIME | InputType.TYPE_DATETIME_VARIATION_DATE))
-                {
-                    Toast.makeText(CreateEvent.this, "Corre", Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(CreateEvent.this, datee, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -117,10 +154,13 @@ public class CreateEvent extends AppCompatActivity {
 
                 sevent = event.getText().toString();
                 sdate = date.getText().toString();
-                stime = time.getText().toString();
+
+                stime = hrs.getText().toString() + " : " + mins.getText().toString() + " " + ampm;
                 stopic = topic.getText().toString();
                 scollege = college.getText().toString();
                 scity = city.getText().toString();
+                eventid = String.valueOf(System.currentTimeMillis());
+
 
                 if (!TextUtils.isEmpty(sevent)||!TextUtils.isEmpty(sdate)||!TextUtils.isEmpty(stime)||!TextUtils.isEmpty(stopic)||!TextUtils.isEmpty(scollege)||!TextUtils.isEmpty(scity)) {
 
@@ -128,13 +168,13 @@ public class CreateEvent extends AppCompatActivity {
 
                     FirebaseDatabase.getInstance().getReference()
                             .child("Events")
-                            .push()
-                            .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic, "0"));
+                            .child(eventid)
+                            .setValue(new MyListData(eventid, scollege, scity, sevent, sdate, stime, stopic, "0"));
 
                     FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("Events")
-                            .push()
-                            .setValue(new MyListData(scollege, scity, sevent, sdate, stime, stopic, "0"));
+                            .child(eventid)
+                            .setValue(new MyListData(eventid, scollege, scity, sevent, sdate, stime, stopic, "0"));
 
                     startActivity(new Intent(CreateEvent.this, HomePageActivity.class));
 
@@ -163,6 +203,15 @@ public class CreateEvent extends AppCompatActivity {
             }
 
         return date;
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        date = findViewById(R.id.dateevent);
+
+        date.setText(sdf.format(myCalendar.getTime()));
     }
 
     @Override

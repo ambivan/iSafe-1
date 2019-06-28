@@ -2,14 +2,19 @@ package com.example.isafe.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.isafe.CamActivity;
 import com.example.isafe.Classes.Road3;
+import com.example.isafe.Fragments.MeetingRequest;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -27,6 +32,17 @@ public class road3 extends AppCompatActivity {
         setContentView(R.layout.road_safety_audit3);
 
         Button next3 = findViewById(R.id.next3);
+
+        Window window = road3.this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(road3.this,R.color.mystatus));
 
         e1 = findViewById(R.id.e1);
         e2 = findViewById(R.id.e2);

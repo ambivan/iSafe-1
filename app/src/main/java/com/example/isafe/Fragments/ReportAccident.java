@@ -164,6 +164,11 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
                         startActivity(finalact);
                     } else {
+                        click.setVisibility(View.VISIBLE);
+
+
+                        lin1.setVisibility(View.INVISIBLE);
+
                         Toast.makeText(getActivity(), "Please Upload Photos.", Toast.LENGTH_SHORT).show();
 
                         CamActivity.i = 0;

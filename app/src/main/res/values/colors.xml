@@ -9,5 +9,6 @@
   <color name="colorGreen500">#8BC34A</color>
   <color name="colorRed400">#ef5350</color>
   <color name="spinner">#FFE607</color>
+  <color name="mystatus">#000</color>
 
 </resources>

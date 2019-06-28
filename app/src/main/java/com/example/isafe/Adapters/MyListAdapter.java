@@ -2,6 +2,7 @@ package com.example.isafe.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,11 @@ import android.widget.TextView;
 import com.example.isafe.Classes.MyListData;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +30,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     ArrayList<MyListData> list1;
 
-    static int mla;
-    int ml;
+    private static int mla;
+    private static int ml;
 
     int position;
 
@@ -61,30 +66,68 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         holder.topic.setText(myListData.getTopic());
         holder.city.setText(myListData.getCity());
 
-        if (myListData.getIs_liked().equals("0")){
-            holder.like.setImageResource(R.drawable.heart);
-        }else{
-            holder.like.setImageResource(R.drawable.redheart);
-        }
+        System.out.println(myListData.getEventid()+"bsdak");
 
-        holder.like.setOnClickListener(new View.OnClickListener() {
+        DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Registered Events");
+
+        d.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                MyListData m = list.get(ml);
-                System.out.println(m);
-                if (m.getIs_liked().equals("0")){
-                    m.setIs_liked("1");
-                    holder.like.setImageResource(R.drawable.redheart);
-                }else{
-                    m.setIs_liked("0");
-                    holder.like.setImageResource(R.drawable.heart);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    if (myListData.getEventid().equals(ds.getKey())) {
+                        System.out.println("yes");
+
+                        holder.register.setEnabled(false);
+                        holder.register.setBackgroundResource(R.drawable.report);
+                        holder.register.setText("Registered");
+
+                    }
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference l = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Liked Events");
+
+        l.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    System.out.println(ds.getKey());
+
+                    if (myListData.getEventid().equals(ds.getKey())) {
+                        System.out.println("yess");
+
+//                        holder.like.setBackgroundResource(R.drawable.redheart);
+
+
+                    } else {
+
+                        holder.like.setBackgroundResource(R.drawable.heart);
+
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
 
-
-        }
+    }
 
     @Override
     public int getItemCount() {
@@ -100,7 +143,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 arr = list.size();
             }
 
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
 
@@ -143,22 +186,42 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
                     mla = getPosition();
 
-                    MyListData mylist = list.get(mla);
+                    final MyListData mylist = list.get(mla);
 
-                    FirebaseDatabase.getInstance().getReference()
-                            .child("Users")
-                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .child("Registered Events")
-                            .push()
-                            .setValue(new MyListData(mylist.getTitle(), mylist.getCity(),
-                                    mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic(), "0"));
+
+                    DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Events");
+
+                    d.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                                if (mylist.getEventid().equals(ds.getKey())) {
+                                    System.out.println("yes");
+                                } else {
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .child("Registered Events")
+                                            .child(mylist.getEventid())
+                                            .setValue(new MyListData(mylist.getEventid(), mylist.getTitle(), mylist.getCity(),
+                                                    mylist.getEvent(), mylist.getDate(), mylist.getTime(), mylist.getTopic(), "0"));
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                     register.setEnabled(false);
                     register.setBackgroundResource(R.drawable.report);
                     register.setText("Registered");
                 }
             });
-
 
 
             send.setOnClickListener(new View.OnClickListener() {
@@ -188,15 +251,40 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 public void onClick(View v) {
 
                     ml = getPosition();
-                    MyListData m = list.get(ml);
-                    if (m.getIs_liked().equals("0")){
-                        m.setIs_liked("1");
+                    final MyListData m = list.get(ml);
 
-                        like.setImageResource(R.drawable.redheart);
-                    }else{
-                        m.setIs_liked("0");
-                        like.setImageResource(R.drawable.heart);
-                    }
+                    DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Events");
+
+                    d.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                                if (m.getEventid().equals(ds.getKey())) {
+
+                                    System.out.println("yes");
+
+
+                                } else {
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .child("Liked Events")
+                                            .child(m.getEventid())
+                                            .setValue(new MyListData(m.getEventid(), m.getTitle(), m.getCity(),
+                                                    m.getEvent(), m.getDate(), m.getTime(), m.getTopic(), "1"));
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                 }
             });
         }

@@ -1,4 +1,4 @@
-package com.example.isafe.Activities;
+package com.example.isafe.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.isafe.Services.NotificationService;
+import com.example.isafe.Activities.ChatMeeting;
 import com.example.isafe.R;
+import com.example.isafe.Services.NotificationService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

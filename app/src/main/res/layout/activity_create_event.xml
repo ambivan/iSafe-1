@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Custom"
-    android:background="#fff">
+    android:background="#fff"
+    android:theme="@style/Custom">
 
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,55 +25,63 @@
 
 
             <LinearLayout
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal"
+                android:background="#F3F2F0"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
 
                     android:id="@+id/cancel"
+                    android:background="#0000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cancel"
-                    android:textColor="#000"
-                    android:background="@drawable/reportbuttonbg"
-                    android:textAllCaps="false"/>
+                    android:textSize="12sp"
+                    android:textAllCaps="false"
+                    android:textColor="#082CE0" />
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Create Event"
-                    android:textSize="20sp"
                     android:textColor="#000"
-                    />
+                    android:textSize="20sp" />
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <Button
+                    android:id="@+id/createeventbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/reportbuttonbg"
+                    android:background="#0000"
                     android:text="Post"
-                    android:textColor="#000"
-                    android:id="@+id/createeventbutton"
                     android:textAllCaps="false"
-                    />
+                    android:textColor="#5A5959" />
+
+
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D3D1D1"/>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -80,23 +89,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
                     android:text="College Name"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
 
                     />
 
 
                 <EditText
-                    android:textColor="#000"
                     android:id="@+id/college"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
+                    android:textColor="#000"
                     android:textSize="20sp" />
 
 
@@ -104,7 +112,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
@@ -113,23 +122,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
                     android:text="City: "
+
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
 
                     />
 
                 <EditText
                     android:id="@+id/cityname"
                     android:layout_width="match_parent"
-                    android:textColor="#000"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
+                    android:textColor="#000"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -137,7 +146,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
@@ -146,25 +156,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
                     android:text="Event Type:"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
 
                     />
 
 
                 <EditText
                     android:id="@+id/eventtype"
-                    android:textColor="#000"
-
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
+                    android:textColor="#000"
                     android:textSize="20sp" />
 
 
@@ -172,7 +181,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
@@ -181,26 +191,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
                     android:text="Date of Event:"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
 
                     />
 
                 <EditText
                     android:id="@+id/dateevent"
-                    android:textColor="#000"
-
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
                     android:hint="DD/MM/YYYY"
                     android:inputType="date"
+                    android:textColor="#000"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -208,7 +217,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
@@ -219,34 +229,87 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
                     android:text="Starting Time"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
 
                     />
 
-                <EditText
-                    android:id="@+id/starttime"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textColor="#000"
+                    android:orientation="horizontal">
 
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="20sp" />
+                    <EditText
+                        android:backgroundTint="#000"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/hrs"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" : "
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <EditText
+                        android:backgroundTint="#000"
+
+                        android:id="@+id/mins"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="number"
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <Spinner
+                        android:id="@+id/spinnertime"
+                        android:layout_marginEnd="10dp"
+
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/dropdownbg">
+
+                    </Spinner>
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
 
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal"
 
                 >
@@ -255,12 +318,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
                     android:text="Topic:"
                     android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
 
                     />
 
@@ -270,14 +332,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:backgroundTint="#000"
-                    android:textColor="#000"
-
                     android:fontFamily="@font/roboto"
+
+                    android:textColor="#000"
                     android:textSize="20sp" />
 
             </LinearLayout>
-
-
 
 
         </LinearLayout>

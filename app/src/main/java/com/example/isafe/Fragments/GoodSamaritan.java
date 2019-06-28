@@ -27,7 +27,7 @@ public class GoodSamaritan extends Fragment {
 
         webView.setWebViewClient(new WebViewClient());
 
-        webView.loadUrl("https://savelifefoundation.org/good-samaritan-law/");
+        webView.loadUrl("http://gsl.goodsamaritans.in/home/");
 
         return vg;
     }

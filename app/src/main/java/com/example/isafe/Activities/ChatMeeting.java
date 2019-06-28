@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.isafe.Adapters.MyListAdapter3;
+import com.example.isafe.CamActivity;
 import com.example.isafe.Classes.Message;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
@@ -47,6 +51,17 @@ public class ChatMeeting extends AppCompatActivity {
         setContentView(R.layout.activity_chat_meeting);
 
         FirebaseApp.initializeApp(this);
+
+        Window window = ChatMeeting.this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(ChatMeeting.this,R.color.mystatus));
 
         arrayList = new ArrayList<>();
 

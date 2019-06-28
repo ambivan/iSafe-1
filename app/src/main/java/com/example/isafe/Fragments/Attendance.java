@@ -80,6 +80,7 @@ public class Attendance extends Fragment {
                     String date = events.getDate();
                     String time = events.getTime();
                     String topic = events.getTopic();
+                    String eventid = events.getEventid();
 
                     eventlist.setTitle(title);
                     eventlist.setCity(city);
@@ -87,6 +88,7 @@ public class Attendance extends Fragment {
                     eventlist.setDate(date);
                     eventlist.setTime(time);
                     eventlist.setTopic(topic);
+                    eventlist.setEventid(eventid);
 
                     list.add(eventlist);
 

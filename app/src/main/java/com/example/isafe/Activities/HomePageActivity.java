@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView.OnNavigationItemSelectedList
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.Feedback;
 import com.example.isafe.Fragments.GoodSamaritan;
+import com.example.isafe.Fragments.MeetingRequest;
 import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.Projects;
 import com.example.isafe.Fragments.Reimbursement;
@@ -94,6 +97,17 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         img = (ImageView) findViewById(R.id.icon1);
         badge = findViewById(R.id.badge);
+
+        Window window = HomePageActivity.this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(HomePageActivity.this,R.color.mystatus));
 
         DatabaseReference e = FirebaseDatabase.getInstance().getReference()
                 .child("Status");

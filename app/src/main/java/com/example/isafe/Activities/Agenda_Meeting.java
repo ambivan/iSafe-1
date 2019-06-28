@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,10 +29,10 @@ import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.GoodSamaritan;
 import com.example.isafe.Fragments.Meetings;
+import com.example.isafe.Fragments.Reimbursement;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
 import com.example.isafe.R;
-import com.example.isafe.Fragments.Reimbursement;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,6 +68,17 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         Toolbar toolbar = (Toolbar) findViewById(com.example.isafe.R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        Window window = Agenda_Meeting.this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(Agenda_Meeting.this,R.color.mystatus));
 
         arrayList = new ArrayList<>();
 
@@ -228,6 +242,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                                 && !key.equals("Projects")
                                                 &&!key.equals("Accident Report")
                                                 && !key.equals("EventDay")
+                                                && !key.equals("Liked Events")
                                                 &&!key.equals("Profile URL")
                                                 &&!key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
 
