@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.isafe.CamActivity;
 import com.example.isafe.Classes.CodeGen;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
@@ -127,6 +126,8 @@ public class CodeGenerator extends AppCompatActivity {
                        .getReference()
                        .child("Codes")
                        .push();
+
+
 
                String key = databaseReference.getKey();
 

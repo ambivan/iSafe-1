@@ -1,6 +1,5 @@
 package com.example.isafe.Adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,10 +11,10 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.isafe.R;
+
 import java.util.HashMap;
 import java.util.List;
-
-import static android.support.v4.content.ContextCompat.startActivity;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -54,7 +53,15 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
               .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
       convertView = layoutInflater.inflate(com.example.isafe.R.layout.childtext, null);
 
+      Button know = convertView.findViewById(R.id.readmore);
 
+      know.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ww2.road-safety.co.in/home/"));
+            context.startActivity(browserIntent);
+        }
+      });
 
     }
 

@@ -1,13 +1,17 @@
 package com.example.isafe.Adapters;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.isafe.R;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +53,16 @@ public class oppurtunitiesAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(com.example.isafe.R.layout.opp_child, null);
+
+            Button oppread = convertView.findViewById(R.id.oppread);
+
+            oppread.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://ww2.road-safety.co.in/home/"));
+                    context.startActivity(browserIntent);
+                }
+            });
         }
 
         TextView expandedListTextView = (TextView) convertView.findViewById(com.example.isafe.R.id.expandedListItem);

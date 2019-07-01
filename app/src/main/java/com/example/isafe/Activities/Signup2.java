@@ -94,7 +94,7 @@ public class Signup2 extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(Signup2.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(Signup2.this, R.color.mystatus));
 
         android.support.v7.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar7);
 
@@ -352,16 +352,16 @@ public class Signup2 extends AppCompatActivity {
         pa = npassword.getText().toString().trim();
         con = confirm.getText().toString().trim();
 
-        auth.createUserWithEmailAndPassword(em, pa)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()) {
+        if (SignupActivity.i == 1) {
+            auth.createUserWithEmailAndPassword(em, pa)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            userid = auth.getCurrentUser().getUid();
+                            if (task.isSuccessful()) {
+                                userid = auth.getCurrentUser().getUid();
 
-                            if (SignupActivity.i == 1) {
 
                                 if (collegeuid.getText().toString() != null) {
 
@@ -384,10 +384,23 @@ public class Signup2 extends AppCompatActivity {
 
                                 startActivity(in);
 
-
+                            } else {
+                                mProgress.dismiss();
+                                Log.i("Fail", "Signup not completed");
+                                Toast.makeText(Signup2.this, "Email already registered!", Toast.LENGTH_SHORT).show();
                             }
-                            if (SignupActivity.i == 2) {
 
+                        }
+                    });
+        }
+
+        if (SignupActivity.i == 2) {
+            auth.createUserWithEmailAndPassword(em, pa)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if (task.isSuccessful()) {
                                 profilename = name.getText().toString();
 
                                 post = "Team Leader";
@@ -397,23 +410,42 @@ public class Signup2 extends AppCompatActivity {
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 startActivity(in);
-
+                            } else {
+                                mProgress.dismiss();
+                                Log.i("Fail", "Signup not completed");
+                                Toast.makeText(Signup2.this, "Email already registered!", Toast.LENGTH_SHORT).show();
                             }
-                            if (SignupActivity.i == 3) {
 
-                                post = "Team Member";
-                                gd.setVisibility(View.GONE);
+                        }
+                    });
+        }
 
-                                cuid = collegeuid.getText().toString();
-                                profilename = name.getText().toString();
+        if (SignupActivity.i == 3) {
 
+            cuid = collegeuid.getText().toString();
 
-                                if (TextUtils.isEmpty(cuid)) {
+            if (TextUtils.isEmpty(cuid)) {
 
-                                    Toast.makeText(Signup2.this, "Please fill in college uid or sign up as volunteer", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Signup2.this, "Please fill in college uid or sign up as volunteer", Toast.LENGTH_SHORT).show();
+                mProgress.dismiss();
 
+            } else {
 
-                                } else {
+                auth.createUserWithEmailAndPassword(em, pa)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if (task.isSuccessful()) {
+
+                                    userid = auth.getCurrentUser().getUid();
+
+                                    post = "Team Member";
+                                    gd.setVisibility(View.GONE);
+
+                                    cuid = collegeuid.getText().toString();
+                                    profilename = name.getText().toString();
+
                                     FirebaseDatabase.getInstance()
                                             .getReference()
                                             .child("Users")
@@ -489,20 +521,20 @@ public class Signup2 extends AppCompatActivity {
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                     startActivity(in);
+
+                                } else {
+                                    mProgress.dismiss();
+                                    Log.i("Fail", "Signup not completed");
+                                    Toast.makeText(Signup2.this, "Signup not completed", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                            Log.i("Success", "Signup completed");
+                        });
+            }
 
-                            mProgress.dismiss();
 
-                        } else {
-                            mProgress.dismiss();
-                            Log.i("Fail", "Signup not completed");
-                            Toast.makeText(Signup2.this, "Email already registered!", Toast.LENGTH_SHORT).show();
-                        }
+        }
 
-                    }
-                });
+
     }
 
 
@@ -522,4 +554,5 @@ public class Signup2 extends AppCompatActivity {
         super.onStop();
         auth.addAuthStateListener(authStateListener);
     }
+
 }

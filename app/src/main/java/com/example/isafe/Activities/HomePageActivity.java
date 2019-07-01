@@ -52,8 +52,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     ImageView notif;
 
     NotificationService notificationService;
-
-
+    
     FirebaseAuth auth;
     FirebaseUser user;
     String userid;
