@@ -28,7 +28,6 @@ import com.example.isafe.Classes.AgendaGen;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.GoodSamaritan;
-import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.Reimbursement;
 import com.example.isafe.Fragments.comp;
 import com.example.isafe.Fragments.opp;
@@ -123,6 +122,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                     System.out.println("hi" + key);
 
                     if (!key.equals("name")
+                            && !key.equals("Status")
                             &&!key.equals("post")
                             &&!key.equals("MemberCount")
                             && !key.equals("Meeting Reports")
@@ -233,7 +233,8 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                                 &&!key.equals("post")
                                                 &&!key.equals("MemberCount")
                                                 && !key.equals("Meeting Reports")
-                                                &&!key.equals("teamname")
+                                                && !key.equals("teamname")
+                                                && !key.equals("Status")
                                                 && !key.equals("Registered Events")
                                                 &&!key.equals("Reimbursements")
                                                 && !key.equals("Domain")
@@ -360,11 +361,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
             FirebaseAuth.getInstance().signOut();
 
-        } else if (id == com.example.isafe.R.id.Meetings) {
-
-            frag1 = new Meetings();
-
-        }else if (id == com.example.isafe.R.id.events) {
+        } else if (id == com.example.isafe.R.id.events) {
 
             frag1 = new EventChecklist();
 

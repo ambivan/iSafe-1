@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:id="@+id/relll"
@@ -15,7 +16,6 @@
         android:paddingBottom = "5dp"
 		android:id="@+id/rell"
 		android:background="@drawable/inmessage">
-
 
 		<TextView
             android:fontFamily="@font/roboto"

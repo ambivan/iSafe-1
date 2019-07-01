@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:theme="@style/AppTheme.NoActionBar"
     android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
     tools:context=".Activities.HomePageActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -18,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
             <LinearLayout
@@ -28,47 +27,47 @@
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1" />
 
-                <FrameLayout
+                <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     style="?attr/actionButtonStyle"
-                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:focusable="true">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:id="@+id/icon1"
-                        android:src="@drawable/notif"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/notif" />
 
                     <TextView
                         android:id="@+id/badge"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="right|end|top"
-                        android:layout_marginEnd="-5dp"
-                        android:layout_marginRight="-5dp"
                         android:layout_marginTop="3dp"
                         android:background="@drawable/badge"
                         android:gravity="center"
-                        android:padding="3dp"
-                        android:textColor="@android:color/white"
+                        android:paddingStart="4dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="4dp"
+                        android:paddingBottom="2dp"
                         android:text="0"
-                        android:textSize="10sp"/>
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="8sp" />
 
                 </FrameLayout>
+
             </LinearLayout>
 
-        </android.support.v7.widget.Toolbar>
+         </android.support.v7.widget.Toolbar>
 
-    </android.support.design.widget.AppBarLayout>
+      </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_home_page" />
-
 
 </android.support.design.widget.CoordinatorLayout>

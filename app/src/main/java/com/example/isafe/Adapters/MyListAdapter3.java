@@ -25,6 +25,7 @@ public class MyListAdapter3 extends FirebaseListAdapter<Message> {
     protected void populateView(View v, Message model, int position) {
         TextView messageText = (TextView) v.findViewById(R.id.message_text);
 
+
         messageText.setText(model.getMessageText());
 
     }

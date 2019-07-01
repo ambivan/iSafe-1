@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.isafe.Classes.CodeGen;
@@ -49,6 +50,8 @@ public class Signup2 extends AppCompatActivity {
     FirebaseAuth.AuthStateListener authStateListener;
 
     ProgressDialog mProgress;
+
+    TextView gd;
 
     EditText emailid, npassword, confirm, collegeuid, name, teamname;
 
@@ -100,6 +103,8 @@ public class Signup2 extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
+
+        gd = (TextView) findViewById(R.id.optional);
 
         if (SignupActivity.i == 2) {
 
@@ -397,92 +402,95 @@ public class Signup2 extends AppCompatActivity {
                             if (SignupActivity.i == 3) {
 
                                 post = "Team Member";
+                                gd.setVisibility(View.GONE);
 
                                 cuid = collegeuid.getText().toString();
                                 profilename = name.getText().toString();
 
-                                FirebaseDatabase.getInstance()
-                                        .getReference()
-                                        .child("Users")
-                                        .child(userid)
-                                        .setValue(new UserPost(profilename, post, cuid));
 
-                            }
+                                if (TextUtils.isEmpty(cuid)) {
 
-                            if (SignupActivity.i == 3) {
-
-                                final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
-
-                                dbref.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                        for (DataSnapshot child : dataSnapshot.getChildren()) {
-                                            System.out.println(child.getKey());
-
-                                            String key = child.getKey();
-
-                                            DatabaseReference d = dbref.child(key);
-
-                                            d.addValueEventListener(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                    CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
-                                                    System.out.println(codeGen.getCode());
-
-                                                    cuid = collegeuid.getText().toString();
-                                                    System.out.println("cuid" + cuid);
-
-                                                    if (post.equals("Team Member")) {
-                                                        if (codeGen.getCode().equals(cuid)) {
-                                                            id = codeGen.getUserid();
-                                                            System.out.println(id);
-                                                            FirebaseDatabase.getInstance()
-                                                                    .getReference()
-                                                                    .child("Users")
-                                                                    .child(id)
-                                                                    .child(userid)
-                                                                    .setValue(new UserPost(profilename, post, cuid));
-
-                                                            membercount++;
-
-                                                            FirebaseDatabase.getInstance()
-                                                                    .getReference()
-                                                                    .child("Users")
-                                                                    .child(id)
-                                                                    .child("MemberCount")
-                                                                    .setValue(membercount);
+                                    Toast.makeText(Signup2.this, "Please fill in college uid or sign up as volunteer", Toast.LENGTH_SHORT).show();
 
 
-                                                            Intent intent = new Intent(Signup2.this, NotificationService.class);
-                                                            startService(intent);
+                                } else {
+                                    FirebaseDatabase.getInstance()
+                                            .getReference()
+                                            .child("Users")
+                                            .child(userid)
+                                            .setValue(new UserPost(profilename, post, cuid));
 
+                                    final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
+
+                                    dbref.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                                System.out.println(child.getKey());
+
+                                                String key = child.getKey();
+
+                                                DatabaseReference d = dbref.child(key);
+
+                                                d.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
+                                                        System.out.println(codeGen.getCode());
+
+                                                        cuid = collegeuid.getText().toString();
+                                                        System.out.println("cuid" + cuid);
+
+                                                        if (post.equals("Team Member")) {
+                                                            if (codeGen.getCode().equals(cuid)) {
+                                                                id = codeGen.getUserid();
+                                                                System.out.println(id);
+                                                                FirebaseDatabase.getInstance()
+                                                                        .getReference()
+                                                                        .child("Users")
+                                                                        .child(id)
+                                                                        .child(userid)
+                                                                        .setValue(new UserPost(profilename, post, cuid));
+
+                                                                membercount++;
+
+                                                                FirebaseDatabase.getInstance()
+                                                                        .getReference()
+                                                                        .child("Users")
+                                                                        .child(id)
+                                                                        .child("MemberCount")
+                                                                        .setValue(membercount);
+
+
+                                                                Intent intent = new Intent(Signup2.this, NotificationService.class);
+                                                                startService(intent);
+
+                                                            }
                                                         }
                                                     }
-                                                }
 
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                                }
-                                            });
+                                                    }
+                                                });
+                                            }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                    }
-                                });
+                                        }
+                                    });
 
-                                Intent in = new Intent(Signup2.this, HomePageActivity.class);
+                                    Intent in = new Intent(Signup2.this, HomePageActivity.class);
 
-                                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                                startActivity(in);
-
+                                    startActivity(in);
+                                }
                             }
-
                             Log.i("Success", "Signup completed");
 
                             mProgress.dismiss();

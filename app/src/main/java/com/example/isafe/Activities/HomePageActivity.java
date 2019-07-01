@@ -28,8 +28,6 @@ import com.example.isafe.Classes.UserPost;
 import com.example.isafe.Fragments.EventChecklist;
 import com.example.isafe.Fragments.Feedback;
 import com.example.isafe.Fragments.GoodSamaritan;
-import com.example.isafe.Fragments.MeetingRequest;
-import com.example.isafe.Fragments.Meetings;
 import com.example.isafe.Fragments.Projects;
 import com.example.isafe.Fragments.Reimbursement;
 import com.example.isafe.Fragments.RoadSafetyAudit;
@@ -51,7 +49,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     private ViewPager viewPager;
     public TabLayout tabLayout;
 
-    ImageView img;
+    ImageView notif;
 
     NotificationService notificationService;
 
@@ -95,7 +93,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         FirebaseApp.initializeApp(this);
 
-        img = (ImageView) findViewById(R.id.icon1);
+        notif = (ImageView) findViewById(R.id.icon1);
         badge = findViewById(R.id.badge);
 
         Window window = HomePageActivity.this.getWindow();
@@ -110,6 +108,8 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         window.setStatusBarColor(ContextCompat.getColor(HomePageActivity.this,R.color.mystatus));
 
         DatabaseReference e = FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Status");
 
         e.addValueEventListener(new ValueEventListener() {
@@ -130,42 +130,20 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
         startService(intent);
 
-//        e.addChildEventListener(new ChildEventListener() {
-//
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//
-//                notificationService = new NotificationService();
-//
-//                Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
-//                startService(intent);
-//
-//                badge.setText(String.valueOf(count));
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//
+        badge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase.getInstance().getReference()
+                        .child("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Status")
+                        .setValue("0");
+
+
+
+            }
+        });
+
 
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -192,13 +170,11 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.navbar_teamlead);
                                     h = 1;
-                                    p = 0;
 
                                 } else if (userPost.getPost().equals("Team Member")) {
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.navbar_teammember);
                                     h = 1;
-                                    p = 1;
                                 }else{
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
@@ -324,10 +300,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             drawer.closeDrawer(GravityCompat.START);
         }
 
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            getFragmentManager().popBackStack();
-        }
-        else {
+        else{
             super.onBackPressed();
         }
 
@@ -363,32 +336,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
             auth.signOut();
 
-        } else if (id == R.id.Meetings) {
-
-            if (p == 0) {
-                frag1 = new Meetings();
-            }
-
-            else if (p==1){
-                frag1 = new MeetingRequest();
-            }
-            img.setImageResource(R.drawable.message);
-
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-
-                    if (p == 0) {
-                        startActivity(new Intent(HomePageActivity.this, IndividualChat.class));
-
-                    } else if (p == 1){
-                        startActivity(new Intent(HomePageActivity.this, Chatone.class));
-                    }
-                }
-            });
-
-        }else if (id == R.id.events) {
+        } else if (id == R.id.events) {
 
             frag1 = new EventChecklist();
 

@@ -96,8 +96,6 @@ public class Attendance extends Fragment {
                         regfirst.setVisibility(View.GONE);
                     }
 
-
-
                     recyclerAdapter = new MyListAdapter2(list, getActivity());
                     RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(recyce);

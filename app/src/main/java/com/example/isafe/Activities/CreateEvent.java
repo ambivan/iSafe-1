@@ -2,12 +2,12 @@ package com.example.isafe.Activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.isafe.CamActivity;
 import com.example.isafe.Classes.MyListData;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +39,7 @@ public class CreateEvent extends AppCompatActivity {
     String sevent,sdate, stime,stopic, scollege, userid, eventid, scity, simage;
 
 
+    int counter = 0;
     FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authStateListener;
     DatabaseReference databaseReference;
@@ -50,7 +50,6 @@ public class CreateEvent extends AppCompatActivity {
 
     Button createevent, cancel;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +106,7 @@ public class CreateEvent extends AppCompatActivity {
 
 
 
+
         final EditText date = (EditText) findViewById(R.id.dateevent);
         final DatePickerDialog.OnDateSetListener datee = new DatePickerDialog.OnDateSetListener() {
 
@@ -146,7 +146,40 @@ public class CreateEvent extends AppCompatActivity {
             }
         });
 
+        sevent = event.getText().toString();
+        sdate = date.getText().toString();
+
+        stime = hrs.getText().toString() + " : " + mins.getText().toString() + " " + ampm;
+        stopic = topic.getText().toString();
+        scollege = college.getText().toString();
+        scity = city.getText().toString();
+
         createevent = (Button) findViewById(R.id.createeventbutton);
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                createevent.setTextColor(getResources().getColor(R.color.button));
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        topic.addTextChangedListener(textWatcher);
+
+
+
+
 
         createevent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,8 +196,6 @@ public class CreateEvent extends AppCompatActivity {
 
 
                 if (!TextUtils.isEmpty(sevent)||!TextUtils.isEmpty(sdate)||!TextUtils.isEmpty(stime)||!TextUtils.isEmpty(stopic)||!TextUtils.isEmpty(scollege)||!TextUtils.isEmpty(scity)) {
-
-                    createevent.setBackgroundResource(R.drawable.button_first_bg);
 
                     FirebaseDatabase.getInstance().getReference()
                             .child("Events")
@@ -183,6 +214,8 @@ public class CreateEvent extends AppCompatActivity {
                 }
             }
         });
+
+        topic.removeTextChangedListener(textWatcher);
     }
 
 

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.isafe.Activities.Comments;
 import com.example.isafe.Classes.MyListData;
 import com.example.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,14 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     private static int mla;
     private static int ml;
+
+    public static String cevent;
+    public static String cdate;
+    public static String ctime;
+    public static String ctitle;
+    public static String ctopic;
+    public static String ccity;
+    public static String cid;
 
     int position;
 
@@ -66,7 +75,25 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         holder.topic.setText(myListData.getTopic());
         holder.city.setText(myListData.getCity());
 
-        System.out.println(myListData.getEventid()+"bsdak");
+
+        holder.msg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MyListData f = list.get(holder.getPosition());
+
+                ccity = f.getCity();
+                cdate = f.getDate();
+                ctime = f.getTime();
+                ctitle = f.getTitle();
+                cevent = f.getEvent();
+                ctopic = f.getTopic();
+                cid = f.getEventid();
+
+                context.startActivity(new Intent(context.getApplicationContext(), Comments.class));
+
+            }
+        });
 
         DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Registered Events");
@@ -146,8 +173,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         } catch (Exception ignored) {
 
         }
-
-        System.out.println("size" + arr);
 
         return arr;
     }
@@ -244,6 +269,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
                 }
             });
+
 
 
             like.setOnClickListener(new View.OnClickListener() {

@@ -160,6 +160,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_marginLeft="30dp"
+                android:id="@+id/optional"
                 android:layout_marginRight="30dp"
                 android:text="**Optional; if you have college id then enter"
                 android:textColor="#000" />

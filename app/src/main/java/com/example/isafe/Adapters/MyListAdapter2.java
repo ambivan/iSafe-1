@@ -93,8 +93,6 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
             e.printStackTrace();
         }
 
-        System.out.println("size" + arr);
-
         return arr;
     }
 
