@@ -49,7 +49,7 @@
                 android:layout_marginTop="85dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint = "Enter College Name"/>
+                android:hint = "Enter Full Name of College "/>
 
             <Button
                 android:id = "@+id/generate"

@@ -99,9 +99,37 @@ public class CodeGenerator extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                String cn = collegename.getText().toString();
+                final String cn = collegename.getText().toString();
 
                 if (!TextUtils.isEmpty(cn)){
+
+                    DatabaseReference f = FirebaseDatabase.getInstance().getReference()
+                            .child("Colleges");
+
+                    f.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot d : dataSnapshot.getChildren()){
+                                System.out.println(d.getValue());
+
+                                if (cn.equals(d.getValue())){
+                                    Toast.makeText(CodeGenerator.this, "This college has already registered.", Toast.LENGTH_SHORT).show();
+                                }
+
+                                FirebaseDatabase.getInstance().getReference()
+                                        .child("Colleges")
+                                        .push()
+                                        .setValue(cn);
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                     first.setVisibility(View.INVISIBLE);
                     second.setVisibility(View.VISIBLE);
