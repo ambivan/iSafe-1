@@ -44,7 +44,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activities.Notifications"></activity>
+        <activity
+            android:name=".Activities.isafehome"
+            android:parentActivityName=".Activities.HomePageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.Notifications" />
         <activity
             android:name=".Activities.Comments"
             android:parentActivityName=".Activities.HomePageActivity"

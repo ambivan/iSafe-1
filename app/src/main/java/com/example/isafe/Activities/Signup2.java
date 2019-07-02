@@ -30,7 +30,6 @@ import android.widget.Toast;
 import com.example.isafe.Classes.CodeGen;
 import com.example.isafe.Classes.UserPost;
 import com.example.isafe.R;
-import com.example.isafe.Services.NotificationService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -422,7 +421,11 @@ public class Signup2 extends AppCompatActivity {
 
         if (SignupActivity.i == 3) {
 
+            gd.setVisibility(View.GONE);
+
+
             cuid = collegeuid.getText().toString();
+
 
             if (TextUtils.isEmpty(cuid)) {
 
@@ -441,7 +444,6 @@ public class Signup2 extends AppCompatActivity {
                                     userid = auth.getCurrentUser().getUid();
 
                                     post = "Team Member";
-                                    gd.setVisibility(View.GONE);
 
                                     cuid = collegeuid.getText().toString();
                                     profilename = name.getText().toString();
@@ -485,18 +487,6 @@ public class Signup2 extends AppCompatActivity {
                                                                         .child(userid)
                                                                         .setValue(new UserPost(profilename, post, cuid));
 
-                                                                membercount++;
-
-                                                                FirebaseDatabase.getInstance()
-                                                                        .getReference()
-                                                                        .child("Users")
-                                                                        .child(id)
-                                                                        .child("MemberCount")
-                                                                        .setValue(membercount);
-
-
-                                                                Intent intent = new Intent(Signup2.this, NotificationService.class);
-                                                                startService(intent);
 
                                                             }
                                                         }

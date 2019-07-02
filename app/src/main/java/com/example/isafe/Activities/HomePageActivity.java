@@ -44,7 +44,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomePageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, OnNavigationItemSelectedListener{
+public class HomePageActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, OnNavigationItemSelectedListener {
 
     private ViewPager viewPager;
     public TabLayout tabLayout;
@@ -52,7 +52,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     ImageView notif;
 
     NotificationService notificationService;
-    
+
     FirebaseAuth auth;
     FirebaseUser user;
     String userid;
@@ -68,7 +68,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     NavigationView navigationView;
     public static int h;
 
-    int p ;
+    int p;
 
     public static int frag = 0;
 
@@ -104,7 +104,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(HomePageActivity.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(HomePageActivity.this, R.color.mystatus));
 
         DatabaseReference e = FirebaseDatabase.getInstance().getReference()
                 .child("Users")
@@ -125,11 +125,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             }
         });
 
-
-        Intent intent = new Intent(HomePageActivity.this, NotificationService.class);
-        startService(intent);
-
-        badge.setOnClickListener(new View.OnClickListener() {
+        notif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseDatabase.getInstance().getReference()
@@ -138,6 +134,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                         .child("Status")
                         .setValue("0");
 
+                startActivity(new Intent(HomePageActivity.this, Notifications.class));
 
 
             }
@@ -151,7 +148,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                 user = firebaseAuth.getCurrentUser();
 
-                if (user != null){
+                if (user != null) {
 
                     userid = user.getUid();
 
@@ -164,7 +161,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                             userPost = dataSnapshot.getValue(UserPost.class);
 
                             if (userPost != null) {
-                                if (userPost.getPost().equals("Team Leader")){
+                                if (userPost.getPost().equals("Team Leader")) {
 
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.navbar_teamlead);
@@ -174,7 +171,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.navbar_teammember);
                                     h = 1;
-                                }else{
+                                } else {
                                     navigationView.getMenu().clear();
                                     navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
                                     h = 0;
@@ -195,8 +192,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                 d.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                        System.out.println(dataSnapshot.getValue());
 
                                         if (dataSnapshot.getValue() != null) {
 
@@ -222,7 +217,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                         }
                     });
 
-                }else {
+                } else {
                     finish();
                     startActivity(new Intent(HomePageActivity.this, MainActivity.class));
                 }
@@ -244,9 +239,9 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             tabLayout.addTab(tabLayout.newTab());
-             tabs[i] = tabLayout.getTabAt(i);
+            tabs[i] = tabLayout.getTabAt(i);
         }
 
 
@@ -254,24 +249,24 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             tabs[i].setIcon(imageResId[i]);
             tabs[i].setCustomView(R.layout.tabl);
         }
-      setFragment();
+        setFragment();
     }
 
     private void setFragment() {
 
-        if (frag == 0 || frag == 1){
+        if (frag == 0 || frag == 1) {
             viewPager.setCurrentItem(0);
-        }else if (frag == 2){
+        } else if (frag == 2) {
             viewPager.setCurrentItem(1);
-        }else if (frag == 3){
+        } else if (frag == 3) {
             viewPager.setCurrentItem(2);
-        }else if (frag == 4){
+        } else if (frag == 4) {
             viewPager.setCurrentItem(3);
-        }else if (frag == 5){
+        } else if (frag == 5) {
             viewPager.setCurrentItem(4);
         }
     }
@@ -297,13 +292,11 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-
-        else{
+        } else {
             super.onBackPressed();
         }
 
-        }
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -312,10 +305,10 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         int id = item.getItemId();
         Fragment frag1 = null;
 
-        if (id == R.id.Home){
+        if (id == R.id.Home) {
             finish();
             frag = 0;
-            startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
+            startActivity(new Intent(HomePageActivity.this, isafehome.class));
         }
         if (id == R.id.competitions) {
             frag1 = new comp();
@@ -339,11 +332,11 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
             frag1 = new EventChecklist();
 
-        }else if (id == R.id.Reimbursement) {
+        } else if (id == R.id.Reimbursement) {
 
             frag1 = new Reimbursement();
 
-        } else if (id == R.id.feedback){
+        } else if (id == R.id.feedback) {
             frag1 = new Feedback();
         } else if (id == R.id.projects)
             frag1 = new Projects();

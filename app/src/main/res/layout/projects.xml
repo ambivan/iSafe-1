@@ -11,7 +11,7 @@
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#fff">
 
 
@@ -91,10 +91,10 @@
 
 
             <LinearLayout
-                android:orientation="vertical"
-                android:paddingBottom="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
 
                 <Button
                     android:id="@+id/addp"
@@ -129,21 +129,32 @@
                     <ListView
                         android:id="@+id/list5"
                         android:layout_width="match_parent"
-                        android:layout_marginRight="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="30dp"
-                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
                         android:divider="@android:color/transparent"
                         android:dividerHeight="16dp"
-                        android:transcriptMode="alwaysScroll"
                         android:stackFromBottom="true"
-                        />
+                        android:transcriptMode="alwaysScroll" />
 
 
                 </RelativeLayout>
 
 
             </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_first_bg"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Submit"
+                android:textColor="#fff"
+
+
+                />
 
         </LinearLayout>
 

@@ -9,7 +9,6 @@ public class Meeting {
 
     public Meeting (){
         date = new Date().getTime();
-
     }
 
     public String getMinutes() {

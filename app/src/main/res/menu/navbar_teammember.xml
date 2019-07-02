@@ -16,6 +16,17 @@
 
     <group
 
+        android:id="@+id/group14"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/newsfeed"
+            android:title="Newsfeed" />
+
+    </group>
+
+
+    <group
+
         android:id="@+id/group1"
         android:checkableBehavior="single">
         <item

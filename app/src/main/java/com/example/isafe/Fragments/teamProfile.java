@@ -98,11 +98,11 @@ public class teamProfile extends Fragment {
 
                             System.out.println(a);
 
-                             b[0] = a;
+                            b[0] = a;
 
                         }
-                        String [] arr = b[0].split("/", 2);
-                        for (String a : arr){
+                        String[] arr = b[0].split("/", 2);
+                        for (String a : arr) {
 
                             System.out.println(a);
                             team_name.setText(a);

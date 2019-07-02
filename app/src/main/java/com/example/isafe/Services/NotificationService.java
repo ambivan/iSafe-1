@@ -18,11 +18,11 @@ import com.example.isafe.Activities.HomePageActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -89,7 +89,6 @@ public class NotificationService extends Service {
 
                 FirebaseUser user = mAuth.getCurrentUser();
 
-
                 if (user != null) {
 
                     final DatabaseReference a = FirebaseDatabase.getInstance()
@@ -104,14 +103,15 @@ public class NotificationService extends Service {
 
                     a.child("Status").setValue("0");
 
+                    b.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    b.addValueEventListener(new ValueEventListener() {
-
+                        }
 
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                            for (DataSnapshot ds : dataSnapshot.getChildren()){
                             System.out.println("count" + count1);
                             a.child("Status").setValue(String.valueOf(count1));
                             Notification notification = new Notification.Builder(getApplicationContext())
@@ -125,9 +125,28 @@ public class NotificationService extends Service {
 
                             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                             notificationManager.notify(1, notification);
-                            }
+
 
                             count1 += 1;
+
+
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("Notifications")
+                                    .push()
+                                    .setValue(System.currentTimeMillis());
+
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                         }
 
@@ -136,6 +155,7 @@ public class NotificationService extends Service {
 
                         }
                     });
+
 
                 }
 

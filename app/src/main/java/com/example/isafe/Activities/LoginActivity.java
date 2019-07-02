@@ -16,19 +16,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.isafe.CamActivity;
-import com.example.isafe.Services.NotificationService;
 import com.example.isafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -83,33 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                 if ((user != null)) {
 
                     userid = user.getUid();
-
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid).child("Agendas");
-
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                            for (DataSnapshot child : children) {
-
-                                System.out.println(child);
-
-                                NotificationService notificationService = new NotificationService();
-
-                                Intent intent = new Intent(LoginActivity.this, NotificationService.class);
-                                startService(intent);
-
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
 
                     Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

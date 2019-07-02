@@ -1,5 +1,6 @@
 package com.example.isafe.Fragments;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,15 +9,18 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.isafe.Activities.HomePageActivity;
 import com.example.isafe.Classes.Constants;
 import com.example.isafe.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -32,7 +36,10 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -40,43 +47,71 @@ public class EventChecklist extends Fragment {
 
     View ve;
 
-    ImageView eimage, eimage2, eimage3, doc, doc3, doc2;
-
-    final int CAMERA_REQUEST = 1;
-
-    Button photos, docs;
+    Button photos, docs, save;
 
     final int PICK_PDF_CODE = 2342;
     private final int SELECT_FILE = 2;
 
+    Calendar myCalendar = Calendar.getInstance();
+
+    String sname, sdate, sbrief, simpact;
+
     StorageReference mStorageReference;
     DatabaseReference mDatabaseReference;
 
-
-    Uri photoURI;
-    String path;
+    EditText name, date, notes, brief, impact;
 
     ListView listdoc, listphoto;
 
     ArrayList<String> doclist, photolist;
 
-    int count;
-
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        ve = inflater.inflate(R.layout.event_checklist, container, false);
+
+
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mStorageReference = FirebaseStorage.getInstance().getReference();
+
+        final DatePickerDialog.OnDateSetListener datee = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        name = ve.findViewById(R.id.ename);
+        date = ve.findViewById(R.id.edate);
+        brief = ve.findViewById(R.id.brief);
+        impact = ve.findViewById(R.id.impact);
+
+
+        date.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), datee, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
 
         doclist = new ArrayList<>();
         photolist = new ArrayList<>();
 
-
-        ve = inflater.inflate(R.layout.event_checklist, container, false);
-
         listdoc = ve.findViewById(R.id.listdoc);
         listphoto = ve.findViewById(R.id.listpho);
+
+        save = ve.findViewById(R.id.eventsave);
 
         final DatabaseReference a = mDatabaseReference
                 .child("Users")
@@ -165,6 +200,29 @@ public class EventChecklist extends Fragment {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/pdf");
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PDF_CODE);
+
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sname = name.getText().toString();
+                sdate = date.getText().toString();
+                sbrief = brief.getText().toString();
+                simpact = impact.getText().toString();
+
+
+                if (!TextUtils.isEmpty(sname) && !TextUtils.isEmpty(sdate) && !TextUtils.isEmpty(sbrief) && !TextUtils.isEmpty(simpact)) {
+                    Toast.makeText(getActivity(), "Your event details have been saved!", Toast.LENGTH_SHORT).show();
+
+                    HomePageActivity.frag = 1;
+
+                    startActivity(new Intent(getActivity(), HomePageActivity.class));
+                } else {
+                    Toast.makeText(getActivity(), "Please fill out all fields!", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -306,6 +364,15 @@ public class EventChecklist extends Fragment {
             }
         }
         return result;
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        date = ve.findViewById(R.id.dateevent);
+
+        date.setText(sdf.format(myCalendar.getTime()));
     }
 
 }

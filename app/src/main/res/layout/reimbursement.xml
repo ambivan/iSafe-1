@@ -139,15 +139,28 @@
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/files"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="#0000"
+                    android:drawableLeft="@drawable/ic_add_circle_black_24dp"
+                    android:drawablePadding="10dp"
+                    android:text="Attach Photos"
+                    android:textAlignment="textStart"
+                    android:textAllCaps="false"
+                    android:textColor="#CD807E7E"
+                    android:textSize="16sp" />
+
+
                 <ImageView
-                    android:id="@+id/bill"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/outline"
-                    android:elevation="25dp"
-                    android:padding="10dp"
-                    android:src="@drawable/addphoto2" />
+                    android:id="@+id/bill"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/filename"

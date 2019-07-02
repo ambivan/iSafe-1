@@ -37,7 +37,7 @@ import java.util.Iterator;
 
 public class CodeGenerator extends AppCompatActivity {
 
-    LinearLayout first,second;
+    LinearLayout first, second;
 
     EditText collegename, code;
 
@@ -57,8 +57,8 @@ public class CodeGenerator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_code_generator);
 
-        first = (LinearLayout)findViewById(R.id.first_layer);
-        second = (LinearLayout)findViewById(R.id.second_layer);
+        first = (LinearLayout) findViewById(R.id.first_layer);
+        second = (LinearLayout) findViewById(R.id.second_layer);
         collegename = (EditText) findViewById(R.id.collegename);
         code = (EditText) findViewById(R.id.code);
         share = (Button) findViewById(R.id.share);
@@ -74,7 +74,7 @@ public class CodeGenerator extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(CodeGenerator.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(CodeGenerator.this, R.color.mystatus));
 
         code.setEnabled(false);
 
@@ -85,7 +85,7 @@ public class CodeGenerator extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                 userid = user.getUid();
+                userid = user.getUid();
 
             }
         };
@@ -99,28 +99,69 @@ public class CodeGenerator extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final String cn = collegename.getText().toString();
+                String cn = collegename.getText().toString();
 
-                if (!TextUtils.isEmpty(cn)){
+                if (!TextUtils.isEmpty(cn)) {
 
-                    DatabaseReference f = FirebaseDatabase.getInstance().getReference()
-                            .child("Colleges");
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Colleges")
+                            .push()
+                            .setValue(cn);
 
-                    f.addValueEventListener(new ValueEventListener() {
+                    first.setVisibility(View.INVISIBLE);
+                    second.setVisibility(View.VISIBLE);
+                    code_created = "isafe/" + cn + "/" + Signup2.team;
+
+                    code.setText(code_created);
+                    codeg = code.getText().toString();
+
+                    FirebaseDatabase.getInstance()
+                            .getReference()
+                            .child("Users")
+                            .child(userid)
+                            .setValue(new UserPost(Signup2.profilename, "Team Leader", code_created));
+
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(userid)
+                            .child("Domain")
+                            .setValue(Signup2.s);
+
+                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
+                            .getReference()
+                            .child("Codes")
+                            .push();
+
+
+                    String key = databaseReference.getKey();
+
+                    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
+
+                    dbref.child(key).setValue(new CodeGen(userid, codeg));
+
+                    System.out.println(key);
+
+                    DatabaseReference db = dbref.child(key);
+
+                    dbref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            for (DataSnapshot d : dataSnapshot.getChildren()){
-                                System.out.println(d.getValue());
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                System.out.println(child.getKey()); // "-key1", "-key2", etc
+                                System.out.println(child.getValue()); // true, true, etc
+                            }
 
-                                if (cn.equals(d.getValue())){
-                                    Toast.makeText(CodeGenerator.this, "This college has already registered.", Toast.LENGTH_SHORT).show();
-                                }
+                            Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
+                            Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
 
-                                FirebaseDatabase.getInstance().getReference()
-                                        .child("Colleges")
-                                        .push()
-                                        .setValue(cn);
+                            ArrayList<String> list = new ArrayList<>();
+
+
+                            while (iterator.hasNext()) {
+
+                                DataSnapshot next = (DataSnapshot) iterator.next();
+                                Log.i("cdsjk", "Value = " + next.getValue());
                             }
 
                         }
@@ -131,148 +172,83 @@ public class CodeGenerator extends AppCompatActivity {
                         }
                     });
 
-                    first.setVisibility(View.INVISIBLE);
-                    second.setVisibility(View.VISIBLE);
-                    code_created = "isafe/" + cn + "/" + Signup2.team;
+                    db.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
+                            System.out.println(codeGen.getCode());
+                            System.out.println(codeGen.getUserid());
 
-                code.setText(code_created);
-                codeg = code.getText().toString();
-
-                FirebaseDatabase.getInstance()
-                        .getReference()
-                        .child("Users")
-                        .child(userid)
-                        .setValue(new UserPost(Signup2.profilename, "Team Leader", code_created));
-
-                FirebaseDatabase.getInstance().getReference()
-                        .child("Users")
-                        .child(userid)
-                        .child("Domain")
-                        .setValue(Signup2.s);
-
-               final DatabaseReference databaseReference = FirebaseDatabase.getInstance()
-                       .getReference()
-                       .child("Codes")
-                       .push();
-
-
-
-               String key = databaseReference.getKey();
-
-                DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("Code");
-
-                dbref.child(key).setValue(new CodeGen(userid, codeg));
-
-                System.out.println(key);
-
-                DatabaseReference db = dbref.child(key);
-
-                dbref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot child: dataSnapshot.getChildren()) {
-                            System.out.println(child.getKey()); // "-key1", "-key2", etc
-                            System.out.println(child.getValue()); // true, true, etc
                         }
 
-                        Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
-                        Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        ArrayList<String> list = new ArrayList<>();
-
-
-                        while (iterator.hasNext()) {
-
-                            DataSnapshot next = (DataSnapshot) iterator.next();
-                            Log.i("cdsjk", "Value = " + next.getValue());
                         }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                db.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        CodeGen codeGen = dataSnapshot.getValue(CodeGen.class);
-                        System.out.println(codeGen.getCode());
-                        System.out.println(codeGen.getUserid());
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                    });
 
 
-                continuee.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(CodeGenerator.this, HomePageActivity.class));
-                    }
-                });
+                    continuee.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(CodeGenerator.this, HomePageActivity.class));
+                        }
+                    });
 
-                share.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                    share.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
 
-                        final CharSequence options[] = new CharSequence[] {"Share on Whatsapp", "Share as Text Message", "Copy Code"};
+                            final CharSequence options[] = new CharSequence[]{"Share on Whatsapp", "Share as Text Message", "Copy Code"};
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(CodeGenerator.this);
-                        builder.setCancelable(false);
-                        builder.setTitle("Select your option:");
-                        builder.setItems(options, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(CodeGenerator.this);
+                            builder.setCancelable(false);
+                            builder.setTitle("Select your option:");
+                            builder.setItems(options, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                                if ("Share on Whatsapp".equals(options[which])){
+                                    if ("Share on Whatsapp".equals(options[which])) {
 
-                                    Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-                                    whatsappIntent.setType("text/plain");
-                                    whatsappIntent.setPackage("com.whatsapp");
-                                    whatsappIntent.putExtra(Intent.EXTRA_TEXT, codeg);
-                                    whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+                                        whatsappIntent.setType("text/plain");
+                                        whatsappIntent.setPackage("com.whatsapp");
+                                        whatsappIntent.putExtra(Intent.EXTRA_TEXT, codeg);
+                                        whatsappIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-                                    try {
-                                        startActivity(Intent.createChooser(whatsappIntent,"Share With "));
+                                        try {
+                                            startActivity(Intent.createChooser(whatsappIntent, "Share With "));
 
-                                    } catch (android.content.ActivityNotFoundException ex) {
+                                        } catch (android.content.ActivityNotFoundException ex) {
 
-                                        Toast.makeText(CodeGenerator.this, "Whatsapp not installed", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(CodeGenerator.this, "Whatsapp not installed", Toast.LENGTH_SHORT).show();
 
+                                        }
+
+                                    } else if ("Share as Text Message".equals(options[which])) {
+
+                                        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                                        sendIntent.setType("vnd.android-dir/mms-sms");
+                                        sendIntent.setData(Uri.parse("smsto:"));
+                                        sendIntent.putExtra("sms_body", "Hi, join the college team using this code: " + codeg);
+                                        startActivity(sendIntent);
+
+
+                                    } else if ("Copy Code".equals(options[which])) {
+
+                                        ClipboardManager clipboard = (ClipboardManager) CodeGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                                        ClipData clip = ClipData.newPlainText("Copied Text", codeg);
+                                        clipboard.setPrimaryClip(clip);
+
+                                        Toast.makeText(CodeGenerator.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
                                     }
-
-                                }else if ("Share as Text Message".equals(options[which])){
-
-                                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                                    sendIntent.setType("vnd.android-dir/mms-sms");
-                                    sendIntent.setData(Uri.parse("smsto:"));
-                                    sendIntent.putExtra("sms_body","Hi, join the college team using this code: " + codeg);
-                                    startActivity(sendIntent);
-
-
-                                }else if ("Copy Code".equals(options[which])){
-
-                                    ClipboardManager clipboard = (ClipboardManager) CodeGenerator.this.getSystemService(Context.CLIPBOARD_SERVICE);
-                                    ClipData clip = ClipData.newPlainText("Copied Text", codeg);
-                                    clipboard.setPrimaryClip(clip);
-
-                                    Toast.makeText(CodeGenerator.this, "Copied to Clipboard!", Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                        });
-                        builder.show();
-                       }
-                });
-                }else{
+                            });
+                            builder.show();
+                        }
+                    });
+                } else {
                     Toast.makeText(CodeGenerator.this, "Please enter your college name", Toast.LENGTH_SHORT).show();
                 }
             }

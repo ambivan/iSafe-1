@@ -53,7 +53,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
     ListView listView2;
     ArrayList<String> arrayList;
 
-    Button save ;
+    Button save;
 
     EditText agenda;
 
@@ -77,7 +77,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(Agenda_Meeting.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(Agenda_Meeting.this, R.color.mystatus));
 
         arrayList = new ArrayList<>();
 
@@ -99,7 +99,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
                 UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
-                if (userPost.getPost().equals("Team Leader")){
+                if (userPost.getPost().equals("Team Leader")) {
 
 
                     navigationView.getMenu().clear();
@@ -110,34 +110,35 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                     navigationView.getMenu().clear();
                     navigationView.inflateMenu(R.menu.navbar_teammember);
 
-                }else{
+                } else {
 
                     navigationView.getMenu().clear();
                     navigationView.inflateMenu(R.menu.activity_home_page2_drawer);
 
                 }
 
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String key = ds.getKey();
                     System.out.println("hi" + key);
 
                     if (!key.equals("name")
                             && !key.equals("Status")
-                            &&!key.equals("post")
-                            &&!key.equals("MemberCount")
+                            && !key.equals("Notifications")
+                            && !key.equals("post")
+                            && !key.equals("MemberCount")
                             && !key.equals("Meeting Reports")
-                            &&!key.equals("teamname")
-                            &&!key.equals("RoadSafetyAudit")
-                            &&!key.equals("AttendedEvents")
+                            && !key.equals("teamname")
+                            && !key.equals("RoadSafetyAudit")
+                            && !key.equals("AttendedEvents")
                             && !key.equals("Registered Events")
                             && !key.equals("Domain")
                             && !key.equals("Projects")
-                            &&!key.equals("Accident Report")
+                            && !key.equals("Accident Report")
                             && !key.equals("EventDay")
-                            &&!key.equals("Reimbursements")
+                            && !key.equals("Reimbursements")
                             && !key.equals("Events")
-                            &&!key.equals("Liked Events")
-                            && !key.equals("Profile URL")){
+                            && !key.equals("Liked Events")
+                            && !key.equals("Profile URL")) {
 
                         if (key != null) {
                             DatabaseReference a = dbref.child(key);
@@ -151,20 +152,20 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
                                     System.out.println(userPost.getName());
 
-                                    if (userPost.getName()== null){
+                                    if (userPost.getName() == null) {
 
                                         arrayList.add("You have no team members yet.");
                                         System.out.println("hey " + arrayList);
 
-                                    }else {
+                                    } else {
 
                                         arrayList.add(userPost.getName());
 
                                     }
 
-                                        ArrayAdapter<String > arrayAdapter = new ArrayAdapter<>(Agenda_Meeting.this, android.R.layout.simple_list_item_1, arrayList);
-                                        System.out.println(arrayList);
-                                        listView2.setAdapter(arrayAdapter);
+                                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(Agenda_Meeting.this, android.R.layout.simple_list_item_1, arrayList);
+                                    System.out.println(arrayList);
+                                    listView2.setAdapter(arrayAdapter);
                                 }
 
                                 @Override
@@ -197,7 +198,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
             public void onClick(View v) {
                 final String agen = agenda.getText().toString();
 
-                if (!TextUtils.isEmpty(agen)){
+                if (!TextUtils.isEmpty(agen)) {
 
 
                     final String userid1 = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -207,14 +208,14 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                             .getReference()
                             .child("Agendas")
                             .child(String.valueOf(new SimpleDateFormat("ddmyyyy").format(new Date().getTime())));
-                            databaseReference.setValue(new AgendaGen(userid1, agen));
+                    databaseReference.setValue(new AgendaGen(userid1, agen));
 
-                        invite.setEnabled(true);
+                    invite.setEnabled(true);
 
 
-                            invite.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                    invite.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
                             final DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
@@ -229,33 +230,34 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                                             String key = ds.getKey();
 
 
-                                        if (!key.equals("name")
-                                                &&!key.equals("post")
-                                                &&!key.equals("MemberCount")
-                                                && !key.equals("Meeting Reports")
-                                                && !key.equals("teamname")
-                                                && !key.equals("Status")
-                                                && !key.equals("Registered Events")
-                                                &&!key.equals("Reimbursements")
-                                                && !key.equals("Domain")
-                                                &&!key.equals("RoadSafetyAudit")
-                                                &&!key.equals("AttendedEvents")
-                                                && !key.equals("Projects")
-                                                &&!key.equals("Accident Report")
-                                                && !key.equals("EventDay")
-                                                && !key.equals("Liked Events")
-                                                &&!key.equals("Profile URL")
-                                                &&!key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+                                            if (!key.equals("name")
+                                                    && !key.equals("post")
+                                                    && !key.equals("Notifications")
+                                                    && !key.equals("MemberCount")
+                                                    && !key.equals("Meeting Reports")
+                                                    && !key.equals("teamname")
+                                                    && !key.equals("Status")
+                                                    && !key.equals("Registered Events")
+                                                    && !key.equals("Reimbursements")
+                                                    && !key.equals("Domain")
+                                                    && !key.equals("RoadSafetyAudit")
+                                                    && !key.equals("AttendedEvents")
+                                                    && !key.equals("Projects")
+                                                    && !key.equals("Accident Report")
+                                                    && !key.equals("EventDay")
+                                                    && !key.equals("Liked Events")
+                                                    && !key.equals("Profile URL")
+                                                    && !key.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
 
 
-                                            if (key != null) {
+                                                if (key != null) {
 
-                                                System.out.println("k" + key);
+                                                    System.out.println("k" + key);
 
-                                                final DatabaseReference a = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
+                                                    final DatabaseReference a = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
 
-                                                a.child("Agendas")
-                                                        .setValue(new AgendaGen(userid1, agen));
+                                                    a.child("Agendas")
+                                                            .setValue(new AgendaGen(userid1, agen));
 
 
                                                 }
@@ -275,28 +277,26 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
                             });
 
 
-                                    invite.setVisibility(View.GONE);
+                            invite.setVisibility(View.GONE);
 
-                                    startmeet.setVisibility(View.VISIBLE);
-                                    startmeet.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
+                            startmeet.setVisibility(View.VISIBLE);
+                            startmeet.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
-                                            startActivity(new Intent(Agenda_Meeting.this, ChatMeeting.class));
+                                    startActivity(new Intent(Agenda_Meeting.this, ChatMeeting.class));
 
-
-                                        }
-                                    });
 
                                 }
-
-
-
-
                             });
+
+                        }
+
+
+                    });
 //
 
-                }else {
+                } else {
                     Toast.makeText(Agenda_Meeting.this, "Please enter Agenda of meeting.", Toast.LENGTH_SHORT).show();
                 }
 
@@ -310,7 +310,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-         navigationView = (NavigationView) findViewById(com.example.isafe.R.id.nav_view2);
+        navigationView = (NavigationView) findViewById(com.example.isafe.R.id.nav_view2);
         navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
 
 
@@ -326,8 +326,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
 
@@ -340,7 +339,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
         Fragment frag1 = null;
 
-        if (id == com.example.isafe.R.id.Home){
+        if (id == com.example.isafe.R.id.Home) {
             finish();
             HomePageActivity.frag = 0;
             startActivity(new Intent(Agenda_Meeting.this, HomePageActivity.class));
@@ -365,7 +364,7 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
 
             frag1 = new EventChecklist();
 
-        }else if (id == com.example.isafe.R.id.Reimbursement) {
+        } else if (id == com.example.isafe.R.id.Reimbursement) {
 
             frag1 = new Reimbursement();
 

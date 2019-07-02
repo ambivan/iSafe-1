@@ -39,8 +39,10 @@ import static android.app.Activity.RESULT_OK;
 public class Reimbursement extends Fragment {
 
     View vr;
-    ImageView bill;
+    Button bill;
     Button attach, send;
+
+    ImageView billimage;
 
     final int PICK_PDF_CODE = 2342;
 
@@ -63,10 +65,11 @@ public class Reimbursement extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-        bill = (ImageView) vr.findViewById(R.id.bill);
+        bill = (Button) vr.findViewById(R.id.files);
         send = (Button) vr.findViewById(R.id.attachedsend);
         file = (TextView) vr.findViewById(R.id.filename);
         support = (TextView) vr.findViewById(R.id.support);
+        billimage = vr.findViewById(R.id.bill);
 
 
         if (Build.VERSION.SDK_INT >= 23){
@@ -182,8 +185,8 @@ public class Reimbursement extends Fragment {
                                         .child(fileName)
                                         .setValue(url);
 
-                                System.out.println(url);
-                                Glide.with(getContext()).load(url).into(bill);
+                                bill.setVisibility(View.VISIBLE);
+                                Glide.with(getContext()).load(url).into(billimage);
                             }
                         });
 
