@@ -126,10 +126,15 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             public void onClick(View v) {
                 myListData.setIs_liked("1");
 
+                holder.like.setBackgroundResource(R.drawable.redheart);
+
                 holder.like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         myListData.setIs_liked("1");
+
+                        holder.like.setBackgroundResource(R.drawable.heart);
+
                     }
                 });
             }

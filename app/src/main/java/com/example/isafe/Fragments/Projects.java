@@ -10,14 +10,18 @@ import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.isafe.Activities.HomePageActivity;
+import com.example.isafe.Classes.AddProject;
 import com.example.isafe.Classes.Constants;
 import com.example.isafe.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,13 +49,19 @@ public class Projects extends Fragment {
     final int PICK_PDF_CODE = 2342;
     private final int SELECT_FILE = 2;
 
+    String pname, pdesc;
+
     Button add;
+
+    EditText projname, desc;
 
     StorageReference mStorageReference;
 
     ArrayList<String> project;
     DatabaseReference mDatabaseReference;
     ListView projectlist;
+
+    Button submit;
 
 
     @NonNull
@@ -65,13 +75,19 @@ public class Projects extends Fragment {
         project = new ArrayList<>();
         projectlist = (ListView) vp.findViewById(R.id.list5);
 
+        submit = vp.findViewById(R.id.submitt);
+
+        desc = vp.findViewById(R.id.pro_desc);
+        projname = vp.findViewById(R.id.pname);
+
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
         final DatabaseReference a = mDatabaseReference
                 .child("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("Projects");
+                .child("Projects")
+                .child("Files");
 
 
         a.addValueEventListener(new ValueEventListener() {
@@ -83,7 +99,8 @@ public class Projects extends Fragment {
 
                     System.out.println("whaaa" + d.getValue());
 
-                    if (d.getValue()!=null) {
+                    if (d.getValue() != null) {
+
                         project.add(String.valueOf(d.getValue()));
 
                         System.out.println(project);
@@ -91,6 +108,7 @@ public class Projects extends Fragment {
                         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
 
                         projectlist.setAdapter(arrayAdapter);
+
                     }
                 }
 
@@ -140,6 +158,39 @@ public class Projects extends Fragment {
             }
         });
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                pname = projname.getText().toString();
+                pdesc = desc.getText().toString();
+
+                if (!TextUtils.isEmpty(pname) && !TextUtils.isEmpty(pdesc)) {
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("Projects")
+                            .child("Project Details")
+                            .push()
+                            .setValue(new AddProject(pname, pdesc));
+
+                    mDatabaseReference
+                            .child("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("Projects")
+                            .child("Files").removeValue();
+
+                    Toast.makeText(getActivity(), "Your project has been shared with us!", Toast.LENGTH_SHORT).show();
+
+                    HomePageActivity.frag = 1;
+                    startActivity(new Intent(getActivity(), HomePageActivity.class));
+                } else {
+                    Toast.makeText(getActivity(), "Please fill out all fields!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
         return vp;
 
     }
@@ -177,34 +228,9 @@ public class Projects extends Fragment {
                                         .child("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("Projects")
+                                        .child("Files")
                                         .push()
                                         .setValue(getFileName(data.getData()));
-
-                                final DatabaseReference a = mDatabaseReference
-                                        .child("Users")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .child("Projects");
-
-                                a.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                                        for (DataSnapshot b : dataSnapshot.getChildren()) {
-                                            project.add(String.valueOf(b.getValue()));
-
-                                            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                                                    (getContext(), android.R.layout.simple_list_item_1, project);
-
-                                            projectlist.setAdapter(arrayAdapter);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-
 
                             }
                         });
@@ -249,11 +275,11 @@ public class Projects extends Fragment {
                                         .child("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("Projects")
+                                        .child("Files")
                                         .push()
                                         .setValue(data);
 
                                 progressDialog.dismiss();
-
 
 
                             }

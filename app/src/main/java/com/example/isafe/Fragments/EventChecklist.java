@@ -57,6 +57,8 @@ public class EventChecklist extends Fragment {
     StorageReference mStorageReference;
     DatabaseReference mDatabaseReference;
 
+
+
     EditText name, date, notes, brief, impact;
 
     ListView listdoc, listphoto;
@@ -90,6 +92,7 @@ public class EventChecklist extends Fragment {
         date = ve.findViewById(R.id.edate);
         brief = ve.findViewById(R.id.brief);
         impact = ve.findViewById(R.id.impact);
+
 
 
         date.setOnClickListener(new View.OnClickListener() {
