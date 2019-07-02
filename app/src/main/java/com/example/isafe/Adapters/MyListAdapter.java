@@ -104,7 +104,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
                     if (myListData.getEventid().equals(ds.getKey())) {
-                        System.out.println("yes");
 
                         holder.register.setEnabled(false);
                         holder.register.setBackgroundResource(R.drawable.report);
@@ -141,39 +140,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         }else{
             holder.like.setBackgroundResource(R.drawable.heart);
         }
-
-//        DatabaseReference l = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .child("Liked Events");
-//
-//        l.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//
-//                    System.out.println(ds.getKey());
-//
-//                    if (myListData.getEventid().equals(ds.getKey())) {
-//                        System.out.println("yess");
-//
-////                        holder.like.setBackgroundResource(R.drawable.redheart);
-//
-//
-//                    } else {
-//
-//                        holder.like.setBackgroundResource(R.drawable.heart);
-//
-//
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
 
     }
 
@@ -300,37 +266,15 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                     ml = getPosition();
                     final MyListData m = list.get(ml);
 
+                    m.setIs_liked("1");
+                    like.setBackgroundResource(R.drawable.redheart);
 
-
-                    DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("Events");
-
-                    d.addValueEventListener(new ValueEventListener() {
+                    like.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                                if (m.getEventid().equals(ds.getKey())) {
-
-                                    System.out.println("yes");
-
-
-                                } else {
-                                    FirebaseDatabase.getInstance().getReference()
-                                            .child("Users")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .child("Liked Events")
-                                            .child(m.getEventid())
-                                            .setValue(new MyListData(m.getEventid(), m.getTitle(), m.getCity(),
-                                                    m.getEvent(), m.getDate(), m.getTime(), m.getTopic(), "1"));
-
-                                }
+                        public void onClick(View v) {
+                            if (m.getIs_liked().equals("1")){
+                                like.setBackgroundResource(R.drawable.heart);
                             }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
                         }
                     });
 

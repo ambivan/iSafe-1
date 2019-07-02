@@ -48,7 +48,10 @@
             android:name=".Activities.isafehome"
             android:parentActivityName=".Activities.HomePageActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.Notifications" />
+        <activity android:name=".Activities.Notifications"
+            android:parentActivityName=".Activities.HomePageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Activities.Comments"
             android:parentActivityName=".Activities.HomePageActivity"

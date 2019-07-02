@@ -117,11 +117,11 @@ public class Profile extends Fragment {
         d.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue()!=null) {
 
-                System.out.println(dataSnapshot.getValue());
+                    Glide.with(getContext()).load(dataSnapshot.getValue()).into(profilpic);
 
-                Glide.with(getContext()).load(dataSnapshot.getValue()).into(profilpic);
-
+                }
             }
 
             @Override
@@ -275,7 +275,8 @@ public class Profile extends Fragment {
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .child("Profile URL")
                                             .setValue(url);
-                                    System.out.println(url);
+
+
                                     Glide.with(getContext()).load(url).into(profilpic);
 
                                 }
@@ -318,7 +319,6 @@ public class Profile extends Fragment {
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .child("Profile URL")
                                             .setValue(url);
-                                    System.out.println(url);
                                     Glide.with(getContext()).load(url).into(profilpic);
                                     mProgress.dismiss();
 

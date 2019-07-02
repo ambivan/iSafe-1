@@ -90,7 +90,7 @@
                 />
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -113,20 +113,17 @@
                     android:textSize="16sp" />
 
                 <View
+                    android:layout_below="@+id/addp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
+                    android:id="@+id/view"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginRight="30dp"
                     android:background="@android:color/black" />
 
-
-                <RelativeLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
                     <ListView
+                        android:layout_below="@+id/view"
                         android:id="@+id/list5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -139,22 +136,22 @@
                         android:transcriptMode="alwaysScroll" />
 
 
-                </RelativeLayout>
-
-
-            </LinearLayout>
 
             <Button
+                android:layout_below="@+id/list5"
+                android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_first_bg"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:text="Submit"
+                android:layout_marginTop="20dp"
                 android:textColor="#fff"
-
-
                 />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

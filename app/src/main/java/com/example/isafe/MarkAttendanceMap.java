@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.isafe.Activities.HomePageActivity;
-import com.example.isafe.Adapters.MyListAdapter2;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -125,9 +124,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
 
                     addressList1 = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
-                    System.out.println(location.getLatitude());
-                    System.out.println(location.getLongitude());
-
                     lat1 = location.getLatitude();
                     long1 = location.getLongitude();
 
@@ -171,9 +167,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-
-        System.out.println(MyListAdapter2.city1);
-        System.out.println(MyListAdapter2.university);
 
         velocation.setText(university + city1);
 
@@ -336,17 +329,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
         lat11= location.getLatitude();
         long11 = location.getLongitude();
 
-//        Double a = CalculationByDistance(lat11, long11, lat2, long2);
-//        System.out.println(a);
-
-        System.out.println(latLng);
-//        MarkerOptions markerOptions1 = new MarkerOptions();
-//        markerOptions1.position(latLng);
-//        markerOptions1.title(addr);
-//        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions1);
-
-        //move map camera
-//        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
     }
 
@@ -390,15 +372,11 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                         // Creating an instance of GeoPoint, to display in Google Map
                         latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-                        System.out.println("hey" + latLng);
-                        System.out.println(address.getLatitude());
-                        System.out.println(address.getLongitude());
 
                         lat2 = address.getLatitude();
                         long2 = address.getLongitude();
 
                         final Double a = CalculationByDistance(lat1, long1, lat2, long2);
-                        System.out.println(a);
 
                         mark.setOnClickListener(new View.OnClickListener() {
                             @Override

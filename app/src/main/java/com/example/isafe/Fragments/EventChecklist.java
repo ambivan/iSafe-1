@@ -22,15 +22,13 @@ import android.widget.Toast;
 
 import com.example.isafe.Activities.HomePageActivity;
 import com.example.isafe.Classes.Constants;
+import com.example.isafe.Classes.EventChecklist2;
 import com.example.isafe.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -113,71 +111,6 @@ public class EventChecklist extends Fragment {
 
         save = ve.findViewById(R.id.eventsave);
 
-        final DatabaseReference a = mDatabaseReference
-                .child("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("EventDay")
-                .child("Documents");
-
-
-        a.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot d : dataSnapshot.getChildren()) {
-
-                    if (d.getValue() != null) {
-                        doclist.add(String.valueOf(d.getValue()));
-
-                        System.out.println(doclist);
-
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, doclist);
-
-                        listdoc.setAdapter(arrayAdapter);
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        final DatabaseReference p = mDatabaseReference
-                .child("Users")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("EventDay")
-                .child("Photos");
-
-        p.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot p : dataSnapshot.getChildren()) {
-
-                    if (p.getValue() != null) {
-                        photolist.add(String.valueOf(p.getValue()));
-
-                        System.out.println(photolist);
-
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, photolist);
-
-                        listphoto.setAdapter(arrayAdapter);
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
         photos = ve.findViewById(R.id.photos);
         docs = ve.findViewById(R.id.docs);
 
@@ -215,6 +148,14 @@ public class EventChecklist extends Fragment {
 
 
                 if (!TextUtils.isEmpty(sname) && !TextUtils.isEmpty(sdate) && !TextUtils.isEmpty(sbrief) && !TextUtils.isEmpty(simpact)) {
+
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("Users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .child("EventDay")
+                            .push()
+                            .setValue(new EventChecklist2(sname, sdate, sbrief, simpact));
+
                     Toast.makeText(getActivity(), "Your event details have been saved!", Toast.LENGTH_SHORT).show();
 
                     HomePageActivity.frag = 1;
@@ -240,15 +181,26 @@ public class EventChecklist extends Fragment {
 
             if (requestCode == PICK_PDF_CODE) {
                 Uri uri = data.getData();
-                System.out.println(uri);
 
-                String u = getFileName(uri);
+                doclist.add(getFileName(uri));
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, doclist);
+
+                listdoc.setAdapter(arrayAdapter);
 
                 uploadFile(uri);
 
             } else if (requestCode == SELECT_FILE) {
 
                 Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
+                System.out.println(getFileName(selectedImage));
+
+                photolist.add(getFileName(selectedImage));
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, photolist);
+
+                listphoto.setAdapter(arrayAdapter);
+
                 String url = selectedImage.getLastPathSegment();
                 final StorageReference storageReference = FirebaseStorage.getInstance()
                         .getReference()
@@ -370,7 +322,7 @@ public class EventChecklist extends Fragment {
         String myFormat = "dd/MM/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        date = ve.findViewById(R.id.dateevent);
+        date = ve.findViewById(R.id.edate);
 
         date.setText(sdf.format(myCalendar.getTime()));
     }

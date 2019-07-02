@@ -122,18 +122,7 @@ public class MyListAdapter2 extends RecyclerView.Adapter<MyListAdapter2.ViewHold
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Date date1 = new Date();
-            System.out.println(formatter.format(date1));
 
-//        if (formatter.format((date1)).equals(date.getText().toString())){
-//
-//            markatt.setBackgroundResource(com.example.isafe.R.drawable.button_first_bg);
-//
-//
-//        }else {
-//
-//            markatt.setBackgroundResource(com.example.isafe.R.drawable.reportbuttonbg);
-//
-//        }
         }
     }
 }

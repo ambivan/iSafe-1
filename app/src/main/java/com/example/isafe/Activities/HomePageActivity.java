@@ -195,7 +195,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                                         if (dataSnapshot.getValue() != null) {
 
-                                            Glide.with(HomePageActivity.this).load(dataSnapshot.getValue()).into(profile);
+                                            Glide.with(getApplicationContext()).load(dataSnapshot.getValue()).into(profile);
                                         }
 
                                     }
@@ -366,4 +366,12 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         auth.removeAuthStateListener(authStateListener);
     }
 
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+
+        Glide.with(getApplicationContext()).pauseRequests();
+
+    }
 }

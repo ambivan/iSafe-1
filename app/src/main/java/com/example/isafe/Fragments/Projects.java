@@ -145,7 +145,7 @@ public class Projects extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_PDF_CODE) {
@@ -153,18 +153,13 @@ public class Projects extends Fragment {
             if (resultCode == RESULT_OK) {
                 // Get the Uri of the selected file
                 Uri uri = data.getData();
-                System.out.println(uri);
-
-                String u = getFileName(uri);
-                System.out.println("wh" + u);
-
                 uploadFile(uri);
 
 
             }
         } else if (requestCode == SELECT_FILE) {
             if (resultCode == RESULT_OK) {
-                Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
+                final Uri selectedImage = Uri.parse(String.valueOf(data.getData()));
                 String url = selectedImage.getLastPathSegment();
                 final StorageReference storageReference = FirebaseStorage.getInstance().getReference()
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -178,13 +173,12 @@ public class Projects extends Fragment {
                             @Override
                             public void onSuccess(Uri uri) {
 
-                                String url = uri.toString();
                                 mDatabaseReference
                                         .child("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("Projects")
                                         .push()
-                                        .setValue(url);
+                                        .setValue(getFileName(data.getData()));
 
                                 final DatabaseReference a = mDatabaseReference
                                         .child("Users")
@@ -225,7 +219,7 @@ public class Projects extends Fragment {
 
     }
 
-    private void uploadFile(Uri data) {
+    private void uploadFile(final Uri data) {
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -256,7 +250,7 @@ public class Projects extends Fragment {
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("Projects")
                                         .push()
-                                        .setValue(url);
+                                        .setValue(data);
 
                                 progressDialog.dismiss();
 

@@ -268,8 +268,6 @@ public class CamActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    System.out.println(uri.toString());
-
                                     d.child("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .child("Accident Report")
@@ -309,8 +307,6 @@ public class CamActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
 
-                                    System.out.println(uri.toString());
-
                                     d.child("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                             .child("Accident Report")
@@ -348,8 +344,6 @@ public class CamActivity extends AppCompatActivity {
                             imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-
-                                    System.out.println(uri.toString());
 
                                     d.child("Users")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
