@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.isafe", appContext.getPackageName());
+        assertEquals("com.solve.isafe", appContext.getPackageName());
     }
 }

@@ -273,6 +273,8 @@
                 android:background="@drawable/reportbuttonbg"
                 android:elevation="25dp"
                 android:text="Next"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="20dp"
                 android:textAllCaps="false"
                 android:textColor="#fff" />
 

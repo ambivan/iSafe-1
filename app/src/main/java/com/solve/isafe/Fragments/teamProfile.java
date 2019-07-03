@@ -49,7 +49,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class teamProfile extends Fragment {
 
-
     View vt;
 
     TextView team_name;
@@ -273,7 +272,7 @@ public class teamProfile extends Fragment {
 
     private void cameraIntent() {
 
-        intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         pictake(intent);
 
     }
@@ -288,7 +287,7 @@ public class teamProfile extends Fragment {
 
                 path = photofile.getAbsolutePath();
 
-                Uri photoURI = FileProvider.getUriForFile(getContext(), "com.example.isafe.fileprovider", photofile);
+                Uri photoURI = FileProvider.getUriForFile(getContext(), "com.solve.isafe.fileprovider", photofile);
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 

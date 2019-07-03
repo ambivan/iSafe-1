@@ -497,7 +497,6 @@
 
             <Button
                 android:id="@+id/save9"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -506,6 +505,8 @@
                 android:background="@drawable/reportbuttonbg"
                 android:elevation="25dp"
                 android:text="Save"
+                android:layout_marginEnd="20dp"
+                android:paddingBottom="20dp"
                 android:textAllCaps="false"
                 android:textColor="#fff" />
 

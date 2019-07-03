@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedListener {
 
-
     ArrayList<String> photolist;
     CardView click, loc, contact;
 
@@ -123,10 +122,10 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
 
         if (MapActivity.m == 1) {
 
-            click.setVisibility(View.INVISIBLE);
-
-
-            lin1.setVisibility(View.VISIBLE);
+            if (CamActivity.i == 2) {
+                click.setVisibility(View.INVISIBLE);
+                lin1.setVisibility(View.VISIBLE);
+            }
 
             loc.setVisibility(View.INVISIBLE);
             lin2.setVisibility(View.VISIBLE);

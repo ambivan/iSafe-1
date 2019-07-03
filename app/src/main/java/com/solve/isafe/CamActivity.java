@@ -24,8 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.solve.isafe.Activities.HomePageActivity;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.solve.isafe.Activities.HomePageActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,13 +42,10 @@ import java.util.Date;
 public class CamActivity extends AppCompatActivity {
 
     Button cam, attach;
-    private int CAMERA_REQUEST = 1;
-
 
     DatabaseReference d;
 
-    LinearLayout l ;
-
+    LinearLayout l;
 
     static ImageView image, image2, image3;
     String path, userid;
@@ -96,10 +92,10 @@ public class CamActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(CamActivity.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(CamActivity.this, R.color.mystatus));
         baos = new ByteArrayOutputStream();
 
-        d =  FirebaseDatabase.getInstance().getReference();
+        d = FirebaseDatabase.getInstance().getReference();
 
         l = findViewById(R.id.twocam);
 
@@ -120,7 +116,6 @@ public class CamActivity extends AppCompatActivity {
         image3.setVisibility(View.INVISIBLE);
 
         upload = (TextView) findViewById(R.id.upload);
-
 
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
@@ -143,10 +138,12 @@ public class CamActivity extends AppCompatActivity {
         cam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count = 1;
 
                 camIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 pictake(camIntent);
+
+                count = 1;
+
 
                 l.setVisibility(View.VISIBLE);
                 image2.setVisibility(View.VISIBLE);
@@ -211,11 +208,13 @@ public class CamActivity extends AppCompatActivity {
 
                 path = photofile.getAbsolutePath();
 
-                photoURI = FileProvider.getUriForFile(CamActivity.this, "com.example.isafe.fileprovider", photofile);
+                photoURI = FileProvider.getUriForFile(CamActivity.this, "com.solve.isafe.fileprovider", photofile);
+
+                System.out.println(photoURI.toString());
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
-                startActivityForResult(intent, CAMERA_REQUEST);
+                startActivityForResult(intent, 1);
 
             }
         }
@@ -229,12 +228,16 @@ public class CamActivity extends AppCompatActivity {
 
         try {
             image = File.createTempFile(name, ".jpg", storagedir);
+            System.out.println("yes");
+
 
         } catch (IOException e) {
             Log.d("mine", e.toString());
         }
 
+        System.out.println("yes");
         return image;
+
 
     }
 
@@ -244,7 +247,7 @@ public class CamActivity extends AppCompatActivity {
 
 
         if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST) {
+            if (requestCode == 1) {
 
                 if (count == 1) {
 
@@ -260,26 +263,26 @@ public class CamActivity extends AppCompatActivity {
 
                     uploadTask = imagesref.putFile(photoURI);
 
-                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-
-                                    d.child("Users")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .child("Accident Report")
-                                            .child("Photos")
-                                            .child("1")
-                                            .setValue(uri.toString());
-
-                                }
-                            });
-
-                        }
-                    });
+//                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//
+//                                    d.child("Users")
+//                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                            .child("Accident Report")
+//                                            .child("Photos")
+//                                            .child("1")
+//                                            .setValue(uri.toString());
+//
+//                                }
+//                            });
+//
+//                        }
+//                    });
 
                     image.setImageBitmap(photo);
 
@@ -299,26 +302,26 @@ public class CamActivity extends AppCompatActivity {
                     uploadTask = imagesref.putFile(photoURI);
 
 
-                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-
-                                    d.child("Users")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .child("Accident Report")
-                                            .child("Photos")
-                                            .child("2")
-                                            .setValue(uri.toString());
-
-                                }
-                            });
-
-                        }
-                    });
+//                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//
+//                                    d.child("Users")
+//                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                            .child("Accident Report")
+//                                            .child("Photos")
+//                                            .child("2")
+//                                            .setValue(uri.toString());
+//
+//                                }
+//                            });
+//
+//                        }
+//                    });
 
 
                     image2.setImageBitmap(photo2);
@@ -337,26 +340,26 @@ public class CamActivity extends AppCompatActivity {
 
                     uploadTask = imagesref.putFile(photoURI);
 
-                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-
-                                    d.child("Users")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .child("Accident Report")
-                                            .child("Photos")
-                                            .child("3")
-                                            .setValue(uri.toString());
-
-                                }
-                            });
-
-                        }
-                    });
+//                    imagesref.putFile(photoURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                            imagesref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//
+//                                    d.child("Users")
+//                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                            .child("Accident Report")
+//                                            .child("Photos")
+//                                            .child("3")
+//                                            .setValue(uri.toString());
+//
+//                                }
+//                            });
+//
+//                        }
+//                    });
 
 
                     image3.setImageBitmap(photo3);
@@ -384,6 +387,6 @@ public class CamActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        super.onBackPressed();
     }
 }

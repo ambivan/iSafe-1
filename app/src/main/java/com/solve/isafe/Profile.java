@@ -199,7 +199,7 @@ public class Profile extends Fragment {
 
                 path = photofile.getAbsolutePath();
 
-                photoURI = FileProvider.getUriForFile(getContext(), "com.example.isafe.fileprovider", photofile);
+                photoURI = FileProvider.getUriForFile(getContext(), "com.solve.isafe.fileprovider", photofile);
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 

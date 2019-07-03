@@ -172,14 +172,12 @@ public class CreateEvent extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                createevent.setTextColor(getResources().getColor(R.color.button));
+
             }
         };
 
         topic.addTextChangedListener(textWatcher);
-
-
-
-
 
         createevent.setOnClickListener(new View.OnClickListener() {
             @Override

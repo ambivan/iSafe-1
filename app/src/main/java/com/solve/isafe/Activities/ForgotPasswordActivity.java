@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
-
     EditText email;
     Button reset;
 
@@ -52,7 +51,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.emailforgot);
         reset = (Button) findViewById(R.id.reset);
-
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override

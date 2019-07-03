@@ -161,8 +161,10 @@ public class NewsFeed extends Fragment {
 
                     if (addressList1 != null && addressList1.size() > 0) {
                         Log.i("PlaceInfo", addressList1.get(0).toString());
-//
+
                         city1.setText(addressList1.get(0).getLocality());
+
+                        city1.setEnabled(false);
 
                         c = addressList1.get(0).getLocality();
 
