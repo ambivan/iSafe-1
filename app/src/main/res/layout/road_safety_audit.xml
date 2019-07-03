@@ -8,16 +8,20 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#fff">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
 
@@ -25,32 +29,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/roboto"
-                android:text="@string/check1"
+                android:text="Details of Project"
                 android:textAlignment="center"
                 android:textColor="#000"
-                android:textSize="20sp"
 
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto"
-                android:text="@string/check1"
-                android:textAlignment="center"
-                android:textColor="#000"
-                android:textSize="20sp"
+                android:textSize="25sp"
+                android:textStyle="bold"
 
                 />
 
@@ -58,680 +44,315 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
                     android:fontFamily="@font/roboto"
-                    android:text="@string/q1"
+                    android:text="Name of Road :"
                     android:textColor="#000"
-                    android:textSize="15sp" />
+                    android:textSize="20sp"
 
-
-            </LinearLayout>
-
-
-            <EditText
-                android:id="@+id/e1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:backgroundTint="#000"
-                android:fontFamily="@font/roboto"
-                android:hint="Enter your remarks here."
-                android:textSize="15sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:background="#D3D1D1" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q2"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
+                    />
 
                 <EditText
-                    android:id="@+id/e2"
+                    android:id="@+id/rname"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+
+                    android:fontFamily="@font/roboto"
+                    android:text="Location :"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q3"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
+                        android:layout_marginLeft="25dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto"
+
+                            android:text="Starting Point"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/compass" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Latitude"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/startlat"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#000"
+                            android:fontFamily="@font/roboto"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Longitude"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/startlong"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#000"
+                            android:fontFamily="@font/roboto"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+
+                        <Button
+                            android:id="@+id/startpoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/call_buttonbg"
+                            android:elevation="15dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:text="Mark as StartPoint"
+                            android:textAllCaps="false"
+                            android:textColor="#fff" />
+
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="20dp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="@font/roboto"
+                            android:text="End Point"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/compass" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Latitude"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/endlat"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#000"
+                            android:fontFamily="@font/roboto"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto"
+                            android:text="Longitude"
+                            android:textColor="#000"
+                            android:textSize="17sp" />
+
+                        <EditText
+                            android:id="@+id/endlong"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:backgroundTint="#000"
+                            android:fontFamily="@font/roboto"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/endpoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/call_buttonbg"
+                            android:elevation="15dp"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:text="Mark as EndPoint"
+                            android:textAllCaps="false"
+                            android:textColor="#fff" />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
-
-                <EditText
-                    android:id="@+id/e3"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Length of the Road : "
+                    android:textColor="#000"
+                    android:textSize="20sp"
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q4"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
+                    />
 
                 <EditText
-                    android:id="@+id/e4"
-
-                    android:layout_width="match_parent"
+                    android:id="@+id/rlength"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="#000"
+                    android:textSize="20sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:id="@+id/spinnertime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/dropdownbg" />
 
             </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q5"
-
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q6"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q7"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q8"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-
-
-                <EditText
-                    android:id="@+id/e8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q9"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q10"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q11"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q12"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/e12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q13"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="25dp"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/q14"
-                        android:textColor="#000"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
-
-                <EditText
-                    android:id="@+id/e14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:backgroundTint="#000"
-                    android:fontFamily="@font/roboto"
-                    android:hint="Enter your remarks here."
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#D3D1D1" />
-
-            </LinearLayout>
-
 
             <Button
-                android:id="@+id/next1"
+                android:id="@+id/proceddd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
-                android:background="@drawable/reportbuttonbg"
-                android:elevation="25dp"
-                android:text="Next"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/button_first_bg"
+                android:elevation="20dp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:text="Proceed"
                 android:textAllCaps="false"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:textSize="20dp" />
 
         </LinearLayout>
+
 
     </android.support.constraint.ConstraintLayout>
 

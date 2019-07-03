@@ -16,7 +16,7 @@
     android:layout_width="match_parent"
     android:background="#fff"
     android:layout_height="wrap_content"
-    tools:context="com.example.isafe.Activities.SignupActivity">
+    tools:context="com.solve.isafe.Activities.SignupActivity">
 
   <LinearLayout
       app:layout_constraintTop_toTopOf="parent"

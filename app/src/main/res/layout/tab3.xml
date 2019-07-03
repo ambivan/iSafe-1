@@ -16,7 +16,7 @@
         android:orientation="vertical"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="com.example.isafe.Activities.HomePageActivity">
+        tools:context="com.solve.isafe.Activities.HomePageActivity">
 
 
         <TextView
