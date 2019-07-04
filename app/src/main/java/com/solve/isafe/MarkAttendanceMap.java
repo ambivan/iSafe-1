@@ -62,7 +62,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
 
     Button mark;
 
-
     EditText etLocation, velocation;
     static String loc;
     String addr = "";
@@ -87,7 +86,7 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(MarkAttendanceMap.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(MarkAttendanceMap.this, R.color.mystatus));
 
         android.support.v7.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar8);
 
@@ -326,95 +325,95 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        lat11= location.getLatitude();
+        lat11 = location.getLatitude();
         long11 = location.getLongitude();
 
 
     }
 
-        private class GeocoderTask extends AsyncTask<String, Void, List<Address>> {
+    private class GeocoderTask extends AsyncTask<String, Void, List<Address>> {
 
-            @Override
-            protected List<Address> doInBackground(String... locationName) {
-                // Creating an instance of Geocoder class
-                Geocoder geocoder = new Geocoder(getBaseContext());
-                List<Address> addresses = null;
+        @Override
+        protected List<Address> doInBackground(String... locationName) {
+            // Creating an instance of Geocoder class
+            Geocoder geocoder = new Geocoder(getBaseContext());
+            List<Address> addresses = null;
 
-                try {
-                    // Getting a maximum of 3 Address that matches the input text
-                    addresses = geocoder.getFromLocationName(locationName[0], 3);
+            try {
+                // Getting a maximum of 3 Address that matches the input text
+                addresses = geocoder.getFromLocationName(locationName[0], 3);
 
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return addresses;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return addresses;
+        }
+
+        //
+//
+        @Override
+        protected void onPostExecute(List<Address> addresses) {
+
+            if (addresses == null || addresses.size() == 0) {
+                Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
             }
 
-            //
-//
-            @Override
-            protected void onPostExecute(List<Address> addresses) {
+            // Clears all the existing markers on the map
+            mGoogleMap.clear();
 
-                if (addresses == null || addresses.size() == 0) {
-                    Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
-                }
+            // Adding Markers on Google Map for each matching address
+            if (addresses != null) {
+                for (int i = 0; i < addresses.size(); i++) {
 
-                // Clears all the existing markers on the map
-                mGoogleMap.clear();
+                    Address address = (Address) addresses.get(i);
 
-                // Adding Markers on Google Map for each matching address
-                if (addresses != null) {
-                    for (int i = 0; i < addresses.size(); i++) {
-
-                        Address address = (Address) addresses.get(i);
-
-                        // Creating an instance of GeoPoint, to display in Google Map
-                        latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    // Creating an instance of GeoPoint, to display in Google Map
+                    latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
 
-                        lat2 = address.getLatitude();
-                        long2 = address.getLongitude();
+                    lat2 = address.getLatitude();
+                    long2 = address.getLongitude();
 
-                        final Double a = CalculationByDistance(lat1, long1, lat2, long2);
+                    final Double a = CalculationByDistance(lat1, long1, lat2, long2);
 
-                        mark.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (a>100.00){
-                                    Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
-                                } else if (a<100.00){
-                                    Toast.makeText(MarkAttendanceMap.this, "Attendance Marked!", Toast.LENGTH_SHORT).show();
-                                    HomePageActivity.frag = 1;
-                                    finish();
-                                    Intent home = new Intent(MarkAttendanceMap.this, HomePageActivity.class);
-                                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(home);
-                                }
+                    mark.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (a > 100.00) {
+                                Toast.makeText(MarkAttendanceMap.this, "You are still far from your venue location", Toast.LENGTH_SHORT).show();
+                            } else if (a < 100.00) {
+                                Toast.makeText(MarkAttendanceMap.this, "Attendance Marked!", Toast.LENGTH_SHORT).show();
+                                HomePageActivity.frag = 1;
+                                finish();
+                                Intent home = new Intent(MarkAttendanceMap.this, HomePageActivity.class);
+                                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(home);
                             }
-                        });
+                        }
+                    });
 
-                        String addressText = String.format("%s, %s",
-                                address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
-                                address.getCountryName());
+                    String addressText = String.format("%s, %s",
+                            address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
+                            address.getCountryName());
 
-                        markerOptions = new MarkerOptions();
-                        markerOptions.position(latLng);
-                        markerOptions.title(velocation.getText().toString());
+                    markerOptions = new MarkerOptions();
+                    markerOptions.position(latLng);
+                    markerOptions.title(velocation.getText().toString());
 
 
-                        mGoogleMap.addMarker(markerOptions);
+                    mGoogleMap.addMarker(markerOptions);
 
-                        // Locate the first location
-                        if (i == 0)
-                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-                    }
+                    // Locate the first location
+                    if (i == 0)
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
                 }
             }
         }
+    }
 
-    private void checkLocationPermission () {
+    private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(MarkAttendanceMap.this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
@@ -450,29 +449,30 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
     }
 
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         moveTaskToBack(true);
     }
 
     public double CalculationByDistance(double initialLat, double initialLong,
-                                        double finalLat, double finalLong){
+                                        double finalLat, double finalLong) {
         int R = 6371; // km (Earth radius)
-        double dLat = toRadians(finalLat-initialLat);
-        double dLon = toRadians(finalLong-initialLong);
+        double dLat = toRadians(finalLat - initialLat);
+        double dLon = toRadians(finalLong - initialLong);
         initialLat = toRadians(initialLat);
         finalLat = toRadians(finalLat);
 
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(initialLat) * Math.cos(finalLat);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(initialLat) * Math.cos(finalLat);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c * 1000;
 
 
     }
 
     public double toRadians(double deg) {
-        return deg * (Math.PI/180);
+        return deg * (Math.PI / 180);
     }
+
 }
 
 

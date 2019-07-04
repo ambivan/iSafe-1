@@ -100,6 +100,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:hint="New Password"
+                    android:fontFamily="@font/roboto"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
                     android:singleLine="true" />
@@ -131,6 +132,7 @@
                     android:layout_marginTop="20dp"
                     android:hint="Confirm Password"
                     android:imeOptions="actionNext"
+                    android:fontFamily="@font/roboto"
                     android:inputType="textPassword"
                     android:singleLine="true" />
 
@@ -154,6 +156,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
+                android:fontFamily="@font/roboto"
+
                 android:hint="College UID**"
                 android:imeOptions="actionNext"
                 android:singleLine="true" />

@@ -61,7 +61,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Button btn_find;
 
     String addr = "";
-    public static int m =0;
+    public static int m = 0;
 
     public FusedLocationProviderClient client;
 
@@ -73,7 +73,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         android.support.v7.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
 
         setSupportActionBar(toolbar);
-
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,7 +88,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(MapActivity.this,R.color.mystatus));
+        window.setStatusBarColor(ContextCompat.getColor(MapActivity.this, R.color.mystatus));
 
         checkLocationPermission();
 
@@ -113,12 +112,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                 List<Address> addressList1 = null;
                 try {
-                    addressList1 = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+                    addressList1 = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
-                    if (addressList1 != null && addressList1.size()>0){
+                    if (addressList1 != null && addressList1.size() > 0) {
                         Log.i("PlaceInfo", addressList1.get(0).toString());
 
-                        for (int i=0; i<7; i++) {
+                        for (int i = 0; i < 7; i++) {
 
                             if (addressList1.get(0).getAddressLine(i) != null) {
                                 addr1 += addressList1.get(0).getAddressLine(i) + " ";
@@ -163,7 +162,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFrag.getMapAsync(this);
 
         // Getting a reference to the map
-        if (mGoogleMap == null){
+        if (mGoogleMap == null) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
@@ -185,7 +184,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 // Getting user input location
                 loc = etLocation.getText().toString();
 
-                if(loc!=null && !loc.equals("")){
+                if (loc != null && !loc.equals("")) {
                     new GeocoderTask().execute(loc);
                 }
             }
@@ -196,11 +195,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         locate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etLocation != null){
+                if (etLocation != null) {
 
                     finish();
                     Intent home = new Intent(MapActivity.this, HomePageActivity.class);
-                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(home);
                     m = 1;
                 }
@@ -254,8 +253,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
@@ -274,8 +271,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 //Request Location Permission
                 checkLocationPermission();
             }
-        }
-        else {
+        } else {
 
             mGoogleMap.setMyLocationEnabled(true);
         }
@@ -292,12 +288,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 List<Address> addressList = null;
 
                 try {
-                    addressList = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
+                    addressList = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
 
-                    if (addressList != null && addressList.size()>0){
+                    if (addressList != null && addressList.size() > 0) {
                         Log.i("PlaceInfo", addressList.get(0).toString());
 
-                        for (int i=0; i<7; i++) {
+                        for (int i = 0; i < 7; i++) {
 
                             if (addressList.get(0).getAddressLine(i) != null) {
                                 addr += addressList.get(0).getAddressLine(i) + " ";
@@ -344,8 +340,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
 
-
-
     @Override
     public void onConnected(@Nullable Bundle bundle) {
 
@@ -388,17 +382,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mCurrLocationMarker = mGoogleMap.addMarker(markerOptions1);
 
         //move map camera
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
-
-
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
 
 
     }
 
 
-
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
 
 
     private class GeocoderTask extends AsyncTask<String, Void, List<Address>> {
@@ -412,6 +402,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             try {
                 // Getting a maximum of 3 Address that matches the input text
                 addresses = geocoder.getFromLocationName(locationName[0], 3);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -422,7 +413,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         @Override
         protected void onPostExecute(List<Address> addresses) {
 
-            if(addresses==null || addresses.size()==0){
+            if (addresses == null || addresses.size() == 0) {
                 Toast.makeText(getBaseContext(), "No Location found", Toast.LENGTH_SHORT).show();
             }
 
@@ -431,7 +422,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             // Adding Markers on Google Map for each matching address
             if (addresses != null) {
-                for(int i=0;i<addresses.size();i++){
+                for (int i = 0; i < addresses.size(); i++) {
 
                     Address address = (Address) addresses.get(i);
 
@@ -448,9 +439,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     mGoogleMap.addMarker(markerOptions);
 
                     // Locate the first location
-                    if(i==0)
+                    if (i == 0)
                         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
                 }
             }
         }
@@ -476,7 +467,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                 //Prompt the user once explanation has been shown
                                 ActivityCompat.requestPermissions(MapActivity.this,
                                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION );
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
                             }
                         })
                         .create()
@@ -485,7 +476,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(MapActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION );
+                        MY_PERMISSIONS_REQUEST_LOCATION);
             }
         }
     }
