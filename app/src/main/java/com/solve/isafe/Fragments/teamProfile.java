@@ -66,8 +66,8 @@ public class teamProfile extends Fragment {
 
     Intent intent;
 
-    private static final int REQUEST_CAMERA = 3;
-    private static final int SELECT_FILE = 2;
+    private final int REQUEST_CAMERA = 3;
+    private final int SELECT_FILE = 2;
 
 
     @Override

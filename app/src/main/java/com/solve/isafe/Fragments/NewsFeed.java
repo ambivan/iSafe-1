@@ -307,7 +307,7 @@ public class NewsFeed extends Fragment {
 
                     // Locate the first location
                     if (i == 0)
-                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                     mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
                 }
             }

@@ -292,7 +292,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
             drawer.closeDrawer(GravityCompat.START);
         }else {
             finish();
-            moveTaskToBack(true);
+            super.onBackPressed();
         }
 
     }

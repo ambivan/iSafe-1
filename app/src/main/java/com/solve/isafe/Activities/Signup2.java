@@ -58,9 +58,6 @@ public class Signup2 extends AppCompatActivity {
 
     public static String s;
 
-
-    int membercount;
-
     static String userid;
 
     String em, pa, con, cuid;
@@ -184,6 +181,11 @@ public class Signup2 extends AppCompatActivity {
 
             }
         };
+
+        if (SignupActivity.i == 3){
+            gd.setVisibility(View.GONE);
+
+        }
 
 
         auth.addAuthStateListener(authStateListener);
@@ -421,11 +423,8 @@ public class Signup2 extends AppCompatActivity {
 
         if (SignupActivity.i == 3) {
 
-            gd.setVisibility(View.GONE);
-
 
             cuid = collegeuid.getText().toString();
-
 
             if (TextUtils.isEmpty(cuid)) {
 

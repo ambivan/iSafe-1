@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (user != null) {
 
-                    Intent home = new Intent(MainActivity.this, HomePageActivity.class);
-                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(home);
+//                    Intent home = new Intent(MainActivity.this, HomePageActivity.class);
+//                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(home);
                 }
 
             }
