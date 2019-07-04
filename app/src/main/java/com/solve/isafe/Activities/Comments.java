@@ -32,7 +32,7 @@ public class Comments extends AppCompatActivity {
 
     TextView event, date, time, city, topic, title;
 
-    private FirebaseListAdapter<CommentClass> adapter;
+    FirebaseListAdapter<CommentClass> adapter;
 
     ImageView send,profile ;
 

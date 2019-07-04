@@ -153,7 +153,7 @@
                     android:background="#0000"
                     android:drawableLeft="@drawable/ic_add_circle_black_24dp"
                     android:drawablePadding="10dp"
-                    android:text="Attach Photos"
+                    android:text="Attach Files"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
                     android:textColor="#CD807E7E"

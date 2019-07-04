@@ -16,12 +16,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.solve.isafe.Classes.MyListData;
 import com.solve.isafe.R;
@@ -35,14 +33,11 @@ import java.util.Locale;
 public class CreateEvent extends AppCompatActivity {
 
     EditText event,date, hrs, mins,topic, college, city;
-    ImageView image;
+
     String sevent,sdate, stime,stopic, scollege, userid, eventid, scity, simage;
 
 
-    int counter = 0;
     FirebaseAuth auth;
-    FirebaseAuth.AuthStateListener authStateListener;
-    DatabaseReference databaseReference;
 
     String ampm;
 

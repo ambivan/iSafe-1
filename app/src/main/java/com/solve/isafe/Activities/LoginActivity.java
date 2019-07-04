@@ -23,7 +23,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 import com.solve.isafe.R;
@@ -36,8 +35,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authStateListener;
-
-    DatabaseReference databaseReference;
 
     TextView forgot;
 

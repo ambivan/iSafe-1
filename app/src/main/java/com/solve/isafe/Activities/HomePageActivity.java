@@ -125,7 +125,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                 a.child("Status").setValue(String.valueOf(count1));
 
 
-
             }
 
             @Override
@@ -237,7 +236,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
                                         finish();
                                         Intent home = new Intent(HomePageActivity.this, HomePageActivity.class);
-                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
                                     }
                                 });
