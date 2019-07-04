@@ -16,6 +16,7 @@ public class FinalActivity extends AppCompatActivity {
     @Override
     public void run() {
 
+      finish();
       Intent intent = new Intent(FinalActivity.this, HomePageActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
       startActivity(intent);
@@ -55,6 +56,7 @@ public class FinalActivity extends AppCompatActivity {
   public void onBackPressed() {
     super.onBackPressed();
 
+    finish();
     Intent intent = new Intent(FinalActivity.this, HomePageActivity.class);
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     startActivity(intent);

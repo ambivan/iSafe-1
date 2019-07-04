@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="Password"
-            android:imeOptions="actionNext"
+            android:imeOptions="actionDone"
             android:singleLine = "true"
             android:backgroundTint="#000"
             android:id="@+id/password"

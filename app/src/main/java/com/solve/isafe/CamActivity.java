@@ -191,7 +191,10 @@ public class CamActivity extends AppCompatActivity {
 
                     i = 1;
 
-                    startActivity(new Intent(CamActivity.this, HomePageActivity.class));
+                    finish();
+                    Intent home = new Intent(CamActivity.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
 
                 }
             }

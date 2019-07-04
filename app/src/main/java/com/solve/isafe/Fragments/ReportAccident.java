@@ -88,6 +88,7 @@ public class ReportAccident extends Fragment implements TabLayout.OnTabSelectedL
                 Intent finalact = new Intent(getActivity(), MapActivity.class);
                 finalact.putExtra("frag", "3");
 
+
                 finalact.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(finalact);
             }

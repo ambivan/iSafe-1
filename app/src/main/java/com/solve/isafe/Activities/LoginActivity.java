@@ -8,15 +8,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.solve.isafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
+import com.solve.isafe.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     userid = user.getUid();
 
+                    finish();
                     Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(home);
@@ -87,6 +90,22 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         };
+
+        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                    pro.setCanceledOnTouchOutside(false);
+                    pro.setCancelable(false);
+                    pro.setTitle("Logging in");
+                    pro.setMessage("Please wait..");
+                    pro.show();
+
+
+                    loginuser();
+                }
+                return false;
+            }
+        });
 
         auth.addAuthStateListener(authStateListener);
 
@@ -112,7 +131,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+                Intent home = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(home);
             }
         });
 

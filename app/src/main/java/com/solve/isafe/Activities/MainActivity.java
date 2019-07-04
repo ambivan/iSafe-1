@@ -79,9 +79,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (user != null) {
 
-//                    Intent home = new Intent(MainActivity.this, HomePageActivity.class);
-//                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(home);
+                    finish();
+                    Intent home = new Intent(MainActivity.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
                 }
 
             }
@@ -93,14 +94,22 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+
+                finish();
+                Intent home = new Intent(MainActivity.this, LoginActivity.class);
+                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(home);
             }
         });
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SignupActivity.class));
+
+                finish();
+                Intent home = new Intent(MainActivity.this, SignupActivity.class);
+                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(home);
             }
         });
 
@@ -136,4 +145,8 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

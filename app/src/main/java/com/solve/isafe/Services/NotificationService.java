@@ -103,10 +103,10 @@ public class NotificationService extends Service {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                                                        count1 += 1;
-
-                                                        a.child("Status").setValue(String.valueOf(count1));
-
+//                                                        count1 += 1;
+//
+//                                                        a.child("Status").setValue(String.valueOf(count1));
+//
 
 
                         }

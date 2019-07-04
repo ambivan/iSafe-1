@@ -15,10 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.solve.isafe.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.solve.isafe.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -70,7 +70,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                         Toast.makeText(ForgotPasswordActivity.this, "Reset password link sent to your email", Toast.LENGTH_SHORT).show();
 
                                         finish();
-                                        startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
+                                        Intent home = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+                                        home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(home);
 
                                     } else{
                                         Toast.makeText(ForgotPasswordActivity.this, "Invalid email!", Toast.LENGTH_SHORT).show();

@@ -88,4 +88,9 @@ public class Notifications extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

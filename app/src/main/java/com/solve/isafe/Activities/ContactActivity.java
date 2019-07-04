@@ -12,12 +12,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.solve.isafe.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.solve.isafe.R;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -100,7 +100,10 @@ public class ContactActivity extends AppCompatActivity {
 
                 c = 1;
 
-                startActivity(new Intent(ContactActivity.this, HomePageActivity.class));
+                finish();
+                Intent home = new Intent(ContactActivity.this, HomePageActivity.class);
+                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(home);
 
             }
         });

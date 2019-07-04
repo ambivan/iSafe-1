@@ -197,7 +197,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (etLocation != null){
-                    startActivity(new Intent(MapActivity.this, HomePageActivity.class));
+
+                    finish();
+                    Intent home = new Intent(MapActivity.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
                     m = 1;
                 }
             }

@@ -2,6 +2,7 @@ package com.solve.isafe.Fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,16 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.solve.isafe.Activities.HomePageActivity;
-import com.solve.isafe.Classes.Constants;
-import com.solve.isafe.Classes.Reimbursements;
-import com.solve.isafe.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +34,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.solve.isafe.Activities.HomePageActivity;
+import com.solve.isafe.Classes.Constants;
+import com.solve.isafe.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -47,9 +53,12 @@ public class Reimbursement extends Fragment {
 
     ImageView billimage;
 
+    Calendar myCalendar = Calendar.getInstance();
 
     EditText eventdate, eventtype;
     String seventdate, sevettype;
+
+    static String timestamp;
 
     final int PICK_PDF_CODE = 2342;
 
@@ -68,6 +77,21 @@ public class Reimbursement extends Fragment {
 
         vr = inflater.inflate(R.layout.reimbursement, container, false);
 
+        timestamp = String.valueOf(System.currentTimeMillis());
+
+        final DatePickerDialog.OnDateSetListener datee = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -76,6 +100,18 @@ public class Reimbursement extends Fragment {
         file = (TextView) vr.findViewById(R.id.filename);
         support = (TextView) vr.findViewById(R.id.support);
         billimage = vr.findViewById(R.id.bill);
+        eventdate = vr.findViewById(R.id.eventdate2);
+        eventtype = vr.findViewById(R.id.eventtype2);
+
+        eventdate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), datee, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
 
 
         if (Build.VERSION.SDK_INT >= 23) {
@@ -130,12 +166,17 @@ public class Reimbursement extends Fragment {
 
                         if (!TextUtils.isEmpty(seventdate) && !TextUtils.isEmpty(sevettype)) {
 
+                            HashMap<String , Object> hashMap = new HashMap<>();
+                            hashMap.put("eventdate", seventdate);
+                            hashMap.put("eventtype", sevettype);
+
+
                             FirebaseDatabase.getInstance().getReference()
                                     .child("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("Reimburesements")
-                                    .push()
-                                    .setValue(new Reimbursements(sevettype, seventdate));
+                                    .child("Reimbursements")
+                                    .child(timestamp)
+                                    .updateChildren(hashMap);
 
 
                             Toast.makeText(getActivity(), "Your bill has been shared with us.", Toast.LENGTH_SHORT).show();
@@ -195,18 +236,18 @@ public class Reimbursement extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-
-                        final String fileName = Constants.STORAGE_PATH_UPLOADS + System.currentTimeMillis();
-
                         storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
 
                                 String url = uri.toString();
+
                                 mDatabaseReference
                                         .child("Users")
                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .child("Reimbursements")
+                                        .child(timestamp)
+                                        .child("Image")
                                         .setValue(url);
 
                                 progressDialog.dismiss();
@@ -249,14 +290,25 @@ public class Reimbursement extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        String url = sRef.getDownloadUrl().toString();
-                        mDatabaseReference
-                                .child("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .child("Reimbursements")
-                                .setValue(url);
+                        sRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
 
-                        progressDialog.dismiss();
+                                String url = uri.toString();
+                                mDatabaseReference
+                                        .child("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .child("Reimbursements")
+                                        .child(timestamp)
+                                        .child("PDF")
+                                        .setValue(url);
+
+                                progressDialog.dismiss();
+
+                            }
+                        });
+
+
 
                     }
                 })
@@ -298,4 +350,13 @@ public class Reimbursement extends Fragment {
         return result;
     }
 
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        eventdate = vr.findViewById(R.id.eventdate2);
+
+        eventdate.setText(sdf.format(myCalendar.getTime()));
+    }
 }

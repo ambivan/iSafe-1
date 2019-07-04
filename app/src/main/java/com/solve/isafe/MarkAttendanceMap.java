@@ -386,7 +386,10 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
                                 } else if (a<100.00){
                                     Toast.makeText(MarkAttendanceMap.this, "Attendance Marked!", Toast.LENGTH_SHORT).show();
                                     HomePageActivity.frag = 1;
-                                    startActivity(new Intent(MarkAttendanceMap.this, HomePageActivity.class));
+                                    finish();
+                                    Intent home = new Intent(MarkAttendanceMap.this, HomePageActivity.class);
+                                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(home);
                                 }
                             }
                         });

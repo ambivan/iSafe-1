@@ -384,6 +384,7 @@ public class Signup2 extends AppCompatActivity {
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 startActivity(in);
+                                finish();
 
                             } else {
                                 mProgress.dismiss();
@@ -411,6 +412,7 @@ public class Signup2 extends AppCompatActivity {
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 startActivity(in);
+                                finish();
                             } else {
                                 mProgress.dismiss();
                                 Log.i("Fail", "Signup not completed");
@@ -507,6 +509,8 @@ public class Signup2 extends AppCompatActivity {
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                     startActivity(in);
+
+                                    finish();
 
                                 } else {
                                     mProgress.dismiss();

@@ -20,11 +20,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.solve.isafe.Classes.MyListData;
-import com.solve.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.solve.isafe.Classes.MyListData;
+import com.solve.isafe.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -128,9 +128,12 @@ public class CreateEvent extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 HomePageActivity.frag = 1;
-                startActivity(new Intent(CreateEvent.this, HomePageActivity.class));
+
+                finish();
+                Intent home = new Intent(CreateEvent.this, HomePageActivity.class);
+                home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(home);
             }
         });
 
@@ -192,7 +195,6 @@ public class CreateEvent extends AppCompatActivity {
                 scity = city.getText().toString();
                 eventid = String.valueOf(System.currentTimeMillis());
 
-
                 if (!TextUtils.isEmpty(sevent)||!TextUtils.isEmpty(sdate)||!TextUtils.isEmpty(stime)||!TextUtils.isEmpty(stopic)||!TextUtils.isEmpty(scollege)||!TextUtils.isEmpty(scity)) {
 
                     FirebaseDatabase.getInstance().getReference()
@@ -205,7 +207,10 @@ public class CreateEvent extends AppCompatActivity {
                             .child(eventid)
                             .setValue(new MyListData(eventid, scollege, scity, sevent, sdate, stime, stopic, "0"));
 
-                    startActivity(new Intent(CreateEvent.this, HomePageActivity.class));
+                    finish();
+                    Intent home = new Intent(CreateEvent.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
 
                 }else {
                     Toast.makeText(CreateEvent.this, "Please fill out all fields!", Toast.LENGTH_SHORT).show();

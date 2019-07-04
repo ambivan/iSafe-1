@@ -32,7 +32,7 @@
                 android:layout_gravity="bottom"
                 android:background="#fff"
                 app:tabGravity="fill"
-                android:elevation="25dp"
+                android:elevation="50dp"
                 app:tabMode="fixed"
                 app:tabTextAppearance="@style/MyCustomTextAppearance" />
 

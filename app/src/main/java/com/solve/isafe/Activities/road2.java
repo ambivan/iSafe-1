@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.solve.isafe.Classes.Road2;
 import com.solve.isafe.Fragments.RoadSafetyAudit;
 import com.solve.isafe.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class road2 extends AppCompatActivity {
 
@@ -110,7 +110,10 @@ public class road2 extends AppCompatActivity {
                             .child("Checklist2")
                             .setValue(new Road2(et1, et2, et3, et4, et5, et6, et7, et8, et9, et10, et11, et12, et13, et14, et15, et16, et17, et18, et19, et20, et21, et22, et23, et24, et25));
 
-                    startActivity(new Intent(road2.this, road3.class));
+                    finish();
+                    Intent home = new Intent(road2.this, road3.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
                 }
             }
         });

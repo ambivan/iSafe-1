@@ -21,9 +21,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.solve.isafe.Classes.CodeGen;
-import com.solve.isafe.Classes.UserPost;
-import com.solve.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +28,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.solve.isafe.Classes.CodeGen;
+import com.solve.isafe.Classes.UserPost;
+import com.solve.isafe.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -187,7 +187,11 @@ public class CodeGenerator extends AppCompatActivity {
                     continuee.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            startActivity(new Intent(CodeGenerator.this, HomePageActivity.class));
+
+                            finish();
+                            Intent home = new Intent(CodeGenerator.this, HomePageActivity.class);
+                            home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(home);
                         }
                     });
 

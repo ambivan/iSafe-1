@@ -82,7 +82,10 @@ public class road9 extends AppCompatActivity {
 
                     finish();
                     HomePageActivity.frag = 1;
-                    startActivity(new Intent(road9.this, HomePageActivity.class));
+
+                    Intent home = new Intent(road9.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
                 }
             }
         });
