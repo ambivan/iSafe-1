@@ -203,7 +203,7 @@ public class CodeGenerator extends AppCompatActivity {
                             final CharSequence options[] = new CharSequence[]{"Share on Whatsapp", "Share as Text Message", "Copy Code"};
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(CodeGenerator.this);
-                            builder.setCancelable(false);
+                            builder.setCancelable(true);
                             builder.setTitle("Select your option:");
                             builder.setItems(options, new DialogInterface.OnClickListener() {
                                 @SuppressLint("IntentReset")

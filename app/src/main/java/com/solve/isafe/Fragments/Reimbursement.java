@@ -125,7 +125,7 @@ public class Reimbursement extends Fragment {
                 final CharSequence options[] = new CharSequence[]{"PDF", "png/jpeg"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 builder.setTitle("Select your option:");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override

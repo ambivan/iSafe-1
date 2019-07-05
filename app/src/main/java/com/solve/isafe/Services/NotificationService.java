@@ -1,5 +1,7 @@
 package com.solve.isafe.Services;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -103,10 +105,9 @@ public class NotificationService extends Service {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-//                                                        count1 += 1;
-//
-//                                                        a.child("Status").setValue(String.valueOf(count1));
-//
+                         count1 += 1;
+                         a.child("Status").setValue(String.valueOf(count1));
+
 
 
                         }
@@ -114,24 +115,24 @@ public class NotificationService extends Service {
                         @Override
                         public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-//                            Notification notification = new Notification.Builder(getApplicationContext())
-//                                    .setContentTitle("iSAFE New Event!")
-//                                    .setContentText("Check to see if it is near you!")
-//                                    .setContentIntent(pendingIntent)
-//                                    .addAction(android.R.drawable.ic_dialog_map, "View", pendingIntent)
-//                                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
-//                                    .build();
-//
-//
-//                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//                            notificationManager.notify(1, notification);
+                            Notification notification = new Notification.Builder(getApplicationContext())
+                                    .setContentTitle("iSAFE New Event!")
+                                    .setContentText("Check to see if it is near you!")
+                                    .setContentIntent(pendingIntent)
+                                    .addAction(android.R.drawable.ic_dialog_map, "View", pendingIntent)
+                                    .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                                    .build();
 
-//                            FirebaseDatabase.getInstance().getReference()
-//                                    .child("Users")
-//                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                                    .child("Notifications")
-//                                    .push()
-//                                    .setValue(System.currentTimeMillis());
+
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                            notificationManager.notify(1, notification);
+
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child("Notifications")
+                                    .push()
+                                    .setValue(System.currentTimeMillis());
 
 
                         }
