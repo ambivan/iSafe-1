@@ -114,6 +114,9 @@ public class Signup2 extends AppCompatActivity {
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(spinnerArrayAdapter);
 
+            teamname = (EditText) findViewById(R.id.teamname);
+
+
             spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -170,7 +173,6 @@ public class Signup2 extends AppCompatActivity {
         confirm = (EditText) findViewById(R.id.confirm);
         collegeuid = (EditText) findViewById(R.id.collegeuid);
         name = (EditText) findViewById(R.id.name);
-        teamname = (EditText) findViewById(R.id.teamname);
 
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -227,7 +229,11 @@ public class Signup2 extends AppCompatActivity {
                 pa = npassword.getText().toString();
                 String n = name.getText().toString();
 
+
                 if (SignupActivity.i == 2) {
+
+                    teamname = (EditText) findViewById(R.id.teamname);
+
                     team = teamname.getText().toString();
                 }
 
@@ -352,6 +358,7 @@ public class Signup2 extends AppCompatActivity {
         em = emailid.getText().toString().trim();
         pa = npassword.getText().toString().trim();
         con = confirm.getText().toString().trim();
+        teamname = (EditText) findViewById(R.id.teamname);
 
 
         if (SignupActivity.i == 1) {
@@ -404,8 +411,12 @@ public class Signup2 extends AppCompatActivity {
 
                             if (task.isSuccessful()) {
                                 profilename = name.getText().toString();
+                                teamname = (EditText) findViewById(R.id.teamname);
+
+                                team = teamname.getText().toString();
 
                                 post = "Team Leader";
+
 
                                 Intent in = new Intent(Signup2.this, CodeGenerator.class);
 
