@@ -184,7 +184,7 @@ public class Signup2 extends AppCompatActivity {
             }
         };
 
-        if (SignupActivity.i == 3){
+        if (SignupActivity.i == 3) {
             gd.setVisibility(View.GONE);
 
         }
@@ -346,10 +346,7 @@ public class Signup2 extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        if (count > 0) {
-            moveTaskToBack(true);
-        }
+       super.onBackPressed();
     }
 
 
@@ -391,7 +388,6 @@ public class Signup2 extends AppCompatActivity {
                                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                                 startActivity(in);
-                                finish();
 
                             } else {
                                 mProgress.dismiss();
@@ -417,6 +413,8 @@ public class Signup2 extends AppCompatActivity {
 
                                 post = "Team Leader";
 
+
+                                mProgress.dismiss();
 
                                 Intent in = new Intent(Signup2.this, CodeGenerator.class);
 
@@ -521,7 +519,6 @@ public class Signup2 extends AppCompatActivity {
 
                                     startActivity(in);
 
-                                    finish();
 
                                 } else {
                                     mProgress.dismiss();
@@ -555,5 +552,6 @@ public class Signup2 extends AppCompatActivity {
         super.onStop();
         auth.addAuthStateListener(authStateListener);
     }
+
 
 }

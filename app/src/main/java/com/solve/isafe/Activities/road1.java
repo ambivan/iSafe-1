@@ -74,7 +74,6 @@ public class road1 extends AppCompatActivity {
                             .setValue(new Road1(et1, et2, et3, et4, et5, et6, et7, et8, et9, et10, et11, et12, et13, et14));
 
 
-                    finish();
                     Intent home = new Intent(road1.this, road2.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(home);

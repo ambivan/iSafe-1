@@ -100,7 +100,6 @@ public class ContactActivity extends AppCompatActivity {
 
                 c = 1;
 
-                finish();
                 Intent home = new Intent(ContactActivity.this, HomePageActivity.class);
                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(home);

@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    tools:context=".Activities.Signup2">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
-        tools:context=".Activities.Signup2">
+        android:theme="@style/AppTheme.NoActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbarlay"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:theme="@style/AppTheme.NoActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar7"
-                android:layout_width="match_parent"
-
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
-            </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
 
-        </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.AppBarLayout>
 
 
     <ScrollView
@@ -42,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,7 +156,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:fontFamily="@font/roboto"
-
                 android:hint="College UID**"
                 android:imeOptions="actionNext"
                 android:singleLine="true" />
@@ -176,14 +174,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginRight="80dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_first_bg"
                 android:fontFamily="@font/roboto"
                 android:text="Sign Up"
                 android:textAllCaps="false"
-
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -192,5 +189,5 @@
 
     </ScrollView>
 
-    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
 

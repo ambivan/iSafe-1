@@ -134,7 +134,6 @@ public class ChatMeeting extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                finish();
                                 startActivity(new Intent(ChatMeeting.this, MeetingReport.class));
                                 c = 1;
 
@@ -167,7 +166,6 @@ public class ChatMeeting extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Sign in failed, please try again later", Toast.LENGTH_LONG).show();
                 // Close the app
-                finish();
             }
         }
     }

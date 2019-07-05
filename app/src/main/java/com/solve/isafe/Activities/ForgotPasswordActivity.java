@@ -69,7 +69,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                                         Toast.makeText(ForgotPasswordActivity.this, "Reset password link sent to your email", Toast.LENGTH_SHORT).show();
 
-                                        finish();
                                         Intent home = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                                         home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(home);

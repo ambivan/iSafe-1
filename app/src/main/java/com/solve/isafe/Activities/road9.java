@@ -80,7 +80,6 @@ public class road9 extends AppCompatActivity {
 
                     Toast.makeText(road9.this, "Thankyou! Your response has been recorded.", Toast.LENGTH_SHORT).show();
 
-                    finish();
                     HomePageActivity.frag = 1;
 
                     Intent home = new Intent(road9.this, HomePageActivity.class);

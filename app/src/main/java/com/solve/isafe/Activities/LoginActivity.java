@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     userid = user.getUid();
 
-                    finish();
                     Intent home = new Intent(LoginActivity.this, HomePageActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(home);
@@ -127,7 +126,6 @@ public class LoginActivity extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent home = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(home);
@@ -158,7 +156,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
-                                finish();
                                 RemoteMessage rm = new RemoteMessage.Builder("test")
                                         .addData("message", "Hello")
 

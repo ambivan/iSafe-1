@@ -78,7 +78,6 @@ public class road7 extends AppCompatActivity {
                             .child(RoadSafetyAudit.timestamp)
                             .child("Checklist7").setValue(new Road7(et1, et2, et3, et4, et5, et6, et7, et8, et9, et10));
 
-                    finish();
                     Intent home = new Intent(road7.this, road8.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(home);

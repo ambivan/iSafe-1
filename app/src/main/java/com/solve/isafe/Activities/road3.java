@@ -93,7 +93,6 @@ public class road3 extends AppCompatActivity {
                             .child("Checklist3")
                             .setValue(new Road3(et1, et2, et3, et4, et5, et6, et7, et8, et9, et10, et11, et12, et13, et14, et15, et16));
 
-                    finish();
                     Intent home = new Intent(road3.this, road4.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

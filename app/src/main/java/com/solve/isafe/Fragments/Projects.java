@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,27 +44,22 @@ import static android.app.Activity.RESULT_OK;
 
 public class Projects extends Fragment {
 
-
     View vp;
 
-    final int PICK_PDF_CODE = 2342;
+    private final int PICK_PDF_CODE = 2342;
     private final int SELECT_FILE = 2;
 
     String pname, pdesc;
 
-    Button add;
-
     EditText projname, desc;
-
-    ListView subproj;
 
     StorageReference mStorageReference;
 
     ArrayList<String> project, projsub;
     DatabaseReference mDatabaseReference;
-    ListView projectlist;
+    ListView projectlist, subproj;
 
-    Button submit;
+    Button submit, add;
 
 
     @NonNull
@@ -140,6 +136,36 @@ public class Projects extends Fragment {
                         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
 
                         projectlist.setAdapter(arrayAdapter);
+
+                        projectlist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                            @Override
+                            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                                new AlertDialog.Builder(getContext())
+                                        .setIcon(android.R.drawable.ic_delete)
+                                        .setTitle("Are You Sure?")
+                                        .setMessage("Do you want to delete this file?")
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                project.get(position);
+
+//                                                mDatabaseReference
+//                                                        .child("Users")
+//                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                                        .child("Projects")
+//                                                        .child("Files")
+//                                                        .removeValue(project.get(position));
+
+                                            }
+                                        })
+
+                                        .setNegativeButton("No", null)
+                                        .show();
+
+                                return false;
+                            }
+                        });
 
                     }
                 }

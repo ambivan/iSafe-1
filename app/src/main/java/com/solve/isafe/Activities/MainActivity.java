@@ -1,6 +1,9 @@
 package com.solve.isafe.Activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -15,6 +18,7 @@ import android.widget.LinearLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.solve.isafe.R;
+import com.solve.isafe.Services.NotificationService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,10 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (user != null) {
 
-//                    finish();
-//                    Intent home = new Intent(MainActivity.this, HomePageActivity.class);
-//                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(home);
+                    Intent home = new Intent(MainActivity.this, HomePageActivity.class);
+                    home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(home);
 
                 }
 
@@ -88,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                finish();
                 Intent home = new Intent(MainActivity.this, LoginActivity.class);
                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(home);
@@ -99,28 +101,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                finish();
-
-
                 Intent home = new Intent(MainActivity.this, SignupActivity.class);
                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(home);
 
-                finish();
 
             }
         });
 
 
-//        Intent intent = new Intent(MainActivity.this, NotificationService.class);
-//        startService(intent);
+        Intent intent = new Intent(MainActivity.this, NotificationService.class);
+        startService(intent);
 //
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            NotificationChannel channel = new NotificationChannel("My notifications", "My notifications", NotificationManager.IMPORTANCE_DEFAULT);
-//
-//            NotificationManager manager = getSystemService(NotificationManager.class);
-//            manager.createNotificationChannel(channel);
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("My notifications", "My notifications", NotificationManager.IMPORTANCE_DEFAULT);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
     }
 
@@ -128,4 +126,5 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
 }

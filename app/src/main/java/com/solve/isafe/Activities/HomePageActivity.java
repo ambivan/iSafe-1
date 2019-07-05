@@ -176,7 +176,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                         .child("Status")
                         .setValue("0");
 
-                finish();
                 Intent home = new Intent(HomePageActivity.this, Notifications.class);
                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -234,7 +233,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                                     public void onClick(View v) {
                                         HomePageActivity.frag = 5;
 
-                                        finish();
                                         Intent home = new Intent(HomePageActivity.this, HomePageActivity.class);
                                         home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(new Intent(HomePageActivity.this, HomePageActivity.class));
@@ -276,7 +274,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
                     });
 
                 } else {
-                    finish();
                     Intent home = new Intent(HomePageActivity.this, MainActivity.class);
                     home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(home);
@@ -366,7 +363,6 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         Fragment frag1 = null;
 
         if (id == R.id.Home) {
-            finish();
 
             frag = 0;
 

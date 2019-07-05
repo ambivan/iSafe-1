@@ -125,7 +125,6 @@ public class CreateEvent extends AppCompatActivity {
             public void onClick(View v) {
                 HomePageActivity.frag = 1;
 
-                finish();
                 Intent home = new Intent(CreateEvent.this, HomePageActivity.class);
                 home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(home);

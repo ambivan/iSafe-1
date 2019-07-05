@@ -8,8 +8,7 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -20,28 +19,26 @@
 
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#fff"
+            android:theme="@style/AppTheme.NoActionBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="#fff"
-            android:id="@+id/appbarlay"
-            android:theme="@style/AppTheme.NoActionBar">
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar1"
                 android:layout_width="match_parent"
 
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
-
-
 
         <LinearLayout
 
@@ -65,8 +62,7 @@
                 android:text="Report Accident"
                 android:textAlignment="center"
                 android:textColor="#000"
-                android:textSize="30sp"
-                />
+                android:textSize="30sp" />
 
 
             <ImageView
@@ -98,7 +94,6 @@
 
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/twocam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,7 +101,8 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <ImageView
@@ -146,13 +142,13 @@
             android:layout_marginLeft="80dp"
             android:layout_marginTop="25dp"
             android:layout_marginRight="80dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/button_first_bg"
             android:fontFamily="@font/roboto"
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
             android:text="Click"
             android:textAllCaps="false"
-            android:layout_marginBottom="30dp"
             android:textColor="#fff"
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent"

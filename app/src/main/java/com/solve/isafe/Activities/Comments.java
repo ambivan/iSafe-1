@@ -1,5 +1,6 @@
 package com.solve.isafe.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -34,7 +35,8 @@ public class Comments extends AppCompatActivity {
 
     FirebaseListAdapter<CommentClass> adapter;
 
-    ImageView send,profile ;
+    ImageView send, profile, share, like;
+
 
     EditText comment;
 
@@ -73,6 +75,8 @@ public class Comments extends AppCompatActivity {
         date = findViewById(R.id.datec);
         time = findViewById(R.id.timec);
         profile = findViewById(R.id.commentimage);
+        share = findViewById(R.id.send);
+        like = findViewById(R.id.heart);
 
 
         city.setText(MyListAdapter.ccity);
@@ -82,11 +86,8 @@ public class Comments extends AppCompatActivity {
         date.setText(MyListAdapter.cdate);
         time.setText(MyListAdapter.ctime);
 
-
         send = findViewById(R.id.comment);
-
         comment = findViewById(R.id.coments);
-
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +137,24 @@ public class Comments extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("Events").child(MyListAdapter.cid).child("Comments"));
 
         lissss.setAdapter(adapter);
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent a = new Intent(Intent.ACTION_SEND);
+
+                String eventtext = MyListAdapter.ctitle + MyListAdapter.ccity + " is " + MyListAdapter.cevent + " " + MyListAdapter.cdate + ".\n" + MyListAdapter.ctime
+                        + "\n" + MyListAdapter.ctopic;
+
+                a.setType("text/plain");
+                String shareBody = "Hey!!" + "\n" + eventtext + "\n" + "Would You like to be a part of this?";
+                String shareSub = "iSAFE";
+                a.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                a.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(a, "Share Using"));
+            }
+        });
 
     }
 }

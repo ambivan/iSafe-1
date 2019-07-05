@@ -1,5 +1,6 @@
 package com.solve.isafe.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -188,7 +189,6 @@ public class CodeGenerator extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
 
-                            finish();
                             Intent home = new Intent(CodeGenerator.this, HomePageActivity.class);
                             home.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(home);
@@ -206,6 +206,7 @@ public class CodeGenerator extends AppCompatActivity {
                             builder.setCancelable(false);
                             builder.setTitle("Select your option:");
                             builder.setItems(options, new DialogInterface.OnClickListener() {
+                                @SuppressLint("IntentReset")
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -213,7 +214,6 @@ public class CodeGenerator extends AppCompatActivity {
 
 
                                         Intent a = new Intent(Intent.ACTION_SEND);
-
                                         a.setType("text/plain");
                                         String shareBody = "Hi, join the college team using this code: " + codeg;
                                         String shareSub = "iSAFE";

@@ -333,7 +333,6 @@ public class Agenda_Meeting extends AppCompatActivity implements NavigationView.
         Fragment frag1 = null;
 
         if (id == com.solve.isafe.R.id.Home) {
-            finish();
             HomePageActivity.frag = 0;
             startActivity(new Intent(Agenda_Meeting.this, HomePageActivity.class));
         }
