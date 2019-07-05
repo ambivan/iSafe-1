@@ -33,7 +33,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_account_circle_black_24dp" />
+                android:src="@drawable/user" />
 
             <ImageView
                 android:id="@+id/badge"
@@ -45,7 +45,7 @@
                 android:src="@drawable/ic_mode_edit_black_24dp"
                 android:textAlignment="center"
                 android:textSize="8sp"
-                android:tint="#F5F4F4" />
+                android:tint="#F3F1F1" />
 
         </FrameLayout>
 

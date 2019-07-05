@@ -39,7 +39,7 @@ public class CreateEvent extends AppCompatActivity {
 
     FirebaseAuth auth;
 
-    String ampm, what;
+    String ampm;
 
     Calendar myCalendar = Calendar.getInstance();
 
