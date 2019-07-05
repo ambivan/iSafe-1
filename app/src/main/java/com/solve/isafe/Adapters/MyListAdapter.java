@@ -75,6 +75,25 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         holder.topic.setText(myListData.getTopic());
         holder.city.setText(myListData.getCity());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MyListData f = list.get(holder.getPosition());
+
+                ccity = f.getCity();
+                cdate = f.getDate();
+                ctime = f.getTime();
+                ctitle = f.getTitle();
+                cevent = f.getEvent();
+                ctopic = f.getTopic();
+                cid = f.getEventid();
+
+                context.startActivity(new Intent(context.getApplicationContext(), Comments.class));
+
+            }
+        });
+
         holder.msg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

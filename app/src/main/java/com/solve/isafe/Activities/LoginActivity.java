@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -63,6 +64,14 @@ public class LoginActivity extends AppCompatActivity {
 
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(LoginActivity.this, R.color.mystatus));
+
+        android.support.v7.widget.Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarl);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
 
         auth = FirebaseAuth.getInstance();
 
@@ -187,6 +196,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        super.onBackPressed();
     }
 }

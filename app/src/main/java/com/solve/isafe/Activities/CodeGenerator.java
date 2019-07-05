@@ -200,7 +200,7 @@ public class CodeGenerator extends AppCompatActivity {
                         public void onClick(View v) {
 
 
-                            final CharSequence options[] = new CharSequence[]{"Share on Whatsapp", "Share as Text Message", "Copy Code"};
+                            final CharSequence options[] = new CharSequence[]{"Share ", "Share as Text Message", "Copy Code"};
 
                             AlertDialog.Builder builder = new AlertDialog.Builder(CodeGenerator.this);
                             builder.setCancelable(true);
@@ -210,7 +210,7 @@ public class CodeGenerator extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
-                                    if ("Share on Whatsapp".equals(options[which])) {
+                                    if ("Share ".equals(options[which])) {
 
 
                                         Intent a = new Intent(Intent.ACTION_SEND);

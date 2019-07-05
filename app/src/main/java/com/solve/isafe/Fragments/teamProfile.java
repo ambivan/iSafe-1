@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -51,14 +52,17 @@ public class teamProfile extends Fragment {
 
     View vt;
 
-    TextView team_name;
+    TextView team_name, team_code;
     RecyclerView recyclerView;
     private ArrayList<profileM> profileMArrayList;
     TextView prof_name;
     private profileAdapter adapter;
 
-    Uri photoURI;
+    String str;
+
     String path, userChoosenTask;
+
+    Button share;
 
     ListView listView;
 
@@ -78,6 +82,9 @@ public class teamProfile extends Fragment {
         team_name = (TextView) vt.findViewById(R.id.team_name);
         prof_name = (TextView) vt.findViewById(R.id.pro_name);
         pro_pic = (ImageView) vt.findViewById(R.id.prof_ilepic);
+        team_code = (TextView) vt.findViewById(R.id.team_code);
+
+        share = vt.findViewById(R.id.sharer);
 
         listView = vt.findViewById(R.id.listteam);
 
@@ -95,8 +102,24 @@ public class teamProfile extends Fragment {
 
                         UserPost userPost = dataSnapshot.getValue(UserPost.class);
 
+                        str = userPost.getTeamname();
 
-                        String str = userPost.getTeamname();
+                        team_code.setText(str);
+
+                        share.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent a = new Intent(Intent.ACTION_SEND);
+                                a.setType("text/plain");
+                                String shareBody = "Hi, join the college team using this code: " + str;
+                                String shareSub = "iSAFE";
+                                a.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+                                a.putExtra(Intent.EXTRA_TEXT, shareBody);
+                                startActivity(Intent.createChooser(a, "Share Using"));
+                            }
+                        });
+
                         String[] arrOfStr = str.split("/", 2);
 
                         for (String a : arrOfStr) {

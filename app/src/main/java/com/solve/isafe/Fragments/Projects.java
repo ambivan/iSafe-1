@@ -133,7 +133,7 @@ public class Projects extends Fragment {
 
                         project.add(String.valueOf(d.getValue()));
 
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
+                        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, project);
 
                         projectlist.setAdapter(arrayAdapter);
 
@@ -148,14 +148,35 @@ public class Projects extends Fragment {
                                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                project.get(position);
 
-//                                                mDatabaseReference
-//                                                        .child("Users")
-//                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                                                        .child("Projects")
-//                                                        .child("Files")
-//                                                        .removeValue(project.get(position));
+                                                project.remove(position);
+                                                arrayAdapter.notifyDataSetChanged();
+
+                                                mDatabaseReference
+                                                        .child("Users")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .child("Projects")
+                                                        .child("Files").addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                                        if (project.get(position).equals(dataSnapshot.getValue())){
+
+                                                            mDatabaseReference
+                                                                    .child("Users")
+                                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                                    .child("Projects")
+                                                                    .child("Files").removeValue();
+
+                                                        }
+
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
 
                                             }
                                         })

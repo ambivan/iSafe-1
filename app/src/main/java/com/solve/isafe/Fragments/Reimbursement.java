@@ -48,8 +48,7 @@ import static android.app.Activity.RESULT_OK;
 public class Reimbursement extends Fragment {
 
     View vr;
-    Button bill;
-    Button attach, send;
+    Button bill, send;
 
     ImageView billimage;
 
@@ -63,8 +62,6 @@ public class Reimbursement extends Fragment {
     final int PICK_PDF_CODE = 2342;
 
     TextView file, support;
-
-    String path;
 
     private static final int SELECT_FILE = 2;
 
@@ -166,7 +163,7 @@ public class Reimbursement extends Fragment {
 
                         if (!TextUtils.isEmpty(seventdate) && !TextUtils.isEmpty(sevettype)) {
 
-                            HashMap<String , Object> hashMap = new HashMap<>();
+                            HashMap<String, Object> hashMap = new HashMap<>();
                             hashMap.put("eventdate", seventdate);
                             hashMap.put("eventtype", sevettype);
 
@@ -307,7 +304,6 @@ public class Reimbursement extends Fragment {
 
                             }
                         });
-
 
 
                     }

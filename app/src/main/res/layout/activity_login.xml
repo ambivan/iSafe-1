@@ -25,14 +25,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarlay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/capt"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:theme="@style/AppTheme.NoActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:layout_marginTop="60dp"
-            android:id="@+id/loginLogo"
-            />
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarl"
+                android:layout_width="match_parent"
+
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginStart="20dp"
+                android:id="@+id/loginLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/capt" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="LOG IN"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_gravity="center"
+
+                />
+
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/email"

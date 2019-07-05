@@ -44,9 +44,8 @@
                 android:gravity="center"
                 android:src="@drawable/ic_mode_edit_black_24dp"
                 android:textAlignment="center"
-                android:textColor="@android:color/white"
                 android:textSize="8sp"
-                android:tint="#A5A2A2" />
+                android:tint="#F5F4F4" />
 
         </FrameLayout>
 
