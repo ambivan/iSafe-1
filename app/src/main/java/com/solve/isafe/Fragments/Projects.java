@@ -61,7 +61,6 @@ public class Projects extends Fragment {
 
     Button submit, add;
 
-
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

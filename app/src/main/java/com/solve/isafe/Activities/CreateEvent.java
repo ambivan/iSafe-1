@@ -3,6 +3,7 @@ package com.solve.isafe.Activities;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -36,7 +37,6 @@ public class CreateEvent extends AppCompatActivity {
 
     String sevent,sdate, stime,stopic, scollege, userid, eventid, scity, simage;
 
-
     FirebaseAuth auth;
 
     String ampm;
@@ -44,6 +44,11 @@ public class CreateEvent extends AppCompatActivity {
     Calendar myCalendar = Calendar.getInstance();
 
     Button createevent, cancel;
+
+    Handler handler = new Handler();
+
+    Runnable runnable;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +105,14 @@ public class CreateEvent extends AppCompatActivity {
         });
 
 
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+
+                createevent.setTextColor(getResources().getColor(R.color.button));
+
+            }
+        };
 
 
         final EditText date = (EditText) findViewById(R.id.dateevent);
@@ -175,6 +188,8 @@ public class CreateEvent extends AppCompatActivity {
         };
 
         topic.addTextChangedListener(textWatcher);
+
+        handler.postDelayed(runnable, 7000);
 
         createevent.setOnClickListener(new View.OnClickListener() {
             @Override
