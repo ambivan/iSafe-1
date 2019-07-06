@@ -15,14 +15,14 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <LinearLayout
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingStart="10dp"
+        android:paddingBottom="10dp">
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            style="?attr/actionButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
@@ -32,7 +32,8 @@
                 android:id="@+id/profile_pic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="center"
+                android:paddingTop="20dp"
                 android:src="@drawable/user" />
 
             <ImageView
@@ -52,8 +53,8 @@
         <TextView
             android:id="@+id/profile_name"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
             android:layout_height="wrap_content"
+            android:paddingStart="10dp"
             android:fontFamily="@font/roboto"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:text=""

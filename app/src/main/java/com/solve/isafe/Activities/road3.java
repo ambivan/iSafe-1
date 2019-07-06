@@ -24,7 +24,6 @@ public class road3 extends AppCompatActivity {
     EditText e1, e2, e3, e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14, e15, e16;
     String et1, et2, et3, et4, et5, et6, et7, et8, et9, et10, et11, et12, et13, et14,et15, et16;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

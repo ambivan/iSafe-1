@@ -5,13 +5,14 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -22,39 +23,38 @@ import com.solve.isafe.Services.NotificationService;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout linlay2;
+    LinearLayout linlay2, linearLayout;
 
     Button login, signup;
-
-    Handler handler = new Handler();
 
     Intent intent;
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
 
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-
-            linlay2.setVisibility(View.VISIBLE);
-
-        }
-    };
+    Animation frombottom;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.solve.isafe.R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-        linlay2 = findViewById(com.solve.isafe.R.id.linlay2);
+        linearLayout = findViewById(R.id.linlay1);
+        linlay2 = findViewById(R.id.linlay2);
+        linlay2.setVisibility(View.GONE);
 
-        handler.postDelayed(runnable, 1000);
+        frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
+
+        linearLayout.animate().translationY(140).setDuration(1000).setStartDelay(1000);
+        linlay2.setVisibility(View.VISIBLE);
+        linlay2.animate().translationY(-140).setDuration(1000).setStartDelay(1000);
+
+        linlay2.startAnimation(frombottom);
+        linearLayout.startAnimation(frombottom);
 
         login = findViewById(com.solve.isafe.R.id.login);
         signup = findViewById(com.solve.isafe.R.id.signup);
-
 
         Window window = MainActivity.this.getWindow();
 
