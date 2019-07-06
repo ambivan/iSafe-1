@@ -2,148 +2,144 @@
 
 <ScrollView
 
-    android:background="#fff"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    tools:context=".LoginActivity">
+    android:background="#fff">
 
-    <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbarlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:theme="@style/AppTheme.NoActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbarl"
-                android:layout_width="match_parent"
-
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.AppBarLayout>
-
+        android:layout_height="match_parent"
+        android:background="#fff"
+        tools:context=".LoginActivity">
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/loginLogo"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbarlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:theme="@style/AppTheme.NoActionBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbarl"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.AppBarLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/loginLogo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/capt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto"
+                    android:text="LOG IN"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="23dp"
+                    android:textStyle="bold"
+
+                    />
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/capt" />
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="#000"
+                android:hint="Email - ID"
+                android:imeOptions="actionNext"
+                android:padding="15dp"
+                android:singleLine="true" />
 
-            <TextView
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:backgroundTint="#000"
+                android:hint="Password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:singleLine="true" />
+
+
+            <Button
+
+                android:id="@+id/loginbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:text="LOG IN"
-                android:textAlignment="center"
-                android:textSize="23dp"
-                android:textStyle="bold"
-                android:textColor="#000"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_first_bg"
+                android:fontFamily="@font/roboto"
+                android:paddingLeft="100dp"
+                android:paddingRight="100dp"
+                android:text="Login"
+                android:textAllCaps="false"
+
+                android:textColor="#fff"
+                android:textSize="25sp"
 
                 />
 
 
+            <TextView
+                android:id="@+id/forgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/roboto"
+                android:text="Forgot Password ?"
+                android:textColor="#047cfc"
+                android:textSize="18sp" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_gravity="center"
-            android:padding="15dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:backgroundTint="#000"
-            android:imeOptions="actionNext"
-            android:singleLine = "true"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:hint="Email - ID"
-            />
-
-        <EditText
-            android:inputType="textPassword"
-            android:layout_gravity="center"
-            android:padding="15dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Password"
-            android:imeOptions="actionDone"
-            android:singleLine = "true"
-            android:backgroundTint="#000"
-            android:id="@+id/password"
-            />
-
-
-        <Button
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/button_first_bg"
-            android:fontFamily="@font/roboto"
-            android:paddingLeft="100dp"
-            android:paddingRight="100dp"
-            android:text="Login"
-            android:id="@+id/loginbutton"
-            android:textAllCaps="false"
-
-            android:textColor="#fff"
-            android:textSize="25sp"
-
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto"
-            android:text="Forgot Password ?"
-            android:textSize="18sp"
-            android:id="@+id/forgot"
-            android:textColor="#047cfc"
-            />
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

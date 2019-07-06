@@ -109,10 +109,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         Intent intent = new Intent(MainActivity.this, NotificationService.class);
         startService(intent);
-//
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("My notifications", "My notifications", NotificationManager.IMPORTANCE_DEFAULT);
 

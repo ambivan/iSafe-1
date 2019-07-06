@@ -39,6 +39,7 @@ import com.solve.isafe.Classes.Constants;
 import com.solve.isafe.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -55,6 +56,7 @@ public class Projects extends Fragment {
 
     StorageReference mStorageReference;
 
+    static String t;
     ArrayList<String> project, projsub;
     DatabaseReference mDatabaseReference;
     ListView projectlist, subproj;
@@ -74,6 +76,8 @@ public class Projects extends Fragment {
         project = new ArrayList<>();
         projectlist = (ListView) vp.findViewById(R.id.list5);
         subproj = (ListView) vp.findViewById(R.id.listproj);
+
+        t = String.valueOf(System.currentTimeMillis());
 
         submit = vp.findViewById(R.id.submitt);
 
@@ -126,7 +130,7 @@ public class Projects extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                for (final DataSnapshot d : dataSnapshot.getChildren()) {
 
                     if (d.getValue() != null) {
 
@@ -148,34 +152,17 @@ public class Projects extends Fragment {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
 
+
+                                                if (project.get(position).equals(d.getValue())){
+                                                    String key = d.getKey();
+                                                    System.out.println(key);
+                                                    a.child(key).removeValue();
+                                                }
+
                                                 project.remove(position);
                                                 arrayAdapter.notifyDataSetChanged();
 
-                                                mDatabaseReference
-                                                        .child("Users")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                        .child("Projects")
-                                                        .child("Files").addValueEventListener(new ValueEventListener() {
-                                                    @Override
-                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                                        if (project.get(position).equals(dataSnapshot.getValue())){
-
-                                                            mDatabaseReference
-                                                                    .child("Users")
-                                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                                    .child("Projects")
-                                                                    .child("Files").removeValue();
-
-                                                        }
-
-                                                    }
-
-                                                    @Override
-                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                                    }
-                                                });
 
                                             }
                                         })
@@ -244,13 +231,19 @@ public class Projects extends Fragment {
                 pdesc = desc.getText().toString();
 
                 if (!TextUtils.isEmpty(pname) && !TextUtils.isEmpty(pdesc)) {
+
+                    HashMap<String, Object> hashMap = new HashMap<>();
+
+                    hashMap.put("description", pdesc);
+                    hashMap.put("projname", pname);
+
                     FirebaseDatabase.getInstance().getReference()
                             .child("Users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("Projects")
                             .child("Project Details")
-                            .push()
-                            .setValue(new AddProject(pname, pdesc));
+                            .child(t)
+                            .updateChildren(hashMap);
 
                     mDatabaseReference
                             .child("Users")
@@ -346,6 +339,7 @@ public class Projects extends Fragment {
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child("Projects")
                 .child(fileName);
+
         sRef.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
