@@ -95,7 +95,6 @@
                     android:background="@drawable/button_first_bg"
                     android:clickable="true"
                     android:elevation="25dp"
-
                     android:focusable="true"
                     android:fontFamily="@font/roboto"
                     android:shadowColor="#000000"

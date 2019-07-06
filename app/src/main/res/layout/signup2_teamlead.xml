@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -48,32 +47,28 @@
             app:layout_constraintTop_toBottomOf="@id/appbarlay">
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:layout_marginStart="20dp"
                     android:id="@+id/loginLogo"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:src="@drawable/capt" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SIGN UP"
-                    android:fontFamily="@font/roboto"
-                    android:textAlignment="center"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:textColor="#000"
                     android:layout_gravity="center"
-
-                    />
-
+                    android:fontFamily="@font/roboto"
+                    android:text="SIGN UP"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="23dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -177,17 +172,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Select Domain"/>
+                android:text="Select Domain"
+                android:textSize="20dp" />
+
             <Spinner
                 android:id="@+id/spinnerdomain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:overlapAnchor="false"
-                android:background="@drawable/spinner">
+                android:background="@drawable/spinner"
+                android:overlapAnchor="false">
 
             </Spinner>
 
@@ -199,9 +195,9 @@
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginRight="80dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_first_bg"
                 android:fontFamily="@font/roboto"
-                android:layout_marginBottom="20dp"
                 android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textColor="#fff"
