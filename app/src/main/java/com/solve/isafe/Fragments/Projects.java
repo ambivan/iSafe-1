@@ -52,6 +52,8 @@ public class Projects extends Fragment {
 
     String pname, pdesc;
 
+    String filename, id;
+
     EditText projname, desc;
 
     StorageReference mStorageReference;
@@ -153,7 +155,7 @@ public class Projects extends Fragment {
                                             public void onClick(DialogInterface dialog, int which) {
 
 
-                                                if (project.get(position).equals(d.getValue())){
+                                                if (project.get(position).equals(d.getValue())) {
                                                     String key = d.getKey();
                                                     System.out.println(key);
                                                     a.child(key).removeValue();
@@ -161,7 +163,6 @@ public class Projects extends Fragment {
 
                                                 project.remove(position);
                                                 arrayAdapter.notifyDataSetChanged();
-
 
 
                                             }
@@ -242,8 +243,8 @@ public class Projects extends Fragment {
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .child("Projects")
                             .child("Project Details")
-                            .child(t)
-                            .updateChildren(hashMap);
+                            .push()
+                            .setValue(new AddProject(pname, pdesc));
 
                     mDatabaseReference
                             .child("Users")
@@ -277,6 +278,8 @@ public class Projects extends Fragment {
                 // Get the Uri of the selected file
                 Uri uri = data.getData();
                 uploadFile(uri);
+
+
 
                 mDatabaseReference
                         .child("Users")

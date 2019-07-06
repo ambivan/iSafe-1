@@ -54,7 +54,8 @@
             android:name=".Activities.Comments"
             android:parentActivityName=".Activities.HomePageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Activities.road9" />
         <activity android:name=".Activities.road8" />
         <activity android:name=".Activities.road7" />
@@ -115,8 +116,8 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:parentActivityName=".Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
