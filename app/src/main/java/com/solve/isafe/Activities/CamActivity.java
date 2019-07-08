@@ -47,7 +47,7 @@ public class CamActivity extends AppCompatActivity {
 
     LinearLayout l;
 
-    static ImageView image, image2, image3;
+    static ImageView image, image2, image3;// to set images after clicking them
     String path, userid;
     public static Bitmap photo, photo2, photo3;
     public static int i = 0;
@@ -56,7 +56,7 @@ public class CamActivity extends AppCompatActivity {
     UploadTask uploadTask;
 
     int count;
-    Intent camIntent, image2Int, image3Int;
+    Intent camIntent, image2Int, image3Int;// to open camera
 
     Uri photoURI;
 
@@ -211,8 +211,6 @@ public class CamActivity extends AppCompatActivity {
 
                 photoURI = FileProvider.getUriForFile(CamActivity.this, "com.solve.isafe.fileprovider", photofile);
 
-                System.out.println(photoURI.toString());
-
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
                 startActivityForResult(intent, 1);
@@ -229,14 +227,12 @@ public class CamActivity extends AppCompatActivity {
 
         try {
             image = File.createTempFile(name, ".jpg", storagedir);
-            System.out.println("yes");
 
 
         } catch (IOException e) {
             Log.d("mine", e.toString());
         }
 
-        System.out.println("yes");
         return image;
 
 

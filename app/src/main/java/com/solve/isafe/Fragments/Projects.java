@@ -157,7 +157,6 @@ public class Projects extends Fragment {
 
                                                 if (project.get(position).equals(d.getValue())) {
                                                     String key = d.getKey();
-                                                    System.out.println(key);
                                                     a.child(key).removeValue();
                                                 }
 
