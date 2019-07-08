@@ -391,7 +391,6 @@ public class Signup2 extends AppCompatActivity {
 
                             } else {
                                 mProgress.dismiss();
-                                Log.i("Fail", "Signup not completed");
                                 Toast.makeText(Signup2.this, "Email already registered!", Toast.LENGTH_SHORT).show();
                             }
 
@@ -522,7 +521,6 @@ public class Signup2 extends AppCompatActivity {
 
                                 } else {
                                     mProgress.dismiss();
-                                    Log.i("Fail", "Signup not completed");
                                     Toast.makeText(Signup2.this, "Signup not completed", Toast.LENGTH_SHORT).show();
                                 }
                             }

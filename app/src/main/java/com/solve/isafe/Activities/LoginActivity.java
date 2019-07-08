@@ -175,7 +175,6 @@ public class LoginActivity extends AppCompatActivity {
                             } else {
                                 pro.dismiss();
                                 Toast.makeText(LoginActivity.this, "WRONG EMAIL OR PASSWORD!!", Toast.LENGTH_SHORT).show();
-                                Log.i("info", "unsuccessful");
                             }
 
                         }

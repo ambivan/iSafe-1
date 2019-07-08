@@ -11,25 +11,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.solve.isafe.Activities.Comments;
-import com.solve.isafe.Classes.MyListData;
-import com.solve.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.solve.isafe.Activities.Comments;
+import com.solve.isafe.Classes.MyListData;
+import com.solve.isafe.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
 
     List<MyListData> list;
     Context context;
-
-    ArrayList<MyListData> list1;
 
     private static int mla;
     private static int ml;
@@ -41,8 +38,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     public static String ctopic;
     public static String ccity;
     public static String cid;
-
-    int position;
 
     // RecyclerView recyclerView;
     public MyListAdapter(List<MyListData> list, Context context) {

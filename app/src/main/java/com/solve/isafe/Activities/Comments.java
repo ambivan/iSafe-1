@@ -1,5 +1,6 @@
 package com.solve.isafe.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -91,7 +93,7 @@ public class Comments extends AppCompatActivity {
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
                 if (comment.getText().toString().trim().equals("")) {
                     Toast.makeText(Comments.this, "Please enter some texts!", Toast.LENGTH_SHORT).show();
@@ -99,7 +101,7 @@ public class Comments extends AppCompatActivity {
 
                     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                     
-                    databaseReference.addValueEventListener(new ValueEventListener() {
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -116,6 +118,7 @@ public class Comments extends AppCompatActivity {
                                             FirebaseAuth.getInstance().getCurrentUser().getUid()));
 
                             comment.setText("");
+                            ((InputMethodManager)Comments.this.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(),0);
 
 
                         }

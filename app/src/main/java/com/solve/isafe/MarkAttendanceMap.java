@@ -143,7 +143,6 @@ public class MarkAttendanceMap extends AppCompatActivity implements OnMapReadyCa
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Log.i("nuh", "uh");
                 }
             }
         });

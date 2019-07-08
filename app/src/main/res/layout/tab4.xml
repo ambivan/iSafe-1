@@ -1,82 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
 
-    android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="#fff">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
 
 
         <ImageView
             android:id="@+id/linlay3"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="50dp"
             android:gravity="center_horizontal"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/isafeassist" />
+            android:src="@drawable/isafeassist"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            android:textColor="#000"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto"
             android:text="@string/assist"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linlay3" />
 
         <TextView
             android:id="@+id/dial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            android:textColor="#000"
             android:fontFamily="@font/roboto"
+            android:gravity="center_horizontal"
+            android:text="Dial 1800-419-7779"
+            android:textColor="#000"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/first"
-            android:text="Dial 1800-419-7779" />
+            app:layout_constraintTop_toBottomOf="@+id/first" />
 
         <TextView
+            android:id="@+id/get"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="To get instant assistance"
-            android:textStyle="bold|italic"
-            app:layout_constraintTop_toBottomOf="@+id/dial"
-            android:gravity="center_horizontal"
-            android:textSize="17sp"
             android:fontFamily="@font/roboto"
+            android:gravity="center_horizontal"
+            android:text="To get instant assistance"
             android:textColor="#000"
-            android:id="@+id/get" />
+            android:textSize="17sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintTop_toBottomOf="@+id/dial" />
 
         <Button
             android:id="@+id/buttonassist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
-            android:elevation="25dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/call_buttonbg"
+            android:elevation="25dp"
             android:fontFamily="@font/roboto"
             android:text="Call for Assistance"
             android:textAllCaps="false"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:textColor="#fff"
             android:textSize="25sp"
             app:layout_constraintTop_toBottomOf="@+id/get"
@@ -84,16 +86,16 @@
 
 
         <TextView
+            android:id="@+id/knowmore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/knowmore"
             android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
             android:gravity="right"
             android:text="Know more > "
-            app:layout_constraintRight_toRightOf="parent"
             android:textColor="#2167F3"
-            android:layout_marginRight="20dp"
+            android:textSize="20sp"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/buttonassist" />
 
     </android.support.constraint.ConstraintLayout>
