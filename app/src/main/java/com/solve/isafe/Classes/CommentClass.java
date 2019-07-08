@@ -1,17 +1,13 @@
 package com.solve.isafe.Classes;
 
-import java.util.Date;
-
 public class CommentClass {
     private String messageText;
     private String messageUser;
     private String messageUserId;
-    private long messageTime;
 
     public CommentClass(String messageText, String messageUser, String messageUserId) {
         this.messageText = messageText;
         this.messageUser = messageUser;
-        messageTime = new Date().getTime();
         this.messageUserId = messageUserId;
     }
 
@@ -43,11 +39,4 @@ public class CommentClass {
         this.messageUser = messageUser;
     }
 
-    public long getMessageTime() {
-        return messageTime;
-    }
-
-    public void setMessageTime(long messageTime) {
-        this.messageTime = messageTime;
-    }
 }

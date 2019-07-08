@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.solve.isafe.Adapters.MyListAdapter2;
+import com.solve.isafe.Adapters.Reg_Events;
 import com.solve.isafe.Classes.MyListData;
 import com.solve.isafe.R;
 
@@ -30,7 +30,7 @@ public class RegEvents extends Fragment {
 
     RecyclerView recyclerView;
     List<MyListData> list;
-    MyListAdapter2 recyclerAdapter;
+    Reg_Events recyclerAdapter;
 
     TextView regfirst;
 
@@ -83,7 +83,7 @@ public class RegEvents extends Fragment {
                         regfirst.setVisibility(View.GONE);
                     }
 
-                    recyclerAdapter = new MyListAdapter2(list, getActivity());
+                    recyclerAdapter = new Reg_Events(list, getActivity());
                     RecyclerView.LayoutManager recyce = new LinearLayoutManager(getContext());
                     recyclerView.setLayoutManager(recyce);
                     recyclerView.setHasFixedSize(true);

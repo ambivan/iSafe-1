@@ -34,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.solve.isafe.Adapters.profileAdapter;
 import com.solve.isafe.Classes.UserPost;
 import com.solve.isafe.Classes.Utility;
 import com.solve.isafe.Classes.profileM;
@@ -56,7 +55,6 @@ public class teamProfile extends Fragment {
     RecyclerView recyclerView;
     private ArrayList<profileM> profileMArrayList;
     TextView prof_name;
-    private profileAdapter adapter;
 
     String str;
 

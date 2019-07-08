@@ -35,12 +35,14 @@
                     style="?attr/actionButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:clipToPadding="false"
                     android:focusable="true">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profpic"
                         android:layout_width="100dp"
+
                         android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:src="@drawable/user" />
@@ -57,7 +59,7 @@
                         android:textAlignment="center"
                         android:textColor="@android:color/white"
                         android:textSize="8sp"
-                        android:tint="#A5A2A2" />
+                        android:tint="#F7F3F3" />
 
                 </FrameLayout>
 
