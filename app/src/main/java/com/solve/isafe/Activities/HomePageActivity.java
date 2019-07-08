@@ -39,6 +39,7 @@ import com.solve.isafe.Fragments.EventChecklist;
 import com.solve.isafe.Fragments.Feedback;
 import com.solve.isafe.Fragments.GoodSamaritan;
 import com.solve.isafe.Fragments.Projects;
+import com.solve.isafe.Fragments.RegEvents;
 import com.solve.isafe.Fragments.Reimbursement;
 import com.solve.isafe.Fragments.RoadSafetyAudit;
 import com.solve.isafe.Fragments.comp;
@@ -397,9 +398,12 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
 
         } else if (id == R.id.feedback) {
             frag1 = new Feedback();
-        } else if (id == R.id.projects)
+        } else if (id == R.id.projects) {
             frag1 = new Projects();
 
+        }else if (id == R.id.Reg){
+            frag1 = new RegEvents();
+        }
 
         if (frag1 != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

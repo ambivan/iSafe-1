@@ -15,6 +15,16 @@
 
     </group>
 
+    <group
+
+        android:id="@+id/group15"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/Reg"
+            android:title="Registered Events" />
+
+    </group>
+
 
     <group
 
@@ -27,8 +37,8 @@
     </group>
 
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group2">
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/opportunities"
             android:title="Opportunities" />
@@ -46,10 +56,9 @@
     </group>
 
 
-
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group7">
+        android:id="@+id/group7"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/Reimbursement"
             android:title="Reimbursement" />
@@ -57,8 +66,8 @@
     </group>
 
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group8">
+        android:id="@+id/group8"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/events"
             android:title="Event Checklist" />
@@ -66,11 +75,9 @@
     </group>
 
 
-
-
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group3">
+        android:id="@+id/group3"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/RSA"
@@ -79,8 +86,8 @@
     </group>
 
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group4">
+        android:id="@+id/group4"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/goodSamaritan"
             android:title="Good Samaritan" />
@@ -98,13 +105,12 @@
 
 
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group5">
+        android:id="@+id/group5"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/signout"
-            android:title="Log Out"/>
+            android:title="Log Out" />
     </group>
-
 
 
 </menu>

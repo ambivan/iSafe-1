@@ -98,7 +98,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CamActivity"
+            android:name=".Activities.CamActivity"
             android:parentActivityName=".Activities.HomePageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -1,4 +1,4 @@
-package com.solve.isafe;
+package com.solve.isafe.Activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -31,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.solve.isafe.Activities.HomePageActivity;
+import com.solve.isafe.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -49,9 +49,7 @@ public class CamActivity extends AppCompatActivity {
 
     static ImageView image, image2, image3;
     String path, userid;
-    public static Bitmap photo;
-    public static Bitmap photo2;
-    public static Bitmap photo3;
+    public static Bitmap photo, photo2, photo3;
     public static int i = 0;
     TextView upload;
 

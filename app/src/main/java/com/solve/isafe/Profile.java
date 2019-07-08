@@ -49,7 +49,7 @@ public class Profile extends Fragment {
 
     private FirebaseAuth auth;
 
-    String userChoosenTask, path;
+    String userChoosenTask, path, userid;
 
     Intent intent;
 
@@ -59,11 +59,9 @@ public class Profile extends Fragment {
 
     ImageView profilpic;
 
-    String userid;
-
     FirebaseAuth.AuthStateListener authStateListener;
-    private static final int REQUEST_CAMERA = 3;
-    private static final int SELECT_FILE = 2;
+    private final int REQUEST_CAMERA = 3;
+    private final int SELECT_FILE = 2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -332,7 +330,7 @@ public class Profile extends Fragment {
                     });
                 }
                 break;
-            }
         }
     }
+}
 

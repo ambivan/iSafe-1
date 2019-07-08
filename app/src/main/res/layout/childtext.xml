@@ -16,7 +16,7 @@
         android:textSize="15sp" />
 
     <Button
-        android:id = "@+id/readmore"
+        android:id="@+id/readmore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

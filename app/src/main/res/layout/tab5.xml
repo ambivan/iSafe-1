@@ -28,7 +28,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
                 android:layout_marginTop="50dp"
                 android:orientation="vertical">
 
@@ -53,6 +52,7 @@
                         android:layout_gravity="right|end|bottom"
                         android:background="#0000"
                         android:gravity="center"
+
                         android:src="@drawable/ic_mode_edit_black_24dp"
                         android:textAlignment="center"
                         android:textColor="@android:color/white"
@@ -66,6 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/roboto"
                     android:padding="10dp"
@@ -78,6 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/roboto"
@@ -86,27 +88,63 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/stars"
+        <LinearLayout
+            android:id="@+id/linl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto"
-            android:text="Stars Recieved : "
-            android:textSize="18dp"
-            app:layout_constraintTop_toBottomOf="@id/prolinlay" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/prolinlay">
 
-        <TextView
+
+            <TextView
+                android:id="@+id/stars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="Stars Recieved : "
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start working for stars!"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
             android:id="@+id/hours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto"
-            android:text="Hours Devoted : "
-            android:textSize="18dp"
-            app:layout_constraintTop_toBottomOf="@id/stars" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/linl">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="Hours Devoted : "
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No work done yet!"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/great"
@@ -115,8 +153,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto"
-            android:text="Great Work!! "
-
+            android:text="Great Work!!"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="30sp"

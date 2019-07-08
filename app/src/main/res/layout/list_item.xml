@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -42,8 +41,7 @@
                         android:id="@+id/uni"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/image"
-                        />
+                        android:src="@drawable/image" />
 
                     <TextView
                         android:id="@+id/title2"
@@ -51,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:text="University Name"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center" />
 
                     <TextView
                         android:id="@+id/cityname"
@@ -59,8 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
                         android:text="City Name"
-                        android:layout_gravity="center"/>
-
+                        android:layout_gravity="center" />
 
 
                 </LinearLayout>
@@ -95,7 +92,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/time"/>
+                        android:src="@drawable/time" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -137,7 +134,7 @@
                     android:textStyle="bold"
                     android:paddingRight="50dp"
                     android:paddingLeft="50dp"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -158,26 +155,24 @@
                         android:layout_height="32dp"
                         android:src="@drawable/send"
                         android:id="@+id/send"
-                        android:layout_gravity="left"
-                        />
+                        android:layout_gravity="left" />
 
                     <Space
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <ImageView
                         android:id="@+id/heart"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:src="@drawable/heart"
-                        android:layout_gravity="center"
-                        />
+                        android:layout_gravity="center" />
 
                     <Space
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1" />
 
                     <ImageView
                         android:id="@+id/chatt"

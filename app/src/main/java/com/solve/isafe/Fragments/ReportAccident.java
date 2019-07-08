@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.solve.isafe.Activities.ContactActivity;
 import com.solve.isafe.Activities.FinalActivity;
-import com.solve.isafe.CamActivity;
+import com.solve.isafe.Activities.CamActivity;
 import com.solve.isafe.MapActivity;
 import com.solve.isafe.R;
 import com.google.firebase.auth.FirebaseAuth;
