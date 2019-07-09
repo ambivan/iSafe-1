@@ -401,7 +401,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
         } else if (id == R.id.projects) {
             frag1 = new Projects();
 
-        }else if (id == R.id.Reg){
+        } else if (id == R.id.Reg) {
             frag1 = new RegEvents();
         }
 
