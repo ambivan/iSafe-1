@@ -75,7 +75,7 @@ public class HomePageActivity extends AppCompatActivity implements TabLayout.OnT
     private int[] imageResId = {
             R.drawable.profile,
             R.drawable.chat,
-            R.drawable.acc,
+            R.drawable.accident,
             R.drawable.attendance,
             R.drawable.newsfeed};
 
