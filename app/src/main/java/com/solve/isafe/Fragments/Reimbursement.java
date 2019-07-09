@@ -17,10 +17,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,17 +30,22 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.solve.isafe.Activities.HomePageActivity;
 import com.solve.isafe.Classes.Constants;
+import com.solve.isafe.Classes.Reimbursements;
 import com.solve.isafe.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -53,6 +60,9 @@ public class Reimbursement extends Fragment {
     ImageView billimage;
 
     Calendar myCalendar = Calendar.getInstance();
+
+    ListView reimbursed;
+    ArrayList<String> arrayList;
 
     EditText eventdate, eventtype;
     String seventdate, sevettype;
@@ -75,6 +85,9 @@ public class Reimbursement extends Fragment {
         vr = inflater.inflate(R.layout.reimbursement, container, false);
 
         timestamp = String.valueOf(System.currentTimeMillis());
+        reimbursed = vr.findViewById(R.id.listreimbursed);
+        arrayList = new ArrayList<>();
+
 
         final DatePickerDialog.OnDateSetListener datee = new DatePickerDialog.OnDateSetListener() {
 
@@ -99,6 +112,32 @@ public class Reimbursement extends Fragment {
         billimage = vr.findViewById(R.id.bill);
         eventdate = vr.findViewById(R.id.eventdate2);
         eventtype = vr.findViewById(R.id.eventtype2);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Reimbursements");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+
+                    Reimbursements reimbursement = d.getValue(Reimbursements.class);
+
+                    arrayList.add(reimbursement.getEventdate());
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, arrayList);
+                    reimbursed.setAdapter(arrayAdapter);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         eventdate.setOnClickListener(new View.OnClickListener() {
 

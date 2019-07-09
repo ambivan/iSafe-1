@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:86299482060:android:890dbef13e5b4488",
         "android_client_info": {
-          "package_name": "com.example.isafe"
+          "package_name": "com.solve.isafe"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "86299482060-j0q6gcs1m82chl7tc06glcvibc1balai.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.isafe",
+            "package_name": "com.solve.isafe",
             "certificate_hash": "6505bb275572efca48c64d1c03159e3e2e2b4dfd"
           }
         },

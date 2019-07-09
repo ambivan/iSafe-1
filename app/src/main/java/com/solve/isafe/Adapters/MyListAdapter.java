@@ -157,6 +157,17 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
                 }
 
+//                holder.like.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (myListData.getIs_liked().equals("1")){
+//                            holder.like.setImageResource(R.drawable.heart);
+//                        }else if (myListData.getIs_liked().equals("0")){
+//                            holder.like.setImageResource(R.drawable.redheart);
+//                        }
+//                    }
+//                });
+
 
             }
         });

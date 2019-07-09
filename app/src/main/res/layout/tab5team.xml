@@ -88,7 +88,6 @@
                     android:id="@+id/team_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
                     android:fontFamily="@font/actor"
                     android:text=""
@@ -98,6 +97,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:paddingEnd="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -117,30 +124,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
                     android:fontFamily="@font/roboto"
                     android:text=""
                     android:textColor="#000"
                     android:textSize="15sp" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+            </LinearLayout>
 
                 <Button
                     android:id="@+id/sharer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/dropdownbg"
                     android:drawableLeft="@drawable/send"
-                    android:elevation="10dp"
                     android:paddingStart="3dp"
+                    android:elevation="10dp"
                     android:text="Share"
                     android:textAlignment="center" />
-
 
             </LinearLayout>
 
@@ -161,17 +164,17 @@
                     android:textSize="15sp" />
 
 
-                <!--<ListView-->
-                <!--android:id="@+id/listteam"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@+id/membertext"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:divider="@android:color/transparent"-->
-                <!--android:dividerHeight="1dp"-->
-                <!--android:stackFromBottom="true" />-->
+                <ListView
+                android:id="@+id/listteam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/membertext"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="1dp"
+                android:stackFromBottom="true" />
 
 
             </RelativeLayout>

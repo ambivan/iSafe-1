@@ -118,6 +118,9 @@
                     android:textColor="#000"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
+                    android:focusable="false"
+                    android:drawableLeft="@drawable/calendar"
+                    android:drawablePadding="5dp"
                     android:textSize="20sp" />
 
 

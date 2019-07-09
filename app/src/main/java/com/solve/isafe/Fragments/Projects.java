@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -51,6 +52,8 @@ public class Projects extends Fragment {
     private final int SELECT_FILE = 2;
 
     String pname, pdesc;
+
+    TextView name, prodesc;
 
     String filename, id;
 
@@ -89,7 +92,6 @@ public class Projects extends Fragment {
         mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
-
         final DatabaseReference database = FirebaseDatabase.getInstance().getReference()
                 .child("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -103,13 +105,56 @@ public class Projects extends Fragment {
                 for (final DataSnapshot d : dataSnapshot.getChildren()) {
 
                     AddProject addProject = d.getValue(AddProject.class);
-
-
                     projsub.add(addProject.getProjname());
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, projsub);
                     subproj.setAdapter(arrayAdapter);
 
+                    subproj.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            if (projsub.get(position).equals(d.child("projname").getValue())){
+
+                                String key = d.getKey();
+                                System.out.println(key);
+                                DatabaseReference dd = database.child(key);
+
+                                dd.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                        AddProject addProject1 = dataSnapshot.getValue(AddProject.class);
+
+                                        System.out.println(dataSnapshot.getValue());
+
+                                        final AlertDialog dialogBuilder = new AlertDialog.Builder(getContext()).create();
+                                        LayoutInflater inflater = getLayoutInflater();
+                                        final View dialogView = inflater.inflate(R.layout.project_details, null);
+                                        dialogBuilder.setCancelable(true);
+                                        name = dialogView.findViewById(R.id.projname);
+                                        prodesc = dialogView.findViewById(R.id.prodesc);
+                                        name.setText(addProject1.getProjname());
+                                        prodesc.setText(addProject1.getDescription());
+                                        dialogBuilder.setView(dialogView);
+                                        dialogBuilder.show();
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
+                            }
+
+                        }
+                    });
+
                 }
+
+
 
             }
 
@@ -184,7 +229,6 @@ public class Projects extends Fragment {
 
             }
         });
-
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override

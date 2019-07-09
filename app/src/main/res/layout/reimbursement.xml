@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#fff">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -114,6 +115,9 @@
                     android:layout_marginEnd="25dp"
                     android:backgroundTint="#000"
                     android:fontFamily="@font/actor"
+                    android:focusable="false"
+                    android:drawableLeft="@drawable/calendar"
+                    android:drawablePadding="5dp"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textSize="20sp" />
@@ -209,6 +213,31 @@
                 android:textColor="#fff"
                 android:textSize="20sp"
                 android:visibility="gone" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/actor"
+                android:padding="15dp"
+                android:text="Past Reimbursements"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ListView
+                android:id="@+id/listreimbursed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="1dp"
+                android:stackFromBottom="true" />
 
         </LinearLayout>
 
