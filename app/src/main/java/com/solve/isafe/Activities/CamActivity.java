@@ -79,7 +79,7 @@ public class CamActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("    ");
+        getSupportActionBar().setTitle("");
 
         Window window = CamActivity.this.getWindow();
 
